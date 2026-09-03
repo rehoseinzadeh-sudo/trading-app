@@ -9,7 +9,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
       background: #F7F7F5;
       color: #2C3E50;
       line-height: 1.6;
@@ -212,15 +212,41 @@
     let currentLesson = null;
     let quizState = { currentQuestion: 0, score: 0, answered: false };
 
+    function cleanJsonKeys(obj) {
+      if (Array.isArray(obj)) {
+        return obj.map(item => cleanJsonKeys(item));
+      } else if (obj !== null && typeof obj === 'object') {
+        const cleaned = {};
+        for (let key in obj) {
+          const cleanKey = key.trim();
+          cleaned[cleanKey] = cleanJsonKeys(obj[key]);
+        }
+        return cleaned;
+      }
+      return obj;
+    }
+
     async function initApp() {
       try {
-        const [p1, p2, p3, p4] = await Promise.all([
-          fetch('data-part1.json').then(r => r.json()),
-          fetch('data-part2.json').then(r => r.json()),
-          fetch('data-part3.json').then(r => r.json()),
-          fetch('data-part4.json').then(r => r.json())
-        ]);
-        appData.courses = [...p1.courses, ...p2.courses, ...p3.courses, ...p4.courses];
+        const files = ['data-part1.json', 'data-part2.json', 'data-part3.json', 'data-part4.json'];
+        const responses = await Promise.all(files.map(f => fetch(f).then(r => r.text())));
+        
+        appData.courses = [];
+        responses.forEach(text => {
+          try {
+            const data = JSON.parse(text);
+            const cleaned = cleanJsonKeys(data);
+            if (cleaned.courses) {
+              appData.courses.push(...cleaned.courses);
+            }
+          } catch (e) {
+            console.error('Error parsing JSON:', e);
+          }
+        });
+
+        if (appData.courses.length === 0) {
+          throw new Error('No courses found');
+        }
         
         if (!location.hash) {
           history.replaceState({ view: 'home' }, '', '#home');
@@ -252,11 +278,11 @@
     function renderHome() {
       document.getElementById('app').innerHTML = `
         <div class="header">
-          <h1>📚 آکادمی ترید</h1>
+          <h1> آکادمی ترید</h1>
           <p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p>
         </div>
         <div class="nav-tabs">
-          <div class="nav-tab active"> دوره‌ها</div>
+          <div class="nav-tab active">📚 دوره‌ها</div>
           <div class="nav-tab">📈 دمو ترید</div>
           <div class="nav-tab">👤 پروفایل</div>
         </div>
@@ -307,7 +333,7 @@
           <div>${currentLesson.content}</div>
           ${currentLesson.quiz && currentLesson.quiz.length > 0 ? `
             <button class="quiz-button" onclick="startQuiz()">
-              🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)
+               شروع آزمون این درس (${currentLesson.quiz.length} سوال)
             </button>
           ` : ''}
         </div>
@@ -338,7 +364,7 @@
               <div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>
             `).join('')}
           </div>
-          <div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div>
+          <div class="quiz-explanation" id="explanation"> ${q.explanation}</div>
           <div class="quiz-nav">
             <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>
               ${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}
@@ -383,7 +409,7 @@
       const pct = Math.round((score / total) * 100);
       let msg = pct === 100 ? '🎉 عالی! همه سوالات درست بود!' : 
                 pct >= 70 ? '✅ آفرین! عملکرد خوبی داشتید.' : 
-                pct >= 50 ? ' خوب بود، اما جای پیشرفت دارید.' : 
+                pct >= 50 ? '👍 خوب بود، اما جای پیشرفت دارید.' : 
                 '📚 پیشنهاد می‌کنیم درس را دوباره مرور کنید.';
 
       document.getElementById('app').innerHTML = `
