@@ -1,0 +1,25 @@
+{
+  "name": "آکادمی ترید",
+  "short_name": "آکادمی ترید",
+  "description": "اپلیکیشن آموزش ترید و دمو تریدینگ",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F7F7F5",
+  "theme_color": "#1D9E75",
+  "orientation": "portrait",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
