@@ -129,18 +129,18 @@
     function renderHome() {
       let html = `
         <div class="header">
-          <h1>📚 آکادمی ترید</h1>
+          <h1> آکادمی ترید</h1>
           <p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p>
         </div>
         <div class="nav-tabs">
-          <div class="nav-tab active"> دوره‌ها</div>
+          <div class="nav-tab active">📚 دوره‌ها</div>
           <div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div>
           <div class="nav-tab">👤 پروفایل</div>
         </div>
       `;
 
       const levels = ['مقدماتی', 'میانی', 'پیشرفته'];
-      const levelIcons = { 'مقدماتی': '🌱', 'میانی': '', 'پیشرفته': '🌳' };
+      const levelIcons = { 'مقدماتی': '🌱', 'میانی': '🌿', 'پیشرفته': '🌳' };
 
       levels.forEach(level => {
         if (groupedCourses[level] && groupedCourses[level].length > 0) {
@@ -207,7 +207,7 @@
           <h2 style="color: #1D9E75; margin-bottom: 20px;">${currentLesson.title}</h2>
           <div>${currentLesson.content}</div>
           ${currentLesson.quiz && currentLesson.quiz.length > 0 ? `
-            <button class="quiz-button" onclick="startQuiz()"> شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>
+            <button class="quiz-button" onclick="startQuiz()">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>
           ` : ''}
         </div>
         <button class="back-button" onclick="navigateTo('#course-${courseId}')"><span class="back-icon">↶</span> بازگشت</button>
@@ -220,11 +220,11 @@
     function renderDemo() {
       document.getElementById('app').innerHTML = `
         <div class="header">
-          <h1>📈 دمو تریدینگ</h1>
+          <h1> دمو تریدینگ</h1>
           <p>تمرین معامله‌گری با پول مجازی</p>
         </div>
         <div class="lesson-content" style="text-align: center; padding: 40px;">
-          <div style="font-size: 64px; margin-bottom: 20px;"></div>
+          <div style="font-size: 64px; margin-bottom: 20px;">📊</div>
           <h2 style="color: #1D9E75; margin-bottom: 16px;">به‌زودی در دسترس</h2>
           <p style="color: #7F8C8D; margin-bottom: 24px;">
             بخش دمو تریدینگ در حال توسعه است. به‌زودی می‌توانید با پول مجازی و در محیطی شبیه‌سازی‌شده، معامله‌گری را تمرین کنید.
@@ -293,7 +293,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? ' عالی! همه سوالات درست بود!' : 
+      let msg = pct === 100 ? '🎉 عالی! همه سوالات درست بود!' : 
                 pct >= 70 ? '✅ آفرین! عملکرد خوبی داشتید.' : 
                 pct >= 50 ? '👍 خوب بود، اما جای پیشرفت دارید.' : 
                 '📚 پیشنهاد می‌کنیم درس را دوباره مرور کنید.';
@@ -306,7 +306,7 @@
             <button class="quiz-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')" style="max-width: 300px;">بازگشت به درس</button>
           </div>
         </div>
-        <button class="back-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')"><span class="back-icon"></span> بازگشت</button>
+        <button class="back-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')"><span class="back-icon">↶</span> بازگشت</button>
       `;
     }
 
