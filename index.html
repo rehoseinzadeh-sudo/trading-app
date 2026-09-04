@@ -8,196 +8,46 @@
   <link rel="manifest" href="manifest.json">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-      background: #F7F7F5;
-      color: #2C3E50;
-      line-height: 1.6;
-    }
+    body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #F7F7F5; color: #2C3E50; line-height: 1.6; }
     .container { max-width: 800px; margin: 0 auto; padding: 16px; }
-    
-    .header {
-      background: linear-gradient(135deg, #1D9E75 0%, #15785A 100%);
-      color: white;
-      padding: 24px 20px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+    .header { background: linear-gradient(135deg, #1D9E75 0%, #15785A 100%); color: white; padding: 24px 20px; border-radius: 16px; margin-bottom: 20px; text-align: center; }
     .header h1 { font-size: 24px; margin-bottom: 8px; }
     .header p { font-size: 14px; opacity: 0.9; }
-
-    .nav-tabs {
-      display: flex;
-      background: white;
-      border-radius: 12px;
-      padding: 8px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .nav-tab {
-      flex: 1;
-      padding: 12px;
-      text-align: center;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-    }
+    .nav-tabs { display: flex; background: white; border-radius: 12px; padding: 8px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .nav-tab { flex: 1; padding: 12px; text-align: center; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; }
     .nav-tab.active { background: #1D9E75; color: white; }
-
-    .course-card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      cursor: pointer;
-    }
-    .course-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
+    .course-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; }
+    .course-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .course-title { font-size: 18px; font-weight: 600; flex: 1; }
-    .course-level {
-      background: #1D9E75;
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-    }
+    .course-level { background: #1D9E75; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
     .course-info { color: #7F8C8D; font-size: 14px; }
-
-    .lesson-item {
-      background: white;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-    }
-    .lesson-number {
-      width: 40px;
-      height: 40px;
-      background: #1D9E75;
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      margin-left: 16px;
-      flex-shrink: 0;
-    }
+    .lesson-item { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; display: flex; align-items: center; }
+    .lesson-number { width: 40px; height: 40px; background: #1D9E75; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-left: 16px; flex-shrink: 0; }
     .lesson-title { flex: 1; font-size: 16px; font-weight: 500; }
-
-    .lesson-content {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .lesson-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
+    .lesson-content { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .lesson-image { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; }
     .lesson-content h3 { color: #1D9E75; margin: 20px 0 12px 0; font-size: 20px; }
     .lesson-content p { margin-bottom: 12px; text-align: justify; }
     .lesson-content ul { margin: 12px 0; padding-right: 20px; }
     .lesson-content li { margin-bottom: 8px; }
-
-    .info-box {
-      background: #E8F5E9;
-      border-right: 4px solid #3498DB;
-      padding: 16px;
-      border-radius: 8px;
-      margin: 16px 0;
-    }
-    .warning-box {
-      background: #FFF3E0;
-      border-right: 4px solid #F39C12;
-      padding: 16px;
-      border-radius: 8px;
-      margin: 16px 0;
-    }
-
-    .quiz-button {
-      width: 100%;
-      background: #1D9E75;
-      color: white;
-      border: none;
-      padding: 16px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 24px;
-    }
-
-    .quiz-container {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
+    .info-box { background: #E8F5E9; border-right: 4px solid #3498DB; padding: 16px; border-radius: 8px; margin: 16px 0; }
+    .warning-box { background: #FFF3E0; border-right: 4px solid #F39C12; padding: 16px; border-radius: 8px; margin: 16px 0; }
+    .quiz-button { width: 100%; background: #1D9E75; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 24px; }
+    .quiz-container { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .quiz-question { font-size: 18px; font-weight: 600; margin-bottom: 20px; }
-    .quiz-option {
-      background: #F7F7F5;
-      border: 2px solid #E0E0E0;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 12px;
-      cursor: pointer;
-    }
+    .quiz-option { background: #F7F7F5; border: 2px solid #E0E0E0; border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; }
     .quiz-option.correct { border-color: #27AE60; background: #E8F5E9; color: #27AE60; font-weight: 600; }
     .quiz-option.incorrect { border-color: #E74C3C; background: #FFEBEE; color: #E74C3C; }
-    
-    .quiz-explanation {
-      background: #E3F2FD;
-      border-right: 4px solid #3498DB;
-      padding: 16px;
-      border-radius: 8px;
-      margin: 16px 0;
-      display: none;
-    }
+    .quiz-explanation { background: #E3F2FD; border-right: 4px solid #3498DB; padding: 16px; border-radius: 8px; margin: 16px 0; display: none; }
     .quiz-explanation.show { display: block; }
-
     .quiz-nav { display: flex; gap: 12px; margin-top: 20px; }
-    .quiz-nav button {
-      flex: 1;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    .quiz-nav button { flex: 1; padding: 14px; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; }
     .btn-next { background: #1D9E75; color: white; }
     .btn-next:disabled { background: #E0E0E0; color: #7F8C8D; cursor: not-allowed; }
-
     .quiz-result { text-align: center; padding: 40px 20px; }
     .quiz-score { font-size: 48px; font-weight: 700; color: #1D9E75; margin-bottom: 16px; }
     .quiz-message { font-size: 18px; margin-bottom: 24px; }
-
-    .back-button {
-      background: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      cursor: pointer;
-      font-size: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      width: 100%;
-    }
-
+    .back-button { background: white; border: none; padding: 12px 20px; border-radius: 12px; margin-bottom: 16px; cursor: pointer; font-size: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); width: 100%; }
     .loading { text-align: center; padding: 40px; color: #7F8C8D; font-size: 18px; }
   </style>
 </head>
@@ -212,6 +62,7 @@
     let currentLesson = null;
     let quizState = { currentQuestion: 0, score: 0, answered: false };
 
+    // این تابع به‌طور خودکار فاصله‌های اضافی (Space) را از کلیدهای JSON حذف می‌کند
     function cleanJsonKeys(obj) {
       if (Array.isArray(obj)) {
         return obj.map(item => cleanJsonKeys(item));
@@ -244,13 +95,8 @@
           }
         });
 
-        if (appData.courses.length === 0) {
-          throw new Error('No courses found');
-        }
-        
-        if (!location.hash) {
-          history.replaceState({ view: 'home' }, '', '#home');
-        }
+        if (appData.courses.length === 0) throw new Error('No courses found');
+        if (!location.hash) history.replaceState({ view: 'home' }, '', '#home');
         handleRoute();
       } catch (error) {
         console.error('Error:', error);
@@ -260,27 +106,18 @@
 
     function handleRoute() {
       const hash = location.hash;
-      if (hash === '#home' || hash === '') {
-        renderHome();
-      } else if (hash.startsWith('#course-')) {
-        const courseId = hash.replace('#course-', '');
-        renderCourseLessons(courseId);
-      } else if (hash.startsWith('#lesson-')) {
+      if (hash === '#home' || hash === '') renderHome();
+      else if (hash.startsWith('#course-')) renderCourseLessons(hash.replace('#course-', ''));
+      else if (hash.startsWith('#lesson-')) {
         const parts = hash.replace('#lesson-', '').split('-');
         renderLesson(parts[0], parseInt(parts[1]));
-      } else if (hash === '#quiz') {
-        renderQuizQuestion();
-      } else {
-        renderHome();
-      }
+      } else if (hash === '#quiz') renderQuizQuestion();
+      else renderHome();
     }
 
     function renderHome() {
       document.getElementById('app').innerHTML = `
-        <div class="header">
-          <h1> آکادمی ترید</h1>
-          <p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p>
-        </div>
+        <div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
         <div class="nav-tabs">
           <div class="nav-tab active">📚 دوره‌ها</div>
           <div class="nav-tab">📈 دمو ترید</div>
@@ -301,13 +138,9 @@
     function renderCourseLessons(courseId) {
       currentCourse = appData.courses.find(c => c.id === courseId);
       if (!currentCourse) return navigateTo('#home');
-
       document.getElementById('app').innerHTML = `
         <button class="back-button" onclick="navigateTo('#home')">→ بازگشت به دوره‌ها</button>
-        <div class="header">
-          <h1>${currentCourse.title}</h1>
-          <p>${currentCourse.level} • ${currentCourse.lessons.length} درس</p>
-        </div>
+        <div class="header"><h1>${currentCourse.title}</h1><p>${currentCourse.level} • ${currentCourse.lessons.length} درس</p></div>
         ${currentCourse.lessons.map((l, i) => `
           <div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')">
             <div class="lesson-number">${i + 1}</div>
@@ -320,22 +153,15 @@
     function renderLesson(courseId, lessonIndex) {
       currentCourse = appData.courses.find(c => c.id === courseId);
       if (!currentCourse) return navigateTo('#home');
-      
       currentLesson = currentCourse.lessons[lessonIndex];
       if (!currentLesson) return navigateTo(`#course-${courseId}`);
-
       document.getElementById('app').innerHTML = `
         <button class="back-button" onclick="navigateTo('#course-${courseId}')">→ بازگشت به لیست دروس</button>
         <div class="lesson-content">
-          ${currentLesson.image && !currentLesson.image.includes('PENDING') ? 
-            `<img src="${currentLesson.image}" alt="${currentLesson.title}" class="lesson-image">` : ''}
+          ${currentLesson.image && !currentLesson.image.includes('PENDING') ? `<img src="${currentLesson.image}" alt="${currentLesson.title}" class="lesson-image">` : ''}
           <h2 style="color: #1D9E75; margin-bottom: 20px;">${currentLesson.title}</h2>
           <div>${currentLesson.content}</div>
-          ${currentLesson.quiz && currentLesson.quiz.length > 0 ? `
-            <button class="quiz-button" onclick="startQuiz()">
-               شروع آزمون این درس (${currentLesson.quiz.length} سوال)
-            </button>
-          ` : ''}
+          ${currentLesson.quiz && currentLesson.quiz.length > 0 ? `<button class="quiz-button" onclick="startQuiz()">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}
         </div>
       `;
       window.scrollTo(0, 0);
@@ -351,24 +177,17 @@
       const q = currentLesson.quiz[quizState.currentQuestion];
       const total = currentLesson.quiz.length;
       const num = quizState.currentQuestion + 1;
-
       document.getElementById('app').innerHTML = `
         <button class="back-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')">→ خروج از آزمون</button>
         <div class="quiz-container">
-          <div style="text-align: center; margin-bottom: 20px; color: #7F8C8D; font-size: 14px;">
-            سوال ${num} از ${total}
-          </div>
+          <div style="text-align: center; margin-bottom: 20px; color: #7F8C8D; font-size: 14px;">سوال ${num} از ${total}</div>
           <div class="quiz-question">${q.question}</div>
           <div id="options-container">
-            ${q.options.map((opt, i) => `
-              <div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>
-            `).join('')}
+            ${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}
           </div>
-          <div class="quiz-explanation" id="explanation"> ${q.explanation}</div>
+          <div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div>
           <div class="quiz-nav">
-            <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>
-              ${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}
-            </button>
+            <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button>
           </div>
         </div>
       `;
@@ -378,48 +197,36 @@
     function selectAnswer(index) {
       if (quizState.answered) return;
       quizState.answered = true;
-      
       const q = currentLesson.quiz[quizState.currentQuestion];
-      const isCorrect = index === q.correct;
-      
-      if (isCorrect) quizState.score++;
-
+      if (index === q.correct) quizState.score++;
       document.querySelectorAll('.quiz-option').forEach((el, i) => {
         el.style.pointerEvents = 'none';
         if (i === q.correct) el.classList.add('correct');
-        else if (i === index && !isCorrect) el.classList.add('incorrect');
+        else if (i === index && !quizState.answered === false) el.classList.add('incorrect'); // Fixed logic
+        if (i === q.correct) el.classList.add('correct');
+        if (i === index && index !== q.correct) el.classList.add('incorrect');
       });
-
       document.getElementById('explanation').classList.add('show');
       document.getElementById('btn-next').disabled = false;
     }
 
     function nextQuestion() {
       quizState.currentQuestion++;
-      if (quizState.currentQuestion >= currentLesson.quiz.length) {
-        showQuizResult();
-      } else {
-        renderQuizQuestion();
-      }
+      if (quizState.currentQuestion >= currentLesson.quiz.length) showQuizResult();
+      else renderQuizQuestion();
     }
 
     function showQuizResult() {
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی! همه سوالات درست بود!' : 
-                pct >= 70 ? '✅ آفرین! عملکرد خوبی داشتید.' : 
-                pct >= 50 ? '👍 خوب بود، اما جای پیشرفت دارید.' : 
-                '📚 پیشنهاد می‌کنیم درس را دوباره مرور کنید.';
-
+      let msg = pct === 100 ? '🎉 عالی! همه سوالات درست بود!' : pct >= 70 ? '✅ آفرین! عملکرد خوبی داشتید.' : pct >= 50 ? '👍 خوب بود، اما جای پیشرفت دارید.' : '📚 پیشنهاد می‌کنیم درس را دوباره مرور کنید.';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container">
           <div class="quiz-result">
             <div class="quiz-score">${score} از ${total}</div>
             <div class="quiz-message">${msg}</div>
-            <button class="quiz-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')">
-              بازگشت به درس
-            </button>
+            <button class="quiz-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')">بازگشت به درس</button>
           </div>
         </div>
       `;
@@ -430,15 +237,9 @@
       handleRoute();
     }
 
-    window.addEventListener('popstate', () => {
-      handleRoute();
-    });
-
+    window.addEventListener('popstate', () => handleRoute());
     initApp();
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js').catch(console.error);
-    }
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js').catch(console.error);
   </script>
 </body>
 </html>
