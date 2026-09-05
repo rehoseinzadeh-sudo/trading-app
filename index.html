@@ -55,66 +55,39 @@
     .back-icon { font-size: 20px; font-weight: 900; }
     .loading { text-align: center; padding: 40px; color: #7F8C8D; font-size: 18px; }
     
-    /* ✅ تب‌های دمو تریدینگ - بزرگتر و هم‌تراز */
-    .demo-tabs { 
-      display: flex; 
-      background: white; 
-      border-radius: 12px; 
-      padding: 6px; 
-      margin-bottom: 16px; 
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      gap: 4px;
-    }
-    .demo-tab { 
-      flex: 1; 
-      padding: 12px 6px; 
-      text-align: center; 
-      border-radius: 8px; 
-      cursor: pointer; 
-      font-size: 14px; 
-      font-weight: 600;
-      white-space: nowrap;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-    .demo-tab .tab-icon { font-size: 20px; }
-    .demo-tab .tab-text { font-size: 13px; }
-    .demo-tab.active { background: #1D9E75; color: white; }
+    /* دمو تریدینگ */
+    .demo-header { background: #1e222d; color: white; padding: 16px; border-radius: 12px; margin-bottom: 12px; }
+    .demo-symbol { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .demo-price { font-size: 32px; font-weight: 800; }
+    .demo-change { font-size: 14px; margin-top: 4px; }
+    .price-up { color: #26a69a; }
+    .price-down { color: #ef5350; }
     
-    .chart-container { background: #1e222d; border-radius: 12px; overflow: hidden; margin-bottom: 16px; height: 350px; position: relative; }
-    .chart-fallback { 
-      background: linear-gradient(135deg, #1e222d 0%, #2a2e39 100%); 
-      border-radius: 12px; 
-      padding: 40px 20px; 
-      margin-bottom: 16px; 
-      text-align: center; 
-      color: white;
-      min-height: 300px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .chart-fallback .fallback-icon { font-size: 64px; margin-bottom: 16px; }
-    .chart-fallback .fallback-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-    .chart-fallback .fallback-price { font-size: 32px; font-weight: 800; color: #26a69a; margin-bottom: 8px; }
-    .chart-fallback .fallback-subtitle { font-size: 14px; color: #9ca3af; }
+    .timeframe-selector { display: flex; gap: 8px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 8px; }
+    .timeframe-btn { background: white; border: 2px solid #E0E0E0; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .timeframe-btn.active { background: #1D9E75; color: white; border-color: #1D9E75; }
+    
+    .chart-container { background: #1e222d; border-radius: 12px; overflow: hidden; margin-bottom: 16px; height: 400px; }
+    
+    .trade-form { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 16px; }
+    .trade-form h3 { margin-bottom: 16px; font-size: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-input { padding: 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 15px; width: 100%; }
+    .form-input:focus { outline: none; border-color: #1D9E75; }
+    .form-label { font-size: 13px; color: #7F8C8D; margin-bottom: 4px; display: block; }
+    
+    .trade-buttons { display: flex; gap: 12px; margin-top: 16px; }
+    .btn-buy { flex: 1; background: #26a69a; color: white; border: none; padding: 16px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
+    .btn-sell { flex: 1; background: #ef5350; color: white; border: none; padding: 16px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
+    
     .account-info { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
     .info-card { background: white; padding: 16px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .info-label { font-size: 12px; color: #7F8C8D; margin-bottom: 4px; }
     .info-value { font-size: 18px; font-weight: 700; }
-    .trade-panel { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 16px; }
-    .trade-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .trade-input { padding: 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 15px; width: 100%; }
-    .trade-input:focus { outline: none; border-color: #1D9E75; }
-    .leverage-slider { width: 100%; margin: 12px 0; }
-    .trade-buttons { display: flex; gap: 12px; margin-top: 16px; }
-    .btn-buy { flex: 1; background: #26a69a; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
-    .btn-sell { flex: 1; background: #ef5350; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
-    .position-item { background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    
+    .positions-section { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 16px; }
+    .positions-section h3 { margin-bottom: 16px; font-size: 18px; }
+    .position-item { background: #F7F7F5; padding: 12px; border-radius: 8px; margin-bottom: 8px; }
     .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .position-side { font-weight: 700; font-size: 14px; }
     .position-side.buy { color: #26a69a; }
@@ -123,15 +96,16 @@
     .position-pnl { font-size: 16px; font-weight: 700; }
     .pnl-positive { color: #26a69a; }
     .pnl-negative { color: #ef5350; }
-    .btn-close { background: #E74C3C; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; }
-    .history-item { background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 13px; }
+    .btn-close { background: #E74C3C; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; margin-top: 8px; }
+    
+    .history-section { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .history-section h3 { margin-bottom: 16px; font-size: 18px; }
+    .history-item { background: #F7F7F5; padding: 12px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; }
     .history-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
     .history-details { color: #7F8C8D; font-size: 11px; }
-    .price-display { text-align: center; padding: 16px; background: #1e222d; color: white; border-radius: 12px; margin-bottom: 16px; }
-    .price-value { font-size: 28px; font-weight: 800; }
-    .price-change { font-size: 14px; margin-top: 4px; }
-    .price-up { color: #26a69a; }
-    .price-down { color: #ef5350; }
+    
+    .empty-state { text-align: center; padding: 40px 20px; color: #7F8C8D; }
+    .empty-state-icon { font-size: 48px; margin-bottom: 12px; }
   </style>
 </head>
 <body>
@@ -146,8 +120,7 @@
     let quizState = { currentQuestion: 0, score: 0, answered: false };
     let demoAccount = { balance: 10000, equity: 10000, positions: [], history: [] };
     let chart, candleSeries, currentPrice = 0, ws;
-    let demoTab = 'chart';
-    let chartLoaded = false;
+    let currentTimeframe = '15m';
 
     function cleanJsonKeys(obj) {
       if (Array.isArray(obj)) return obj.map(item => cleanJsonKeys(item));
@@ -180,7 +153,7 @@
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict') || t.includes('kill zone')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
-      if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
+      if (t.includes('روانشناسی') || t.includes('ژورنال')) return '';
       return '📚';
     }
 
@@ -243,15 +216,15 @@
     function renderHome() {
       const levels = [
         { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
-        { id: 'intermediate', icon: '', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `
         <div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
         <div class="nav-tabs">
-          <div class="nav-tab active">📚 دوره‌ها</div>
+          <div class="nav-tab active"> دوره‌ها</div>
           <div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div>
-          <div class="nav-tab"> پروفایل</div>
+          <div class="nav-tab">👤 پروفایل</div>
         </div>
       `;
       levels.forEach(level => {
@@ -344,89 +317,84 @@
 
     function renderDemo() {
       if (ws) { ws.close(); ws = null; }
-      if (chart) { chart.remove(); chart = null; chartLoaded = false; }
+      if (chart) { chart.remove(); chart = null; }
       
       let html = `
         <div class="header"><h1>📈 دمو تریدینگ</h1><p>تمرین معامله‌گری با پول مجازی</p></div>
-        <div class="demo-tabs">
-          <div class="demo-tab ${demoTab === 'chart' ? 'active' : ''}" onclick="switchDemoTab('chart')">
-            <span class="tab-icon">📊</span>
-            <span class="tab-text">چارت</span>
-          </div>
-          <div class="demo-tab ${demoTab === 'trade' ? 'active' : ''}" onclick="switchDemoTab('trade')">
-            <span class="tab-icon">💹</span>
-            <span class="tab-text">ترید</span>
-          </div>
-          <div class="demo-tab ${demoTab === 'positions' ? 'active' : ''}" onclick="switchDemoTab('positions')">
-            <span class="tab-icon">📋</span>
-            <span class="tab-text">پوزیشن‌ها</span>
-          </div>
-          <div class="demo-tab ${demoTab === 'history' ? 'active' : ''}" onclick="switchDemoTab('history')">
-            <span class="tab-icon">📜</span>
-            <span class="tab-text">تاریخچه</span>
-          </div>
-        </div>
         <div id="demo-content"></div>
-        <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon"></span> بازگشت</button>
+        <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
       `;
       document.getElementById('app').innerHTML = html;
       renderDemoContent();
-    }
-
-    function switchDemoTab(tab) {
-      demoTab = tab;
-      renderDemo();
     }
 
     function renderDemoContent() {
       const content = document.getElementById('demo-content');
       if (!content) return;
       
-      if (demoTab === 'chart') {
-        content.innerHTML = `
-          <div class="price-display">
-            <div style="font-size: 14px; color: #9ca3af; margin-bottom: 4px;">BTC/USDT</div>
-            <div class="price-value" id="current-price">در حال بارگذاری...</div>
-            <div class="price-change" id="price-change"></div>
-          </div>
-          <div class="chart-container" id="chart-container"></div>
-        `;
-        initChart();
-      } else if (demoTab === 'trade') {
-        content.innerHTML = `
-          <div class="account-info">
-            <div class="info-card"><div class="info-label">موجودی</div><div class="info-value">$${demoAccount.balance.toFixed(2)}</div></div>
-            <div class="info-card"><div class="info-label">Equity</div><div class="info-value">$${demoAccount.equity.toFixed(2)}</div></div>
-          </div>
-          <div class="trade-panel">
-            <h3 style="margin-bottom: 16px;">باز کردن معامله</h3>
-            <div class="trade-form">
-              <input type="number" class="trade-input" id="trade-quantity" placeholder="مقدار (BTC)" step="0.001" min="0.001">
-              <select class="trade-input" id="trade-leverage">
-                <option value="1">لوریج 1x</option>
-                <option value="5">لوریج 5x</option>
-                <option value="10" selected>لوریج 10x</option>
-                <option value="20">لوریج 20x</option>
-                <option value="50">لوریج 50x</option>
-                <option value="100">لوریج 100x</option>
+      content.innerHTML = `
+        <div class="demo-header">
+          <div class="demo-symbol">BTC/USDT</div>
+          <div class="demo-price" id="current-price">در حال بارگذاری...</div>
+          <div class="demo-change" id="price-change"></div>
+        </div>
+        
+        <div class="timeframe-selector">
+          <button class="timeframe-btn ${currentTimeframe === '1m' ? 'active' : ''}" onclick="changeTimeframe('1m')">1 دقیقه</button>
+          <button class="timeframe-btn ${currentTimeframe === '5m' ? 'active' : ''}" onclick="changeTimeframe('5m')">5 دقیقه</button>
+          <button class="timeframe-btn ${currentTimeframe === '15m' ? 'active' : ''}" onclick="changeTimeframe('15m')">15 دقیقه</button>
+          <button class="timeframe-btn ${currentTimeframe === '1h' ? 'active' : ''}" onclick="changeTimeframe('1h')">1 ساعت</button>
+          <button class="timeframe-btn ${currentTimeframe === '4h' ? 'active' : ''}" onclick="changeTimeframe('4h')">4 ساعت</button>
+          <button class="timeframe-btn ${currentTimeframe === '1d' ? 'active' : ''}" onclick="changeTimeframe('1d')">1 روز</button>
+        </div>
+        
+        <div class="chart-container" id="chart-container"></div>
+        
+        <div class="account-info">
+          <div class="info-card"><div class="info-label">موجودی</div><div class="info-value">$${demoAccount.balance.toFixed(2)}</div></div>
+          <div class="info-card"><div class="info-label">Equity</div><div class="info-value">$${demoAccount.equity.toFixed(2)}</div></div>
+        </div>
+        
+        <div class="trade-form">
+          <h3>باز کردن معامله</h3>
+          <div class="form-row">
+            <div>
+              <label class="form-label">مقدار (BTC)</label>
+              <input type="number" class="form-input" id="trade-quantity" placeholder="0.001" step="0.001" min="0.001">
+            </div>
+            <div>
+              <label class="form-label">لوریج</label>
+              <select class="form-input" id="trade-leverage">
+                <option value="1">1x</option>
+                <option value="5">5x</option>
+                <option value="10" selected>10x</option>
+                <option value="20">20x</option>
+                <option value="50">50x</option>
+                <option value="100">100x</option>
               </select>
-              <input type="number" class="trade-input" id="trade-sl" placeholder="Stop Loss (اختیاری)" step="0.01">
-              <input type="number" class="trade-input" id="trade-tp" placeholder="Take Profit (اختیاری)" step="0.01">
-            </div>
-            <div class="trade-buttons">
-              <button class="btn-buy" onclick="openPosition('buy')">خرید (Long)</button>
-              <button class="btn-sell" onclick="openPosition('sell')">فروش (Short)</button>
             </div>
           </div>
-        `;
-      } else if (demoTab === 'positions') {
-        if (demoAccount.positions.length === 0) {
-          content.innerHTML = '<div class="loading">هیچ پوزیشن بازی ندارید</div>';
-        } else {
-          let html = '';
-          demoAccount.positions.forEach(pos => {
+          <div class="form-row">
+            <div>
+              <label class="form-label">Stop Loss (اختیاری)</label>
+              <input type="number" class="form-input" id="trade-sl" placeholder="قیمت" step="0.01">
+            </div>
+            <div>
+              <label class="form-label">Take Profit (اختیاری)</label>
+              <input type="number" class="form-input" id="trade-tp" placeholder="قیمت" step="0.01">
+            </div>
+          </div>
+          <div class="trade-buttons">
+            <button class="btn-buy" onclick="openPosition('buy')"> خرید (Long)</button>
+            <button class="btn-sell" onclick="openPosition('sell')">🔴 فروش (Short)</button>
+          </div>
+        </div>
+        
+        <div class="positions-section">
+          <h3>📋 پوزیشن‌های باز (${demoAccount.positions.length})</h3>
+          ${demoAccount.positions.length === 0 ? '<div class="empty-state"><div class="empty-state-icon">📭</div><div>هیچ پوزیشن بازی ندارید</div></div>' : demoAccount.positions.map(pos => {
             const pnlClass = pos.pnl >= 0 ? 'pnl-positive' : 'pnl-negative';
-            html += `
+            return `
               <div class="position-item">
                 <div class="position-header">
                   <span class="position-side ${pos.side}">${pos.side === 'buy' ? '🟢 خرید' : '🔴 فروش'} ${pos.quantity} BTC</span>
@@ -436,21 +404,18 @@
                   ورود: $${pos.entryPrice.toFixed(2)} | لوریج: ${pos.leverage}x | مارجین: $${pos.margin.toFixed(2)}
                   ${pos.sl ? `| SL: $${pos.sl}` : ''} ${pos.tp ? `| TP: $${pos.tp}` : ''}
                 </div>
-                <button class="btn-close" onclick="closePosition(${pos.id})" style="margin-top: 8px;">بستن معامله</button>
+                <button class="btn-close" onclick="closePosition(${pos.id})">بستن معامله</button>
               </div>
             `;
-          });
-          content.innerHTML = html;
-        }
-      } else if (demoTab === 'history') {
-        if (demoAccount.history.length === 0) {
-          content.innerHTML = '<div class="loading">تاریخچه معاملات خالی است</div>';
-        } else {
-          let html = '';
-          demoAccount.history.slice().reverse().forEach(h => {
+          }).join('')}
+        </div>
+        
+        <div class="history-section">
+          <h3>📜 تاریخچه معاملات (${demoAccount.history.length})</h3>
+          ${demoAccount.history.length === 0 ? '<div class="empty-state"><div class="empty-state-icon">📭</div><div>تاریخچه معاملات خالی است</div></div>' : demoAccount.history.slice().reverse().map(h => {
             const pnlClass = h.pnl >= 0 ? 'pnl-positive' : 'pnl-negative';
             const reasonText = h.reason === 'liquidated' ? '⚠️ لیکوئید' : h.reason === 'sl' ? '🛑 Stop Loss' : h.reason === 'tp' ? '🎯 Take Profit' : '✅ دستی';
-            html += `
+            return `
               <div class="history-item">
                 <div class="history-header">
                   <span class="position-side ${h.side}">${h.side === 'buy' ? 'خرید' : 'فروش'} ${h.quantity} BTC</span>
@@ -459,27 +424,33 @@
                 <div class="history-details">${reasonText} | ورود: $${h.entryPrice.toFixed(2)} | خروج: $${h.closePrice.toFixed(2)}</div>
               </div>
             `;
-          });
-          content.innerHTML = html;
-        }
-      }
+          }).join('')}
+        </div>
+      `;
+      
+      initChart();
+    }
+
+    function changeTimeframe(tf) {
+      currentTimeframe = tf;
+      if (ws) { ws.close(); ws = null; }
+      if (chart) { chart.remove(); chart = null; }
+      renderDemoContent();
     }
 
     function initChart() {
       const container = document.getElementById('chart-container');
       if (!container) return;
       
-      // بررسی وجود کتابخانه TradingView
       if (typeof LightweightCharts === 'undefined') {
-        console.log('TradingView library not loaded, using fallback');
-        showChartFallback();
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📊</div><div>خطا در بارگذاری چارت</div></div>';
         return;
       }
       
       try {
         chart = LightweightCharts.createChart(container, {
           width: container.clientWidth,
-          height: 350,
+          height: 400,
           layout: { background: { color: '#1e222d' }, textColor: '#d1d4dc' },
           grid: { vertLines: { color: '#2b2b43' }, horzLines: { color: '#2b2b43' } },
           crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
@@ -492,7 +463,7 @@
           borderVisible: false, wickUpColor: '#26a69a', wickDownColor: '#ef5350',
         });
         
-        fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=500')
+        fetch(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=${currentTimeframe}&limit=500`)
           .then(r => r.json())
           .then(data => {
             const candles = data.map(k => ({
@@ -505,14 +476,13 @@
             candleSeries.setData(candles);
             currentPrice = candles[candles.length - 1].close;
             updatePriceDisplay(currentPrice);
-            chartLoaded = true;
           })
           .catch(err => {
             console.error('Error fetching historical data:', err);
-            showChartFallback();
+            document.getElementById('current-price').textContent = 'خطا در بارگذاری';
           });
         
-        ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@kline_1m');
+        ws = new WebSocket(`wss://stream.binance.com:9443/ws/btcusdt@kline_${currentTimeframe}`);
         ws.onmessage = (event) => {
           const data = JSON.parse(event.data);
           const k = data.k;
@@ -528,45 +498,11 @@
           updatePriceDisplay(currentPrice);
           updatePnL(currentPrice);
         };
-        ws.onerror = (err) => {
-          console.error('WebSocket error:', err);
-          showChartFallback();
-        };
-        ws.onclose = () => {
-          console.log('WebSocket closed');
-        };
+        ws.onerror = (err) => console.error('WebSocket error:', err);
       } catch (err) {
         console.error('Chart initialization error:', err);
-        showChartFallback();
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📊</div><div>خطا در بارگذاری چارت</div></div>';
       }
-    }
-
-    function showChartFallback() {
-      const container = document.getElementById('chart-container');
-      if (!container) return;
-      
-      container.innerHTML = `
-        <div class="chart-fallback">
-          <div class="fallback-icon">📊</div>
-          <div class="fallback-title">BTC/USDT</div>
-          <div class="fallback-price" id="fallback-price">$0.00</div>
-          <div class="fallback-subtitle">در حال دریافت قیمت لحظه‌ای...</div>
-        </div>
-      `;
-      
-      // دریافت قیمت از API
-      fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT')
-        .then(r => r.json())
-        .then(data => {
-          currentPrice = parseFloat(data.price);
-          const priceEl = document.getElementById('fallback-price');
-          if (priceEl) priceEl.textContent = `$${currentPrice.toFixed(2)}`;
-        })
-        .catch(err => {
-          console.error('Error fetching price:', err);
-          const priceEl = document.getElementById('fallback-price');
-          if (priceEl) priceEl.textContent = 'خطا در دریافت قیمت';
-        });
     }
 
     function updatePriceDisplay(price) {
@@ -576,8 +512,8 @@
       if (changeEl && demoAccount.positions.length > 0) {
         const totalPnl = demoAccount.positions.reduce((sum, p) => sum + p.pnl, 0);
         const pnlClass = totalPnl >= 0 ? 'price-up' : 'price-down';
-        changeEl.className = `price-change ${pnlClass}`;
-        changeEl.textContent = `PnL: $${totalPnl.toFixed(2)}`;
+        changeEl.className = `demo-change ${pnlClass}`;
+        changeEl.textContent = `PnL کل: $${totalPnl.toFixed(2)}`;
       }
     }
 
@@ -603,7 +539,7 @@
       demoAccount.balance -= margin;
       saveDemoAccount();
       alert(`معامله ${side === 'buy' ? 'خرید' : 'فروش'} باز شد!`);
-      switchDemoTab('positions');
+      renderDemoContent();
     }
 
     function closePosition(id, reason = 'manual') {
@@ -649,7 +585,6 @@
       });
       demoAccount.equity = demoAccount.balance + demoAccount.positions.reduce((sum, p) => sum + p.pnl, 0);
       saveDemoAccount();
-      if (demoTab === 'positions' || demoTab === 'trade') renderDemoContent();
     }
 
     function loadDemoAccount() {
@@ -713,20 +648,20 @@
       let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 300px;">بازگشت به دوره</button></div></div>
-        <button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')"><span class="back-icon">↶</span> بازگشت</button>
+        <button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')"><span class="back-icon"></span> بازگشت</button>
       `;
     }
 
     function navigateTo(hash) {
       if (ws && hash !== '#demo') { ws.close(); ws = null; }
-      if (chart && hash !== '#demo') { chart.remove(); chart = null; chartLoaded = false; }
+      if (chart && hash !== '#demo') { chart.remove(); chart = null; }
       history.pushState({ hash }, '', hash);
       handleRoute();
     }
     
     window.addEventListener('popstate', () => handleRoute());
     window.addEventListener('resize', () => {
-      if (chart && demoTab === 'chart' && chartLoaded) {
+      if (chart && currentTimeframe) {
         const container = document.getElementById('chart-container');
         if (container) chart.applyOptions({ width: container.clientWidth });
       }
