@@ -23,7 +23,6 @@
     .course-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; }
     .course-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .course-title { font-size: 17px; font-weight: 600; flex: 1; }
-    .course-level { background: #1D9E75; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
     .course-info { color: #7F8C8D; font-size: 14px; }
     .lesson-item { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; display: flex; align-items: center; }
     .lesson-number { width: 40px; height: 40px; background: #1D9E75; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-left: 16px; flex-shrink: 0; }
@@ -51,14 +50,15 @@
     .quiz-result { text-align: center; padding: 40px 20px; }
     .quiz-score { font-size: 48px; font-weight: 700; color: #1D9E75; margin-bottom: 16px; }
     .quiz-message { font-size: 18px; margin-bottom: 24px; }
-    .back-button { position: fixed; bottom: 20px; left: 20px; right: 20px; background: #1D9E75; color: white; border: none; padding: 16px 24px; border-radius: 50px; cursor: pointer; font-size: 18px; font-weight: 700; box-shadow: 0 4px 12px rgba(29, 158, 117, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 1000; }
-    .back-icon { font-size: 24px; font-weight: 900; }
+    /* ✅ دکمه بازگشت اصلاح‌شده: خاکستری تیره، کوچک‌تر */
+    .back-button { position: fixed; bottom: 20px; left: 20px; right: 20px; background: #546E7A; color: white; border: none; padding: 12px 20px; border-radius: 50px; cursor: pointer; font-size: 15px; font-weight: 600; box-shadow: 0 4px 12px rgba(84, 110, 122, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 1000; }
+    .back-icon { font-size: 20px; font-weight: 900; }
     .loading { text-align: center; padding: 40px; color: #7F8C8D; font-size: 18px; }
   </style>
 </head>
 <body>
   <div class="container" id="app">
-    <div class="loading">⏳ در حال بارگذاری...</div>
+    <div class="loading"> در حال بارگذاری...</div>
   </div>
 
   <script>
@@ -95,14 +95,14 @@
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
-      if (t.includes('لوریج') || t.includes('مارجین')) return '️';
+      if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '🛡️';
       if (t.includes('آزمون') || t.includes('تست')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict') || t.includes('kill zone')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
       if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
-      return '';
+      return '📚';
     }
 
     async function initApp() {
@@ -148,7 +148,7 @@
         handleRoute();
       } catch (error) {
         console.error('Error:', error);
-        document.getElementById('app').innerHTML = '<div class="loading"> خطای سیستم</div>';
+        document.getElementById('app').innerHTML = '<div class="loading">❌ خطای سیستم</div>';
       }
     }
 
@@ -181,8 +181,8 @@
           <p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p>
         </div>
         <div class="nav-tabs">
-          <div class="nav-tab active"> دوره‌ها</div>
-          <div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div>
+          <div class="nav-tab active">📚 دوره‌ها</div>
+          <div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div>
           <div class="nav-tab">👤 پروفایل</div>
         </div>
       `;
@@ -231,7 +231,6 @@
           <div class="course-card" onclick="navigateTo('#course-${c.id}')">
             <div class="course-header">
               <div class="course-title">${i + 1}. ${c.title}</div>
-              <div class="course-level">${c.level}</div>
             </div>
             <div class="course-info">${c.lessons.length} درس</div>
           </div>
@@ -259,7 +258,7 @@
       let html = `
         <div class="header">
           <h1>${currentCourse.title}</h1>
-          <p>${currentCourse.level} • ${lessons.length} درس</p>
+          <p>${lessons.length} درس</p>
         </div>
       `;
 
@@ -358,7 +357,7 @@
       document.getElementById('app').innerHTML = `
         <div class="header"><h1> دمو تریدینگ</h1><p>تمرین معامله‌گری با پول مجازی</p></div>
         <div class="lesson-content" style="text-align: center; padding: 40px;">
-          <div style="font-size: 64px; margin-bottom: 20px;">🚧</div>
+          <div style="font-size: 64px; margin-bottom: 20px;"></div>
           <h2 style="color: #1D9E75; margin-bottom: 16px;">به‌زودی در دسترس</h2>
           <p style="color: #7F8C8D; margin-bottom: 24px;">بخش دمو تریدینگ در حال توسعه است.</p>
           <button class="quiz-button" onclick="navigateTo('#home')" style="max-width: 300px; margin: 0 auto;">بازگشت به صفحه اصلی</button>
@@ -384,7 +383,7 @@
           <div id="options-container">
             ${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}
           </div>
-          <div class="quiz-explanation" id="explanation"> ${q.explanation}</div>
+          <div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div>
           <div class="quiz-nav">
             <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button>
           </div>
@@ -419,7 +418,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? ' خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container">
           <div class="quiz-result">
