@@ -55,22 +55,30 @@
     .back-button { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); width: 180px; background: #6366F1; color: white; border: none; padding: 10px 16px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 1000; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
     
-    /* ===== استایل‌های دمو تریدینگ (LTR) ===== */
+    /* ===== استایل‌های دمو تریدینگ ===== */
     .trade-page { background: white; min-height: 100vh; padding-bottom: 60px; direction: ltr; text-align: left; }
     
-    /* هدر جفت ارز - سمت راست */
+    /* هدر جفت ارز */
     .trade-header { background: white; padding: 12px 16px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
     .pair-info { display: flex; align-items: center; gap: 12px; }
-    .pair-selector { display: flex; align-items: center; gap: 6px; cursor: pointer; }
-    .pair-name { font-size: 16px; font-weight: 700; color: #1A1A1A; }
+    .pair-selector { display: flex; align-items: center; gap: 6px; cursor: pointer; position: relative; }
+    .pair-name { font-size: 18px; font-weight: 700; color: #2196F3; } /* مورد 1: آبی */
     .pair-dropdown { font-size: 10px; color: #7F8C8D; }
     .pair-change { font-size: 13px; color: #0ECB81; font-weight: 600; }
-    .chart-toggle { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: #F5F5F5; border-radius: 6px; }
+    .chart-toggle { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: #F5F5F5; border-radius: 6px; }
+    .chart-toggle svg { width: 22px; height: 22px; }
     
-    /* لایه اصلی: دو ستون */
+    /* منوی کشویی انتخاب جفت ارز - مورد 10 */
+    .pair-dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #E0E0E0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 200; min-width: 180px; margin-top: 8px; }
+    .pair-dropdown-menu.show { display: block; }
+    .pair-option { padding: 10px 14px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #F5F5F5; }
+    .pair-option:hover { background: #F5F5F5; }
+    .pair-option:last-child { border-bottom: none; }
+    
+    /* لایه اصلی */
     .trade-main { display: flex; gap: 12px; padding: 12px; }
     
-    /* ستون چپ: فرم سفارش */
+    /* ستون فرم سفارش */
     .trade-form-col { flex: 1; max-width: 55%; }
     .trade-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
     .trade-tab { flex: 1; padding: 10px; border: none; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; background: #F5F5F5; color: #7F8C8D; }
@@ -86,14 +94,16 @@
     .form-input { width: 100%; padding: 10px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 4px; color: #1A1A1A; font-size: 13px; }
     .form-input:focus { outline: none; border-color: #F0B90B; }
     
+    /* اسلایدر - مورد 3 */
     .amount-slider { margin-bottom: 16px; }
     .slider-container { position: relative; height: 32px; display: flex; align-items: center; }
     .slider-track { position: absolute; width: 100%; height: 3px; background: #E0E0E0; border-radius: 2px; }
     .slider-fill { position: absolute; height: 100%; background: #F0B90B; border-radius: 2px; width: 0%; }
-    .slider-dot { position: absolute; width: 18px; height: 18px; background: #F0B90B; border-radius: 50%; cursor: grab; left: 0%; transform: translateX(-50%); box-shadow: 0 2px 6px rgba(0,0,0,0.2); z-index: 10; }
+    .slider-dot { position: absolute; width: 18px; height: 18px; background: #F0B90B; border-radius: 50%; cursor: grab; left: 0%; transform: translateX(-50%); box-shadow: 0 2px 6px rgba(0,0,0,0.2); z-index: 10; touch-action: none; }
     .slider-dot:active { cursor: grabbing; }
-    .slider-markers { display: flex; justify-content: space-between; margin-top: 6px; }
+    .slider-markers { display: flex; justify-content: space-between; margin-top: 6px; padding: 0 2px; }
     .slider-marker { width: 6px; height: 6px; background: #E0E0E0; border-radius: 50%; }
+    .slider-percent { text-align: center; font-size: 11px; color: #F0B90B; font-weight: 600; margin-top: 4px; }
     
     .trade-info-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12px; border-bottom: 1px solid #F5F5F5; }
     .trade-info-label { color: #7F8C8D; }
@@ -107,7 +117,7 @@
     .submit-btn.buy { background: #0ECB81; color: white; }
     .submit-btn.sell { background: #F64653; color: white; }
     
-    /* ستون راست: Order Book */
+    /* ستون Order Book */
     .order-book-col { flex: 1; max-width: 45%; }
     .price-display { text-align: left; padding: 12px 0; }
     .current-price { font-size: 28px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
@@ -130,16 +140,18 @@
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
     
     .positions-content { padding: 12px; }
+    
+    /* مورد 4 و 5: رنگ‌بندی و فاصله پوزیشن */
     .position-item { background: #F5F5F5; border-radius: 6px; padding: 12px; margin-bottom: 8px; }
-    .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .position-pair { font-size: 14px; font-weight: 700; color: #1A1A1A; }
+    .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .position-pair { font-size: 14px; font-weight: 700; color: #2196F3; } /* آبی */
     .position-side { font-size: 12px; padding: 3px 8px; border-radius: 3px; font-weight: 600; }
     .position-side.long { background: rgba(14, 203, 129, 0.15); color: #0ECB81; }
     .position-side.short { background: rgba(246, 70, 83, 0.15); color: #F64653; }
-    .position-details { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 12px; margin-bottom: 8px; }
-    .position-detail { display: flex; justify-content: space-between; }
-    .position-detail-label { color: #7F8C8D; }
-    .position-detail-value { color: #1A1A1A; }
+    .position-details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; margin-bottom: 8px; } /* فاصله بیشتر */
+    .position-detail { display: flex; justify-content: space-between; padding: 4px 0; }
+    .position-detail-label { color: #64B5F6; } /* آبی کمرنگ */
+    .position-detail-value { color: #81C784; font-weight: 500; } /* سبز کمرنگ */
     .position-pnl { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
     .position-pnl.profit { color: #0ECB81; }
     .position-pnl.loss { color: #F64653; }
@@ -151,10 +163,11 @@
     .chart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; flex-direction: column; }
     .chart-modal.active { display: flex; }
     .chart-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #E8E8E8; background: white; }
-    .chart-back { font-size: 20px; cursor: pointer; color: #1A1A1A; padding: 4px 8px; }
+    .chart-back { font-size: 28px; cursor: pointer; color: #1A1A1A; padding: 4px 12px; font-weight: 300; } /* مورد 11: بزرگتر */
     .chart-title { font-size: 14px; font-weight: 600; }
-    .chart-actions { display: flex; gap: 8px; }
-    .chart-action-btn { padding: 6px 12px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 12px; cursor: pointer; }
+    .chart-actions { display: flex; gap: 6px; }
+    .chart-action-btn { padding: 6px 10px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; }
+    .chart-action-btn.active { background: #F0B90B; }
     
     .chart-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
     .chart-main { flex: 1; position: relative; min-height: 300px; }
@@ -162,11 +175,23 @@
     .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 8px; background: #F0B90B; cursor: ns-resize; opacity: 0.6; z-index: 100; }
     .resize-handle:hover { opacity: 1; }
     
-    .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 8px 16px; display: flex; gap: 8px; overflow-x: auto; }
-    .indicator-btn { padding: 6px 12px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 11px; cursor: pointer; white-space: nowrap; }
+    .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto; }
+    .indicator-btn { padding: 6px 10px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 11px; cursor: pointer; white-space: nowrap; }
     .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     
-    .indicator-charts { height: 150px; background: white; border-top: 1px solid #E8E8E8; }
+    /* مورد 7 و 8: اندیکاتورهای مرتب */
+    .indicator-charts { height: 180px; background: white; border-top: 1px solid #E8E8E8; display: flex; flex-direction: column; }
+    .indicator-subchart { flex: 1; position: relative; border-bottom: 1px solid #F0F0F0; }
+    .indicator-subchart:last-child { border-bottom: none; }
+    .indicator-subchart canvas { width: 100%; height: 100%; display: block; }
+    .indicator-label { position: absolute; top: 4px; left: 8px; font-size: 10px; color: #7F8C8D; font-weight: 600; z-index: 5; }
+    
+    /* تب Pending Order - مورد 6 */
+    .pending-form { background: #FFF8E1; border: 1px solid #F0B90B; border-radius: 6px; padding: 12px; margin-bottom: 12px; }
+    .pending-form h4 { font-size: 13px; color: #F0B90B; margin-bottom: 10px; }
+    .pending-item { background: #FFF8E1; border-left: 3px solid #F0B90B; padding: 10px; border-radius: 4px; margin-bottom: 6px; font-size: 12px; }
+    .pending-item-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .cancel-btn { background: #757575; color: white; border: none; padding: 4px 10px; border-radius: 3px; font-size: 11px; cursor: pointer; }
     
     /* Responsive */
     @media (max-width: 768px) {
@@ -178,10 +203,11 @@
 </head>
 <body>
   <div class="container" id="app">
-    <div class="loading"> در حال بارگذاری...</div>
+    <div class="loading">⏳ در حال بارگذاری...</div>
   </div>
 
   <script>
+    // ===== متغیرهای اصلی =====
     let appData = { courses: [] };
     let currentCourse = null;
     let currentLesson = null;
@@ -189,7 +215,6 @@
     let demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] };
     let chart, candleSeries, currentPrice = 80027, ws;
     let currentTimeframe = '15m';
-    let orderBookData = { bids: [], asks: [] };
     let tradeType = 'buy';
     let sliderValue = 0;
     let activeTab = 'positions';
@@ -197,7 +222,12 @@
     let chartData = [];
     let indicatorSeries = {};
     let positionLines = {};
+    let currentPair = 'BTCUSDT';
+    let pairPrices = { BTCUSDT: 80027, ETHUSDT: 3850, XAUUSD: 2650, EURUSD: 1.0850 };
+    let pairDecimals = { BTCUSDT: 2, ETHUSDT: 2, XAUUSD: 2, EURUSD: 4 };
+    let tpSlLines = [];
 
+    // ===== توابع کمکی =====
     function cleanJsonKeys(obj) {
       if (Array.isArray(obj)) return obj.map(item => cleanJsonKeys(item));
       else if (obj !== null && typeof obj === 'object') {
@@ -216,23 +246,24 @@
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '';
+      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '🔗';
       if (t.includes('کیف پول')) return '👛';
-      if (t.includes('بازار')) return '';
+      if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
-      if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
+      if (t.includes('حمایت') || t.includes('مقاومت')) return '';
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '🛡️';
       if (t.includes('آزمون') || t.includes('تست')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
-      if (t.includes('ict') || t.includes('kill zone')) return '';
+      if (t.includes('ict') || t.includes('kill zone')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
-      if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
+      if (t.includes('روانشناسی') || t.includes('ژورنال')) return '';
       return '📚';
     }
 
+    // ===== راه‌اندازی اپ =====
     async function initApp() {
       try {
         const files = ['data-part1.json', 'data-part2.json', 'data-part3.json', 'data-part4.json', 'data-part5.json'];
@@ -289,18 +320,19 @@
       else renderHome();
     }
 
+    // ===== صفحات اصلی اپ =====
     function renderHome() {
       const levels = [
         { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
-        { id: 'intermediate', icon: '', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
-        { id: 'advanced', icon: '', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
+        { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `
-        <div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
+        <div class="header"><h1> آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
         <div class="nav-tabs">
           <div class="nav-tab active">📚 دوره‌ها</div>
           <div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div>
-          <div class="nav-tab">👤 پروفایل</div>
+          <div class="nav-tab"> پروفایل</div>
         </div>
       `;
       levels.forEach(level => {
@@ -367,7 +399,7 @@
       } else {
         imageHtml = `<div style="width:100%;height:180px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:10px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:64px;color:#1D9E75">${lessonIcon}</div>`;
       }
-      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${currentLesson.quiz && currentLesson.quiz.length > 0 ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div><button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')"> بازگشت</button>`;
+      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${currentLesson.quiz && currentLesson.quiz.length > 0 ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div><button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')">↶ بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
       window.scrollTo(0, 0);
     }
@@ -388,21 +420,34 @@
     function renderTradePage() {
       if (ws) { ws.close(); ws = null; }
       if (chart) { chart.remove(); chart = null; }
+      indicatorSeries = {};
+      positionLines = {};
+      tpSlLines = [];
+      
+      const pairs = [
+        { id: 'BTCUSDT', name: 'BTC/USDT' },
+        { id: 'ETHUSDT', name: 'ETH/USDT' },
+        { id: 'XAUUSD', name: 'XAU/USD (Gold)' },
+        { id: 'EURUSD', name: 'EUR/USD' }
+      ];
       
       let html = `
         <div class="trade-page">
           <div class="trade-header">
             <div class="pair-info">
-              <div class="pair-selector">
-                <span class="pair-name">BTCUSDT</span>
+              <div class="pair-selector" onclick="togglePairDropdown()">
+                <span class="pair-name" id="pairNameDisplay">${getPairName(currentPair)}</span>
                 <span class="pair-dropdown">▼</span>
+                <div class="pair-dropdown-menu" id="pairDropdown">
+                  ${pairs.map(p => `<div class="pair-option" onclick="selectPair('${p.id}', event)">${p.name}</div>`).join('')}
+                </div>
               </div>
-              <span class="pair-change">+0.53%</span>
+              <span class="pair-change" id="pairChange">+0.53%</span>
             </div>
             <div class="chart-toggle" onclick="openChartModal()" title="Open Chart">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 3v18h18"/>
-                <path d="M7 14l4-4 4 4 5-5"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M3 17 L9 11 L13 15 L21 7"/>
+                <path d="M17 7 L21 7 L21 11"/>
               </svg>
             </div>
           </div>
@@ -440,6 +485,7 @@
                   <div class="slider-marker"></div>
                   <div class="slider-marker"></div>
                 </div>
+                <div class="slider-percent" id="sliderPercent">0%</div>
               </div>
 
               <div class="trade-info-row">
@@ -448,7 +494,7 @@
               </div>
               <div class="trade-info-row">
                 <span class="trade-info-label">Avbl</span>
-                <span class="trade-info-value" id="availableValue">-- USDT</span>
+                <span class="trade-info-value" id="availableValue">0 USDT</span>
               </div>
               <div class="trade-info-row">
                 <span class="trade-info-label">Max</span>
@@ -466,19 +512,19 @@
 
               <div id="tpSlInputs"></div>
 
-              <button class="submit-btn buy" id="submitBtn" onclick="submitOrder()">Buy/Long BTC</button>
+              <button class="submit-btn buy" id="submitBtn" onclick="submitOrder()">Buy/Long</button>
             </div>
 
             <div class="order-book-col">
               <div class="price-display">
-                <div class="current-price" id="currentPrice">80,027.00</div>
-                <div class="price-change-text">≈ $80,027.00 USD</div>
+                <div class="current-price" id="currentPrice">0.00</div>
+                <div class="price-change-text" id="priceChangeText">≈ $0.00 USD</div>
               </div>
               <div class="order-book">
                 <div class="order-header">
-                  <span>Amount(BTC)</span>
-                  <span>Price(USDT)</span>
-                  <span>Price(USDT)</span>
+                  <span>Amount</span>
+                  <span>Price</span>
+                  <span>Price</span>
                 </div>
                 <div id="orderBookAsks"></div>
                 <div id="orderBookBids"></div>
@@ -498,11 +544,11 @@
         <div class="chart-modal" id="chartModal">
           <div class="chart-header">
             <span class="chart-back" onclick="closeChartModal()">←</span>
-            <span class="chart-title">BTC/USDT Chart</span>
+            <span class="chart-title" id="chartTitle">Chart</span>
             <div class="chart-actions">
               <button class="chart-action-btn" onclick="changeTimeframe('1m')">1m</button>
               <button class="chart-action-btn" onclick="changeTimeframe('5m')">5m</button>
-              <button class="chart-action-btn" onclick="changeTimeframe('15m')">15m</button>
+              <button class="chart-action-btn active" onclick="changeTimeframe('15m')">15m</button>
               <button class="chart-action-btn" onclick="changeTimeframe('1h')">1h</button>
               <button class="chart-action-btn" onclick="changeTimeframe('4h')">4h</button>
             </div>
@@ -533,8 +579,40 @@
       updateTradeInfo();
     }
 
+    function getPairName(id) {
+      const names = { BTCUSDT: 'BTC/USDT', ETHUSDT: 'ETH/USDT', XAUUSD: 'XAU/USD', EURUSD: 'EUR/USD' };
+      return names[id] || id;
+    }
+
+    function togglePairDropdown() {
+      document.getElementById('pairDropdown').classList.toggle('show');
+    }
+
+    function selectPair(id, event) {
+      event.stopPropagation();
+      currentPair = id;
+      currentPrice = pairPrices[id];
+      document.getElementById('pairNameDisplay').textContent = getPairName(id);
+      document.getElementById('pairDropdown').classList.remove('show');
+      updatePriceDisplay();
+      renderOrderBook();
+      if (document.getElementById('chartModal').classList.contains('active')) {
+        if (chart) { chart.remove(); chart = null; }
+        indicatorSeries = {};
+        initChart();
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.pair-selector')) {
+        const dd = document.getElementById('pairDropdown');
+        if (dd) dd.classList.remove('show');
+      }
+    });
+
     function openChartModal() {
       document.getElementById('chartModal').classList.add('active');
+      document.getElementById('chartTitle').textContent = getPairName(currentPair) + ' Chart';
       setTimeout(() => initChart(), 100);
     }
 
@@ -552,22 +630,22 @@
       let isResizing = false;
       let startY, startHeight;
       
-      handle.addEventListener('mousedown', startResize);
-      handle.addEventListener('touchstart', startResize, {passive: true});
-      
-      function startResize(e) {
+      const startResize = (e) => {
         isResizing = true;
         startY = e.touches ? e.touches[0].clientY : e.clientY;
         startHeight = chartMain.clientHeight;
         document.addEventListener('mousemove', doResize);
-        document.addEventListener('touchmove', doResize, {passive: true});
+        document.addEventListener('touchmove', doResize, {passive: false});
         document.addEventListener('mouseup', stopResize);
         document.addEventListener('touchend', stopResize);
         e.preventDefault();
-      }
+        e.stopPropagation();
+      };
       
-      function doResize(e) {
+      const doResize = (e) => {
         if (!isResizing) return;
+        e.preventDefault();
+        e.stopPropagation();
         const y = e.touches ? e.touches[0].clientY : e.clientY;
         const delta = startY - y;
         const newHeight = Math.max(200, Math.min(600, startHeight + delta));
@@ -575,23 +653,27 @@
         if (chart) {
           chart.applyOptions({ width: chartMain.clientWidth, height: newHeight - 8 });
         }
-      }
+      };
       
-      function stopResize() {
+      const stopResize = () => {
         isResizing = false;
         document.removeEventListener('mousemove', doResize);
         document.removeEventListener('touchmove', doResize);
         document.removeEventListener('mouseup', stopResize);
         document.removeEventListener('touchend', stopResize);
-      }
+      };
+      
+      handle.addEventListener('mousedown', startResize);
+      handle.addEventListener('touchstart', startResize, {passive: false});
     }
 
+    // مورد 7: چارت با امکان zoom و scroll
     function initChart() {
       const container = document.getElementById('chartContainer');
       if (!container) return;
       
       if (typeof LightweightCharts === 'undefined') {
-        container.innerHTML = '<div class="empty-state"> خطا در بارگذاری چارت</div>';
+        container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>';
         return;
       }
       
@@ -602,10 +684,10 @@
           layout: { background: { color: '#FFFFFF' }, textColor: '#1A1A1A' },
           grid: { vertLines: { color: '#F0F0F0' }, horzLines: { color: '#F0F0F0' } },
           crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
-          rightPriceScale: { borderColor: '#E8E8E8' },
+          rightPriceScale: { borderColor: '#E8E8E8', scaleMargins: { top: 0.1, bottom: 0.1 } },
           timeScale: { borderColor: '#E8E8E8', timeVisible: true },
-          handleScroll: { vertTouchDrag: false, horzTouchDrag: true },
-          handleScale: { axisPressedMouseMove: true, mouseWheel: true, pinch: true }
+          handleScroll: { vertTouchDrag: false, horzTouchDrag: true, mouseWheel: true },
+          handleScale: { axisPressedMouseMove: true, mouseWheel: true, pinch: true } // مورد 6: فعال
         });
         
         candleSeries = chart.addCandlestickSeries({
@@ -613,43 +695,78 @@
           borderVisible: false, wickUpColor: '#0ECB81', wickDownColor: '#F64653',
         });
         
-        fetch(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=${currentTimeframe}&limit=500`)
+        // شبیه‌سازی داده بر اساس جفت ارز
+        const basePrice = pairPrices[currentPair] || 80000;
+        const volatility = currentPair === 'BTCUSDT' ? 500 : currentPair === 'ETHUSDT' ? 30 : currentPair === 'XAUUSD' ? 10 : 0.005;
+        
+        fetch(`https://api.binance.com/api/v3/klines?symbol=${currentPair === 'XAUUSD' || currentPair === 'EURUSD' ? 'BTCUSDT' : currentPair}&interval=${currentTimeframe}&limit=200`)
           .then(r => r.json())
           .then(data => {
             chartData = data.map(k => ({
               time: k[0] / 1000,
-              open: parseFloat(k[1]),
-              high: parseFloat(k[2]),
-              low: parseFloat(k[3]),
-              close: parseFloat(k[4]),
+              open: parseFloat(k[1]) * (basePrice / 80000),
+              high: parseFloat(k[2]) * (basePrice / 80000),
+              low: parseFloat(k[3]) * (basePrice / 80000),
+              close: parseFloat(k[4]) * (basePrice / 80000),
             }));
             candleSeries.setData(chartData);
             currentPrice = chartData[chartData.length - 1].close;
+            pairPrices[currentPair] = currentPrice;
             updatePriceDisplay();
             drawPositionLines();
             drawIndicators();
           })
           .catch(err => {
-            console.error('Error fetching historical data:', err);
+            // داده شبیه‌سازی‌شده
+            chartData = [];
+            let price = basePrice;
+            const now = Math.floor(Date.now() / 1000);
+            for (let i = 200; i >= 0; i--) {
+              const open = price;
+              const change = (Math.random() - 0.5) * volatility * 2;
+              const close = price + change;
+              const high = Math.max(open, close) + Math.random() * volatility;
+              const low = Math.min(open, close) - Math.random() * volatility;
+              chartData.push({ time: now - i * 900, open, high, low, close });
+              price = close;
+            }
+            candleSeries.setData(chartData);
+            currentPrice = chartData[chartData.length - 1].close;
+            pairPrices[currentPair] = currentPrice;
+            updatePriceDisplay();
+            drawPositionLines();
+            drawIndicators();
           });
         
-        ws = new WebSocket(`wss://stream.binance.com:9443/ws/btcusdt@kline_${currentTimeframe}`);
-        ws.onmessage = (event) => {
-          const data = JSON.parse(event.data);
-          const k = data.k;
-          const candle = {
-            time: k.t / 1000,
-            open: parseFloat(k.o),
-            high: parseFloat(k.h),
-            low: parseFloat(k.l),
-            close: parseFloat(k.c),
+        if (currentPair === 'BTCUSDT' || currentPair === 'ETHUSDT') {
+          ws = new WebSocket(`wss://stream.binance.com:9443/ws/${currentPair.toLowerCase()}@kline_${currentTimeframe}`);
+          ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            const k = data.k;
+            const candle = {
+              time: k.t / 1000,
+              open: parseFloat(k.o),
+              high: parseFloat(k.h),
+              low: parseFloat(k.l),
+              close: parseFloat(k.c),
+            };
+            if (candleSeries) candleSeries.update(candle);
+            currentPrice = candle.close;
+            pairPrices[currentPair] = currentPrice;
+            updatePriceDisplay();
+            updatePositionsPnL();
           };
-          if (candleSeries) candleSeries.update(candle);
-          currentPrice = candle.close;
-          updatePriceDisplay();
-          updatePositionsPnL();
-        };
-        ws.onerror = (err) => console.error('WebSocket error:', err);
+          ws.onerror = (err) => console.error('WebSocket error:', err);
+        } else {
+          // شبیه‌سازی برای طلا و EUR/USD
+          setInterval(() => {
+            const change = (Math.random() - 0.5) * volatility * 0.3;
+            currentPrice += change;
+            pairPrices[currentPair] = currentPrice;
+            updatePriceDisplay();
+            updatePositionsPnL();
+          }, 2000);
+        }
       } catch (err) {
         console.error('Chart initialization error:', err);
         container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>';
@@ -658,12 +775,15 @@
 
     function changeTimeframe(tf) {
       currentTimeframe = tf;
+      document.querySelectorAll('.chart-action-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
       if (ws) { ws.close(); ws = null; }
       if (chart) { chart.remove(); chart = null; }
       indicatorSeries = {};
       initChart();
     }
 
+    // مورد 7 و 8: اندیکاتورهای مرتب و درست
     function toggleIndicator(indicator) {
       const idx = activeIndicators.indexOf(indicator);
       if (idx > -1) {
@@ -684,7 +804,6 @@
     function drawIndicators() {
       if (!chart || !candleSeries || chartData.length === 0) return;
       
-      // پاک کردن اندیکاتورهای قبلی
       Object.values(indicatorSeries).forEach(s => {
         if (s && s.remove) s.remove();
       });
@@ -693,11 +812,12 @@
       const container = document.getElementById('indicatorCharts');
       if (container) container.innerHTML = '';
       
+      // MA روی چارت اصلی
       if (activeIndicators.includes('MA')) {
         const ma20 = calculateMA(chartData, 20);
         const ma50 = calculateMA(chartData, 50);
-        indicatorSeries.ma20 = chart.addLineSeries({ color: '#2196F3', lineWidth: 2, title: 'MA20' });
-        indicatorSeries.ma50 = chart.addLineSeries({ color: '#FF9800', lineWidth: 2, title: 'MA50' });
+        indicatorSeries.ma20 = chart.addLineSeries({ color: '#2196F3', lineWidth: 2, title: 'MA20', priceLineVisible: false });
+        indicatorSeries.ma50 = chart.addLineSeries({ color: '#FF9800', lineWidth: 2, title: 'MA50', priceLineVisible: false });
         indicatorSeries.ma20.setData(ma20);
         indicatorSeries.ma50.setData(ma50);
       }
@@ -705,38 +825,40 @@
       if (activeIndicators.includes('EMA')) {
         const ema12 = calculateEMA(chartData, 12);
         const ema26 = calculateEMA(chartData, 26);
-        indicatorSeries.ema12 = chart.addLineSeries({ color: '#9C27B0', lineWidth: 2, title: 'EMA12' });
-        indicatorSeries.ema26 = chart.addLineSeries({ color: '#E91E63', lineWidth: 2, title: 'EMA26' });
+        indicatorSeries.ema12 = chart.addLineSeries({ color: '#9C27B0', lineWidth: 2, title: 'EMA12', priceLineVisible: false });
+        indicatorSeries.ema26 = chart.addLineSeries({ color: '#E91E63', lineWidth: 2, title: 'EMA26', priceLineVisible: false });
         indicatorSeries.ema12.setData(ema12);
         indicatorSeries.ema26.setData(ema26);
       }
       
       if (activeIndicators.includes('BOLL')) {
         const boll = calculateBollinger(chartData, 20, 2);
-        indicatorSeries.bollUpper = chart.addLineSeries({ color: '#9E9E9E', lineWidth: 1, lineStyle: 2, title: 'Upper' });
-        indicatorSeries.bollMiddle = chart.addLineSeries({ color: '#2196F3', lineWidth: 2, title: 'Middle' });
-        indicatorSeries.bollLower = chart.addLineSeries({ color: '#9E9E9E', lineWidth: 1, lineStyle: 2, title: 'Lower' });
+        indicatorSeries.bollUpper = chart.addLineSeries({ color: '#9E9E9E', lineWidth: 1, lineStyle: 2, title: 'Upper', priceLineVisible: false });
+        indicatorSeries.bollMiddle = chart.addLineSeries({ color: '#2196F3', lineWidth: 2, title: 'Middle', priceLineVisible: false });
+        indicatorSeries.bollLower = chart.addLineSeries({ color: '#9E9E9E', lineWidth: 1, lineStyle: 2, title: 'Lower', priceLineVisible: false });
         indicatorSeries.bollUpper.setData(boll.upper);
         indicatorSeries.bollMiddle.setData(boll.middle);
         indicatorSeries.bollLower.setData(boll.lower);
       }
       
+      // RSI در subchart جداگانه
       if (activeIndicators.includes('RSI')) {
-        const rsi = calculateRSI(chartData, 14);
-        const rsiContainer = document.getElementById('indicatorCharts');
-        if (rsiContainer) {
-          rsiContainer.innerHTML += '<div style="height:100px;position:relative;"><canvas id="rsiCanvas" style="width:100%;height:100%;"></canvas></div>';
-          setTimeout(() => drawRSI(rsi), 50);
-        }
+        const rsiData = calculateRSI(chartData, 14);
+        const rsiContainer = document.createElement('div');
+        rsiContainer.className = 'indicator-subchart';
+        rsiContainer.innerHTML = '<div class="indicator-label">RSI(14)</div><canvas></canvas>';
+        container.appendChild(rsiContainer);
+        setTimeout(() => drawRSI(rsiData, rsiContainer.querySelector('canvas')), 50);
       }
       
+      // MACD در subchart جداگانه
       if (activeIndicators.includes('MACD')) {
-        const macd = calculateMACD(chartData);
-        const macdContainer = document.getElementById('indicatorCharts');
-        if (macdContainer) {
-          macdContainer.innerHTML += '<div style="height:100px;position:relative;"><canvas id="macdCanvas" style="width:100%;height:100%;"></canvas></div>';
-          setTimeout(() => drawMACD(macd), 50);
-        }
+        const macdData = calculateMACD(chartData);
+        const macdContainer = document.createElement('div');
+        macdContainer.className = 'indicator-subchart';
+        macdContainer.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><canvas></canvas>';
+        container.appendChild(macdContainer);
+        setTimeout(() => drawMACD(macdData, macdContainer.querySelector('canvas')), 50);
       }
     }
 
@@ -755,11 +877,8 @@
       const multiplier = 2 / (period + 1);
       let ema = data[0].close;
       for (let i = 0; i < data.length; i++) {
-        if (i < period - 1) {
-          ema = (data[i].close + (period - 1) * ema) / period;
-        } else {
-          ema = (data[i].close - ema) * multiplier + ema;
-        }
+        if (i < period - 1) ema = (data[i].close + (period - 1) * ema) / period;
+        else ema = (data[i].close - ema) * multiplier + ema;
         if (i >= period - 1) result.push({ time: data[i].time, value: ema });
       }
       return result;
@@ -806,46 +925,48 @@
     function calculateMACD(data) {
       const ema12 = calculateEMA(data, 12);
       const ema26 = calculateEMA(data, 26);
-      const macdLine = [];
-      const signalLine = [];
-      const histogram = [];
-      
       const ema12Map = new Map(ema12.map(e => [e.time, e.value]));
       const ema26Map = new Map(ema26.map(e => [e.time, e.value]));
       
       const macdValues = [];
       data.forEach(d => {
         if (ema12Map.has(d.time) && ema26Map.has(d.time)) {
-          const macd = ema12Map.get(d.time) - ema26Map.get(d.time);
-          macdValues.push({ time: d.time, value: macd });
+          macdValues.push({ time: d.time, value: ema12Map.get(d.time) - ema26Map.get(d.time) });
         }
       });
       
       const signalMultiplier = 2 / 10;
+      const signalLine = [];
       let signal = macdValues[0]?.value || 0;
       macdValues.forEach((m, i) => {
         if (i < 9) signal = (m.value + 9 * signal) / 10;
         else signal = (m.value - signal) * signalMultiplier + signal;
         signalLine.push({ time: m.time, value: signal });
-        histogram.push({ time: m.time, value: m.value - signal });
       });
+      
+      const histogram = macdValues.map((m, i) => ({
+        time: m.time,
+        value: m.value - (signalLine[i]?.value || 0)
+      }));
       
       return { macd: macdValues, signal: signalLine, histogram };
     }
 
-    function drawRSI(rsiData) {
-      const canvas = document.getElementById('rsiCanvas');
+    // مورد 7: RSI با مقیاس درست (0-100)
+    function drawRSI(rsiData, canvas) {
       if (!canvas) return;
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
       const ctx = canvas.getContext('2d');
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
       
       ctx.fillStyle = 'white';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // خطوط مرجع
+      // خطوط مرجع 30, 50, 70
       ctx.strokeStyle = '#E0E0E0';
       ctx.setLineDash([2, 2]);
+      ctx.lineWidth = 1;
       [30, 50, 70].forEach(level => {
         const y = canvas.height - (level / 100) * canvas.height;
         ctx.beginPath();
@@ -855,9 +976,15 @@
       });
       ctx.setLineDash([]);
       
+      // ناحیه اشباع
+      ctx.fillStyle = 'rgba(246, 70, 83, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height * 0.3);
+      ctx.fillStyle = 'rgba(14, 203, 129, 0.05)';
+      ctx.fillRect(0, canvas.height * 0.7, canvas.width, canvas.height * 0.3);
+      
       // رسم RSI
       ctx.strokeStyle = '#FF9800';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
       rsiData.forEach((r, i) => {
         const x = (i / (rsiData.length - 1)) * canvas.width;
@@ -868,34 +995,42 @@
       ctx.stroke();
     }
 
-    function drawMACD(macdData) {
-      const canvas = document.getElementById('macdCanvas');
+    // مورد 8: MACD با مقیاس درست
+    function drawMACD(macdData, canvas) {
       if (!canvas) return;
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
       const ctx = canvas.getContext('2d');
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
       
       ctx.fillStyle = 'white';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
+      // محاسبه مقیاس مشترک
       const allValues = [...macdData.macd, ...macdData.signal, ...macdData.histogram];
-      const max = Math.max(...allValues.map(v => Math.abs(v.value)));
+      const maxAbs = Math.max(...allValues.map(v => Math.abs(v.value))) * 1.2;
+      if (maxAbs === 0) return;
+      
       const midY = canvas.height / 2;
+      const scaleY = (canvas.height / 2) / maxAbs;
       
       // خط صفر
       ctx.strokeStyle = '#E0E0E0';
+      ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(0, midY);
       ctx.lineTo(canvas.width, midY);
       ctx.stroke();
       
       // هیستوگرام
-      const barWidth = canvas.width / macdData.histogram.length;
+      const barWidth = Math.max(1, canvas.width / macdData.histogram.length - 1);
       macdData.histogram.forEach((h, i) => {
-        const x = i * barWidth;
-        const h_px = (h.value / max) * (canvas.height / 2);
+        const x = (i / (macdData.histogram.length - 1)) * canvas.width;
+        const h_px = h.value * scaleY;
         ctx.fillStyle = h.value >= 0 ? '#0ECB81' : '#F64653';
-        ctx.fillRect(x, midY - h_px, barWidth - 1, h_px);
+        const barHeight = Math.abs(h_px);
+        const y = h.value >= 0 ? midY - barHeight : midY;
+        ctx.fillRect(x - barWidth/2, y, barWidth, barHeight);
       });
       
       // خط MACD
@@ -904,7 +1039,7 @@
       ctx.beginPath();
       macdData.macd.forEach((m, i) => {
         const x = (i / (macdData.macd.length - 1)) * canvas.width;
-        const y = midY - (m.value / max) * (canvas.height / 2);
+        const y = midY - m.value * scaleY;
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       });
@@ -912,10 +1047,11 @@
       
       // خط سیگنال
       ctx.strokeStyle = '#FF9800';
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
       macdData.signal.forEach((s, i) => {
         const x = (i / (macdData.signal.length - 1)) * canvas.width;
-        const y = midY - (s.value / max) * (canvas.height / 2);
+        const y = midY - s.value * scaleY;
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       });
@@ -925,60 +1061,41 @@
     function drawPositionLines() {
       if (!chart || !candleSeries) return;
       
-      // پاک کردن خطوط قبلی
-      Object.values(positionLines).forEach(l => {
-        if (l && l.remove) l.remove();
-      });
+      Object.values(positionLines).forEach(l => { if (l && l.remove) l.remove(); });
       positionLines = {};
       
-      demoAccount.positions.forEach((pos, idx) => {
-        // خط ورود
+      demoAccount.positions.filter(p => p.pair === currentPair).forEach((pos, idx) => {
         positionLines[`entry_${idx}`] = candleSeries.createPriceLine({
-          price: pos.entryPrice,
-          color: '#2196F3',
-          lineWidth: 2,
-          lineStyle: 0,
-          axisLabelVisible: true,
-          title: `Entry ${idx + 1}`,
+          price: pos.entryPrice, color: '#2196F3', lineWidth: 2, lineStyle: 0,
+          axisLabelVisible: true, title: `Entry ${idx + 1}`,
         });
-        
-        // خط SL
         if (pos.sl) {
           positionLines[`sl_${idx}`] = candleSeries.createPriceLine({
-            price: pos.sl,
-            color: '#F64653',
-            lineWidth: 2,
-            lineStyle: 2,
-            axisLabelVisible: true,
-            title: `SL ${idx + 1}`,
+            price: pos.sl, color: '#F64653', lineWidth: 2, lineStyle: 2,
+            axisLabelVisible: true, title: `SL ${idx + 1}`,
           });
         }
-        
-        // خط TP
         if (pos.tp) {
           positionLines[`tp_${idx}`] = candleSeries.createPriceLine({
-            price: pos.tp,
-            color: '#0ECB81',
-            lineWidth: 2,
-            lineStyle: 2,
-            axisLabelVisible: true,
-            title: `TP ${idx + 1}`,
+            price: pos.tp, color: '#0ECB81', lineWidth: 2, lineStyle: 2,
+            axisLabelVisible: true, title: `TP ${idx + 1}`,
           });
         }
       });
     }
 
     function generateOrderBook() {
-      const asks = [];
-      const bids = [];
+      const asks = [], bids = [];
+      const decimals = pairDecimals[currentPair] || 2;
+      const step = currentPair === 'BTCUSDT' ? 10 : currentPair === 'ETHUSDT' ? 1 : currentPair === 'XAUUSD' ? 0.5 : 0.0005;
       for (let i = 1; i <= 8; i++) {
         asks.push({
-          price: (currentPrice + i * 10).toFixed(2),
+          price: (currentPrice + i * step).toFixed(decimals),
           amount: (Math.random() * 10).toFixed(4),
           total: (Math.random() * 100).toFixed(2)
         });
         bids.push({
-          price: (currentPrice - i * 10).toFixed(2),
+          price: (currentPrice - i * step).toFixed(decimals),
           amount: (Math.random() * 10).toFixed(4),
           total: (Math.random() * 100).toFixed(2)
         });
@@ -988,20 +1105,8 @@
 
     function renderOrderBook() {
       const { asks, bids } = generateOrderBook();
-      const asksHtml = asks.map(o => `
-        <div class="order-row ask">
-          <span class="amount">${o.amount}</span>
-          <span class="price ask">${o.price}</span>
-          <span class="total">${o.total}</span>
-        </div>
-      `).join('');
-      const bidsHtml = bids.map(o => `
-        <div class="order-row bid">
-          <span class="amount">${o.amount}</span>
-          <span class="price bid">${o.price}</span>
-          <span class="total">${o.total}</span>
-        </div>
-      `).join('');
+      const asksHtml = asks.map(o => `<div class="order-row ask"><span class="amount">${o.amount}</span><span class="price ask">${o.price}</span><span class="total">${o.total}</span></div>`).join('');
+      const bidsHtml = bids.map(o => `<div class="order-row bid"><span class="amount">${o.amount}</span><span class="price bid">${o.price}</span><span class="total">${o.total}</span></div>`).join('');
       const asksEl = document.getElementById('orderBookAsks');
       const bidsEl = document.getElementById('orderBookBids');
       if (asksEl) asksEl.innerHTML = asksHtml;
@@ -1009,8 +1114,11 @@
     }
 
     function updatePriceDisplay() {
+      const decimals = pairDecimals[currentPair] || 2;
       const priceEl = document.getElementById('currentPrice');
-      if (priceEl) priceEl.textContent = currentPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      const textEl = document.getElementById('priceChangeText');
+      if (priceEl) priceEl.textContent = currentPrice.toFixed(decimals);
+      if (textEl) textEl.textContent = `≈ $${currentPrice.toFixed(decimals)} ${currentPair.replace('USDT','').replace('USD','')}`;
     }
 
     function setTradeType(type) {
@@ -1018,12 +1126,11 @@
       const buyTab = document.getElementById('buyTab');
       const sellTab = document.getElementById('sellTab');
       const submitBtn = document.getElementById('submitBtn');
-      
       if (buyTab) buyTab.className = 'trade-tab ' + (type === 'buy' ? 'buy' : '');
       if (sellTab) sellTab.className = 'trade-tab ' + (type === 'sell' ? 'sell' : '');
       if (submitBtn) {
         submitBtn.className = 'submit-btn ' + type;
-        submitBtn.textContent = type === 'buy' ? 'Buy/Long BTC' : 'Sell/Short BTC';
+        submitBtn.textContent = type === 'buy' ? `Buy/Long ${currentPair.replace('USDT','').replace('USD','')}` : `Sell/Short ${currentPair.replace('USDT','').replace('USD','')}`;
       }
       updateTradeInfo();
     }
@@ -1034,6 +1141,7 @@
       updateTradeInfo();
     }
 
+    // مورد 3: اسلایدر کار می‌کند و مقدار USDT را تغییر می‌دهد
     function setupSlider() {
       const sliderDot = document.getElementById('sliderDot');
       const sliderFill = document.getElementById('sliderFill');
@@ -1042,13 +1150,16 @@
       
       let isDragging = false;
 
-      function startDrag(e) {
+      const startDrag = (e) => {
         isDragging = true;
         e.preventDefault();
-      }
+        e.stopPropagation(); // مورد 12: جلوگیری از کشیدن صفحه
+      };
 
-      function drag(e) {
+      const drag = (e) => {
         if (!isDragging) return;
+        e.preventDefault();
+        e.stopPropagation();
         const rect = sliderContainer.getBoundingClientRect();
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         let x = ((clientX - rect.left) / rect.width) * 100;
@@ -1056,21 +1167,20 @@
         sliderValue = x;
         sliderDot.style.left = x + '%';
         sliderFill.style.width = x + '%';
+        const percentEl = document.getElementById('sliderPercent');
+        if (percentEl) percentEl.textContent = Math.round(x) + '%';
         updateTradeInfo();
-      }
+      };
 
-      function endDrag() {
-        isDragging = false;
-      }
+      const endDrag = () => { isDragging = false; };
 
       sliderDot.addEventListener('mousedown', startDrag);
-      sliderDot.addEventListener('touchstart', startDrag, {passive: true});
+      sliderDot.addEventListener('touchstart', startDrag, {passive: false});
       document.addEventListener('mousemove', drag);
-      document.addEventListener('touchmove', drag, {passive: true});
+      document.addEventListener('touchmove', drag, {passive: false});
       document.addEventListener('mouseup', endDrag);
       document.addEventListener('touchend', endDrag);
       
-      // کلیک روی track
       sliderContainer.addEventListener('click', (e) => {
         const rect = sliderContainer.getBoundingClientRect();
         let x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -1078,40 +1188,53 @@
         sliderValue = x;
         sliderDot.style.left = x + '%';
         sliderFill.style.width = x + '%';
+        const percentEl = document.getElementById('sliderPercent');
+        if (percentEl) percentEl.textContent = Math.round(x) + '%';
         updateTradeInfo();
       });
     }
 
+    // مورد 2 و 3: Avbl مقدار واقعی نشان می‌دهد و اسلایدر مقدار USDT را تغییر می‌دهد
     function updateTradeInfo() {
-      const amount = parseFloat(document.getElementById('tradeAmount')?.value) || 0;
+      const amountInput = parseFloat(document.getElementById('tradeAmount')?.value) || 0;
       const leverage = parseInt(document.querySelector('.leverage-btn.active')?.textContent) || 3;
-      const margin = (amount * sliderValue / 100) / leverage;
+      
+      // اگر اسلایدر حرکت کرده، مقدار USDT را بر اساس درصد تنظیم کن
+      if (sliderValue > 0 && amountInput === 0) {
+        const calculatedAmount = (demoAccount.balance * sliderValue / 100);
+        const amountEl = document.getElementById('tradeAmount');
+        if (amountEl) amountEl.value = calculatedAmount.toFixed(2);
+      }
+      
+      const finalAmount = parseFloat(document.getElementById('tradeAmount')?.value) || 0;
+      const margin = (finalAmount * sliderValue / 100) / leverage;
+      const available = demoAccount.balance - margin;
+      
       const marginEl = document.getElementById('marginValue');
       const availableEl = document.getElementById('availableValue');
       const maxEl = document.getElementById('maxValue');
       const liqEl = document.getElementById('liqPrice');
       
       if (marginEl) marginEl.textContent = margin.toFixed(2) + ' USDT';
-      if (availableEl) availableEl.textContent = (demoAccount.balance - margin).toFixed(2) + ' USDT';
-      if (maxEl) maxEl.textContent = (amount * sliderValue / 100).toFixed(4) + ' BTC';
+      if (availableEl) availableEl.textContent = available.toFixed(2) + ' USDT'; // مورد 2: Avbl واقعی
+      if (maxEl) maxEl.textContent = (finalAmount * sliderValue / 100 / currentPrice).toFixed(6) + ' ' + currentPair.replace('USDT','').replace('USD','');
       if (liqEl) liqEl.textContent = tradeType === 'buy' 
-        ? (currentPrice * 0.9).toFixed(2) + ' USDT' 
-        : (currentPrice * 1.1).toFixed(2) + ' USDT';
+        ? (currentPrice * (1 - 1/leverage)).toFixed(2) + ' USDT' 
+        : (currentPrice * (1 + 1/leverage)).toFixed(2) + ' USDT';
     }
 
     function toggleTPSL() {
       const checkbox = document.getElementById('tpSlCheckbox');
       const container = document.getElementById('tpSlInputs');
       if (!container) return;
-      
       if (checkbox?.checked) {
         container.innerHTML = `
           <div class="form-group" style="margin-top: 12px;">
-            <label class="form-label">Take Profit (USDT)</label>
+            <label class="form-label">Take Profit</label>
             <input type="number" class="form-input" id="tpInput" placeholder="0.00">
           </div>
           <div class="form-group">
-            <label class="form-label">Stop Loss (USDT)</label>
+            <label class="form-label">Stop Loss</label>
             <input type="number" class="form-input" id="slInput" placeholder="0.00">
           </div>
         `;
@@ -1122,31 +1245,22 @@
 
     function submitOrder() {
       const amount = parseFloat(document.getElementById('tradeAmount')?.value) || 0;
-      if (amount <= 0) {
-        alert('Please enter a valid amount');
-        return;
-      }
+      if (amount <= 0) { alert('Please enter a valid amount'); return; }
       const leverage = parseInt(document.querySelector('.leverage-btn.active')?.textContent) || 3;
       const tp = parseFloat(document.getElementById('tpInput')?.value) || null;
       const sl = parseFloat(document.getElementById('slInput')?.value) || null;
       
       const position = {
-        id: Date.now(),
-        pair: 'BTCUSDT',
-        side: tradeType,
-        amount: amount * sliderValue / 100,
-        entryPrice: currentPrice,
-        leverage: leverage,
-        tp: tp,
-        sl: sl,
-        pnl: 0,
-        pnlPercent: 0
+        id: Date.now(), pair: currentPair, side: tradeType,
+        amount: (amount * sliderValue / 100) / currentPrice,
+        entryPrice: currentPrice, leverage: leverage, tp: tp, sl: sl,
+        pnl: 0, pnlPercent: 0
       };
       demoAccount.positions.push(position);
       saveDemoAccount();
       drawPositionLines();
       renderPositions();
-      alert('Order submitted successfully!');
+      alert('Order submitted!');
     }
 
     function switchTab(tab) {
@@ -1170,16 +1284,18 @@
       if (activeTab === 'positions') renderPositions();
     }
 
+    // مورد 4 و 5: رنگ‌بندی و فاصله پوزیشن
     function renderPositions() {
       const container = document.getElementById('positionsContent');
       if (!container) return;
       
       if (activeTab === 'positions') {
-        if (demoAccount.positions.length === 0) {
+        const positions = demoAccount.positions.filter(p => p.pair === currentPair);
+        if (positions.length === 0) {
           container.innerHTML = '<div class="empty-state">No open positions</div>';
           return;
         }
-        container.innerHTML = demoAccount.positions.map(pos => {
+        container.innerHTML = positions.map(pos => {
           const pnlClass = pos.pnl >= 0 ? 'profit' : 'loss';
           const pnlSign = pos.pnl >= 0 ? '+' : '';
           return `
@@ -1191,15 +1307,15 @@
               <div class="position-details">
                 <div class="position-detail">
                   <span class="position-detail-label">Amount</span>
-                  <span class="position-detail-value">${pos.amount.toFixed(4)} BTC</span>
-                </div>
-                <div class="position-detail">
-                  <span class="position-detail-label">Entry</span>
-                  <span class="position-detail-value">${pos.entryPrice.toFixed(2)}</span>
+                  <span class="position-detail-value">${pos.amount.toFixed(6)}</span>
                 </div>
                 <div class="position-detail">
                   <span class="position-detail-label">Leverage</span>
                   <span class="position-detail-value">${pos.leverage}x</span>
+                </div>
+                <div class="position-detail">
+                  <span class="position-detail-label">Entry</span>
+                  <span class="position-detail-value">${pos.entryPrice.toFixed(pairDecimals[pos.pair]||2)}</span>
                 </div>
                 <div class="position-detail">
                   <span class="position-detail-label">Margin</span>
@@ -1212,13 +1328,28 @@
           `;
         }).join('');
       } else if (activeTab === 'pending') {
-        container.innerHTML = '<div class="empty-state">No pending orders</div>';
+        // مورد 6: نمایش Pending Orders
+        const pendings = demoAccount.pendingOrders.filter(p => p.pair === currentPair);
+        if (pendings.length === 0) {
+          container.innerHTML = '<div class="empty-state">No pending orders<br><small>Use Limit Order to create one</small></div>';
+        } else {
+          container.innerHTML = pendings.map(p => `
+            <div class="pending-item">
+              <div class="pending-item-header">
+                <strong>${p.type} ${p.pair}</strong>
+                <button class="cancel-btn" onclick="cancelPending(${p.id})">Cancel</button>
+              </div>
+              <div>Price: ${p.price.toFixed(pairDecimals[p.pair]||2)} | Amount: ${p.amount.toFixed(4)}</div>
+            </div>
+          `).join('');
+        }
       } else if (activeTab === 'history') {
-        if (demoAccount.history.length === 0) {
+        const history = demoAccount.history.filter(h => h.pair === currentPair);
+        if (history.length === 0) {
           container.innerHTML = '<div class="empty-state">No order history</div>';
           return;
         }
-        container.innerHTML = demoAccount.history.slice().reverse().map(h => {
+        container.innerHTML = history.slice().reverse().map(h => {
           const pnlClass = h.pnl >= 0 ? 'profit' : 'loss';
           const pnlSign = h.pnl >= 0 ? '+' : '';
           return `
@@ -1230,15 +1361,15 @@
               <div class="position-details">
                 <div class="position-detail">
                   <span class="position-detail-label">Amount</span>
-                  <span class="position-detail-value">${h.amount.toFixed(4)} BTC</span>
+                  <span class="position-detail-value">${h.amount.toFixed(6)}</span>
                 </div>
                 <div class="position-detail">
                   <span class="position-detail-label">Entry</span>
-                  <span class="position-detail-value">${h.entryPrice.toFixed(2)}</span>
+                  <span class="position-detail-value">${h.entryPrice.toFixed(pairDecimals[h.pair]||2)}</span>
                 </div>
                 <div class="position-detail">
                   <span class="position-detail-label">Exit</span>
-                  <span class="position-detail-value">${h.closePrice?.toFixed(2) || '--'}</span>
+                  <span class="position-detail-value">${h.closePrice?.toFixed(pairDecimals[h.pair]||2) || '--'}</span>
                 </div>
                 <div class="position-detail">
                   <span class="position-detail-label">PnL</span>
@@ -1256,11 +1387,7 @@
       if (posIndex === -1) return;
       const pos = demoAccount.positions[posIndex];
       pos.closePrice = currentPrice;
-      if (pos.side === 'buy') {
-        pos.pnl = (currentPrice - pos.entryPrice) * pos.amount;
-      } else {
-        pos.pnl = (pos.entryPrice - currentPrice) * pos.amount;
-      }
+      pos.pnl = (pos.side === 'buy' ? 1 : -1) * (currentPrice - pos.entryPrice) * pos.amount;
       demoAccount.balance += pos.pnl;
       demoAccount.history.push(pos);
       demoAccount.positions.splice(posIndex, 1);
@@ -1269,11 +1396,15 @@
       renderPositions();
     }
 
+    function cancelPending(id) {
+      demoAccount.pendingOrders = demoAccount.pendingOrders.filter(p => p.id !== id);
+      saveDemoAccount();
+      renderPositions();
+    }
+
     function loadDemoAccount() {
       const saved = localStorage.getItem('demoAccount');
-      if (saved) {
-        try { demoAccount = JSON.parse(saved); } catch (e) { console.error('Error loading demo account:', e); }
-      }
+      if (saved) { try { demoAccount = JSON.parse(saved); } catch (e) {} }
     }
 
     function saveDemoAccount() {
@@ -1292,7 +1423,7 @@
           <div id="options-container">
             ${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}
           </div>
-          <div class="quiz-explanation" id="explanation"> ${q.explanation}</div>
+          <div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div>
           <div class="quiz-nav">
             <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button>
           </div>
@@ -1327,7 +1458,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? ' عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div>
         <button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>
@@ -1348,18 +1479,6 @@
         if (container) chart.applyOptions({ width: container.clientWidth, height: container.clientHeight - 8 });
       }
     });
-    
-    setInterval(() => {
-      if (document.getElementById('chartModal')?.classList.contains('active')) {
-        updatePositionsPnL();
-      }
-      if (location.hash === '#demo') {
-        currentPrice += (Math.random() - 0.5) * 50;
-        updatePriceDisplay();
-        renderOrderBook();
-        updatePositionsPnL();
-      }
-    }, 3000);
     
     initApp();
     if ('serviceWorker' in navigator) {
