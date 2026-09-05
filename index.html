@@ -55,7 +55,8 @@
     .back-button { position: fixed; bottom: 20px; left: 20px; right: 20px; background: #1D9E75; color: white; border: none; padding: 16px 24px; border-radius: 50px; cursor: pointer; font-size: 18px; font-weight: 700; box-shadow: 0 4px 12px rgba(29, 158, 117, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 1000; }
     .back-icon { font-size: 24px; font-weight: 900; }
     .loading { text-align: center; padding: 40px; color: #7F8C8D; font-size: 18px; }
-    .error-box { background: #FFEBEE; color: #C62828; padding: 20px; border-radius: 12px; text-align: center; margin: 20px 0; }
+    .debug-box { background: #FFF3E0; border: 2px solid #F39C12; padding: 16px; border-radius: 12px; margin: 16px 0; font-size: 13px; font-family: monospace; direction: ltr; text-align: left; }
+    .debug-box h4 { color: #F39C12; margin-bottom: 8px; direction: rtl; text-align: right; }
   </style>
 </head>
 <body>
@@ -68,6 +69,19 @@
     let currentCourse = null;
     let currentLesson = null;
     let quizState = { currentQuestion: 0, score: 0, answered: false };
+
+    function cleanJsonKeys(obj) {
+      if (Array.isArray(obj)) return obj.map(item => cleanJsonKeys(item));
+      else if (obj !== null && typeof obj === 'object') {
+        const cleaned = {};
+        for (let key in obj) { 
+          const cleanKey = key.trim(); 
+          cleaned[cleanKey] = cleanJsonKeys(obj[key]); 
+        }
+        return cleaned;
+      }
+      return obj;
+    }
 
     function getCleanImageUrl(url) {
       if (!url) return null;
@@ -89,7 +103,7 @@
       if (t.includes('آزمون') || t.includes('تست')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict') || t.includes('kill zone')) return '🎯';
-      if (t.includes('استراتژی')) return '⚙️';
+      if (t.includes('استراتژی')) return '️';
       if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
       return '📚';
     }
@@ -100,16 +114,18 @@
         const responses = await Promise.all(files.map(f => fetch(f).then(r => r.text()).catch(() => null)));
         
         appData.courses = [];
+        let debugInfo = '📊 اطلاعات دیباگ:\n\n';
+        
         responses.forEach((text, index) => {
           if (!text) {
-            console.warn(`فایل ${files[index]} لود نشد (احتمالا ۴۰۴ یا نام اشتباه)`);
+            debugInfo += `❌ فایل ${files[index]} لود نشد\n`;
             return;
           }
           try {
             const data = JSON.parse(text);
-            if (data.courses && Array.isArray(data.courses)) {
-              data.courses.forEach(course => {
-                // نرمال‌سازی اجباری برای حذف ۱۰۰٪ فاصله‌ها
+            const cleaned = cleanJsonKeys(data);
+            if (cleaned.courses && Array.isArray(cleaned.courses)) {
+              cleaned.courses.forEach(course => {
                 const normalizedCourse = {
                   id: String(course.id || '').trim(),
                   level: String(course.level || '').trim(),
@@ -124,28 +140,43 @@
                 };
                 appData.courses.push(normalizedCourse);
               });
-              console.log(`فایل ${files[index]} با موفقیت لود شد. تعداد دوره‌ها:`, data.courses.length);
+              debugInfo += `✅ فایل ${files[index]}: ${cleaned.courses.length} دوره لود شد\n`;
+            } else {
+              debugInfo += `️ فایل ${files[index]}: کلید courses پیدا نشد\n`;
             }
           } catch (e) {
-            console.error('خطا در خواندن فایل JSON شماره', index + 1, e);
+            debugInfo += `❌ خطا در ${files[index]}: ${e.message}\n`;
           }
         });
         
-        console.log('مجموع دوره‌های لود شده در سیستم:', appData.courses.length);
+        debugInfo += `\n📚 مجموع دوره‌ها: ${appData.courses.length}\n`;
+        appData.courses.forEach(c => {
+          debugInfo += `  • ${c.id} - ${c.title} (${c.lessons.length} درس)\n`;
+        });
+        
+        console.log(debugInfo);
         
         if (appData.courses.length === 0) {
-          throw new Error('هیچ دوره‌ای یافت نشد. لطفاً فایل‌های JSON را بررسی کنید.');
+          document.getElementById('app').innerHTML = `
+            <div class="debug-box">
+              <h4>❌ خطا: هیچ دوره‌ای لود نشد</h4>
+              <pre>${debugInfo}</pre>
+            </div>
+            <button class="back-button" onclick="location.reload()"><span class="back-icon">🔄</span> تلاش مجدد</button>
+          `;
+          return;
         }
+        
+        window.__debugInfo = debugInfo;
         
         if (!location.hash) history.replaceState({ view: 'home' }, '', '#home');
         handleRoute();
       } catch (error) {
         console.error('Error:', error);
         document.getElementById('app').innerHTML = `
-          <div class="error-box">
-            <h3>❌ خطا در بارگذاری</h3>
-            <p>${error.message}</p>
-            <p style="margin-top:10px; font-size:14px;">لطفاً صفحه را رفرش کنید یا از حالت ناشناس استفاده کنید.</p>
+          <div class="debug-box">
+            <h4>❌ خطای سیستم</h4>
+            <pre>${error.message}</pre>
           </div>`;
       }
     }
@@ -167,7 +198,7 @@
     function renderHome() {
       const levels = [
         { id: 'مقدماتی', icon: '🌱', title: 'دوره مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
-        { id: 'میانی', icon: '🌿', title: 'دوره میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'میانی', icon: '', title: 'دوره میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
         { id: 'پیشرفته', icon: '🌳', title: 'دوره پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
 
@@ -203,10 +234,12 @@
       
       if (courses.length === 0) {
         document.getElementById('app').innerHTML = `
-          <div class="error-box">
-            <h3>هیچ دوره‌ای در این سطح یافت نشد.</h3>
-            <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
-          </div>`;
+          <div class="debug-box">
+            <h4>⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</h4>
+            <pre>دوره‌های موجود:\n${appData.courses.map(c => `${c.id} - ${c.level}`).join('\n')}</pre>
+          </div>
+          <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
+        `;
         return;
       }
 
@@ -234,16 +267,27 @@
     }
 
     function renderCourseLessons(courseId) {
-      // حذف فاصله از شناسه دریافتی از URL
       const cleanCourseId = String(courseId).trim();
-      const currentCourse = appData.courses.find(c => c.id === cleanCourseId);
+      
+      // استفاده از includes برای مقایسه انعطاف‌پذیر
+      const currentCourse = appData.courses.find(c => c.id.includes(cleanCourseId) || cleanCourseId.includes(c.id));
       
       if (!currentCourse) {
         console.error('دوره پیدا نشد. ID درخواستی:', cleanCourseId);
-        return navigateTo('#home');
+        console.log('دوره‌های موجود:', appData.courses.map(c => c.id));
+        
+        document.getElementById('app').innerHTML = `
+          <div class="debug-box">
+            <h4>❌ دوره پیدا نشد</h4>
+            <pre>ID درخواستی: "${cleanCourseId}"\n\nدوره‌های موجود:\n${appData.courses.map(c => `• "${c.id}" - ${c.title}`).join('\n')}</pre>
+          </div>
+          <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
+        `;
+        return;
       }
 
       const lessons = currentCourse.lessons || [];
+      
       let html = `
         <div class="header">
           <h1>${currentCourse.title}</h1>
@@ -252,7 +296,12 @@
       `;
 
       if (lessons.length === 0) {
-        html += `<div class="error-box"><h3>این دوره هنوز درسی ندارد.</h3></div>`;
+        html += `
+          <div class="debug-box">
+            <h4>⚠️ این دوره هنوز درسی ندارد</h4>
+            <pre>course ID: "${currentCourse.id}"\nlessons: ${JSON.stringify(lessons)}</pre>
+          </div>
+        `;
       } else {
         lessons.forEach((l, i) => {
           html += `
@@ -270,12 +319,20 @@
 
     function renderLesson(courseId, lessonIndex) {
       const cleanCourseId = String(courseId).trim();
-      const course = appData.courses.find(c => c.id === cleanCourseId);
-      if (!course) return navigateTo('#home');
+      const course = appData.courses.find(c => c.id.includes(cleanCourseId) || cleanCourseId.includes(c.id));
+      
+      if (!course) {
+        console.error('دوره پیدا نشد برای درس:', cleanCourseId);
+        return navigateTo('#home');
+      }
       
       const lessons = course.lessons || [];
       const currentLesson = lessons[lessonIndex];
-      if (!currentLesson) return navigateTo(`#course-${cleanCourseId}`);
+      
+      if (!currentLesson) {
+        console.error('درس پیدا نشد. index:', lessonIndex, 'total lessons:', lessons.length);
+        return navigateTo(`#course-${cleanCourseId}`);
+      }
 
       const lessonIcon = getLessonIcon(currentLesson.title);
       const cleanUrl = getCleanImageUrl(currentLesson.image);
