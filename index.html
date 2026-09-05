@@ -91,19 +91,19 @@
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '🔗';
+      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '';
       if (t.includes('کیف پول')) return '👛';
-      if (t.includes('بازار')) return '📊';
+      if (t.includes('بازار')) return '';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
-      if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '🛡️';
-      if (t.includes('آزمون') || t.includes('تست')) return '📝';
-      if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
+      if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '️';
+      if (t.includes('آزمون') || t.includes('تست')) return '';
+      if (t.includes('اسمارت') || t.includes('smart')) return '';
       if (t.includes('ict') || t.includes('kill zone')) return '🎯';
-      if (t.includes('استراتژی')) return '️';
+      if (t.includes('استراتژی')) return '⚙️';
       if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
       return '📚';
     }
@@ -142,7 +142,7 @@
               });
               debugInfo += `✅ فایل ${files[index]}: ${cleaned.courses.length} دوره لود شد\n`;
             } else {
-              debugInfo += `️ فایل ${files[index]}: کلید courses پیدا نشد\n`;
+              debugInfo += `⚠️ فایل ${files[index]}: کلید courses پیدا نشد\n`;
             }
           } catch (e) {
             debugInfo += `❌ خطا در ${files[index]}: ${e.message}\n`;
@@ -151,7 +151,7 @@
         
         debugInfo += `\n📚 مجموع دوره‌ها: ${appData.courses.length}\n`;
         appData.courses.forEach(c => {
-          debugInfo += `  • ${c.id} - ${c.title} (${c.lessons.length} درس)\n`;
+          debugInfo += `  • ${c.id} - ${c.title} (${c.lessons.length} درس) - سطح: ${c.level}\n`;
         });
         
         console.log(debugInfo);
@@ -162,7 +162,7 @@
               <h4>❌ خطا: هیچ دوره‌ای لود نشد</h4>
               <pre>${debugInfo}</pre>
             </div>
-            <button class="back-button" onclick="location.reload()"><span class="back-icon">🔄</span> تلاش مجدد</button>
+            <button class="back-button" onclick="location.reload()"><span class="back-icon"></span> تلاش مجدد</button>
           `;
           return;
         }
@@ -197,9 +197,9 @@
 
     function renderHome() {
       const levels = [
-        { id: 'مقدماتی', icon: '🌱', title: 'دوره مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
-        { id: 'میانی', icon: '', title: 'دوره میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
-        { id: 'پیشرفته', icon: '🌳', title: 'دوره پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
+        { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
+        { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
 
       let html = `
@@ -229,16 +229,28 @@
       document.getElementById('app').innerHTML = html;
     }
 
-    function renderLevelCourses(levelName) {
+    function renderLevelCourses(levelId) {
+      // تبدیل ID انگلیسی به نام فارسی
+      let levelName = '';
+      if (levelId === 'beginner') levelName = 'مقدماتی';
+      else if (levelId === 'intermediate') levelName = 'میانی';
+      else if (levelId === 'advanced') levelName = 'پیشرفته';
+      else {
+        // اگر ID ناشناخته بود، تلاش برای decode
+        levelName = decodeURIComponent(levelId);
+      }
+      
+      console.log('سطح درخواستی:', levelName, '(ID:', levelId, ')');
+      
       const courses = appData.courses.filter(c => c.level.includes(levelName));
       
       if (courses.length === 0) {
         document.getElementById('app').innerHTML = `
           <div class="debug-box">
             <h4>⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</h4>
-            <pre>دوره‌های موجود:\n${appData.courses.map(c => `${c.id} - ${c.level}`).join('\n')}</pre>
+            <pre>سطح‌های موجود:\n${appData.courses.map(c => `• "${c.level}" - ${c.title}`).join('\n')}</pre>
           </div>
-          <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
+          <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon"></span> بازگشت</button>
         `;
         return;
       }
@@ -281,7 +293,7 @@
             <h4>❌ دوره پیدا نشد</h4>
             <pre>ID درخواستی: "${cleanCourseId}"\n\nدوره‌های موجود:\n${appData.courses.map(c => `• "${c.id}" - ${c.title}`).join('\n')}</pre>
           </div>
-          <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
+          <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon"></span> بازگشت</button>
         `;
         return;
       }
@@ -298,7 +310,7 @@
       if (lessons.length === 0) {
         html += `
           <div class="debug-box">
-            <h4>⚠️ این دوره هنوز درسی ندارد</h4>
+            <h4>️ این دوره هنوز درسی ندارد</h4>
             <pre>course ID: "${currentCourse.id}"\nlessons: ${JSON.stringify(lessons)}</pre>
           </div>
         `;
@@ -313,8 +325,15 @@
         });
       }
 
-      html += `<button class="back-button" onclick="navigateTo('#level-${currentCourse.level}')"><span class="back-icon">↶</span> بازگشت</button>`;
+      html += `<button class="back-button" onclick="navigateTo('#level-${getLevelId(currentCourse.level)}')"><span class="back-icon">↶</span> بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
+    }
+
+    function getLevelId(levelName) {
+      if (levelName.includes('مقدماتی')) return 'beginner';
+      if (levelName.includes('میانی')) return 'intermediate';
+      if (levelName.includes('پیشرفته')) return 'advanced';
+      return 'beginner';
     }
 
     function renderLesson(courseId, lessonIndex) {
@@ -365,7 +384,7 @@
       document.getElementById('app').innerHTML = `
         <div class="header"><h1>📈 دمو تریدینگ</h1><p>تمرین معامله‌گری با پول مجازی</p></div>
         <div class="lesson-content" style="text-align: center; padding: 40px;">
-          <div style="font-size: 64px; margin-bottom: 20px;">🚧</div>
+          <div style="font-size: 64px; margin-bottom: 20px;"></div>
           <h2 style="color: #1D9E75; margin-bottom: 16px;">به‌زودی در دسترس</h2>
           <p style="color: #7F8C8D; margin-bottom: 24px;">بخش دمو تریدینگ در حال توسعه است.</p>
           <button class="quiz-button" onclick="navigateTo('#home')" style="max-width: 300px; margin: 0 auto;">بازگشت به صفحه اصلی</button>
@@ -394,7 +413,7 @@
             <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button>
           </div>
         </div>
-        <button class="back-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')"><span class="back-icon">↶</span> خروج از آزمون</button>
+        <button class="back-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')"><span class="back-icon"></span> خروج از آزمون</button>
       `;
       document.getElementById('app').innerHTML = html;
       quizState.answered = false;
@@ -424,7 +443,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? ' خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container">
           <div class="quiz-result">
@@ -433,7 +452,7 @@
             <button class="quiz-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')" style="max-width: 300px;">بازگشت به درس</button>
           </div>
         </div>
-        <button class="back-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')"><span class="back-icon">↶</span> بازگشت</button>
+        <button class="back-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')"><span class="back-icon"></span> بازگشت</button>
       `;
     }
 
