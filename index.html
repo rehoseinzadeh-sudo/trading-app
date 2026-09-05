@@ -61,7 +61,7 @@
 </head>
 <body>
   <div class="container" id="app">
-    <div class="loading"> در حال بارگذاری...</div>
+    <div class="loading">⏳ در حال بارگذاری...</div>
   </div>
 
   <script>
@@ -70,12 +70,13 @@
     let currentLesson = null;
     let quizState = { currentQuestion: 0, score: 0, answered: false };
 
+    // حذف کامل space از همه کلیدها و مقادیر
     function cleanJsonKeys(obj) {
       if (Array.isArray(obj)) return obj.map(item => cleanJsonKeys(item));
       else if (obj !== null && typeof obj === 'object') {
         const cleaned = {};
         for (let key in obj) { 
-          const cleanKey = key.trim(); 
+          const cleanKey = key.replace(/\s+/g, ''); // حذف کامل space از کلید
           cleaned[cleanKey] = cleanJsonKeys(obj[key]); 
         }
         return cleaned;
@@ -85,26 +86,26 @@
 
     function getCleanImageUrl(url) {
       if (!url) return null;
-      return String(url).trim().replace(/\s+/g, '');
+      return String(url).replace(/\s+/g, '');
     }
 
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
       if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '🔗';
-      if (t.includes('کیف پول')) return '👛';
+      if (t.includes('کیف پول')) return '';
       if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
-      if (t.includes('پرایس اکشن')) return '';
+      if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '🛡️';
       if (t.includes('آزمون') || t.includes('تست')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict') || t.includes('kill zone')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
-      if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
+      if (t.includes('روانشناسی') || t.includes('ژورنال')) return '';
       return '📚';
     }
 
@@ -126,14 +127,15 @@
             const cleaned = cleanJsonKeys(data);
             if (cleaned.courses && Array.isArray(cleaned.courses)) {
               cleaned.courses.forEach(course => {
+                // حذف کامل space از ID (نه فقط trim)
                 const normalizedCourse = {
-                  id: String(course.id || '').trim(),
-                  level: String(course.level || '').trim(),
-                  title: String(course.title || '').trim(),
+                  id: String(course.id || '').replace(/\s+/g, ''),
+                  level: String(course.level || '').replace(/\s+/g, ''),
+                  title: String(course.title || '').replace(/\s+/g, ''),
                   lessons: Array.isArray(course.lessons) ? course.lessons.map(l => ({
-                    id: String(l.id || '').trim(),
-                    title: String(l.title || '').trim(),
-                    image: String(l.image || '').trim(),
+                    id: String(l.id || '').replace(/\s+/g, ''),
+                    title: String(l.title || '').replace(/\s+/g, ''),
+                    image: String(l.image || '').replace(/\s+/g, ''),
                     content: l.content || '',
                     quiz: Array.isArray(l.quiz) ? l.quiz : []
                   })) : []
@@ -151,7 +153,7 @@
         
         debugInfo += `\n📚 مجموع دوره‌ها: ${appData.courses.length}\n`;
         appData.courses.forEach(c => {
-          debugInfo += `  • ${c.id} - ${c.title} (${c.lessons.length} درس) - سطح: ${c.level}\n`;
+          debugInfo += `  • ID="${c.id}" - ${c.title} (${c.lessons.length} درس) - سطح: ${c.level}\n`;
         });
         
         console.log(debugInfo);
@@ -199,7 +201,7 @@
       const levels = [
         { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
         { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
-        { id: 'advanced', icon: '', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
+        { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
 
       let html = `
@@ -208,8 +210,8 @@
           <p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p>
         </div>
         <div class="nav-tabs">
-          <div class="nav-tab active"> دوره‌ها</div>
-          <div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div>
+          <div class="nav-tab active">📚 دوره‌ها</div>
+          <div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div>
           <div class="nav-tab">👤 پروفایل</div>
         </div>
       `;
@@ -275,8 +277,10 @@
     }
 
     function renderCourseLessons(courseId) {
-      const cleanCourseId = String(courseId).trim();
-      const currentCourse = appData.courses.find(c => c.id.includes(cleanCourseId) || cleanCourseId.includes(c.id));
+      const cleanCourseId = String(courseId).replace(/\s+/g, '');
+      
+      // ✅ مقایسه دقیق به جای includes
+      const currentCourse = appData.courses.find(c => c.id === cleanCourseId);
       
       if (!currentCourse) {
         console.error('دوره پیدا نشد. ID درخواستی:', cleanCourseId);
@@ -304,7 +308,7 @@
       if (lessons.length === 0) {
         html += `
           <div class="debug-box">
-            <h4>️ این دوره هنوز درسی ندارد</h4>
+            <h4>⚠️ این دوره هنوز درسی ندارد</h4>
             <pre>course ID: "${currentCourse.id}"\nlessons: ${JSON.stringify(lessons)}</pre>
           </div>
         `;
@@ -331,8 +335,10 @@
     }
 
     function renderLesson(courseId, lessonIndex) {
-      const cleanCourseId = String(courseId).trim();
-      const course = appData.courses.find(c => c.id.includes(cleanCourseId) || cleanCourseId.includes(c.id));
+      const cleanCourseId = String(courseId).replace(/\s+/g, '');
+      
+      // ✅ مقایسه دقیق
+      const course = appData.courses.find(c => c.id === cleanCourseId);
       
       if (!course) {
         console.error('دوره پیدا نشد برای درس:', cleanCourseId);
@@ -367,7 +373,7 @@
             <button class="quiz-button" onclick="startQuiz()">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>
           ` : ''}
         </div>
-        <button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')"><span class="back-icon">↶</span> بازگشت</button>
+        <button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')"><span class="back-icon"></span> بازگشت</button>
       `;
 
       document.getElementById('app').innerHTML = html;
@@ -376,7 +382,7 @@
 
     function renderDemo() {
       document.getElementById('app').innerHTML = `
-        <div class="header"><h1> دمو تریدینگ</h1><p>تمرین معامله‌گری با پول مجازی</p></div>
+        <div class="header"><h1>📈 دمو تریدینگ</h1><p>تمرین معامله‌گری با پول مجازی</p></div>
         <div class="lesson-content" style="text-align: center; padding: 40px;">
           <div style="font-size: 64px; margin-bottom: 20px;">🚧</div>
           <h2 style="color: #1D9E75; margin-bottom: 16px;">به‌زودی در دسترس</h2>
@@ -437,7 +443,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? ' خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container">
           <div class="quiz-result">
