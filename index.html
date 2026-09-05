@@ -66,7 +66,6 @@
     .pair-change.down { color: #F64653; }
     .chart-toggle { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: #F5F5F5; border-radius: 6px; }
     
-    /* Dropdown overlay - مشکل 1 */
     .pair-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 200; }
     .pair-overlay.show { display: block; }
     .pair-dropdown-menu { 
@@ -142,16 +141,17 @@
     .current-price { font-size: 28px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
     .price-change-text { font-size: 12px; color: #7F8C8D; }
     
+    /* مشکل 2: جدول Order Book درست - 3 ستون Amount/Price/Total */
     .order-book { background: white; border: 1px solid #E8E8E8; border-radius: 6px; overflow: hidden; }
-    .order-header { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 6px 10px; background: #F5F5F5; font-size: 11px; color: #7F8C8D; font-weight: 500; }
+    .order-header { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 6px 10px; background: #F5F5F5; font-size: 11px; color: #7F8C8D; font-weight: 600; }
     .order-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 4px 10px; font-size: 11px; cursor: pointer; }
     .order-row.ask { background: rgba(246, 70, 83, 0.08); }
     .order-row.bid { background: rgba(14, 203, 129, 0.08); }
-    .order-row .price { font-weight: 600; }
-    .order-row .price.ask { color: #F64653; }
-    .order-row .price.bid { color: #0ECB81; }
-    .order-row .amount { color: #1A1A1A; text-align: right; }
-    .order-row .total { color: #7F8C8D; text-align: right; font-size: 10px; }
+    .order-row .col-amount { color: #1A1A1A; text-align: right; }
+    .order-row .col-price { font-weight: 600; text-align: center; }
+    .order-row .col-price.ask { color: #F64653; }
+    .order-row .col-price.bid { color: #0ECB81; }
+    .order-row .col-total { color: #7F8C8D; text-align: left; font-size: 10px; }
     
     .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; margin-top: 12px; }
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 13px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
@@ -168,26 +168,61 @@
     .position-detail { display: flex; justify-content: space-between; padding: 4px 0; }
     .position-detail-label { color: #64B5F6; }
     .position-detail-value { color: #81C784; font-weight: 500; }
+    /* مشکل 1: PnL منفی قرمز، مثبت سبز */
     .position-pnl { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
     .position-pnl.profit { color: #0ECB81; }
-    .position-pnl.loss { color: #F64653; }
+    .position-pnl.loss { color: #F64653 !important; }
     .close-btn { width: 100%; padding: 10px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; }
     
     .empty-state { text-align: center; padding: 32px 16px; color: #7F8C8D; font-size: 13px; }
     
-    /* Chart Modal - مشکل 7: اسکرول‌پذیر */
     .chart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; flex-direction: column; }
     .chart-modal.active { display: flex; }
-    .chart-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; }
-    /* مشکل 8: فلش کوچکتر اما بولد */
-    .chart-back { font-size: 22px; cursor: pointer; color: #1A1A1A; padding: 4px 10px; font-weight: 900; line-height: 1; }
-    .chart-title { font-size: 14px; font-weight: 600; }
-    .chart-actions { display: flex; gap: 6px; }
-    .chart-action-btn { padding: 6px 10px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; }
-    .chart-action-btn.active { background: #F0B90B; }
     
-    /* مشکل 7: چارت اسکرول‌پذیر */
-    .chart-body { flex: 1; display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; }
+    /* مشکل 8: نام ارز سمت چپ، تایم‌فریم جلوی آن، فلش بک سمت راست */
+    .chart-header { 
+      display: flex; 
+      align-items: center; 
+      justify-content: flex-start;
+      gap: 12px;
+      padding: 10px 16px; 
+      border-bottom: 1px solid #E8E8E8; 
+      background: white; 
+      flex-shrink: 0;
+    }
+    .chart-pair-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2196F3;
+      margin-right: 8px;
+    }
+    .chart-timeframes {
+      display: flex;
+      gap: 4px;
+      flex: 1;
+    }
+    .chart-action-btn { 
+      padding: 6px 10px; 
+      background: #F5F5F5; 
+      border: none; 
+      border-radius: 4px; 
+      font-size: 11px; 
+      cursor: pointer; 
+    }
+    .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
+    
+    /* مشکل 9: فلش بک رنگ متمایز */
+    .chart-back { 
+      font-size: 24px; 
+      cursor: pointer; 
+      color: #F64653; 
+      padding: 4px 12px; 
+      font-weight: 900; 
+      line-height: 1;
+      margin-left: auto;
+    }
+    
+    .chart-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
     .chart-main { position: relative; min-height: 350px; height: 55vh; flex-shrink: 0; }
     .chart-container { width: 100%; height: 100%; background: white; }
     .resize-handle { 
@@ -218,8 +253,14 @@
     .indicator-btn { padding: 6px 10px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 11px; cursor: pointer; white-space: nowrap; }
     .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     
-    /* مشکل 7: اندیکاتورها بزرگتر */
-    .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; }
+    /* مشکل 4: اسکرول اندیکاتورها */
+    .indicator-charts { 
+      background: white; 
+      border-top: 1px solid #E8E8E8; 
+      flex-shrink: 0;
+      overflow-y: auto;
+      max-height: 40vh;
+    }
     .indicator-subchart { height: 160px; position: relative; border-bottom: 1px solid #F0F0F0; }
     .indicator-subchart:last-child { border-bottom: none; }
     .indicator-subchart canvas { width: 100%; height: 100%; display: block; }
@@ -257,9 +298,7 @@
     let indicatorSeries = {};
     let positionLines = {};
     let currentPair = 'BTCUSDT';
-    let lastPriceUpdate = Date.now();
     
-    // مشکل 2: درصد تغییر برای هر جفت ارز جداگانه
     let pairInfo = {
       BTCUSDT: { name: 'BTC/USDT', price: 80027, change: 0.53, decimals: 2, volatility: 500, basePrice: 80000 },
       ETHUSDT: { name: 'ETH/USDT', price: 3850, change: -1.24, decimals: 2, volatility: 30, basePrice: 3800 },
@@ -284,22 +323,22 @@
 
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
-      if (t.includes('کندل') || t.includes('الگو')) return '️';
+      if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
       if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '🔗';
       if (t.includes('کیف پول')) return '👛';
       if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
-      if (t.includes('حمایت') || t.includes('مقاومت')) return '';
-      if (t.includes('روند')) return '📉';
-      if (t.includes('پرایس اکشن')) return '';
-      if (t.includes('لوریج') || t.includes('مارجین')) return '️';
+      if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
+      if (t.includes('روند')) return '';
+      if (t.includes('پرایس اکشن')) return '💹';
+      if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '🛡️';
       if (t.includes('آزمون') || t.includes('تست')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
-      if (t.includes('ict') || t.includes('kill zone')) return '';
-      if (t.includes('استراتژی')) return '⚙️';
+      if (t.includes('ict') || t.includes('kill zone')) return '🎯';
+      if (t.includes('استراتژی')) return '️';
       if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
-      return '📚';
+      return '';
     }
 
     async function initApp() {
@@ -388,7 +427,7 @@
       else levelName = decodeURIComponent(levelId);
       const courses = appData.courses.filter(c => c.level.includes(levelName));
       if (courses.length === 0) {
-        document.getElementById('app').innerHTML = `<div class="loading">⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+        document.getElementById('app').innerHTML = `<div class="loading">️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
         return;
       }
       let html = `<div class="header"><h1>${levelName}</h1><p>${courses.length} دوره در این سطح</p></div>`;
@@ -409,7 +448,7 @@
       const lessons = currentCourse.lessons || [];
       let html = `<div class="header"><h1>${currentCourse.title}</h1><p>${lessons.length} درس</p></div>`;
       if (lessons.length === 0) {
-        html += `<div class="loading">⚠️ این دوره هنوز درسی ندارد</div>`;
+        html += `<div class="loading">️ این دوره هنوز درسی ندارد</div>`;
       } else {
         lessons.forEach((l, i) => {
           html += `<div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')"><div class="lesson-number">${i + 1}</div><div class="lesson-title">${l.title}</div></div>`;
@@ -453,9 +492,12 @@
       navigateTo('#quiz');
     }
 
-    // ===== صفحه دمو تریدینگ =====
     function renderTradePage() {
-      if (ws) { ws.close(); ws = null; }
+      if (ws) { 
+        if (typeof ws === 'object' && ws.close) ws.close(); 
+        else clearInterval(ws);
+        ws = null; 
+      }
       if (chart) { chart.remove(); chart = null; }
       indicatorSeries = {};
       positionLines = {};
@@ -561,7 +603,7 @@
                 <div class="order-header">
                   <span>Amount</span>
                   <span>Price</span>
-                  <span>Price</span>
+                  <span>Total</span>
                 </div>
                 <div id="orderBookAsks"></div>
                 <div id="orderBookBids"></div>
@@ -578,7 +620,6 @@
           <div class="positions-content" id="positionsContent"></div>
         </div>
 
-        <!-- Dropdown Overlay -->
         <div class="pair-overlay" id="pairOverlay" onclick="closePairDropdown()"></div>
         <div class="pair-dropdown-menu" id="pairDropdown">
           ${pairs.map(p => {
@@ -594,15 +635,15 @@
 
         <div class="chart-modal" id="chartModal">
           <div class="chart-header">
-            <span class="chart-back" onclick="closeChartModal()">←</span>
-            <span class="chart-title" id="chartTitle">${info.name} Chart</span>
-            <div class="chart-actions">
+            <span class="chart-pair-name" id="chartPairName">${info.name}</span>
+            <div class="chart-timeframes">
               <button class="chart-action-btn" onclick="changeTimeframe('1m', event)">1m</button>
               <button class="chart-action-btn" onclick="changeTimeframe('5m', event)">5m</button>
               <button class="chart-action-btn ${currentTimeframe === '15m' ? 'active' : ''}" onclick="changeTimeframe('15m', event)">15m</button>
               <button class="chart-action-btn" onclick="changeTimeframe('1h', event)">1h</button>
               <button class="chart-action-btn" onclick="changeTimeframe('4h', event)">4h</button>
             </div>
+            <span class="chart-back" onclick="closeChartModal()">←</span>
           </div>
           <div class="chart-body">
             <div class="chart-main" id="chartMain">
@@ -610,7 +651,7 @@
               <div class="resize-handle" id="resizeHandle"></div>
             </div>
             <div class="indicators-panel">
-              <button class="indicator-btn" onclick="toggleIndicator('MA', event)">MA</button>
+              <button class="indicator-btn" onclick="toggleIndicator('SMA', event)">SMA</button>
               <button class="indicator-btn" onclick="toggleIndicator('EMA', event)">EMA</button>
               <button class="indicator-btn" onclick="toggleIndicator('BOLL', event)">BOLL</button>
               <button class="indicator-btn" onclick="toggleIndicator('RSI', event)">RSI</button>
@@ -630,7 +671,6 @@
       updateTradeInfo();
     }
 
-    // مشکل 1: Dropdown با overlay
     function togglePairDropdown(e) {
       if (e) e.stopPropagation();
       document.getElementById('pairOverlay').classList.add('show');
@@ -642,7 +682,6 @@
       document.getElementById('pairDropdown').classList.remove('show');
     }
 
-    // مشکل 3: انتخاب جفت ارز با داده‌های واقعی
     function selectPair(id, event) {
       if (event) event.stopPropagation();
       currentPair = id;
@@ -662,7 +701,7 @@
       updateTradeInfo();
       
       if (document.getElementById('chartModal').classList.contains('active')) {
-        document.getElementById('chartTitle').textContent = info.name + ' Chart';
+        document.getElementById('chartPairName').textContent = info.name;
         if (chart) { chart.remove(); chart = null; }
         indicatorSeries = {};
         setTimeout(() => initChart(), 100);
@@ -671,7 +710,7 @@
 
     function openChartModal() {
       document.getElementById('chartModal').classList.add('active');
-      document.getElementById('chartTitle').textContent = pairInfo[currentPair].name + ' Chart';
+      document.getElementById('chartPairName').textContent = pairInfo[currentPair].name;
       setTimeout(() => initChart(), 150);
     }
 
@@ -681,7 +720,6 @@
       indicatorSeries = {};
     }
 
-    // مشکل 4: Resize درست کار کند
     function setupResize() {
       const handle = document.getElementById('resizeHandle');
       const chartMain = document.getElementById('chartMain');
@@ -713,9 +751,7 @@
         }
       };
       
-      const stopResize = () => {
-        isResizing = false;
-      };
+      const stopResize = () => { isResizing = false; };
       
       handle.addEventListener('mousedown', startResize);
       handle.addEventListener('touchstart', startResize, {passive: false});
@@ -725,117 +761,7 @@
       document.addEventListener('touchend', stopResize);
     }
 
-    // مشکل 5 و 6: چارت با داده‌های واقعی هر جفت ارز
-    function initChart() {
-      const container = document.getElementById('chartContainer');
-      if (!container) return;
-      
-      if (typeof LightweightCharts === 'undefined') {
-        container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>';
-        return;
-      }
-      
-      try {
-        chart = LightweightCharts.createChart(container, {
-          width: container.clientWidth,
-          height: container.clientHeight - 12,
-          layout: { background: { color: '#FFFFFF' }, textColor: '#1A1A1A', fontSize: 11 },
-          grid: { vertLines: { color: '#F0F0F0' }, horzLines: { color: '#F0F0F0' } },
-          crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
-          rightPriceScale: { borderColor: '#E8E8E8', scaleMargins: { top: 0.1, bottom: 0.1 } },
-          timeScale: { borderColor: '#E8E8E8', timeVisible: true, rightOffset: 5 },
-          // مشکل 5: غیرفعال کردن اسکرول افقی با تاچ
-          handleScroll: { vertTouchDrag: false, horzTouchDrag: false, mouseWheel: true },
-          handleScale: { axisPressedMouseMove: true, mouseWheel: true, pinch: true }
-        });
-        
-        candleSeries = chart.addCandlestickSeries({
-          upColor: '#0ECB81', downColor: '#F64653',
-          borderVisible: false, wickUpColor: '#0ECB81', wickDownColor: '#F64653',
-        });
-        
-        const info = pairInfo[currentPair];
-        const isCrypto = currentPair === 'BTCUSDT' || currentPair === 'ETHUSDT';
-        
-        if (isCrypto) {
-          // برای کریپتو از API واقعی بایننس استفاده کن
-          const binanceSymbol = currentPair;
-          fetch(`https://api.binance.com/api/v3/klines?symbol=${binanceSymbol}&interval=${currentTimeframe}&limit=200`)
-            .then(r => r.json())
-            .then(data => {
-              chartData = data.map(k => ({
-                time: k[0] / 1000,
-                open: parseFloat(k[1]),
-                high: parseFloat(k[2]),
-                low: parseFloat(k[3]),
-                close: parseFloat(k[4]),
-              }));
-              candleSeries.setData(chartData);
-              currentPrice = chartData[chartData.length - 1].close;
-              pairInfo[currentPair].price = currentPrice;
-              updatePriceDisplay();
-              drawPositionLines();
-              drawIndicators();
-              
-              // WebSocket فقط برای کریپتو
-              if (ws) ws.close();
-              ws = new WebSocket(`wss://stream.binance.com:9443/ws/${binanceSymbol.toLowerCase()}@kline_${currentTimeframe}`);
-              ws.onmessage = (event) => {
-                try {
-                  const data = JSON.parse(event.data);
-                  const k = data.k;
-                  const candle = {
-                    time: k.t / 1000,
-                    open: parseFloat(k.o),
-                    high: parseFloat(k.h),
-                    low: parseFloat(k.l),
-                    close: parseFloat(k.c),
-                  };
-                  if (candleSeries) candleSeries.update(candle);
-                  currentPrice = candle.close;
-                  pairInfo[currentPair].price = currentPrice;
-                  updatePriceDisplay();
-                  updatePositionsPnL();
-                } catch(e) {}
-              };
-              ws.onerror = () => {};
-            })
-            .catch(err => {
-              console.error('API error:', err);
-              generateSimulatedData();
-            });
-        } else {
-          // برای طلا و EUR/USD داده شبیه‌سازی‌شده بساز
-          generateSimulatedData();
-          
-          // شبیه‌سازی تیک‌های قیمتی
-          if (ws) { clearInterval(ws); ws = null; }
-          ws = setInterval(() => {
-            const volatility = info.volatility;
-            const change = (Math.random() - 0.5) * volatility * 0.1;
-            currentPrice += change;
-            pairInfo[currentPair].price = currentPrice;
-            
-            // به‌روزرسانی آخرین کندل
-            if (chartData.length > 0) {
-              const lastCandle = chartData[chartData.length - 1];
-              lastCandle.close = currentPrice;
-              if (currentPrice > lastCandle.high) lastCandle.high = currentPrice;
-              if (currentPrice < lastCandle.low) lastCandle.low = currentPrice;
-              if (candleSeries) candleSeries.update(lastCandle);
-            }
-            
-            updatePriceDisplay();
-            updatePositionsPnL();
-          }, 2000);
-        }
-      } catch (err) {
-        console.error('Chart error:', err);
-        container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>';
-      }
-    }
-
-    // مشکل 6: تولید داده شبیه‌سازی‌شده بدون گپ
+    // مشکل 2: تولید داده جداگانه برای هر جفت ارز
     function generateSimulatedData() {
       const info = pairInfo[currentPair];
       chartData = [];
@@ -863,6 +789,109 @@
       drawIndicators();
     }
 
+    // مشکل 3: اسکرول چارت فعال
+    function initChart() {
+      const container = document.getElementById('chartContainer');
+      if (!container) return;
+      
+      if (typeof LightweightCharts === 'undefined') {
+        container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>';
+        return;
+      }
+      
+      try {
+        chart = LightweightCharts.createChart(container, {
+          width: container.clientWidth,
+          height: container.clientHeight - 12,
+          layout: { background: { color: '#FFFFFF' }, textColor: '#1A1A1A', fontSize: 11 },
+          grid: { vertLines: { color: '#F0F0F0' }, horzLines: { color: '#F0F0F0' } },
+          crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+          rightPriceScale: { borderColor: '#E8E8E8', scaleMargins: { top: 0.1, bottom: 0.1 } },
+          timeScale: { borderColor: '#E8E8E8', timeVisible: true, rightOffset: 5 },
+          // مشکل 3: اسکرول افقی و زوم فعال
+          handleScroll: { vertTouchDrag: false, horzTouchDrag: true, mouseWheel: true },
+          handleScale: { axisPressedMouseMove: true, mouseWheel: true, pinch: true }
+        });
+        
+        candleSeries = chart.addCandlestickSeries({
+          upColor: '#0ECB81', downColor: '#F64653',
+          borderVisible: false, wickUpColor: '#0ECB81', wickDownColor: '#F64653',
+        });
+        
+        const isCrypto = currentPair === 'BTCUSDT' || currentPair === 'ETHUSDT';
+        
+        if (isCrypto) {
+          fetch(`https://api.binance.com/api/v3/klines?symbol=${currentPair}&interval=${currentTimeframe}&limit=200`)
+            .then(r => r.json())
+            .then(data => {
+              chartData = data.map(k => ({
+                time: k[0] / 1000,
+                open: parseFloat(k[1]),
+                high: parseFloat(k[2]),
+                low: parseFloat(k[3]),
+                close: parseFloat(k[4]),
+              }));
+              candleSeries.setData(chartData);
+              currentPrice = chartData[chartData.length - 1].close;
+              pairInfo[currentPair].price = currentPrice;
+              updatePriceDisplay();
+              drawPositionLines();
+              drawIndicators();
+              
+              if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); else clearInterval(ws); }
+              ws = new WebSocket(`wss://stream.binance.com:9443/ws/${currentPair.toLowerCase()}@kline_${currentTimeframe}`);
+              ws.onmessage = (event) => {
+                try {
+                  const data = JSON.parse(event.data);
+                  const k = data.k;
+                  const candle = {
+                    time: k.t / 1000,
+                    open: parseFloat(k.o),
+                    high: parseFloat(k.h),
+                    low: parseFloat(k.l),
+                    close: parseFloat(k.c),
+                  };
+                  if (candleSeries) candleSeries.update(candle);
+                  currentPrice = candle.close;
+                  pairInfo[currentPair].price = currentPrice;
+                  updatePriceDisplay();
+                  updatePositionsPnL();
+                } catch(e) {}
+              };
+              ws.onerror = () => {};
+            })
+            .catch(err => {
+              console.error('API error:', err);
+              generateSimulatedData();
+            });
+        } else {
+          generateSimulatedData();
+          
+          if (ws) { clearInterval(ws); }
+          ws = setInterval(() => {
+            const info = pairInfo[currentPair];
+            const change = (Math.random() - 0.5) * info.volatility * 0.1;
+            currentPrice += change;
+            pairInfo[currentPair].price = currentPrice;
+            
+            if (chartData.length > 0) {
+              const lastCandle = chartData[chartData.length - 1];
+              lastCandle.close = currentPrice;
+              if (currentPrice > lastCandle.high) lastCandle.high = currentPrice;
+              if (currentPrice < lastCandle.low) lastCandle.low = currentPrice;
+              if (candleSeries) candleSeries.update(lastCandle);
+            }
+            
+            updatePriceDisplay();
+            updatePositionsPnL();
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('Chart error:', err);
+        container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>';
+      }
+    }
+
     function changeTimeframe(tf, event) {
       if (event) event.stopPropagation();
       currentTimeframe = tf;
@@ -878,7 +907,7 @@
       setTimeout(() => initChart(), 100);
     }
 
-    // مشکل 9: EMA نازک‌تر و بدون لیبل
+    // مشکل 5: پاک کردن کامل اندیکاتورها
     function toggleIndicator(indicator, event) {
       if (event) event.stopPropagation();
       const idx = activeIndicators.indexOf(indicator);
@@ -897,52 +926,58 @@
       });
     }
 
+    // مشکل 5: پاک کردن کامل series قبلی
     function drawIndicators() {
       if (!chart || !candleSeries || chartData.length === 0) return;
       
-      // پاک کردن اندیکاتورهای قبلی
-      Object.values(indicatorSeries).forEach(s => {
-        try { if (s && s.remove) s.remove(); } catch(e) {}
+      // پاک کردن همه series قبلی
+      Object.keys(indicatorSeries).forEach(key => {
+        try {
+          const s = indicatorSeries[key];
+          if (s && typeof s.remove === 'function') {
+            s.remove();
+          }
+        } catch(e) {}
       });
       indicatorSeries = {};
       
       const container = document.getElementById('indicatorCharts');
       if (container) container.innerHTML = '';
       
-      // MA روی چارت اصلی
-      if (activeIndicators.includes('MA')) {
-        const ma20 = calculateMA(chartData, 20);
-        const ma50 = calculateMA(chartData, 50);
-        // مشکل 9: lineWidth=1 و بدون title/lastValueVisible
-        indicatorSeries.ma20 = chart.addLineSeries({ 
-          color: '#2196F3', lineWidth: 1, 
+      // مشکل 7: SMA 20 و 50 (نه 9)
+      if (activeIndicators.includes('SMA')) {
+        const sma20 = calculateMA(chartData, 20);
+        const sma50 = calculateMA(chartData, 50);
+        indicatorSeries.sma20 = chart.addLineSeries({ 
+          color: '#2196F3', lineWidth: 1.5, 
           priceLineVisible: false, lastValueVisible: false,
-          crosshairMarkerVisible: false
+          crosshairMarkerVisible: false, title: 'SMA20'
         });
-        indicatorSeries.ma50 = chart.addLineSeries({ 
-          color: '#FF9800', lineWidth: 1, 
+        indicatorSeries.sma50 = chart.addLineSeries({ 
+          color: '#FF9800', lineWidth: 1.5, 
           priceLineVisible: false, lastValueVisible: false,
-          crosshairMarkerVisible: false
+          crosshairMarkerVisible: false, title: 'SMA50'
         });
-        indicatorSeries.ma20.setData(ma20);
-        indicatorSeries.ma50.setData(ma50);
+        indicatorSeries.sma20.setData(sma20);
+        indicatorSeries.sma50.setData(sma50);
       }
       
+      // مشکل 7: EMA با رنگ قرمز/سبز و lineWidth مناسب
       if (activeIndicators.includes('EMA')) {
-        const ema12 = calculateEMA(chartData, 12);
-        const ema26 = calculateEMA(chartData, 26);
-        indicatorSeries.ema12 = chart.addLineSeries({ 
-          color: '#9C27B0', lineWidth: 1, 
+        const ema9 = calculateEMA(chartData, 9);
+        const ema21 = calculateEMA(chartData, 21);
+        indicatorSeries.ema9 = chart.addLineSeries({ 
+          color: '#4CAF50', lineWidth: 1.5, 
           priceLineVisible: false, lastValueVisible: false,
-          crosshairMarkerVisible: false
+          crosshairMarkerVisible: false, title: 'EMA9'
         });
-        indicatorSeries.ema26 = chart.addLineSeries({ 
-          color: '#E91E63', lineWidth: 1, 
+        indicatorSeries.ema21 = chart.addLineSeries({ 
+          color: '#F44336', lineWidth: 1.5, 
           priceLineVisible: false, lastValueVisible: false,
-          crosshairMarkerVisible: false
+          crosshairMarkerVisible: false, title: 'EMA21'
         });
-        indicatorSeries.ema12.setData(ema12);
-        indicatorSeries.ema26.setData(ema26);
+        indicatorSeries.ema9.setData(ema9);
+        indicatorSeries.ema21.setData(ema21);
       }
       
       if (activeIndicators.includes('BOLL')) {
@@ -952,7 +987,7 @@
           priceLineVisible: false, lastValueVisible: false 
         });
         indicatorSeries.bollMiddle = chart.addLineSeries({ 
-          color: '#2196F3', lineWidth: 1, 
+          color: '#2196F3', lineWidth: 1.5, 
           priceLineVisible: false, lastValueVisible: false 
         });
         indicatorSeries.bollLower = chart.addLineSeries({ 
@@ -964,7 +999,6 @@
         indicatorSeries.bollLower.setData(boll.lower);
       }
       
-      // RSI در subchart جداگانه - مشکل 7: بزرگتر
       if (activeIndicators.includes('RSI')) {
         const rsiData = calculateRSI(chartData, 14);
         const rsiContainer = document.createElement('div');
@@ -974,7 +1008,6 @@
         setTimeout(() => drawRSI(rsiData, rsiContainer.querySelector('canvas')), 80);
       }
       
-      // MACD در subchart جداگانه
       if (activeIndicators.includes('MACD')) {
         const macdData = calculateMACD(chartData);
         const macdContainer = document.createElement('div');
@@ -1075,11 +1108,10 @@
       return { macd: macdValues, signal: signalLine, histogram };
     }
 
-    // مشکل 7: RSI با اندازه درست
     function drawRSI(rsiData, canvas) {
       if (!canvas) return;
       const rect = canvas.parentElement.getBoundingClientRect();
-      canvas.width = rect.width * 2; // retina
+      canvas.width = rect.width * 2;
       canvas.height = rect.height * 2;
       canvas.style.width = rect.width + 'px';
       canvas.style.height = rect.height + 'px';
@@ -1092,13 +1124,11 @@
       ctx.fillStyle = 'white';
       ctx.fillRect(0, 0, w, h);
       
-      // نواحی اشباع
       ctx.fillStyle = 'rgba(246, 70, 83, 0.08)';
       ctx.fillRect(0, 0, w, h * 0.3);
       ctx.fillStyle = 'rgba(14, 203, 129, 0.08)';
       ctx.fillRect(0, h * 0.7, w, h * 0.3);
       
-      // خطوط مرجع
       ctx.strokeStyle = '#E0E0E0';
       ctx.setLineDash([3, 3]);
       ctx.lineWidth = 1;
@@ -1109,7 +1139,6 @@
         ctx.lineTo(w, y);
         ctx.stroke();
         
-        // لیبل
         ctx.fillStyle = '#7F8C8D';
         ctx.font = '10px Arial';
         ctx.textAlign = 'left';
@@ -1117,7 +1146,6 @@
       });
       ctx.setLineDash([]);
       
-      // رسم RSI
       ctx.strokeStyle = '#FF9800';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -1130,7 +1158,7 @@
       ctx.stroke();
     }
 
-    // مشکل 7: MACD با اندازه درست
+    // مشکل 6: مقیاس یکسان برای هیستوگرام و خطوط MACD
     function drawMACD(macdData, canvas) {
       if (!canvas) return;
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -1147,7 +1175,8 @@
       ctx.fillStyle = 'white';
       ctx.fillRect(0, 0, w, h);
       
-      const allValues = [...macdData.macd, ...macdData.signal, ...macdData.histogram];
+      // مقیاس بر اساس MACD line (نه هیستوگرام)
+      const allValues = [...macdData.macd, ...macdData.signal];
       const maxAbs = Math.max(...allValues.map(v => Math.abs(v.value))) * 1.3;
       if (maxAbs === 0) return;
       
@@ -1162,7 +1191,7 @@
       ctx.lineTo(w, midY);
       ctx.stroke();
       
-      // هیستوگرام
+      // هیستوگرام - با مقیاس یکسان
       const barWidth = Math.max(1, (w / macdData.histogram.length) * 0.7);
       macdData.histogram.forEach((h_val, i) => {
         const x = (i / (macdData.histogram.length - 1)) * w;
@@ -1201,8 +1230,11 @@
     function drawPositionLines() {
       if (!chart || !candleSeries) return;
       
-      Object.values(positionLines).forEach(l => { 
-        try { if (l && l.remove) l.remove(); } catch(e) {} 
+      Object.keys(positionLines).forEach(key => { 
+        try { 
+          const l = positionLines[key];
+          if (l && typeof l.remove === 'function') l.remove(); 
+        } catch(e) {} 
       });
       positionLines = {};
       
@@ -1250,8 +1282,8 @@
 
     function renderOrderBook() {
       const { asks, bids } = generateOrderBook();
-      const asksHtml = asks.map(o => `<div class="order-row ask"><span class="amount">${o.amount}</span><span class="price ask">${o.price}</span><span class="total">${o.total}</span></div>`).join('');
-      const bidsHtml = bids.map(o => `<div class="order-row bid"><span class="amount">${o.amount}</span><span class="price bid">${o.price}</span><span class="total">${o.total}</span></div>`).join('');
+      const asksHtml = asks.map(o => `<div class="order-row ask"><span class="col-amount">${o.amount}</span><span class="col-price ask">${o.price}</span><span class="col-total">${o.total}</span></div>`).join('');
+      const bidsHtml = bids.map(o => `<div class="order-row bid"><span class="col-amount">${o.amount}</span><span class="col-price bid">${o.price}</span><span class="col-total">${o.total}</span></div>`).join('');
       const asksEl = document.getElementById('orderBookAsks');
       const bidsEl = document.getElementById('orderBookBids');
       if (asksEl) asksEl.innerHTML = asksHtml;
@@ -1599,7 +1631,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? ' خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div>
         <button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>
