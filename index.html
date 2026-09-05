@@ -69,70 +69,73 @@
     let currentLesson = null;
     let quizState = { currentQuestion: 0, score: 0, answered: false };
 
-    function cleanJsonKeys(obj) {
-      if (Array.isArray(obj)) return obj.map(item => cleanJsonKeys(item));
-      else if (obj !== null && typeof obj === 'object') {
-        const cleaned = {};
-        for (let key in obj) { 
-          const cleanKey = key.trim(); 
-          cleaned[cleanKey] = cleanJsonKeys(obj[key]); 
-        }
-        return cleaned;
-      }
-      return obj;
-    }
-
     function getCleanImageUrl(url) {
       if (!url) return null;
-      return url.trim().replace(/\s+/g, '');
+      return String(url).trim().replace(/\s+/g, '');
     }
 
     function getLessonIcon(title) {
-      title = title.toLowerCase();
-      if (title.includes('کندل') || title.includes('الگو')) return '🕯️';
-      if (title.includes('بلاکچین') || title.includes('کریپتو') || title.includes('رمز')) return '🔗';
-      if (title.includes('کیف پول')) return '👛';
-      if (title.includes('بازار')) return '📊';
-      if (title.includes('فارکس') || title.includes('ارز')) return '💱';
-      if (title.includes('حمایت') || title.includes('مقاومت')) return '📈';
-      if (title.includes('روند')) return '📉';
-      if (title.includes('پرایس اکشن')) return '💹';
-      if (title.includes('لوریج') || title.includes('مارجین')) return '⚖️';
-      if (title.includes('ریسک') || title.includes('مدیریت سرمایه')) return '🛡️';
-      if (title.includes('آزمون') || title.includes('تست')) return '📝';
-      if (title.includes('اسمارت') || title.includes('smart')) return '🧠';
-      if (title.includes('ict') || title.includes('kill zone')) return '🎯';
-      if (title.includes('استراتژی')) return '⚙️';
-      if (title.includes('روانشناسی') || title.includes('ژورنال')) return '🧘';
+      const t = String(title).toLowerCase();
+      if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
+      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '🔗';
+      if (t.includes('کیف پول')) return '👛';
+      if (t.includes('بازار')) return '📊';
+      if (t.includes('فارکس') || t.includes('ارز')) return '💱';
+      if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
+      if (t.includes('روند')) return '📉';
+      if (t.includes('پرایس اکشن')) return '💹';
+      if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
+      if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '🛡️';
+      if (t.includes('آزمون') || t.includes('تست')) return '📝';
+      if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
+      if (t.includes('ict') || t.includes('kill zone')) return '🎯';
+      if (t.includes('استراتژی')) return '⚙️';
+      if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
       return '📚';
     }
 
     async function initApp() {
       try {
-        // فقط ۴ فایل اول را می‌خوانیم تا خطای ۴۰۴ فایل پنجم باعث خرابی نشود
-        const files = ['data-part1.json', 'data-part2.json', 'data-part3.json', 'data-part4.json'];
+        const files = ['data-part1.json', 'data-part2.json', 'data-part3.json', 'data-part4.json', 'data-part5.json'];
         const responses = await Promise.all(files.map(f => fetch(f).then(r => r.text()).catch(() => null)));
         
         appData.courses = [];
         responses.forEach((text, index) => {
-          if (!text) return;
-          try { 
-            const data = JSON.parse(text); 
-            const cleaned = cleanJsonKeys(data); 
-            if (cleaned.courses) {
-              appData.courses.push(...cleaned.courses);
-              console.log(`فایل ${files[index]} با موفقیت لود شد. تعداد دوره‌ها:`, cleaned.courses.length);
+          if (!text) {
+            console.warn(`فایل ${files[index]} لود نشد (احتمالا ۴۰۴ یا نام اشتباه)`);
+            return;
+          }
+          try {
+            const data = JSON.parse(text);
+            if (data.courses && Array.isArray(data.courses)) {
+              data.courses.forEach(course => {
+                // نرمال‌سازی اجباری برای حذف ۱۰۰٪ فاصله‌ها
+                const normalizedCourse = {
+                  id: String(course.id || '').trim(),
+                  level: String(course.level || '').trim(),
+                  title: String(course.title || '').trim(),
+                  lessons: Array.isArray(course.lessons) ? course.lessons.map(l => ({
+                    id: String(l.id || '').trim(),
+                    title: String(l.title || '').trim(),
+                    image: String(l.image || '').trim(),
+                    content: l.content || '',
+                    quiz: Array.isArray(l.quiz) ? l.quiz : []
+                  })) : []
+                };
+                appData.courses.push(normalizedCourse);
+              });
+              console.log(`فایل ${files[index]} با موفقیت لود شد. تعداد دوره‌ها:`, data.courses.length);
             }
-          } catch (e) { 
-            console.error('خطا در خواندن فایل JSON شماره', index + 1, e); 
+          } catch (e) {
+            console.error('خطا در خواندن فایل JSON شماره', index + 1, e);
           }
         });
+        
+        console.log('مجموع دوره‌های لود شده در سیستم:', appData.courses.length);
         
         if (appData.courses.length === 0) {
           throw new Error('هیچ دوره‌ای یافت نشد. لطفاً فایل‌های JSON را بررسی کنید.');
         }
-        
-        console.log('مجموع دوره‌های لود شده:', appData.courses.length);
         
         if (!location.hash) history.replaceState({ view: 'home' }, '', '#home');
         handleRoute();
@@ -163,9 +166,9 @@
 
     function renderHome() {
       const levels = [
-        { id: 'مقدماتی', icon: '🌱', title: 'دوره مقدماتی', count: appData.courses.filter(c => c.level === 'مقدماتی').length },
-        { id: 'میانی', icon: '🌿', title: 'دوره میانی', count: appData.courses.filter(c => c.level === 'میانی').length },
-        { id: 'پیشرفته', icon: '🌳', title: 'دوره پیشرفته', count: appData.courses.filter(c => c.level === 'پیشرفته').length }
+        { id: 'مقدماتی', icon: '🌱', title: 'دوره مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
+        { id: 'میانی', icon: '🌿', title: 'دوره میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'پیشرفته', icon: '🌳', title: 'دوره پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
 
       let html = `
@@ -196,7 +199,7 @@
     }
 
     function renderLevelCourses(levelName) {
-      const courses = appData.courses.filter(c => c.level === levelName);
+      const courses = appData.courses.filter(c => c.level.includes(levelName));
       
       if (courses.length === 0) {
         document.getElementById('app').innerHTML = `
@@ -231,54 +234,55 @@
     }
 
     function renderCourseLessons(courseId) {
-      currentCourse = appData.courses.find(c => c.id === courseId);
-      if (!currentCourse) return navigateTo('#home');
+      // حذف فاصله از شناسه دریافتی از URL
+      const cleanCourseId = String(courseId).trim();
+      const currentCourse = appData.courses.find(c => c.id === cleanCourseId);
+      
+      if (!currentCourse) {
+        console.error('دوره پیدا نشد. ID درخواستی:', cleanCourseId);
+        return navigateTo('#home');
+      }
 
+      const lessons = currentCourse.lessons || [];
       let html = `
         <div class="header">
           <h1>${currentCourse.title}</h1>
-          <p>${currentCourse.level} • ${currentCourse.lessons.length} درس</p>
+          <p>${currentCourse.level} • ${lessons.length} درس</p>
         </div>
       `;
 
-      currentCourse.lessons.forEach((l, i) => {
-        html += `
-          <div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')">
-            <div class="lesson-number">${i + 1}</div>
-            <div class="lesson-title">${l.title}</div>
-          </div>
-        `;
-      });
+      if (lessons.length === 0) {
+        html += `<div class="error-box"><h3>این دوره هنوز درسی ندارد.</h3></div>`;
+      } else {
+        lessons.forEach((l, i) => {
+          html += `
+            <div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')">
+              <div class="lesson-number">${i + 1}</div>
+              <div class="lesson-title">${l.title}</div>
+            </div>
+          `;
+        });
+      }
 
       html += `<button class="back-button" onclick="navigateTo('#level-${currentCourse.level}')"><span class="back-icon">↶</span> بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
     }
 
     function renderLesson(courseId, lessonIndex) {
-      currentCourse = appData.courses.find(c => c.id === courseId);
-      if (!currentCourse) return navigateTo('#home');
+      const cleanCourseId = String(courseId).trim();
+      const course = appData.courses.find(c => c.id === cleanCourseId);
+      if (!course) return navigateTo('#home');
       
-      currentLesson = currentCourse.lessons[lessonIndex];
-      if (!currentLesson) return navigateTo(`#course-${courseId}`);
+      const lessons = course.lessons || [];
+      const currentLesson = lessons[lessonIndex];
+      if (!currentLesson) return navigateTo(`#course-${cleanCourseId}`);
 
       const lessonIcon = getLessonIcon(currentLesson.title);
       const cleanUrl = getCleanImageUrl(currentLesson.image);
       const hasImage = cleanUrl && !cleanUrl.includes('PENDING');
-      
-      const imagesArray = currentLesson.images || [];
-      const hasMultipleImages = imagesArray.length > 0;
 
       let imageHtml = '';
-      if (hasMultipleImages) {
-        imageHtml = `<div class="lesson-images">`;
-        imagesArray.forEach(img => {
-          const imgClean = getCleanImageUrl(img);
-          if (imgClean && !imgClean.includes('PENDING')) {
-            imageHtml += `<img src="${imgClean}" alt="${currentLesson.title}" onerror="this.style.display='none'">`;
-          }
-        });
-        imageHtml += `</div>`;
-      } else if (hasImage) {
+      if (hasImage) {
         imageHtml = `<img src="${cleanUrl}" alt="${currentLesson.title}" class="lesson-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder">${lessonIcon}</div>`;
       } else {
         imageHtml = `<div class="image-placeholder" style="display:flex;">${lessonIcon}</div>`;
@@ -293,7 +297,7 @@
             <button class="quiz-button" onclick="startQuiz()">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>
           ` : ''}
         </div>
-        <button class="back-button" onclick="navigateTo('#course-${courseId}')"><span class="back-icon">↶</span> بازگشت</button>
+        <button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')"><span class="back-icon">↶</span> بازگشت</button>
       `;
 
       document.getElementById('app').innerHTML = html;
@@ -380,7 +384,6 @@
     window.addEventListener('popstate', () => handleRoute());
     initApp();
     
-    // ثبت سرویس ورکر با نام جدید برای پاکسازی کش
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js?v=99').catch(console.error);
     }
