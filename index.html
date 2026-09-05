@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#1D9E75">
   <title>آکادمی ترید</title>
   <link rel="manifest" href="manifest.json">
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body { font-family: Tahoma, Arial, sans-serif; background: #F7F7F5; color: #2C3E50; line-height: 1.8; padding-bottom: 100px; width: 100%; overflow-x: hidden; }
@@ -25,10 +26,7 @@
     .course-title { font-size: 17px; font-weight: 600; flex: 1; }
     .course-info { color: #7F8C8D; font-size: 14px; }
     .lesson-item { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; display: flex; align-items: center; }
-    
-    /* ✅ تغییر ۱: شماره دروس - دایره سبز کم‌رنگ */
     .lesson-number { width: 40px; height: 40px; background: #A7D7C5; color: #1D9E75; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-left: 16px; flex-shrink: 0; }
-    
     .lesson-title { flex: 1; font-size: 16px; font-weight: 500; }
     .lesson-content { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .lesson-content h3 { color: #1D9E75; margin: 20px 0 12px 0; font-size: 18px; }
@@ -38,10 +36,7 @@
     .lesson-content strong { unicode-bidi: embed; }
     .info-box { background: #E8F5E9; border-right: 4px solid #3498DB; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 14px; unicode-bidi: embed; }
     .warning-box { background: #FFF3E0; border-right: 4px solid #F39C12; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 14px; unicode-bidi: embed; }
-    
-    /* ✅ تغییر ۲: دکمه شروع آزمون - سبز کم‌رنگ */
     .quiz-button { width: 100%; background: #6BC4A0; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 24px; }
-    
     .quiz-container { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .quiz-question { font-size: 17px; font-weight: 600; margin-bottom: 20px; unicode-bidi: embed; }
     .quiz-option { background: #F7F7F5; border: 2px solid #E0E0E0; border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; font-size: 15px; unicode-bidi: embed; }
@@ -56,17 +51,50 @@
     .quiz-result { text-align: center; padding: 40px 20px; }
     .quiz-score { font-size: 48px; font-weight: 700; color: #1D9E75; margin-bottom: 16px; }
     .quiz-message { font-size: 18px; margin-bottom: 24px; }
-    
-    /* ✅ تغییر ۳: دکمه بازگشت - عرض کوچک‌تر + رنگ آبی-نیلی */
     .back-button { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 200px; background: #6366F1; color: white; border: none; padding: 12px 20px; border-radius: 50px; cursor: pointer; font-size: 15px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 1000; }
     .back-icon { font-size: 20px; font-weight: 900; }
-    
     .loading { text-align: center; padding: 40px; color: #7F8C8D; font-size: 18px; }
+    
+    /* استایل‌های دمو تریدینگ */
+    .demo-tabs { display: flex; background: white; border-radius: 12px; padding: 8px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .demo-tab { flex: 1; padding: 10px; text-align: center; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; }
+    .demo-tab.active { background: #1D9E75; color: white; }
+    .chart-container { background: #1e222d; border-radius: 12px; overflow: hidden; margin-bottom: 16px; height: 350px; }
+    .account-info { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
+    .info-card { background: white; padding: 16px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .info-label { font-size: 12px; color: #7F8C8D; margin-bottom: 4px; }
+    .info-value { font-size: 18px; font-weight: 700; }
+    .trade-panel { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 16px; }
+    .trade-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .trade-input { padding: 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 15px; width: 100%; }
+    .trade-input:focus { outline: none; border-color: #1D9E75; }
+    .leverage-slider { width: 100%; margin: 12px 0; }
+    .trade-buttons { display: flex; gap: 12px; margin-top: 16px; }
+    .btn-buy { flex: 1; background: #26a69a; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
+    .btn-sell { flex: 1; background: #ef5350; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
+    .position-item { background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .position-side { font-weight: 700; font-size: 14px; }
+    .position-side.buy { color: #26a69a; }
+    .position-side.sell { color: #ef5350; }
+    .position-details { font-size: 12px; color: #7F8C8D; }
+    .position-pnl { font-size: 16px; font-weight: 700; }
+    .pnl-positive { color: #26a69a; }
+    .pnl-negative { color: #ef5350; }
+    .btn-close { background: #E74C3C; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+    .history-item { background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 13px; }
+    .history-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .history-details { color: #7F8C8D; font-size: 11px; }
+    .price-display { text-align: center; padding: 12px; background: #1e222d; color: white; border-radius: 12px; margin-bottom: 16px; }
+    .price-value { font-size: 24px; font-weight: 700; }
+    .price-change { font-size: 14px; margin-top: 4px; }
+    .price-up { color: #26a69a; }
+    .price-down { color: #ef5350; }
   </style>
 </head>
 <body>
   <div class="container" id="app">
-    <div class="loading">⏳ در حال بارگذاری...</div>
+    <div class="loading"> در حال بارگذاری...</div>
   </div>
 
   <script>
@@ -75,14 +103,16 @@
     let currentLesson = null;
     let quizState = { currentQuestion: 0, score: 0, answered: false };
 
+    // دمو تریدینگ
+    let demoAccount = { balance: 10000, equity: 10000, positions: [], history: [] };
+    let chart, candleSeries, currentPrice = 0, ws;
+    let demoTab = 'chart';
+
     function cleanJsonKeys(obj) {
       if (Array.isArray(obj)) return obj.map(item => cleanJsonKeys(item));
       else if (obj !== null && typeof obj === 'object') {
         const cleaned = {};
-        for (let key in obj) { 
-          const cleanKey = key.trim(); 
-          cleaned[cleanKey] = cleanJsonKeys(obj[key]); 
-        }
+        for (let key in obj) { const cleanKey = key.trim(); cleaned[cleanKey] = cleanJsonKeys(obj[key]); }
         return cleaned;
       }
       return obj;
@@ -96,30 +126,28 @@
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '';
+      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '🔗';
       if (t.includes('کیف پول')) return '👛';
-      if (t.includes('بازار')) return '📊';
+      if (t.includes('بازار')) return '';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '️';
-      if (t.includes('آزمون') || t.includes('تست')) return '';
-      if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
+      if (t.includes('آزمون') || t.includes('تست')) return '📝';
+      if (t.includes('اسمارت') || t.includes('smart')) return '';
       if (t.includes('ict') || t.includes('kill zone')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
       if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
-      return '';
+      return '📚';
     }
 
     async function initApp() {
       try {
         const files = ['data-part1.json', 'data-part2.json', 'data-part3.json', 'data-part4.json', 'data-part5.json'];
         const responses = await Promise.all(files.map(f => fetch(f).then(r => r.text()).catch(() => null)));
-        
         appData.courses = [];
-        
         responses.forEach((text, index) => {
           if (!text) return;
           try {
@@ -142,21 +170,18 @@
                 appData.courses.push(normalizedCourse);
               });
             }
-          } catch (e) {
-            console.error('خطا در خواندن فایل JSON شماره', index + 1, e);
-          }
+          } catch (e) { console.error('خطا در خواندن فایل JSON شماره', index + 1, e); }
         });
-        
         if (appData.courses.length === 0) {
           document.getElementById('app').innerHTML = '<div class="loading">❌ خطا در بارگذاری دوره‌ها</div>';
           return;
         }
-        
+        loadDemoAccount();
         if (!location.hash) history.replaceState({ view: 'home' }, '', '#home');
         handleRoute();
       } catch (error) {
         console.error('Error:', error);
-        document.getElementById('app').innerHTML = '<div class="loading"> خطای سیستم</div>';
+        document.getElementById('app').innerHTML = '<div class="loading">❌ خطای سیستم</div>';
       }
     }
 
@@ -165,11 +190,9 @@
       if (hash === '#home' || hash === '') renderHome();
       else if (hash.startsWith('#level-')) renderLevelCourses(hash.replace('#level-', ''));
       else if (hash.startsWith('#course-')) renderCourseLessons(hash.replace('#course-', ''));
-      else if (hash.startsWith('#lesson-')) { 
-        const parts = hash.replace('#lesson-', '').split('-'); 
-        const courseId = parts[0];
-        const lessonIndex = parseInt(parts[1]);
-        renderLesson(courseId, lessonIndex); 
+      else if (hash.startsWith('#lesson-')) {
+        const parts = hash.replace('#lesson-', '').split('-');
+        renderLesson(parts[0], parseInt(parts[1]));
       }
       else if (hash === '#quiz') renderQuizQuestion();
       else if (hash === '#demo') renderDemo();
@@ -182,31 +205,19 @@
         { id: 'intermediate', icon: '', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
         { id: 'advanced', icon: '', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
-
       let html = `
-        <div class="header">
-          <h1>📚 آکادمی ترید</h1>
-          <p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p>
-        </div>
+        <div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
         <div class="nav-tabs">
-          <div class="nav-tab active"> دوره‌ها</div>
-          <div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div>
+          <div class="nav-tab active">📚 دوره‌ها</div>
+          <div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div>
           <div class="nav-tab">👤 پروفایل</div>
         </div>
       `;
-
       levels.forEach(level => {
         if (level.count > 0) {
-          html += `
-            <div class="level-card" onclick="navigateTo('#level-${level.id}')">
-              <div class="level-icon">${level.icon}</div>
-              <div class="level-title">${level.title}</div>
-              <div class="level-count">${level.count} دوره آموزشی</div>
-            </div>
-          `;
+          html += `<div class="level-card" onclick="navigateTo('#level-${level.id}')"><div class="level-icon">${level.icon}</div><div class="level-title">${level.title}</div><div class="level-count">${level.count} دوره آموزشی</div></div>`;
         }
       });
-
       document.getElementById('app').innerHTML = html;
     }
 
@@ -216,35 +227,15 @@
       else if (levelId === 'intermediate') levelName = 'میانی';
       else if (levelId === 'advanced') levelName = 'پیشرفته';
       else levelName = decodeURIComponent(levelId);
-      
       const courses = appData.courses.filter(c => c.level.includes(levelName));
-      
       if (courses.length === 0) {
-        document.getElementById('app').innerHTML = `
-          <div class="loading">⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div>
-          <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
-        `;
+        document.getElementById('app').innerHTML = `<div class="loading">⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>`;
         return;
       }
-
-      let html = `
-        <div class="header">
-          <h1>${levelName}</h1>
-          <p>${courses.length} دوره در این سطح</p>
-        </div>
-      `;
-
+      let html = `<div class="header"><h1>${levelName}</h1><p>${courses.length} دوره در این سطح</p></div>`;
       courses.forEach((c, i) => {
-        html += `
-          <div class="course-card" onclick="navigateTo('#course-${c.id}')">
-            <div class="course-header">
-              <div class="course-title">${i + 1}. ${c.title}</div>
-            </div>
-            <div class="course-info">${c.lessons.length} درس</div>
-          </div>
-        `;
+        html += `<div class="course-card" onclick="navigateTo('#course-${c.id}')"><div class="course-header"><div class="course-title">${i + 1}. ${c.title}</div></div><div class="course-info">${c.lessons.length} درس</div></div>`;
       });
-
       html += `<button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
     }
@@ -252,37 +243,19 @@
     function renderCourseLessons(courseId) {
       const cleanCourseId = String(courseId).replace(/\s+/g, '');
       const currentCourse = appData.courses.find(c => c.id === cleanCourseId);
-      
       if (!currentCourse) {
-        document.getElementById('app').innerHTML = `
-          <div class="loading">❌ دوره پیدا نشد</div>
-          <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
-        `;
+        document.getElementById('app').innerHTML = `<div class="loading">❌ دوره پیدا نشد</div><button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>`;
         return;
       }
-
       const lessons = currentCourse.lessons || [];
-      
-      let html = `
-        <div class="header">
-          <h1>${currentCourse.title}</h1>
-          <p>${lessons.length} درس</p>
-        </div>
-      `;
-
+      let html = `<div class="header"><h1>${currentCourse.title}</h1><p>${lessons.length} درس</p></div>`;
       if (lessons.length === 0) {
-        html += `<div class="loading">️ این دوره هنوز درسی ندارد</div>`;
+        html += `<div class="loading">⚠️ این دوره هنوز درسی ندارد</div>`;
       } else {
         lessons.forEach((l, i) => {
-          html += `
-            <div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')">
-              <div class="lesson-number">${i + 1}</div>
-              <div class="lesson-title">${l.title}</div>
-            </div>
-          `;
+          html += `<div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')"><div class="lesson-number">${i + 1}</div><div class="lesson-title">${l.title}</div></div>`;
         });
       }
-
       html += `<button class="back-button" onclick="navigateTo('#level-${getLevelId(currentCourse.level)}')"><span class="back-icon">↶</span> بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
     }
@@ -297,49 +270,21 @@
     function renderLesson(courseId, lessonIndex) {
       const cleanCourseId = String(courseId).replace(/\s+/g, '');
       const course = appData.courses.find(c => c.id === cleanCourseId);
-      
-      if (!course) {
-        console.error('دوره پیدا نشد:', cleanCourseId);
-        return navigateTo('#home');
-      }
-      
+      if (!course) return navigateTo('#home');
       const lessons = course.lessons || [];
-      
-      if (lessonIndex < 0 || lessonIndex >= lessons.length) {
-        console.error('درس پیدا نشد. index:', lessonIndex, 'total:', lessons.length);
-        return navigateTo(`#course-${cleanCourseId}`);
-      }
-      
+      if (lessonIndex < 0 || lessonIndex >= lessons.length) return navigateTo(`#course-${cleanCourseId}`);
       const currentLesson = lessons[lessonIndex];
-      
-      if (!currentLesson) {
-        console.error('lesson object is null');
-        return navigateTo(`#course-${cleanCourseId}`);
-      }
-
+      if (!currentLesson) return navigateTo(`#course-${cleanCourseId}`);
       const lessonIcon = getLessonIcon(currentLesson.title);
       const cleanUrl = getCleanImageUrl(currentLesson.image);
       const hasImage = cleanUrl && !cleanUrl.includes('PENDING');
-
       let imageHtml = '';
       if (hasImage) {
         imageHtml = `<img src="${cleanUrl}" alt="${currentLesson.title}" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:20px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="width:100%;height:200px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:12px;margin-bottom:20px;display:none;align-items:center;justify-content:center;font-size:72px;color:#1D9E75">${lessonIcon}</div>`;
       } else {
         imageHtml = `<div style="width:100%;height:200px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:72px;color:#1D9E75">${lessonIcon}</div>`;
       }
-
-      let html = `
-        <div class="lesson-content">
-          ${imageHtml}
-          <h2 style="color: #1D9E75; margin-bottom: 20px;">${currentLesson.title}</h2>
-          <div>${currentLesson.content}</div>
-          ${currentLesson.quiz && currentLesson.quiz.length > 0 ? `
-            <button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>
-          ` : ''}
-        </div>
-        <button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')"><span class="back-icon">↶</span> بازگشت</button>
-      `;
-
+      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 20px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${currentLesson.quiz && currentLesson.quiz.length > 0 ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div><button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')"><span class="back-icon">↶</span> بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
       window.scrollTo(0, 0);
     }
@@ -348,13 +293,8 @@
       const hash = location.hash;
       const parts = hash.replace('#lesson-', '').split('-');
       const courseId = parts[0];
-      
       const course = appData.courses.find(c => c.id === courseId);
-      if (!course || !course.lessons[lessonIndex]) {
-        console.error('Cannot start quiz: lesson not found');
-        return;
-      }
-      
+      if (!course || !course.lessons[lessonIndex]) return;
       currentCourse = course;
       currentLesson = course.lessons[lessonIndex];
       quizState = { currentQuestion: 0, score: 0, answered: false };
@@ -362,28 +302,272 @@
     }
 
     function renderDemo() {
-      document.getElementById('app').innerHTML = `
-        <div class="header"><h1> دمو تریدینگ</h1><p>تمرین معامله‌گری با پول مجازی</p></div>
-        <div class="lesson-content" style="text-align: center; padding: 40px;">
-          <div style="font-size: 64px; margin-bottom: 20px;"></div>
-          <h2 style="color: #1D9E75; margin-bottom: 16px;">به‌زودی در دسترس</h2>
-          <p style="color: #7F8C8D; margin-bottom: 24px;">بخش دمو تریدینگ در حال توسعه است.</p>
-          <button class="quiz-button" onclick="navigateTo('#home')" style="max-width: 300px; margin: 0 auto;">بازگشت به صفحه اصلی</button>
+      if (ws) ws.close();
+      let html = `
+        <div class="header"><h1>📈 دمو تریدینگ</h1><p>تمرین معامله‌گری با پول مجازی</p></div>
+        <div class="demo-tabs">
+          <div class="demo-tab ${demoTab === 'chart' ? 'active' : ''}" onclick="switchDemoTab('chart')">📊 چارت</div>
+          <div class="demo-tab ${demoTab === 'trade' ? 'active' : ''}" onclick="switchDemoTab('trade')">💹 ترید</div>
+          <div class="demo-tab ${demoTab === 'positions' ? 'active' : ''}" onclick="switchDemoTab('positions')">📋 پوزیشن‌ها</div>
+          <div class="demo-tab ${demoTab === 'history' ? 'active' : ''}" onclick="switchDemoTab('history')">📜 تاریخچه</div>
         </div>
+        <div id="demo-content"></div>
         <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
       `;
+      document.getElementById('app').innerHTML = html;
+      renderDemoContent();
+    }
+
+    function switchDemoTab(tab) {
+      demoTab = tab;
+      renderDemo();
+    }
+
+    function renderDemoContent() {
+      const content = document.getElementById('demo-content');
+      if (!content) return;
+      
+      if (demoTab === 'chart') {
+        content.innerHTML = `
+          <div class="price-display">
+            <div>BTC/USDT</div>
+            <div class="price-value" id="current-price">در حال بارگذاری...</div>
+            <div class="price-change" id="price-change"></div>
+          </div>
+          <div class="chart-container" id="chart-container"></div>
+        `;
+        initChart();
+      } else if (demoTab === 'trade') {
+        content.innerHTML = `
+          <div class="account-info">
+            <div class="info-card"><div class="info-label">موجودی</div><div class="info-value">$${demoAccount.balance.toFixed(2)}</div></div>
+            <div class="info-card"><div class="info-label">Equity</div><div class="info-value">$${demoAccount.equity.toFixed(2)}</div></div>
+          </div>
+          <div class="trade-panel">
+            <h3 style="margin-bottom: 16px;">باز کردن معامله</h3>
+            <div class="trade-form">
+              <input type="number" class="trade-input" id="trade-quantity" placeholder="مقدار (BTC)" step="0.001" min="0.001">
+              <select class="trade-input" id="trade-leverage">
+                <option value="1">لوریج 1x</option>
+                <option value="5">لوریج 5x</option>
+                <option value="10" selected>لوریج 10x</option>
+                <option value="20">لوریج 20x</option>
+                <option value="50">لوریج 50x</option>
+                <option value="100">لوریج 100x</option>
+              </select>
+              <input type="number" class="trade-input" id="trade-sl" placeholder="Stop Loss (اختیاری)" step="0.01">
+              <input type="number" class="trade-input" id="trade-tp" placeholder="Take Profit (اختیاری)" step="0.01">
+            </div>
+            <div class="trade-buttons">
+              <button class="btn-buy" onclick="openPosition('buy')">خرید (Long)</button>
+              <button class="btn-sell" onclick="openPosition('sell')">فروش (Short)</button>
+            </div>
+          </div>
+        `;
+      } else if (demoTab === 'positions') {
+        if (demoAccount.positions.length === 0) {
+          content.innerHTML = '<div class="loading">هیچ پوزیشن بازی ندارید</div>';
+        } else {
+          let html = '';
+          demoAccount.positions.forEach(pos => {
+            const pnlClass = pos.pnl >= 0 ? 'pnl-positive' : 'pnl-negative';
+            html += `
+              <div class="position-item">
+                <div class="position-header">
+                  <span class="position-side ${pos.side}">${pos.side === 'buy' ? '🟢 خرید' : ' فروش'} ${pos.quantity} BTC</span>
+                  <span class="position-pnl ${pnlClass}">$${pos.pnl.toFixed(2)} (${pos.pnlPercent.toFixed(2)}%)</span>
+                </div>
+                <div class="position-details">
+                  ورود: $${pos.entryPrice.toFixed(2)} | لوریج: ${pos.leverage}x | مارجین: $${pos.margin.toFixed(2)}
+                  ${pos.sl ? `| SL: $${pos.sl}` : ''} ${pos.tp ? `| TP: $${pos.tp}` : ''}
+                </div>
+                <button class="btn-close" onclick="closePosition(${pos.id})" style="margin-top: 8px;">بستن معامله</button>
+              </div>
+            `;
+          });
+          content.innerHTML = html;
+        }
+      } else if (demoTab === 'history') {
+        if (demoAccount.history.length === 0) {
+          content.innerHTML = '<div class="loading">تاریخچه معاملات خالی است</div>';
+        } else {
+          let html = '';
+          demoAccount.history.slice().reverse().forEach(h => {
+            const pnlClass = h.pnl >= 0 ? 'pnl-positive' : 'pnl-negative';
+            const reasonText = h.reason === 'liquidated' ? '⚠️ لیکوئید' : h.reason === 'sl' ? '🛑 Stop Loss' : h.reason === 'tp' ? '🎯 Take Profit' : '✅ دستی';
+            html += `
+              <div class="history-item">
+                <div class="history-header">
+                  <span class="position-side ${h.side}">${h.side === 'buy' ? 'خرید' : 'فروش'} ${h.quantity} BTC</span>
+                  <span class="position-pnl ${pnlClass}">$${h.pnl.toFixed(2)}</span>
+                </div>
+                <div class="history-details">${reasonText} | ورود: $${h.entryPrice.toFixed(2)} | خروج: $${h.closePrice.toFixed(2)}</div>
+              </div>
+            `;
+          });
+          content.innerHTML = html;
+        }
+      }
+    }
+
+    function initChart() {
+      if (!window.LightweightCharts) {
+        document.getElementById('chart-container').innerHTML = '<div class="loading">خطا در بارگذاری چارت</div>';
+        return;
+      }
+      
+      chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
+        width: document.getElementById('chart-container').clientWidth,
+        height: 350,
+        layout: { background: { color: '#1e222d' }, textColor: '#d1d4dc' },
+        grid: { vertLines: { color: '#2b2b43' }, horzLines: { color: '#2b2b43' } },
+        crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+        rightPriceScale: { borderColor: '#2b2b43' },
+        timeScale: { borderColor: '#2b2b43', timeVisible: true },
+      });
+      
+      candleSeries = chart.addCandlestickSeries({
+        upColor: '#26a69a', downColor: '#ef5350',
+        borderVisible: false, wickUpColor: '#26a69a', wickDownColor: '#ef5350',
+      });
+      
+      fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=500')
+        .then(r => r.json())
+        .then(data => {
+          const candles = data.map(k => ({
+            time: k[0] / 1000,
+            open: parseFloat(k[1]),
+            high: parseFloat(k[2]),
+            low: parseFloat(k[3]),
+            close: parseFloat(k[4]),
+          }));
+          candleSeries.setData(candles);
+          currentPrice = candles[candles.length - 1].close;
+          updatePriceDisplay(currentPrice);
+        })
+        .catch(err => {
+          console.error('Error fetching historical data:', err);
+          document.getElementById('current-price').textContent = 'خطا در بارگذاری';
+        });
+      
+      ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@kline_1m');
+      ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        const k = data.k;
+        const candle = {
+          time: k.t / 1000,
+          open: parseFloat(k.o),
+          high: parseFloat(k.h),
+          low: parseFloat(k.l),
+          close: parseFloat(k.c),
+        };
+        candleSeries.update(candle);
+        currentPrice = candle.close;
+        updatePriceDisplay(currentPrice);
+        updatePnL(currentPrice);
+      };
+      ws.onerror = (err) => console.error('WebSocket error:', err);
+    }
+
+    function updatePriceDisplay(price) {
+      const priceEl = document.getElementById('current-price');
+      const changeEl = document.getElementById('price-change');
+      if (priceEl) priceEl.textContent = `$${price.toFixed(2)}`;
+      if (changeEl && demoAccount.positions.length > 0) {
+        const totalPnl = demoAccount.positions.reduce((sum, p) => sum + p.pnl, 0);
+        const pnlClass = totalPnl >= 0 ? 'price-up' : 'price-down';
+        changeEl.className = `price-change ${pnlClass}`;
+        changeEl.textContent = `PnL: $${totalPnl.toFixed(2)}`;
+      }
+    }
+
+    function openPosition(side) {
+      const quantity = parseFloat(document.getElementById('trade-quantity').value);
+      const leverage = parseInt(document.getElementById('trade-leverage').value);
+      const sl = parseFloat(document.getElementById('trade-sl').value) || null;
+      const tp = parseFloat(document.getElementById('trade-tp').value) || null;
+      
+      if (!quantity || quantity <= 0) { alert('مقدار معتبر وارد کنید'); return; }
+      if (currentPrice <= 0) { alert('قیمت هنوز بارگذاری نشده'); return; }
+      
+      const margin = (quantity * currentPrice) / leverage;
+      if (margin > demoAccount.balance) { alert('موجودی کافی نیست!'); return; }
+      
+      const position = {
+        id: Date.now(), side, quantity, leverage, sl, tp,
+        entryPrice: currentPrice, margin, pnl: 0, pnlPercent: 0,
+        openTime: Date.now(),
+      };
+      
+      demoAccount.positions.push(position);
+      demoAccount.balance -= margin;
+      saveDemoAccount();
+      alert(`معامله ${side === 'buy' ? 'خرید' : 'فروش'} باز شد!`);
+      switchDemoTab('positions');
+    }
+
+    function closePosition(id, reason = 'manual') {
+      const posIndex = demoAccount.positions.findIndex(p => p.id === id);
+      if (posIndex === -1) return;
+      const pos = demoAccount.positions[posIndex];
+      pos.closePrice = currentPrice;
+      pos.closeTime = Date.now();
+      pos.reason = reason;
+      demoAccount.balance += pos.margin + pos.pnl;
+      demoAccount.history.push(pos);
+      demoAccount.positions.splice(posIndex, 1);
+      saveDemoAccount();
+      if (reason === 'manual') alert('معامله بسته شد!');
+      renderDemoContent();
+    }
+
+    function updatePnL(price) {
+      demoAccount.positions.forEach(pos => {
+        if (pos.side === 'buy') {
+          pos.pnl = (price - pos.entryPrice) * pos.quantity;
+        } else {
+          pos.pnl = (pos.entryPrice - price) * pos.quantity;
+        }
+        pos.pnlPercent = (pos.pnl / pos.margin) * 100;
+        
+        const liqPrice = pos.side === 'buy'
+          ? pos.entryPrice * (1 - 1/pos.leverage)
+          : pos.entryPrice * (1 + 1/pos.leverage);
+        
+        if (pos.side === 'buy' && price <= liqPrice) {
+          closePosition(pos.id, 'liquidated');
+        } else if (pos.side === 'sell' && price >= liqPrice) {
+          closePosition(pos.id, 'liquidated');
+        }
+        
+        if (pos.sl && ((pos.side === 'buy' && price <= pos.sl) || (pos.side === 'sell' && price >= pos.sl))) {
+          closePosition(pos.id, 'sl');
+        }
+        if (pos.tp && ((pos.side === 'buy' && price >= pos.tp) || (pos.side === 'sell' && price <= pos.tp))) {
+          closePosition(pos.id, 'tp');
+        }
+      });
+      demoAccount.equity = demoAccount.balance + demoAccount.positions.reduce((sum, p) => sum + p.pnl, 0);
+      saveDemoAccount();
+      if (demoTab === 'positions' || demoTab === 'trade') renderDemoContent();
+    }
+
+    function loadDemoAccount() {
+      const saved = localStorage.getItem('demoAccount');
+      if (saved) {
+        try { demoAccount = JSON.parse(saved); } catch (e) { console.error('Error loading demo account:', e); }
+      }
+    }
+
+    function saveDemoAccount() {
+      localStorage.setItem('demoAccount', JSON.stringify(demoAccount));
     }
 
     function renderQuizQuestion() {
-      if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) {
-        console.error('No quiz available');
-        return navigateTo('#home');
-      }
-      
+      if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) return navigateTo('#home');
       const q = currentLesson.quiz[quizState.currentQuestion];
       const total = currentLesson.quiz.length;
       const num = quizState.currentQuestion + 1;
-
       let html = `
         <div class="quiz-container">
           <div style="text-align: center; margin-bottom: 20px; color: #7F8C8D; font-size: 14px;">سوال ${num} از ${total}</div>
@@ -428,25 +612,25 @@
       const pct = Math.round((score / total) * 100);
       let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
-        <div class="quiz-container">
-          <div class="quiz-result">
-            <div class="quiz-score">${score} از ${total}</div>
-            <div class="quiz-message">${msg}</div>
-            <button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 300px;">بازگشت به دوره</button>
-          </div>
-        </div>
-        <button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')"><span class="back-icon">↶</span> بازگشت</button>
+        <div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 300px;">بازگشت به دوره</button></div></div>
+        <button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')"><span class="back-icon"></span> بازگشت</button>
       `;
     }
 
-    function navigateTo(hash) { 
-      history.pushState({ hash }, '', hash); 
-      handleRoute(); 
+    function navigateTo(hash) {
+      if (ws && hash !== '#demo') { ws.close(); ws = null; }
+      history.pushState({ hash }, '', hash);
+      handleRoute();
     }
     
     window.addEventListener('popstate', () => handleRoute());
-    initApp();
+    window.addEventListener('resize', () => {
+      if (chart && demoTab === 'chart') {
+        chart.applyOptions({ width: document.getElementById('chart-container').clientWidth });
+      }
+    });
     
+    initApp();
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js?v=99').catch(console.error);
     }
