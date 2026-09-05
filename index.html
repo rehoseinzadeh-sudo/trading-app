@@ -8,7 +8,7 @@
   <link rel="manifest" href="manifest.json">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body { font-family: Tahoma, Arial, sans-serif; background: #F7F7F5; color: #2C3E50; line-height: 1.6; padding-bottom: 100px; width: 100%; overflow-x: hidden; }
+    body { font-family: Tahoma, Arial, sans-serif; background: #F7F7F5; color: #2C3E50; line-height: 1.8; padding-bottom: 100px; width: 100%; overflow-x: hidden; }
     .container { max-width: 800px; margin: 0 auto; padding: 16px; width: 100%; }
     .header { background: linear-gradient(135deg, #1D9E75 0%, #15785A 100%); color: white; padding: 24px 20px; border-radius: 16px; margin-bottom: 20px; text-align: center; }
     .header h1 { font-size: 22px; margin-bottom: 8px; }
@@ -29,21 +29,20 @@
     .lesson-number { width: 40px; height: 40px; background: #1D9E75; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-left: 16px; flex-shrink: 0; }
     .lesson-title { flex: 1; font-size: 16px; font-weight: 500; }
     .lesson-content { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .lesson-image { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; display: block; }
-    .image-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); border-radius: 12px; margin-bottom: 20px; display: none; align-items: center; justify-content: center; font-size: 72px; color: #1D9E75; }
     .lesson-content h3 { color: #1D9E75; margin: 20px 0 12px 0; font-size: 18px; }
-    .lesson-content p { margin-bottom: 12px; text-align: justify; font-size: 15px; }
+    .lesson-content p { margin-bottom: 12px; text-align: justify; font-size: 15px; unicode-bidi: embed; }
     .lesson-content ul { margin: 12px 0; padding-right: 20px; font-size: 15px; }
-    .lesson-content li { margin-bottom: 8px; }
-    .info-box { background: #E8F5E9; border-right: 4px solid #3498DB; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 14px; }
-    .warning-box { background: #FFF3E0; border-right: 4px solid #F39C12; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 14px; }
+    .lesson-content li { margin-bottom: 8px; unicode-bidi: embed; }
+    .lesson-content strong { unicode-bidi: embed; }
+    .info-box { background: #E8F5E9; border-right: 4px solid #3498DB; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 14px; unicode-bidi: embed; }
+    .warning-box { background: #FFF3E0; border-right: 4px solid #F39C12; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 14px; unicode-bidi: embed; }
     .quiz-button { width: 100%; background: #1D9E75; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 24px; }
     .quiz-container { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .quiz-question { font-size: 17px; font-weight: 600; margin-bottom: 20px; }
-    .quiz-option { background: #F7F7F5; border: 2px solid #E0E0E0; border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; font-size: 15px; }
+    .quiz-question { font-size: 17px; font-weight: 600; margin-bottom: 20px; unicode-bidi: embed; }
+    .quiz-option { background: #F7F7F5; border: 2px solid #E0E0E0; border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; font-size: 15px; unicode-bidi: embed; }
     .quiz-option.correct { border-color: #27AE60; background: #E8F5E9; color: #27AE60; font-weight: 600; }
     .quiz-option.incorrect { border-color: #E74C3C; background: #FFEBEE; color: #E74C3C; }
-    .quiz-explanation { background: #E3F2FD; border-right: 4px solid #3498DB; padding: 16px; border-radius: 8px; margin: 16px 0; display: none; font-size: 14px; }
+    .quiz-explanation { background: #E3F2FD; border-right: 4px solid #3498DB; padding: 16px; border-radius: 8px; margin: 16px 0; display: none; font-size: 14px; unicode-bidi: embed; }
     .quiz-explanation.show { display: block; }
     .quiz-nav { display: flex; gap: 12px; margin-top: 20px; }
     .quiz-nav button { flex: 1; padding: 14px; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; }
@@ -55,8 +54,6 @@
     .back-button { position: fixed; bottom: 20px; left: 20px; right: 20px; background: #1D9E75; color: white; border: none; padding: 16px 24px; border-radius: 50px; cursor: pointer; font-size: 18px; font-weight: 700; box-shadow: 0 4px 12px rgba(29, 158, 117, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 1000; }
     .back-icon { font-size: 24px; font-weight: 900; }
     .loading { text-align: center; padding: 40px; color: #7F8C8D; font-size: 18px; }
-    .debug-box { background: #FFF3E0; border: 2px solid #F39C12; padding: 16px; border-radius: 12px; margin: 16px 0; font-size: 13px; font-family: monospace; direction: ltr; text-align: left; }
-    .debug-box h4 { color: #F39C12; margin-bottom: 8px; direction: rtl; text-align: right; }
   </style>
 </head>
 <body>
@@ -70,13 +67,12 @@
     let currentLesson = null;
     let quizState = { currentQuestion: 0, score: 0, answered: false };
 
-    // حذف کامل space از همه کلیدها و مقادیر
     function cleanJsonKeys(obj) {
       if (Array.isArray(obj)) return obj.map(item => cleanJsonKeys(item));
       else if (obj !== null && typeof obj === 'object') {
         const cleaned = {};
         for (let key in obj) { 
-          const cleanKey = key.replace(/\s+/g, ''); // حذف کامل space از کلید
+          const cleanKey = key.trim(); 
           cleaned[cleanKey] = cleanJsonKeys(obj[key]); 
         }
         return cleaned;
@@ -93,20 +89,20 @@
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
       if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '🔗';
-      if (t.includes('کیف پول')) return '';
+      if (t.includes('کیف پول')) return '👛';
       if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
-      if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
+      if (t.includes('لوریج') || t.includes('مارجین')) return '️';
       if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '🛡️';
       if (t.includes('آزمون') || t.includes('تست')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict') || t.includes('kill zone')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
-      if (t.includes('روانشناسی') || t.includes('ژورنال')) return '';
-      return '📚';
+      if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
+      return '';
     }
 
     async function initApp() {
@@ -115,26 +111,21 @@
         const responses = await Promise.all(files.map(f => fetch(f).then(r => r.text()).catch(() => null)));
         
         appData.courses = [];
-        let debugInfo = '📊 اطلاعات دیباگ:\n\n';
         
         responses.forEach((text, index) => {
-          if (!text) {
-            debugInfo += `❌ فایل ${files[index]} لود نشد\n`;
-            return;
-          }
+          if (!text) return;
           try {
             const data = JSON.parse(text);
             const cleaned = cleanJsonKeys(data);
             if (cleaned.courses && Array.isArray(cleaned.courses)) {
               cleaned.courses.forEach(course => {
-                // حذف کامل space از ID (نه فقط trim)
                 const normalizedCourse = {
                   id: String(course.id || '').replace(/\s+/g, ''),
-                  level: String(course.level || '').replace(/\s+/g, ''),
-                  title: String(course.title || '').replace(/\s+/g, ''),
+                  level: String(course.level || '').trim(),
+                  title: String(course.title || '').trim(),
                   lessons: Array.isArray(course.lessons) ? course.lessons.map(l => ({
                     id: String(l.id || '').replace(/\s+/g, ''),
-                    title: String(l.title || '').replace(/\s+/g, ''),
+                    title: String(l.title || '').trim(),
                     image: String(l.image || '').replace(/\s+/g, ''),
                     content: l.content || '',
                     quiz: Array.isArray(l.quiz) ? l.quiz : []
@@ -142,44 +133,22 @@
                 };
                 appData.courses.push(normalizedCourse);
               });
-              debugInfo += `✅ فایل ${files[index]}: ${cleaned.courses.length} دوره لود شد\n`;
-            } else {
-              debugInfo += `⚠️ فایل ${files[index]}: کلید courses پیدا نشد\n`;
             }
           } catch (e) {
-            debugInfo += `❌ خطا در ${files[index]}: ${e.message}\n`;
+            console.error('خطا در خواندن فایل JSON شماره', index + 1, e);
           }
         });
         
-        debugInfo += `\n📚 مجموع دوره‌ها: ${appData.courses.length}\n`;
-        appData.courses.forEach(c => {
-          debugInfo += `  • ID="${c.id}" - ${c.title} (${c.lessons.length} درس) - سطح: ${c.level}\n`;
-        });
-        
-        console.log(debugInfo);
-        
         if (appData.courses.length === 0) {
-          document.getElementById('app').innerHTML = `
-            <div class="debug-box">
-              <h4>❌ خطا: هیچ دوره‌ای لود نشد</h4>
-              <pre>${debugInfo}</pre>
-            </div>
-            <button class="back-button" onclick="location.reload()"><span class="back-icon">🔄</span> تلاش مجدد</button>
-          `;
+          document.getElementById('app').innerHTML = '<div class="loading">❌ خطا در بارگذاری دوره‌ها</div>';
           return;
         }
-        
-        window.__debugInfo = debugInfo;
         
         if (!location.hash) history.replaceState({ view: 'home' }, '', '#home');
         handleRoute();
       } catch (error) {
         console.error('Error:', error);
-        document.getElementById('app').innerHTML = `
-          <div class="debug-box">
-            <h4>❌ خطای سیستم</h4>
-            <pre>${error.message}</pre>
-          </div>`;
+        document.getElementById('app').innerHTML = '<div class="loading"> خطای سیستم</div>';
       }
     }
 
@@ -190,7 +159,9 @@
       else if (hash.startsWith('#course-')) renderCourseLessons(hash.replace('#course-', ''));
       else if (hash.startsWith('#lesson-')) { 
         const parts = hash.replace('#lesson-', '').split('-'); 
-        renderLesson(parts[0], parseInt(parts[1])); 
+        const courseId = parts[0];
+        const lessonIndex = parseInt(parts[1]);
+        renderLesson(courseId, lessonIndex); 
       }
       else if (hash === '#quiz') renderQuizQuestion();
       else if (hash === '#demo') renderDemo();
@@ -210,8 +181,8 @@
           <p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p>
         </div>
         <div class="nav-tabs">
-          <div class="nav-tab active">📚 دوره‌ها</div>
-          <div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div>
+          <div class="nav-tab active"> دوره‌ها</div>
+          <div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div>
           <div class="nav-tab">👤 پروفایل</div>
         </div>
       `;
@@ -238,16 +209,11 @@
       else if (levelId === 'advanced') levelName = 'پیشرفته';
       else levelName = decodeURIComponent(levelId);
       
-      console.log('سطح درخواستی:', levelName, '(ID:', levelId, ')');
-      
       const courses = appData.courses.filter(c => c.level.includes(levelName));
       
       if (courses.length === 0) {
         document.getElementById('app').innerHTML = `
-          <div class="debug-box">
-            <h4>⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</h4>
-            <pre>سطح‌های موجود:\n${appData.courses.map(c => `• "${c.level}" - ${c.title}`).join('\n')}</pre>
-          </div>
+          <div class="loading">⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div>
           <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
         `;
         return;
@@ -278,19 +244,11 @@
 
     function renderCourseLessons(courseId) {
       const cleanCourseId = String(courseId).replace(/\s+/g, '');
-      
-      // ✅ مقایسه دقیق به جای includes
       const currentCourse = appData.courses.find(c => c.id === cleanCourseId);
       
       if (!currentCourse) {
-        console.error('دوره پیدا نشد. ID درخواستی:', cleanCourseId);
-        console.log('دوره‌های موجود:', appData.courses.map(c => c.id));
-        
         document.getElementById('app').innerHTML = `
-          <div class="debug-box">
-            <h4>❌ دوره پیدا نشد</h4>
-            <pre>ID درخواستی: "${cleanCourseId}"\n\nدوره‌های موجود:\n${appData.courses.map(c => `• "${c.id}" - ${c.title}`).join('\n')}</pre>
-          </div>
+          <div class="loading">❌ دوره پیدا نشد</div>
           <button class="back-button" onclick="navigateTo('#home')"><span class="back-icon">↶</span> بازگشت</button>
         `;
         return;
@@ -306,12 +264,7 @@
       `;
 
       if (lessons.length === 0) {
-        html += `
-          <div class="debug-box">
-            <h4>⚠️ این دوره هنوز درسی ندارد</h4>
-            <pre>course ID: "${currentCourse.id}"\nlessons: ${JSON.stringify(lessons)}</pre>
-          </div>
-        `;
+        html += `<div class="loading">⚠️ این دوره هنوز درسی ندارد</div>`;
       } else {
         lessons.forEach((l, i) => {
           html += `
@@ -336,20 +289,24 @@
 
     function renderLesson(courseId, lessonIndex) {
       const cleanCourseId = String(courseId).replace(/\s+/g, '');
-      
-      // ✅ مقایسه دقیق
       const course = appData.courses.find(c => c.id === cleanCourseId);
       
       if (!course) {
-        console.error('دوره پیدا نشد برای درس:', cleanCourseId);
+        console.error('دوره پیدا نشد:', cleanCourseId);
         return navigateTo('#home');
       }
       
       const lessons = course.lessons || [];
+      
+      if (lessonIndex < 0 || lessonIndex >= lessons.length) {
+        console.error('درس پیدا نشد. index:', lessonIndex, 'total:', lessons.length);
+        return navigateTo(`#course-${cleanCourseId}`);
+      }
+      
       const currentLesson = lessons[lessonIndex];
       
       if (!currentLesson) {
-        console.error('درس پیدا نشد. index:', lessonIndex, 'total lessons:', lessons.length);
+        console.error('lesson object is null');
         return navigateTo(`#course-${cleanCourseId}`);
       }
 
@@ -359,9 +316,9 @@
 
       let imageHtml = '';
       if (hasImage) {
-        imageHtml = `<img src="${cleanUrl}" alt="${currentLesson.title}" class="lesson-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder">${lessonIcon}</div>`;
+        imageHtml = `<img src="${cleanUrl}" alt="${currentLesson.title}" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:20px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="width:100%;height:200px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:12px;margin-bottom:20px;display:none;align-items:center;justify-content:center;font-size:72px;color:#1D9E75">${lessonIcon}</div>`;
       } else {
-        imageHtml = `<div class="image-placeholder" style="display:flex;">${lessonIcon}</div>`;
+        imageHtml = `<div style="width:100%;height:200px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:72px;color:#1D9E75">${lessonIcon}</div>`;
       }
 
       let html = `
@@ -370,19 +327,36 @@
           <h2 style="color: #1D9E75; margin-bottom: 20px;">${currentLesson.title}</h2>
           <div>${currentLesson.content}</div>
           ${currentLesson.quiz && currentLesson.quiz.length > 0 ? `
-            <button class="quiz-button" onclick="startQuiz()">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>
+            <button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>
           ` : ''}
         </div>
-        <button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')"><span class="back-icon"></span> بازگشت</button>
+        <button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')"><span class="back-icon">↶</span> بازگشت</button>
       `;
 
       document.getElementById('app').innerHTML = html;
       window.scrollTo(0, 0);
     }
 
+    function startQuiz(lessonIndex) {
+      const hash = location.hash;
+      const parts = hash.replace('#lesson-', '').split('-');
+      const courseId = parts[0];
+      
+      const course = appData.courses.find(c => c.id === courseId);
+      if (!course || !course.lessons[lessonIndex]) {
+        console.error('Cannot start quiz: lesson not found');
+        return;
+      }
+      
+      currentCourse = course;
+      currentLesson = course.lessons[lessonIndex];
+      quizState = { currentQuestion: 0, score: 0, answered: false };
+      navigateTo('#quiz');
+    }
+
     function renderDemo() {
       document.getElementById('app').innerHTML = `
-        <div class="header"><h1>📈 دمو تریدینگ</h1><p>تمرین معامله‌گری با پول مجازی</p></div>
+        <div class="header"><h1> دمو تریدینگ</h1><p>تمرین معامله‌گری با پول مجازی</p></div>
         <div class="lesson-content" style="text-align: center; padding: 40px;">
           <div style="font-size: 64px; margin-bottom: 20px;">🚧</div>
           <h2 style="color: #1D9E75; margin-bottom: 16px;">به‌زودی در دسترس</h2>
@@ -393,10 +367,12 @@
       `;
     }
 
-    function startQuiz() { quizState = { currentQuestion: 0, score: 0, answered: false }; navigateTo('#quiz'); }
-
     function renderQuizQuestion() {
-      if (!currentLesson || !currentLesson.quiz) return navigateTo('#home');
+      if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) {
+        console.error('No quiz available');
+        return navigateTo('#home');
+      }
+      
       const q = currentLesson.quiz[quizState.currentQuestion];
       const total = currentLesson.quiz.length;
       const num = quizState.currentQuestion + 1;
@@ -408,12 +384,12 @@
           <div id="options-container">
             ${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}
           </div>
-          <div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div>
+          <div class="quiz-explanation" id="explanation"> ${q.explanation}</div>
           <div class="quiz-nav">
             <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button>
           </div>
         </div>
-        <button class="back-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')"><span class="back-icon">↶</span> خروج از آزمون</button>
+        <button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')"><span class="back-icon">↶</span> خروج از آزمون</button>
       `;
       document.getElementById('app').innerHTML = html;
       quizState.answered = false;
@@ -443,20 +419,24 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? ' خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container">
           <div class="quiz-result">
             <div class="quiz-score">${score} از ${total}</div>
             <div class="quiz-message">${msg}</div>
-            <button class="quiz-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')" style="max-width: 300px;">بازگشت به درس</button>
+            <button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 300px;">بازگشت به دوره</button>
           </div>
         </div>
-        <button class="back-button" onclick="navigateTo('#lesson-${currentCourse.id}-${currentCourse.lessons.indexOf(currentLesson)}')"><span class="back-icon">↶</span> بازگشت</button>
+        <button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')"><span class="back-icon">↶</span> بازگشت</button>
       `;
     }
 
-    function navigateTo(hash) { history.pushState({ hash }, '', hash); handleRoute(); }
+    function navigateTo(hash) { 
+      history.pushState({ hash }, '', hash); 
+      handleRoute(); 
+    }
+    
     window.addEventListener('popstate', () => handleRoute());
     initApp();
     
