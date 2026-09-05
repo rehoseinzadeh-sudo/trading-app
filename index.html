@@ -25,7 +25,10 @@
     .course-title { font-size: 17px; font-weight: 600; flex: 1; }
     .course-info { color: #7F8C8D; font-size: 14px; }
     .lesson-item { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; display: flex; align-items: center; }
-    .lesson-number { width: 40px; height: 40px; background: #1D9E75; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-left: 16px; flex-shrink: 0; }
+    
+    /* ✅ تغییر ۱: شماره دروس - دایره سبز کم‌رنگ */
+    .lesson-number { width: 40px; height: 40px; background: #A7D7C5; color: #1D9E75; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-left: 16px; flex-shrink: 0; }
+    
     .lesson-title { flex: 1; font-size: 16px; font-weight: 500; }
     .lesson-content { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .lesson-content h3 { color: #1D9E75; margin: 20px 0 12px 0; font-size: 18px; }
@@ -35,7 +38,10 @@
     .lesson-content strong { unicode-bidi: embed; }
     .info-box { background: #E8F5E9; border-right: 4px solid #3498DB; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 14px; unicode-bidi: embed; }
     .warning-box { background: #FFF3E0; border-right: 4px solid #F39C12; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 14px; unicode-bidi: embed; }
-    .quiz-button { width: 100%; background: #1D9E75; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 24px; }
+    
+    /* ✅ تغییر ۲: دکمه شروع آزمون - سبز کم‌رنگ */
+    .quiz-button { width: 100%; background: #6BC4A0; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 24px; }
+    
     .quiz-container { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .quiz-question { font-size: 17px; font-weight: 600; margin-bottom: 20px; unicode-bidi: embed; }
     .quiz-option { background: #F7F7F5; border: 2px solid #E0E0E0; border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; font-size: 15px; unicode-bidi: embed; }
@@ -50,15 +56,17 @@
     .quiz-result { text-align: center; padding: 40px 20px; }
     .quiz-score { font-size: 48px; font-weight: 700; color: #1D9E75; margin-bottom: 16px; }
     .quiz-message { font-size: 18px; margin-bottom: 24px; }
-    /* ✅ دکمه بازگشت اصلاح‌شده: خاکستری تیره، کوچک‌تر */
-    .back-button { position: fixed; bottom: 20px; left: 20px; right: 20px; background: #546E7A; color: white; border: none; padding: 12px 20px; border-radius: 50px; cursor: pointer; font-size: 15px; font-weight: 600; box-shadow: 0 4px 12px rgba(84, 110, 122, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 1000; }
+    
+    /* ✅ تغییر ۳: دکمه بازگشت - عرض کوچک‌تر + رنگ آبی-نیلی */
+    .back-button { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 200px; background: #6366F1; color: white; border: none; padding: 12px 20px; border-radius: 50px; cursor: pointer; font-size: 15px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 1000; }
     .back-icon { font-size: 20px; font-weight: 900; }
+    
     .loading { text-align: center; padding: 40px; color: #7F8C8D; font-size: 18px; }
   </style>
 </head>
 <body>
   <div class="container" id="app">
-    <div class="loading"> در حال بارگذاری...</div>
+    <div class="loading">⏳ در حال بارگذاری...</div>
   </div>
 
   <script>
@@ -87,8 +95,8 @@
 
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
-      if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '🔗';
+      if (t.includes('کندل') || t.includes('الگو')) return '️';
+      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '';
       if (t.includes('کیف پول')) return '👛';
       if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
@@ -96,13 +104,13 @@
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
-      if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '🛡️';
-      if (t.includes('آزمون') || t.includes('تست')) return '📝';
+      if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '️';
+      if (t.includes('آزمون') || t.includes('تست')) return '';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict') || t.includes('kill zone')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
       if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
-      return '📚';
+      return '';
     }
 
     async function initApp() {
@@ -148,7 +156,7 @@
         handleRoute();
       } catch (error) {
         console.error('Error:', error);
-        document.getElementById('app').innerHTML = '<div class="loading">❌ خطای سیستم</div>';
+        document.getElementById('app').innerHTML = '<div class="loading"> خطای سیستم</div>';
       }
     }
 
@@ -171,8 +179,8 @@
     function renderHome() {
       const levels = [
         { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
-        { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
-        { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
+        { id: 'intermediate', icon: '', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'advanced', icon: '', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
 
       let html = `
@@ -181,8 +189,8 @@
           <p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p>
         </div>
         <div class="nav-tabs">
-          <div class="nav-tab active">📚 دوره‌ها</div>
-          <div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div>
+          <div class="nav-tab active"> دوره‌ها</div>
+          <div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div>
           <div class="nav-tab">👤 پروفایل</div>
         </div>
       `;
@@ -263,7 +271,7 @@
       `;
 
       if (lessons.length === 0) {
-        html += `<div class="loading">⚠️ این دوره هنوز درسی ندارد</div>`;
+        html += `<div class="loading">️ این دوره هنوز درسی ندارد</div>`;
       } else {
         lessons.forEach((l, i) => {
           html += `
