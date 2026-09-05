@@ -1,4 +1,4 @@
-const CACHE_NAME = 'trading-app-v2';
+const CACHE_NAME = 'trading-app-v3';
 const urlsToCache = [
   './',
   './index.html',
@@ -6,7 +6,8 @@ const urlsToCache = [
   './data-part1.json',
   './data-part2.json',
   './data-part3.json',
-  './data-part4.json'
+  './data-part4.json',
+  './data-part5.json'
 ];
 
 self.addEventListener('install', (event) => {

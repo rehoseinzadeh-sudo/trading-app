@@ -1,0 +1,448 @@
+{
+ "courses": [
+{
+ "id": "c9",
+ "level": "پیشرفته",
+ "title": "اسمارت مانی (Smart Money Concepts)",
+ "lessons": [
+{
+ "id": "c9l1",
+ "title": "مفهوم Smart Money و تفاوت آن با Retail Traders",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>درک اینکه Smart Money (پول هوشمند) کیست، چگونه بازار را حرکت می‌دهد و چرا تریدرهای خرد معمولاً ضرر می‌کنند. این درس پایه‌ی تمام مفاهیم پیشرفته است.</p><h3>Smart Money چیست؟</h3><p>Smart Money به نهادهای مالی بزرگ گفته می‌شود که حجم سرمایه‌ی آن‌ها به اندازه‌ای است که می‌توانند بازار را حرکت دهند. این شامل:</p><ul><li><strong>بانک‌های مرکزی:</strong> فدرال رزرو، ECB، BOJ</li><li><strong>بانک‌های تجاری بزرگ:</strong> JP Morgan، Deutsche Bank، Citi</li><li><strong>صندوق‌های سرمایه‌گذاری:</strong> Hedge Funds، Pension Funds</li><li><strong>Market Makers:</strong> نهادهایی که نقدشوندگی بازار را تأمین می‌کنند</li></ul><div class='info-box'><strong>💡 نکته کلیدی:</strong> Smart Money نمی‌تواند مثل تریدرهای خرد در یک قیمت وارد شود. حجم سفارشات آن‌ها به اندازه‌ای بزرگ است که باید در چندین مرحله و در نواحی مختلف وارد شوند. این یعنی ردپای آن‌ها در چارت قابل شناسایی است.</div><h3>چرا Retail Traders ضرر می‌کنند؟</h3><p>۹۰٪ تریدرهای خرد ضرر می‌کنند چون:</p><ul><li><strong>نقدشوندگی Smart Money را تأمین می‌کنند:</strong> وقتی Smart Money می‌خواهد بخرد، نیاز به فروشنده دارد. Retail Traders با Stop Loss خود این نقدشوندگی را فراهم می‌کنند.</li><li><strong>الگوهای تکراری دارند:</strong> Retail Traders همه از یک استراتژی استفاده می‌کنند (مثل حمایت/مقاومت کلاسیک) و Smart Money این را می‌داند.</li><li><strong>احساسی ترید می‌کنند:</strong> FOMO، ترس، طمع - Smart Money از این احساسات سوءاستفاده می‌کند.</li></ul><h3>چرخه بازار از دید Smart Money</h3><p>Smart Money در چهار فاز عمل می‌کند:</p><ul><li><strong>فاز ۱ - Accumulation (انباشت):</strong> Smart Money در یک رنج قیمتی، به آرامی و بدون جلب توجه، موقعیت خرید می‌سازد. این فاز معمولاً بعد از یک روند نزولی طولانی رخ می‌دهد.</li><li><strong>فاز ۲ - Markup (صعود):</strong> وقتی انباشت کامل شد، Smart Money قیمت را بالا می‌برد. این همان روند صعودی است که Retail Traders می‌بینند و وارد می‌شوند.</li><li><strong>فاز ۳ - Distribution (توزیع):</strong> Smart Money در سقف قیمتی، به آرامی موقعیت‌های خرید خود را به Retail Traders می‌فروشد.</li><li><strong>فاز ۴ - Markdown (نزول):</strong> وقتی توزیع کامل شد، Smart Money موقعیت فروش می‌سازد و قیمت سقوط می‌کند.</li></ul><div class='warning-box'><strong>️ نکته حیاتی:</strong> وقتی شما در اخبار می‌شنوید «بازار صعودی است» و همه در حال خرید هستند، معمولاً Smart Money در فاز Distribution است و در حال فروش به شماست!</div><h3>چگونه ردپای Smart Money را شناسایی کنیم؟</h3><ul><li><strong>Order Blocks:</strong> نواحی که Smart Money سفارشات بزرگ خود را قرار داده</li><li><strong>Imbalance / Fair Value Gap:</strong> نواحی که قیمت به سرعت حرکت کرده و سفارشات پر نشده باقی مانده</li><li><strong>Liquidity Grabs:</strong> حرکات جعلی برای زدن Stop Loss تریدرهای خرد</li><li><strong>Break of Structure (BOS):</strong> شکست ساختار بازار در جهت Smart Money</li></ul><h3>خلاصه درس</h3><ul><li>Smart Money شامل بانک‌ها، صندوق‌ها و Market Makers است</li><li>Smart Money در چهار فاز عمل می‌کند: Accumulation، Markup، Distribution، Markdown</li><li>Retail Traders نقدشوندگی Smart Money را تأمین می‌کنند</li><li>با شناسایی Order Blocks و Liquidity Grabs می‌توان ردپای Smart Money را دنبال کرد</li><li>وقتی همه در حال خرید هستند، Smart Money احتمالاً در حال فروش است</li></ul>",
+ "quiz": [
+{
+ "question": "Smart Money شامل کدام نهادها می‌شود؟",
+ "options": ["فقط تریدرهای خرد", "بانک‌های مرکزی، صندوق‌های سرمایه‌گذاری و Market Makers", "فقط بانک‌های تجاری", "صرافی‌های رمزارز"],
+ "correct": 1,
+ "explanation": "Smart Money شامل بانک‌های مرکزی، بانک‌های تجاری بزرگ، Hedge Funds، Pension Funds و Market Makers است که حجم سرمایه‌ی آن‌ها می‌تواند بازار را حرکت دهد."
+},
+{
+ "question": "چرا ۹۰٪ تریدرهای خرد ضرر می‌کنند؟",
+ "options": ["چون استراتژی ندارند", "چون نقدشوندگی Smart Money را تأمین می‌کنند و الگوهای تکراری دارند", "چون لوریج استفاده نمی‌کنند", "چون بازار دستکاری می‌شود"],
+ "correct": 1,
+ "explanation": "Retail Traders با Stop Loss خود نقدشوندگی Smart Money را تأمین می‌کنند و همه از استراتژی‌های مشابه استفاده می‌کنند که Smart Money آن را می‌شناسد."
+},
+{
+ "question": "فاز Accumulation در چرخه بازار چه زمانی رخ می‌دهد؟",
+ "options": ["بعد از روند صعودی طولانی", "بعد از روند نزولی طولانی، وقتی Smart Money به آرامی خرید می‌کند", "در اوج بازار", "هنگام انتشار اخبار مهم"],
+ "correct": 1,
+ "explanation": "فاز Accumulation معمولاً بعد از یک روند نزولی طولانی رخ می‌دهد. Smart Money در یک رنج قیمتی، به آرامی و بدون جلب توجه، موقعیت خرید می‌سازد."
+}
+]
+},
+{
+ "id": "c9l2",
+ "title": "Order Blocks و نحوه شناسایی آن‌ها",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>یادگیری شناسایی Order Blocks (بلوک‌های سفارش)، مهم‌ترین مفهوم در SMC. Order Blocks نواحی هستند که Smart Money سفارشات بزرگ خود را قرار داده و قیمت به آن‌ها واکنش نشان می‌دهد.</p><h3>Order Block چیست؟</h3><p>Order Block ناحیه‌ای از چارت است که Smart Money سفارشات بزرگ خود را در آنجا قرار داده. وقتی قیمت به این ناحیه برمی‌گردد، معمولاً واکنش شدیدی نشان می‌دهد.</p><div class='info-box'><strong>💡 تعریف ساده:</strong> Order Block مانند یک «منطقه تقاضا یا عرضه» است، اما با دقت بالاتر. این ناحیه‌ای است که آخرین کندل مخالف قبل از یک حرکت قوی در آن شکل گرفته است.</div><h3>انواع Order Blocks</h3><ul><li><strong>Bullish Order Block (OB صعودی):</strong> آخرین کندل نزولی قبل از یک حرکت صعودی قوی. این ناحیه تقاضا است و وقتی قیمت به آن برمی‌گردد، احتمال صعود وجود دارد.</li><li><strong>Bearish Order Block (OB نزولی):</strong> آخرین کندل صعودی قبل از یک حرکت نزولی قوی. این ناحیه عرضه است و وقتی قیمت به آن برمی‌گردد، احتمال نزول وجود دارد.</li></ul><h3>نحوه شناسایی Order Block معتبر</h3><p>یک Order Block معتبر باید این شرایط را داشته باشد:</p><ul><li><strong>۱. حرکت قوی بعد از OB:</strong> بعد از کندل OB، قیمت باید با یک یا چند کندل قوی (بدنه بزرگ) حرکت کند.</li><li><strong>۲. شکست ساختار (BOS):</strong> حرکت بعد از OB باید باعث شکست سقف یا کف قبلی شود.</li><li><strong>۳. Imbalance:</strong> در حرکت بعد از OB، باید Fair Value Gap (FVG) وجود داشته باشد.</li><li><strong>۴. تازه بودن:</strong> OB‌های تازه‌تر معتبرتر هستند. اگر قیمت چند بار به OB برگشته و واکنش نشان داده، اعتبار آن کم می‌شود.</li></ul><h3>مثال عملی</h3><p><strong>سناریو:</strong> EUR/USD در تایم‌فریم H4:</p><ul><li>قیمت در 1.0800 یک کندل نزولی می‌سازد</li><li>سپس با سه کندل صعودی قوی به 1.0850 می‌رسد (BOS)</li><li>در این حرکت، یک FVG بین 1.0810 تا 1.0820 ایجاد می‌شود</li><li>کندل نزولی در 1.0800 یک Bullish OB است</li><li>وقتی قیمت به 1.0800-1.0810 برمی‌گردد، احتمال صعود وجود دارد</li></ul><div class='warning-box'><strong>️ نکته مهم:</strong> هر OB معتبر نیست! فقط OB‌هایی را معامله کنید که BOS و Imbalance داشته باشند. OB‌های بدون این ویژگی‌ها معمولاً شکسته می‌شوند.</div><h3>نحوه معامله با Order Blocks</h3><ul><li><strong>گام ۱:</strong> OB معتبر را در تایم‌فریم بالا (H4 یا D1) شناسایی کنید</li><li><strong>گام ۲:</strong> منتظر بمانید قیمت به OB برگردد</li><li><strong>گام ۳:</strong> در تایم‌فریم پایین (M15 یا M5) به دنبال سیگنال ورود باشید (مثل تغییر ساختار یا کندل تأیید)</li><li><strong>گام ۴:</strong> Stop Loss زیر/بالای OB قرار دهید</li><li><strong>گام ۵:</strong> Take Profit در OB بعدی یا سطح کلیدی بعدی</li></ul><h3>خلاصه درس</h3><ul><li>Order Block ناحیه‌ای است که Smart Money سفارشات بزرگ خود را قرار داده</li><li>Bullish OB = آخرین کندل نزولی قبل از حرکت صعودی قوی</li><li>Bearish OB = آخرین کندل صعودی قبل از حرکت نزولی قوی</li><li>OB معتبر باید BOS و Imbalance داشته باشد</li><li>OB‌های تازه‌تر معتبرتر هستند</li><li>فقط OB‌هایی را معامله کنید که در جهت روند تایم‌فریم بالا باشند</li></ul>",
+ "quiz": [
+{
+ "question": "Bullish Order Block چیست؟",
+ "options": ["اولین کندل صعودی بعد از حرکت نزولی", "آخرین کندل نزولی قبل از حرکت صعودی قوی", "هر کندل سبز در چارت", "کندلی با سایه بلند"],
+ "correct": 1,
+ "explanation": "Bullish Order Block آخرین کندل نزولی قبل از یک حرکت صعودی قوی است. این ناحیه تقاضا است و وقتی قیمت به آن برمی‌گردد، احتمال صعود وجود دارد."
+},
+{
+ "question": "یک Order Block معتبر باید چه ویژگی‌هایی داشته باشد؟",
+ "options": ["فقط باید کندل بزرگ باشد", "باید BOS و Imbalance داشته باشد", "باید در تایم‌فریم M5 باشد", "باید قدیمی باشد"],
+ "correct": 1,
+ "explanation": "OB معتبر باید سه ویژگی داشته باشد: حرکت قوی بعد از OB، شکست ساختار (BOS)، و وجود Imbalance (FVG). OB‌های بدون این ویژگی‌ها معمولاً شکسته می‌شوند."
+},
+{
+ "question": "چرا OB‌های تازه‌تر معتبرتر هستند؟",
+ "options": ["چون رنگشان روشن‌تر است", "چون Smart Money هنوز سفارشات پر نشده در آن‌ها دارد", "چون در تایم‌فریم بالاتر هستند", "چون حجم بیشتری دارند"],
+ "correct": 1,
+ "explanation": "OB‌های تازه‌تر معتبرتر هستند چون Smart Money هنوز سفارشات پر نشده در آن‌ها دارد. وقتی قیمت چند بار به OB برگشته، سفارشات پر شده‌اند و اعتبار OB کم می‌شود."
+}
+]
+},
+{
+ "id": "c9l3",
+ "title": "Fair Value Gap (FVG) و Imbalance",
+ "image": "",
+ "content": "<h3> هدف این درس</h3><p>یادگیری مفهوم Fair Value Gap (FVG) یا Imbalance، یکی از قدرتمندترین ابزارها در SMC. FVG نواحی هستند که قیمت به سرعت از آن‌ها عبور کرده و سفارشات پر نشده باقی مانده است.</p><h3>Fair Value Gap چیست؟</h3><p>FVG ناحیه‌ای در چارت است که قیمت به سرعت از آن عبور کرده و بین سه کندل متوالی، یک شکاف قیمتی ایجاد شده است. این یعنی در آن ناحیه، فقط خریداران یا فقط فروشندگان فعال بوده‌اند و سفارشات طرف مقابل پر نشده است.</p><div class='info-box'><strong>💡 مثال ساده:</strong> تصور کنید در یک حراجی، قیمت از ۱۰۰ دلار به ۱۱۰ دلار می‌پرد بدون اینکه کسی در ۱۰۵ دلار خرید کند. این یعنی در ۰۵ دلار، سفارشات خرید پر نشده‌اند و قیمت احتمالاً به آن ناحیه برمی‌گردد.</div><h3>انواع FVG</h3><ul><li><strong>Bullish FVG (FVG صعودی):</strong> بین کندل اول و سوم، یک شکاف وجود دارد که کندل دوم آن را پر نکرده. این ناحیه تقاضا است و قیمت احتمالاً به آن برمی‌گردد.</li><li><strong>Bearish FVG (FVG نزولی):</strong> بین کندل اول و سوم، یک شکاف وجود دارد که کندل دوم آن را پر نکرده. این ناحیه عرضه است و قیمت احتمالاً به آن برمی‌گردد.</li></ul><h3>نحوه شناسایی FVG</h3><p>برای شناسایی FVG، به سه کندل متوالی نگاه کنید:</p><ul><li><strong>برای Bullish FVG:</strong> High کندل اول باید پایین‌تر از Low کندل سوم باشد. فضای بین این دو، FVG است.</li><li><strong>برای Bearish FVG:</strong> Low کندل اول باید بالاتر از High کندل سوم باشد. فضای بین این دو، FVG است.</li></ul><h3>چرا FVG مهم است؟</h3><p>FVG مهم است چون:</p><ul><li><strong>نواحی عدم تعادل:</strong> در FVG، فقط یک طرف بازار فعال بوده. بازار تمایل دارد به این نواحی برگردد و تعادل را برقرار کند.</li><li><strong>حمایت/مقاومت داینامیک:</strong> FVG‌ها مانند حمایت/مقاومت عمل می‌کنند.</li><li><strong>هدف قیمتی:</strong> FVG‌های پر نشده می‌توانند هدف قیمتی باشند.</li></ul><div class='warning-box'><strong>⚠️ نکته مهم:</strong> همه FVG‌ها پر نمی‌شوند! فقط FVG‌هایی را معامله کنید که در جهت روند و در نواحی کلیدی (مثل Order Blocks) باشند.</div><h3>نحوه معامله با FVG</h3><ul><li><strong>گام :</strong> FVG را در تایم‌فریم بالا شناسایی کنید</li><li><strong>گام ۲:</strong> منتظر بمانید قیمت به FVG برگردد</li><li><strong>گام ۳:</strong> در تایم‌فریم پایین به دنبال تأیید باشید (کندل برگشتی)</li><li><strong>گام ۴:</strong> Stop Loss زیر/بالای FVG قرار دهید</li><li><strong>گام ۵:</strong> Take Profit در FVG بعدی یا سطح کلیدی</li></ul><h3>تفاوت FVG و Order Block</h3><ul><li><strong>Order Block:</strong> ناحیه‌ای که Smart Money سفارش گذاشته (معمولاً یک کندل)</li><li><strong>FVG:</strong> ناحیه‌ای که قیمت به سرعت از آن عبور کرده (معمولاً بین سه کندل)</li><li><strong>ترکیب:</strong> قوی‌ترین سیگنال‌ها وقتی هستند که OB و FVG هم‌پوشانی دارند</li></ul><h3>خلاصه درس</h3><ul><li>FVG ناحیه‌ای است که قیمت به سرعت از آن عبور کرده و سفارشات پر نشده باقی مانده</li><li>Bullish FVG = High کندل اول < Low کندل سوم</li><li>Bearish FVG = Low کندل اول > High کندل سوم</li><li>FVG‌ها نواحی عدم تعادل هستند و قیمت تمایل به بازگشت دارد</li><li>فقط FVG‌های در جهت روند و در نواحی کلیدی را معامله کنید</li><li>ترکیب OB و FVG قوی‌ترین سیگنال‌ها را می‌دهد</li></ul>",
+ "quiz": [
+{
+ "question": "Fair Value Gap (FVG) چیست؟",
+ "options": ["ناحیه‌ای که قیمت به سرعت از آن عبور کرده و سفارشات پر نشده باقی مانده", "ناحیه‌ای که Smart Money سفارش گذاشته", "کندلی با بدنه بزرگ", "خطوط حمایت و مقاومت"],
+ "correct": 0,
+ "explanation": "FVG ناحیه‌ای است که قیمت به سرعت از آن عبور کرده و بین سه کندل متوالی، یک شکاف قیمتی ایجاد شده. این یعنی سفارشات طرف مقابل پر نشده‌اند."
+},
+{
+ "question": "چگونه Bullish FVG را شناسایی می‌کنیم؟",
+ "options": ["Low کندل اول > High کندل سوم", "High کندل اول < Low کندل سوم", "بدنه کندل دوم بزرگ باشد", "سایه کندل اول بلند باشد"],
+ "correct": 1,
+ "explanation": "برای Bullish FVG، High کندل اول باید پایین‌تر از Low کندل سوم باشد. فضای بین این دو، FVG صعودی است."
+},
+{
+ "question": "چرا FVG‌ها مهم هستند؟",
+ "options": ["چون همیشه پر می‌شوند", "چون نواحی عدم تعادل هستند و قیمت تمایل به بازگشت دارد", "چون Smart Money آن‌ها را ساخته", "چون در تایم‌فریم بالا هستند"],
+ "correct": 1,
+ "explanation": "FVG‌ها مهم هستند چون نواحی عدم تعادل هستند. در FVG، فقط یک طرف بازار فعال بوده و بازار تمایل دارد به این نواحی برگردد و تعادل را برقرار کند."
+}
+]
+},
+{
+ "id": "c9l4",
+ "title": "Liquidity Grabs و Stop Hunts",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>یادگیری مفهوم Liquidity Grabs (شکار نقدشوندگی) و Stop Hunts (شکار استاپ لاس)، یکی از مهم‌ترین مفاهیم برای درک حرکات جعلی بازار.</p><h3>Liquidity چیست؟</h3><p>Liquidity (نقدشوندگی) به معنای وجود سفارشات خرید و فروش در بازار است. Smart Money برای ورود یا خروج از موقعیت‌های بزرگ، نیاز به نقدشوندگی دارد.</p><div class='info-box'><strong>💡 مثال:</strong> اگر Smart Money بخواهد  میلیارد دلار EUR/USD بخرد، نمی‌تواند همه را در یک قیمت بخرد. باید فروشنده‌های زیادی پیدا کند. کجا فروشنده‌ها هستند؟ زیر حمایت‌ها، جایی که Retail Traders Stop Loss گذاشته‌اند!</div><h3>Liquidity Grab چیست؟</h3><p>Liquidity Grab حرکتی است که قیمت به یک سطح مهم (مثل حمایت/مقاومت) می‌رود، آن را می‌شکند، Stop Loss تریدرهای خرد را می‌زند، و سپس برمی‌گردد. این حرکت برای جمع‌آوری نقدشوندگی است.</p><h3>انواع Liquidity</h3><ul><li><strong>Buy-Side Liquidity (نقدشوندگی خرید):</strong> Stop Loss فروشندگان بالای سقف‌ها. وقتی قیمت به بالای سقف می‌رود، این Stop Loss‌ها زده می‌شوند و Smart Money می‌تواند بفروشد.</li><li><strong>Sell-Side Liquidity (نقدشوندگی فروش):</strong> Stop Loss خریداران زیر کف‌ها. وقتی قیمت به زیر کف می‌رود، این Stop Loss‌ها زده می‌شوند و Smart Money می‌تواند بخرد.</li></ul><h3>Stop Hunt چیست؟</h3><p>Stop Hunt حرکتی است که قیمت به ناحیه‌ای می‌رود که Stop Loss تریدرهای خرد در آنجا قرار دارد، آن‌ها را می‌زند، و سپس برمی‌گردد. این یک تله برای تریدرهای خرد است.</p><div class='warning-box'><strong>⚠️ نکته حیاتی:</strong> اگر حمایت/مقاومت خیلی واضح است و همه آن را می‌بینند، احتمالاً Smart Money از آن برای Liquidity Grab استفاده خواهد کرد. هرگز Stop Loss را دقیقاً روی حمایت/مقاومت نگذارید!</div><h3>نحوه شناسایی Liquidity Grab</h3><ul><li><strong>۱. سطح واضح:</strong> حمایت/مقاومت خیلی واضح که همه می‌بینند</li><li><strong>۲. شکست سریع:</strong> قیمت سطح را می‌شکند اما سریع برمی‌گردد</li><li><strong>۳. کندل برگشتی:</strong> بعد از شکست، کندل قوی در جهت مخالف</li><li><strong>۴. حجم بالا:</strong> شکست با حجم بالا اتفاق می‌افتد</li></ul><h3>چگونه از Stop Hunt جلوگیری کنیم؟</h3><ul><li><strong>۱. Stop Loss را دورتر بگذارید:</strong> به جای دقیقاً زیر حمایت، کمی پایین‌تر بگذارید</li><li><strong>۲. از Order Blocks استفاده کنید:</strong> OB‌ها معمولاً بعد از Liquidity Grab شکل می‌گیرند</li><li><strong>۳. منتظر تأیید باشید:</strong> بعد از شکست سطح، منتظر کندل برگشتی باشید</li><li><strong>۴. در جهت Smart Money ترید کنید:</strong> اگر Liquidity Grab دیدید، در جهت برگشت قیمت وارد شوید</li></ul><h3>مثال عملی</h3><p><strong>سناریو:</strong> EUR/USD در H4:</p><ul><li>حمایت واضح در 1.0800</li><li>همه Retail Traders Buy می‌گیرند و Stop Loss در 1.0795</li><li>قیمت به 1.0790 می‌رود (Stop Loss‌ها زده می‌شوند)</li><li>سپس با کندل قوی به 1.0820 برمی‌گردد</li><li>این یک Liquidity Grab بود و Smart Money خرید کرده است</li></ul><h3>خلاصه درس</h3><ul><li>Smart Money برای ورود/خروج به نقدشوندگی نیاز دارد</li><li>Liquidity Grab حرکتی برای جمع‌آوری Stop Loss تریدرهای خرد است</li><li>Buy-Side Liquidity بالای سقف‌ها، Sell-Side Liquidity زیر کف‌ها</li><li>اگر سطح خیلی واضح است، احتمال Liquidity Grab بالاست</li><li>Stop Loss را دقیقاً روی حمایت/مقاومت نگذارید</li><li>بعد از Liquidity Grab، در جهت برگشت قیمت وارد شوید</li></ul>",
+ "quiz": [
+{
+ "question": "Liquidity Grab چیست؟",
+ "options": ["حرکتی برای جمع‌آوری Stop Loss تریدرهای خرد", "حرکتی در جهت روند", "شکست معتبر سطح", "افزایش حجم معاملات"],
+ "correct": 0,
+ "explanation": "Liquidity Grab حرکتی است که قیمت به یک سطح مهم می‌رود، آن را می‌شکند، Stop Loss تریدرهای خرد را می‌زند، و سپس برمی‌گردد. این برای جمع‌آوری نقدشوندگی است."
+},
+{
+ "question": "Buy-Side Liquidity کجا قرار دارد؟",
+ "options": ["زیر کف‌ها", "بالای سقف‌ها", "در وسط رنج", "در Order Blocks"],
+ "correct": 1,
+ "explanation": "Buy-Side Liquidity بالای سقف‌ها قرار دارد. این Stop Loss فروشندگان است. وقتی قیمت به بالای سقف می‌رود، این Stop Loss‌ها زده می‌شوند و Smart Money می‌تواند بفروشد."
+},
+{
+ "question": "چگونه از Stop Hunt جلوگیری کنیم؟",
+ "options": ["Stop Loss را دقیقاً روی حمایت بگذاریم", "Stop Loss را دورتر بگذاریم و منتظر تأیید باشیم", "بدون Stop Loss ترید کنیم", "فقط در تایم‌فریم پایین ترید کنیم"],
+ "correct": 1,
+ "explanation": "برای جلوگیری از Stop Hunt، Stop Loss را کمی دورتر از حمایت/مقاومت بگذارید و منتظر تأیید (کندل برگشتی) باشید."
+}
+]
+}
+]
+},
+{
+ "id": "c10",
+ "level": "پیشرفته",
+ "title": "ICT (Inner Circle Trader) و مفاهیم پیشرفته",
+ "lessons": [
+{
+ "id": "c10l1",
+ "title": "مفاهیم پایه ICT و Kill Zones",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>آشنایی با مفاهیم ICT (Inner Circle Trader) و Kill Zones، بازه‌های زمانی که بیشترین حرکات قیمتی رخ می‌دهد.</p><h3>ICT چیست؟</h3><p>ICT (Inner Circle Trader) یک روش معاملاتی است که توسط Michael J. Huddleston توسعه یافته. این روش بر اساس نحوه حرکت Smart Money و الگوریتم‌های بازار است.</p><div class='info-box'><strong> نکته:</strong> ICT و SMC (Smart Money Concepts) بسیار مشابه هستند. هر دو بر اساس ردپای Smart Money کار می‌کنند، اما ICT مفاهیم خاص خود را دارد.</div><h3>Kill Zones چیست؟</h3><p>Kill Zones بازه‌های زمانی خاصی در روز هستند که بیشترین حرکات قیمتی و حجم معاملات رخ می‌دهد. در این بازه‌ها، Smart Money فعال است و الگوهای معاملاتی بهتری شکل می‌گیرند.</p><h3>Kill Zones اصلی (به وقت تهران)</h3><ul><li><strong>London Kill Zone (۱:۳۰ تا ۱۴:۳۰):</strong> شروع سشن لندن. معمولاً جهت روز را تعیین می‌کند. بیشترین حرکات روندی در این بازه رخ می‌دهد.</li><li><strong>New York Kill Zone (۱۶:۳ تا ۱۹:۳۰):</strong> شروع سشن نیویورک. همپوشانی با لندن. بیشترین حجم معاملات و نوسانات.</li><li><strong>London Close (۱۹:۳۰ تا ۲۱:۳۰):</strong> بسته شدن لندن. معمولاً برگشت‌های کوتاه‌مدت رخ می‌دهد.</li></ul><div class='warning-box'><strong>⚠️ نکته مهم:</strong> خارج از Kill Zones، بازار معمولاً رنج و کم‌نوسان است. ترید در این بازه‌ها توصیه نمی‌شود.</div><h3>چرا Kill Zones مهم هستند؟</h3><ul><li><strong>حجم بالا:</strong> Smart Money در این بازه‌ها فعال است</li><li><strong>نوسانات بیشتر:</strong> حرکات قیمتی قوی‌تر</li><li><strong>الگوهای واضح‌تر:</strong> الگوهای SMC بهتر شکل می‌گیرند</li><li><strong>نقدشوندگی بالا:</strong> اسپرد کمتر و اجرای بهتر</li></ul><h3>نحوه ترید در Kill Zones</h3><ul><li><strong>گام ۱:</strong> قبل از Kill Zone، ساختار بازار را در تایم‌فریم بالا تحلیل کنید</li><li><strong>گام ۲:</strong> نواحی کلیدی (OB، FVG) را شناسایی کنید</li><li><strong>گام ۳:</strong> در Kill Zone منتظر ورود قیمت به نواحی کلیدی باشید</li><li><strong>گام :</strong> با تأیید در تایم‌فریم پایین وارد شوید</li></ul><h3>مثال عملی</h3><p><strong>سناریو:</strong> EUR/USD در London Kill Zone:</p><ul><li>قبل از ۱۱:۳۰، ساختار H4 صعودی است</li><li>یک Bullish OB در 1.0800 شناسایی شده</li><li>در ۱۲:۰۰، قیمت به 1.0800 می‌رسد</li><li>در M15، کندل برگشتی شکل می‌گیرد</li><li>ورود در 1.0810، Stop Loss در 1.0790، Take Profit در 1.0850</li></ul><h3>خلاصه درس</h3><ul><li>ICT روش معاملاتی بر اساس Smart Money است</li><li>Kill Zones بازه‌های زمانی با بیشترین حرکات قیمتی هستند</li><li>London Kill Zone: ۱۱:۳۰ تا ۱۴:۳۰</li><li>New York Kill Zone: ۱۶:۳۰ تا ۹:۳۰</li><li>خارج از Kill Zones، ترید توصیه نمی‌شود</li><li>در Kill Zones، الگوهای SMC بهتر شکل می‌گیرند</li></ul>",
+ "quiz": [
+{
+ "question": "Kill Zones چیست؟",
+ "options": ["بازه‌های زمانی با کمترین نوسان", "بازه‌های زمانی با بیشترین حرکات قیمتی و حجم معاملات", "ساعات تعطیلی بازار", "زمان انتشار اخبار"],
+ "correct": 1,
+ "explanation": "Kill Zones بازه‌های زمانی خاصی در روز هستند که بیشترین حرکات قیمتی و حجم معاملات رخ می‌دهد. Smart Money در این بازه‌ها فعال است."
+},
+{
+ "question": "London Kill Zone به وقت تهران چه زمانی است؟",
+ "options": ["۰۳:۳۰ تا ۰۶:۳۰", "۱:۳۰ تا ۱۴:۳۰", "۱۶:۳۰ تا ۱:۳۰", "۲۲:۰۰ تا ۰۱:۰۰"],
+ "correct": 1,
+ "explanation": "London Kill Zone از ۱۱:۳۰ تا ۱۴:۳۰ به وقت تهران است. این بازه شروع سشن لندن است و معمولاً جهت روز را تعیین می‌کند."
+},
+{
+ "question": "چرا ترید خارج از Kill Zones توصیه نمی‌شود؟",
+ "options": ["چون بازار تعطیل است", "چون بازار رنج و کم‌نوسان است", "چون اسپرد صفر است", "چون فقط کریپتو فعال است"],
+ "correct": 1,
+ "explanation": "خارج از Kill Zones، بازار معمولاً رنج و کم‌نوسان است. Smart Money فعال نیست و الگوهای معاملاتی واضح شکل نمی‌گیرند."
+}
+]
+},
+{
+ "id": "c10l2",
+ "title": "Optimal Trade Entry (OTE) و Silver Bullet",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>یادگیری دو الگوی معاملاتی مهم در ICT: Optimal Trade Entry (OTE) و Silver Bullet.</p><h3>Optimal Trade Entry (OTE) چیست؟</h3><p>OTE یک ناحیه فیبوناچی است که بهترین نقطه ورود را نشان می‌دهد. این ناحیه بین ۶۲٪ تا ۷۹٪ اصلاح فیبوناچی است.</p><div class='info-box'><strong>💡 چرا OTE مهم است؟</strong> Smart Money معمولاً در این ناحیه وارد می‌شود. اگر شما هم در OTE وارد شوید، با Smart Money هم‌جهت هستید.</div><h3>نحوه رسم OTE</h3><ul><li><strong>برای روند صعودی:</strong> فیبوناچی را از کف به سقف بکشید. OTE بین ۲٪ تا ۷۹٪ است.</li><li><strong>برای روند نزولی:</strong> فیبوناچی را از سقف به کف بکشید. OTE بین ۶۲٪ تا ۷۹٪ است.</li></ul><h3>Silver Bullet چیست؟</h3><p>Silver Bullet یک الگوی معاملاتی ساده در ICT است که در Kill Zones رخ می‌دهد. این الگو شامل سه مرحله است:</p><ul><li><strong>. Sweep:</strong> قیمت یک سطح مهم (سقف/کف) را می‌شکند و برمی‌گردد</li><li><strong>۲. Displacement:</strong> قیمت با کندل قوی در جهت مخالف حرکت می‌کند</li><li><strong>۳. Return to FVG:</strong> قیمت به FVG ایجاد شده برمی‌گردد و سپس ادامه می‌دهد</li></ul><h3>نحوه معامله Silver Bullet</h3><ul><li><strong>گام :</strong> در Kill Zone، منتظر Sweep یک سطح مهم باشید</li><li><strong>گام ۲:</strong> بعد از Sweep، به دنبال Displacement (کندل قوی) باشید</li><li><strong>گام ۳:</strong> FVG ایجاد شده را شناسایی کنید</li><li><strong>گام ۴:</strong> وقتی قیمت به FVG برگشت، وارد شوید</li><li><strong>گام ۵:</strong> Stop Loss زیر/بالای Sweep، Take Profit در سطح بعدی</li></ul><div class='warning-box'><strong>⚠️ نکته:</strong> Silver Bullet فقط در Kill Zones معتبر است. خارج از Kill Zones، این الگو کار نمی‌کند.</div><h3>مثال عملی</h3><p><strong>سناریو:</strong> EUR/USD در New York Kill Zone:</p><ul><li>سقف قبلی در 1.0900</li><li>قیمت به 1.0905 می‌رود (Sweep)</li><li>سپس با کندل قوی به 1.0880 می‌رسد (Displacement)</li><li>FVG بین 1.0885 تا 1.0890 ایجاد می‌شود</li><li>قیمت به 1.0888 برمی‌گردد (Return to FVG)</li><li>ورود در 1.0888، Stop Loss در 1.0910، Take Profit در 1.0850</li></ul><h3>خلاصه درس</h3><ul><li>OTE ناحیه فیبوناچی ۶۲٪ تا ۷٪ است</li><li>Smart Money معمولاً در OTE وارد می‌شود</li><li>Silver Bullet الگوی سه مرحله‌ای است: Sweep، Displacement، Return to FVG</li><li>Silver Bullet فقط در Kill Zones معتبر است</li><li>هر دو الگو با Smart Money هم‌جهت هستند</li></ul>",
+ "quiz": [
+{
+ "question": "OTE (Optimal Trade Entry) چه ناحیه‌ای است؟",
+ "options": ["فیبوناچی ۳۸.۲٪", "فیبوناچی ۵۰٪", "فیبوناچی ۶۲٪ تا ۷۹٪", "فیبوناچی ۱۰۰٪"],
+ "correct": 2,
+ "explanation": "OTE ناحیه فیبوناچی بین ۶۲٪ تا ۷۹٪ است. Smart Money معمولاً در این ناحیه وارد می‌شود."
+},
+{
+ "question": "Silver Bullet شامل کدام مراحل است؟",
+ "options": ["فقط Sweep", "Sweep، Displacement، Return to FVG", "فقط Displacement", "BOS و CHoCH"],
+ "correct": 1,
+ "explanation": "Silver Bullet الگوی سه مرحله‌ای است: ۱) Sweep یک سطح مهم، ۲) Displacement با کندل قوی، ۳) Return to FVG ایجاد شده."
+},
+{
+ "question": "Silver Bullet در کجا معتبر است؟",
+ "options": ["در هر زمانی", "فقط در Kill Zones", "فقط در تایم‌فریم روزانه", "فقط در کریپتو"],
+ "correct": 1,
+ "explanation": "Silver Bullet فقط در Kill Zones معتبر است. خارج از Kill Zones، این الگو کار نمی‌کند."
+}
+]
+},
+{
+ "id": "c10l3",
+ "title": "Power of 3 (AMD) و Market Structure Shift",
+ "image": "",
+ "content": "<h3> هدف این درس</h3><p>یادگیری مفهوم Power of 3 (AMD) و Market Structure Shift (MSS)، دو مفهوم کلیدی در ICT.</p><h3>Power of 3 (AMD) چیست؟</h3><p>Power of 3 یا AMD (Accumulation، Manipulation، Distribution) یک الگوی سه مرحله‌ای است که Smart Money در آن عمل می‌کند.</p><ul><li><strong>Accumulation (انباشت):</strong> Smart Money به آرامی در یک رنج قیمتی موقعیت می‌سازد</li><li><strong>Manipulation (دستکاری):</strong> Smart Money قیمت را در جهت مخالف حرکت می‌دهد تا Retail Traders را فریب دهد</li><li><strong>Distribution (توزیع):</strong> Smart Money در جهت اصلی حرکت می‌کند و سود می‌برد</li></ul><div class='info-box'><strong>💡 مثال:</strong> Smart Money می‌خواهد بخرد. ابتدا در رنج Accumulation می‌کند. سپس قیمت را پایین می‌آورد (Manipulation) تا Retail Traders بفروشند. در نهایت قیمت بالا می‌رود (Distribution).</div><h3>Market Structure Shift (MSS) چیست؟</h3><p>MSS اولین نشانه تغییر روند است. وقتی ساختار بازار می‌شکند، این MSS است.</p><ul><li><strong>در روند صعودی:</strong> وقتی قیمت آخرین HL را به پایین می‌شکند و LL می‌سازد، MSS رخ داده است</li><li><strong>در روند نزولی:</strong> وقتی قیمت آخرین LH را به بالا می‌شکند و HH می‌سازد، MSS رخ داده است</li></ul><h3>تفاوت MSS و CHoCH</h3><ul><li><strong>MSS:</strong> شکست ساختار در تایم‌فریم بالا (H4 یا D1). نشانه تغییر روند اصلی.</li><li><strong>CHoCH:</strong> شکست ساختار در تایم‌فریم پایین (M15 یا M5). نشانه تغییر روند کوتاه‌مدت.</li></ul><div class='warning-box'><strong>⚠️ نکته:</strong> MSS در تایم‌فریم بالا مهم‌تر از CHoCH در تایم‌فریم پایین است. همیشه به MSS در تایم‌فریم بالا توجه کنید.</div><h3>نحوه معامله با AMD</h3><ul><li><strong>گام ۱:</strong> فاز Accumulation را شناسایی کنید (رنج قیمتی)</li><li><strong>گام ۲:</strong> منتظر Manipulation باشید (حرکت جعلی)</li><li><strong>گام ۳:</strong> بعد از Manipulation، به دنبال ورود در جهت Distribution باشید</li><li><strong>گام ۴:</strong> Stop Loss زیر/بالای Manipulation، Take Profit در سطح بعدی</li></ul><h3>مثال عملی</h3><p><strong>سناریو:</strong> EUR/USD در H4:</p><ul><li>رنج بین 1.0800 تا 1.0820 (Accumulation)</li><li>قیمت به 1.0790 می‌رود (Manipulation - Liquidity Grab)</li><li>سپس به 1.0850 می‌رسد (Distribution)</li><li>ورود بعد از Manipulation در 1.0800، Stop Loss در 1.0785، Take Profit در 1.0850</li></ul><h3>خلاصه درس</h3><ul><li>AMD شامل سه فاز: Accumulation، Manipulation، Distribution</li><li>Smart Money در Manipulation، Retail Traders را فریب می‌دهد</li><li>MSS شکست ساختار در تایم‌فریم بالا است</li><li>CHoCH شکست ساختار در تایم‌فریم پایین است</li><li>MSS مهم‌تر از CHoCH است</li><li>با AMD می‌توانید با Smart Money هم‌جهت شوید</li></ul>",
+ "quiz": [
+{
+ "question": "AMD (Power of 3) شامل کدام مراحل است؟",
+ "options": ["فقط Accumulation", "Accumulation، Manipulation، Distribution", "فقط Distribution", "BOS و CHoCH"],
+ "correct": 1,
+ "explanation": "AMD شامل سه فاز است: Accumulation (انباشت)، Manipulation (دستکاری)، Distribution (توزیع). Smart Money در این سه فاز عمل می‌کند."
+},
+{
+ "question": "MSS (Market Structure Shift) چیست؟",
+ "options": ["شکست ساختار در تایم‌فریم پایین", "شکست ساختار در تایم‌فریم بالا و نشانه تغییر روند اصلی", "ادامه روند", "افزایش حجم"],
+ "correct": 1,
+ "explanation": "MSS شکست ساختار در تایم‌فریم بالا (H4 یا D1) است و نشانه تغییر روند اصلی است. MSS مهم‌تر از CHoCH است."
+},
+{
+ "question": "در فاز Manipulation، Smart Money چه می‌کند؟",
+ "options": ["در جهت اصلی حرکت می‌کند", "قیمت را در جهت مخالف حرکت می‌دهد تا Retail Traders را فریب دهد", "هیچ کاری نمی‌کند", "فقط مشاهده می‌کند"],
+ "correct": 1,
+ "explanation": "در فاز Manipulation، Smart Money قیمت را در جهت مخالف حرکت می‌دهد تا Retail Traders را فریب دهد و نقدشوندگی جمع‌آوری کند."
+}
+]
+},
+{
+ "id": "c10l4",
+ "title": "ترکیب SMC و ICT در استراتژی معاملاتی",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>یادگیری نحوه ترکیب مفاهیم SMC و ICT برای ساخت یک استراتژی معاملاتی کامل.</p><h3>چرا ترکیب SMC و ICT؟</h3><p>SMC و ICT هر دو بر اساس Smart Money کار می‌کنند، اما هر کدام مفاهیم خاص خود را دارند. ترکیب این دو، استراتژی قوی‌تری می‌سازد.</p><div class='info-box'><strong> فرمول طلایی:</strong> ساختار بازار + نواحی کلیدی (OB/FVG) + Kill Zones + تأیید = ستاپ معاملاتی کامل</div><h3>مراحل استراتژی ترکیبی</h3><ul><li><strong>گام ۱ - تحلیل تایم‌فریم بالا (H4/D1):</strong><ul><li>ساختار بازار را شناسایی کنید (صعودی/نزولی)</li><li>نواحی کلیدی (OB، FVG) را مشخص کنید</li><li>MSS یا CHoCH را بررسی کنید</li></ul></li><li><strong>گام ۲ - تحلیل Kill Zones:</strong><ul><li>منتظر London یا New York Kill Zone باشید</li><li>در این بازه‌ها، الگوها واضح‌تر هستند</li></ul></li><li><strong>گام ۳ - تحلیل تایم‌فریم پایین (M15/M5):</strong><ul><li>منتظر ورود قیمت به نواحی کلیدی باشید</li><li>به دنبال الگوهای ICT (Silver Bullet، OTE) باشید</li><li>تأیید ورود را پیدا کنید</li></ul></li><li><strong>گام ۴ - ورود و مدیریت:</strong><ul><li>Stop Loss زیر/بالای ناحیه کلیدی</li><li>Take Profit در OB/FVG بعدی</li><li>R:R حداقل ۱:</li></ul></li></ul><h3>چک‌لیست ستاپ معاملاتی</h3><ul><li>□ ساختار بازار در H4/D1 مشخص است؟</li><li>□ ناحیه کلیدی (OB/FVG) شناسایی شده؟</li><li>□ در Kill Zone هستیم؟</li><li>□ الگوی ICT (Silver Bullet/OTE) دیده می‌شود؟</li><li>□ تأیید در M15/M5 وجود دارد؟</li><li>□ R:R حداقل :۲ است؟</li><li>□ Stop Loss در جای منطقی است؟</li></ul><div class='warning-box'><strong>⚠️ نکته حیاتی:</strong> اگر حتی یکی از این شرایط برآورده نشده، وارد معامله نشوید! صبر کنید تا ستاپ کامل شود.</div><h3>مثال عملی کامل</h3><p><strong>سناریو:</strong> EUR/USD:</p><ul><li>H4: ساختار صعودی، Bullish OB در 1.0800</li><li>London Kill Zone: ۱۲:۰</li><li>قیمت به 1.0800 می‌رسد</li><li>M15: Silver Bullet شکل می‌گیرد (Sweep در 1.0795، Displacement به 1.0810، Return به 1.0805)</li><li>ورود در 1.0805، Stop Loss در 1.0790، Take Profit در 1.0850</li><li>R:R = ۱:۳</li></ul><h3>مدیریت معامله</h3><ul><li><strong>Break Even:</strong> وقتی قیمت به ۱:۱ رسید، Stop Loss را به نقطه ورود بیاورید</li><li><strong>Partial Profit:</strong> در ۱:۲، نیمی از معامله را ببندید</li><li><strong>Trail Stop:</strong> بقیه معامله را با Stop Loss متحرک نگه دارید</li></ul><h3>خلاصه درس</h3><ul><li>ترکیب SMC و ICT استراتژی قوی‌تری می‌سازد</li><li>فرمول: ساختار + نواحی کلیدی + Kill Zones + تأیید</li><li>همیشه از تایم‌فریم بالا به پایین تحلیل کنید</li><li>فقط در Kill Zones ترید کنید</li><li>اگر ستاپ کامل نیست، وارد نشوید</li><li>مدیریت معامله شامل Break Even و Partial Profit است</li></ul>",
+ "quiz": [
+{
+ "question": "فرمول طلایی استراتژی ترکیبی SMC و ICT چیست؟",
+ "options": ["فقط OB", "ساختار بازار + نواحی کلیدی + Kill Zones + تأیید", "فقط Kill Zones", "فیبوناچی + RSI"],
+ "correct": 1,
+ "explanation": "فرمول طلایی: ساختار بازار + نواحی کلیدی (OB/FVG) + Kill Zones + تأیید = ستاپ معاملاتی کامل."
+},
+{
+ "question": "اگر حتی یکی از شرایط ستاپ برآورده نشده، چه باید کرد؟",
+ "options": ["وارد معامله شویم", "صبر کنیم تا ستاپ کامل شود", "با حجم کمتر وارد شویم", "Stop Loss را کوچک‌تر بگذاریم"],
+ "correct": 1,
+ "explanation": "اگر حتی یکی از شرایط ستاپ برآورده نشده، وارد معامله نشوید! صبر کنید تا ستاپ کامل شود."
+},
+{
+ "question": "Break Even چیست؟",
+ "options": ["بستن معامله با ضرر", "آوردن Stop Loss به نقطه ورود وقتی قیمت به ۱:۱ رسید", "بستن همه معاملات", "افزایش حجم"],
+ "correct": 1,
+ "explanation": "Break Even یعنی وقتی قیمت به ۱: رسید، Stop Loss را به نقطه ورود بیاورید تا معامله بدون ریسک شود."
+}
+]
+}
+]
+},
+{
+ "id": "c11",
+ "level": "پیشرفته",
+ "title": "استراتژی‌های معاملاتی کامل",
+ "lessons": [
+{
+ "id": "c11l1",
+ "title": "استراتژی Breakout و Pullback",
+ "image": "",
+ "content": "<h3> هدف این درس</h3><p>یادگیری دو استراتژی معاملاتی پرکاربرد: Breakout (شکست) و Pullback (بازگشت).</p><h3>استراتژی Breakout چیست؟</h3><p>Breakout یعنی ورود به معامله وقتی قیمت یک سطح مهم (حمایت/مقاومت، خط روند) را می‌شکند. این استراتژی بر اساس ادامه حرکت قیمت بعد از شکست است.</p><div class='info-box'><strong>💡 منطق:</strong> وقتی قیمت یک سطح مهم را می‌شکند، یعنی Smart Money وارد شده و احتمال ادامه حرکت بالاست.</div><h3>انواع Breakout</h3><ul><li><strong>Breakout صعودی:</strong> قیمت مقاومت را به بالا می‌شکند. سیگنال خرید.</li><li><strong>Breakout نزولی:</strong> قیمت حمایت را به پایین می‌شکند. سیگنال فروش.</li></ul><h3>نشانه‌های Breakout معتبر</h3><ul><li><strong>۱. کندل قوی:</strong> بدنه بزرگ (حداقل ۷٪ کل کندل)</li><li><strong>۲. حجم بالا:</strong> حجم معاملات بیشتر از میانگین</li><li><strong>۳. بسته شدن بالای/پایین سطح:</strong> کندل باید بالای مقاومت یا زیر حمایت بسته شود</li><li><strong>۴. تأیید کندل بعدی:</strong> کندل بعدی هم در جهت شکست باشد</li></ul><div class='warning-box'><strong>️ Fakeout:</strong> شکست جعلی رایج است! قیمت سطح را می‌شکند اما سریع برمی‌گردد. برای جلوگیری، منتظر پولبک باشید.</div><h3>استراتژی Pullback چیست؟</h3><p>Pullback یعنی ورود به معامله بعد از شکست، وقتی قیمت به سطح شکسته‌شده برمی‌گردد. این استراتژی ریسک کمتری دارد.</p><h3>مراحل استراتژی Pullback</h3><ul><li><strong>گام ۱:</strong> منتظر شکست معتبر باشید</li><li><strong>گام ۲:</strong> صبر کنید قیمت به سطح شکسته‌شده برگردد</li><li><strong>گام ۳:</strong> به دنبال سیگنال کندلی در پولبک باشید (Hammer، Engulfing)</li><li><strong>گام ۴:</strong> با Stop Loss زیر/بالای سیگنال وارد شوید</li><li><strong>گام ۵:</strong> Take Profit در سطح بعدی</li></ul><h3>مثال عملی</h3><p><strong>سناریو:</strong> EUR/USD:</p><ul><li>مقاومت در 1.0900</li><li>کندل قوی با حجم بالا، 1.0900 را می‌شکند و در 1.0920 بسته می‌شود</li><li>قیمت به 1.0900 برمی‌گردد (پولبک)</li><li>Hammer روی 1.0900 ظاهر می‌شود</li><li>ورود در 1.0910، Stop Loss در 1.0890، Take Profit در 1.0970</li><li>R:R = ۱:۳</li></ul><h3>مقایسه Breakout و Pullback</h3><ul><li><strong>Breakout:</strong> ورود سریع‌تر، ریسک بیشتر (احتمال Fakeout)</li><li><strong>Pullback:</strong> ورود دیرتر، ریسک کمتر، R:R بهتر</li></ul><h3>خلاصه درس</h3><ul><li>Breakout یعنی ورود بعد از شکست سطح مهم</li><li>Breakout معتبر = کندل قوی + حجم بالا + بسته شدن بالای/پایین سطح</li><li>Pullback یعنی ورود بعد از بازگشت قیمت به سطح شکسته‌شده</li><li>Pullback ریسک کمتری دارد</li><li>همیشه منتظر پولبک باشید تا از Fakeout جلوگیری کنید</li></ul>",
+ "quiz": [
+{
+ "question": "نشانه‌های Breakout معتبر چیست؟",
+ "options": ["کندل با بدنه کوچک", "کندل قوی + حجم بالا + بسته شدن بالای/پایین سطح", "حجم کم", "سایه بلند"],
+ "correct": 1,
+ "explanation": "Breakout معتبر با کندل قوی (بدنه بزرگ)، حجم بالا و بسته شدن بالای مقاومت (یا زیر حمایت) مشخص می‌شود."
+},
+{
+ "question": "Pullback چیست؟",
+ "options": ["شکست سطح", "بازگشت قیمت به سطح شکسته‌شده قبل از ادامه حرکت", "تغییر روند", "افزایش حجم"],
+ "correct": 1,
+ "explanation": "Pullback یعنی بعد از شکست، قیمت به سطح شکسته‌شده برمی‌گردد و سپس به حرکت ادامه می‌دهد. این بهترین نقطه ورود است."
+},
+{
+ "question": "تفاوت Breakout و Pullback چیست؟",
+ "options": ["Breakout ریسک کمتر دارد", "Pullback ریسک کمتر و R:R بهتر دارد", "هیچ تفاوتی ندارند", "Breakout فقط در کریپتو کار می‌کند"],
+ "correct": 1,
+ "explanation": "Pullback ریسک کمتری دارد چون بعد از تأیید شکست وارد می‌شوید. R:R هم بهتر است چون Stop Loss کوتاه‌تر است."
+}
+]
+},
+{
+ "id": "c11l2",
+ "title": "استراتژی Range Trading و News Trading",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>یادگیری دو استراتژی معاملاتی دیگر: Range Trading (ترید در رنج) و News Trading (ترید بر اساس اخبار).</p><h3>استراتژی Range Trading چیست؟</h3><p>Range Trading یعنی ترید در بازار رنج (Sideways) که قیمت بین یک سقف و کف مشخص نوسان می‌کند.</p><div class='info-box'><strong>💡 منطق:</strong> در بازار رنج، قیمت از حمایت برمی‌گردد و به مقاومت می‌رسد. می‌توانید در حمایت بخرید و در مقاومت بفروشید.</div><h3>شناسایی بازار رنج</h3><ul><li>قیمت بین دو سطح افقی نوسان می‌کند</li><li>بدون HH/HL یا LH/LL</li><li>معمولاً بعد از یک روند طولانی رخ می‌دهد</li></ul><h3>نحوه ترید در رنج</h3><ul><li><strong>خرید:</strong> وقتی قیمت به حمایت می‌رسد و کندل برگشتی می‌سازد</li><li><strong>فروش:</strong> وقتی قیمت به مقاومت می‌رسد و کندل برگشتی می‌سازد</li><li><strong>Stop Loss:</strong> زیر حمایت (برای خرید) یا بالای مقاومت (برای فروش)</li><li><strong>Take Profit:</strong> مقاومت (برای خرید) یا حمایت (برای فروش)</li></ul><div class='warning-box'><strong>⚠️ نکته:</strong> بازار رنج بالاخره می‌شکند! وقتی شکست رخ داد، در جهت شکست وارد شوید.</div><h3>استراتژی News Trading چیست؟</h3><p>News Trading یعنی ترید بر اساس اخبار اقتصادی مهم. این استراتژی ریسک بالایی دارد اما سودهای بزرگی می‌دهد.</p><h3>اخبار مهم برای ترید</h3><ul><li><strong>NFP (Non-Farm Payrolls):</strong> آمار اشتغال آمریکا. اولین جمعه هر ماه.</li><li><strong>CPI (Consumer Price Index):</strong> شاخص قیمت مصرف‌کننده (تورم).</li><li><strong>FOMC:</strong> تصمیمات فدرال رزرو درباره نرخ بهره.</li><li><strong>GDP:</strong> تولید ناخالص داخلی.</li><li><strong>PMI:</strong> شاخص مدیران خرید.</li></ul><h3>نحوه ترید با اخبار</h3><ul><li><strong>گام ۱:</strong> تقویم اقتصادی را چک کنید (ForexFactory.com)</li><li><strong>گام ۲:</strong> قبل از خبر، نواحی کلیدی را شناسایی کنید</li><li><strong>گام :</strong> بعد از انتشار خبر، منتظر واکنش قیمت باشید</li><li><strong>گام ۴:</strong> در جهت واکنش وارد شوید</li></ul><div class='warning-box'><strong>️ هشدار:</strong> News Trading بسیار پرریسک است! اسپرد به شدت افزایش می‌یابد و لغزش (Slippage) رایج است. فقط تریدرهای حرفه‌ای این استراتژی را استفاده کنند.</div><h3>مثال عملی</h3><p><strong>سناریو:</strong> NFP:</p><ul><li>قبل از خبر، EUR/USD در رنج 1.0850 تا 1.0900</li><li>NFP بهتر از انتظار منتشر می‌شود (دلار قوی می‌شود)</li><li>EUR/USD به 1.0800 سقوط می‌کند</li><li>ورود فروش در 1.0820، Stop Loss در 1.0850، Take Profit در 1.0750</li></ul><h3>خلاصه درس</h3><ul><li>Range Trading در بازار رنج کار می‌کند</li><li>در حمایت بخرید، در مقاومت بفروشید</li><li>News Trading بر اساس اخبار اقتصادی مهم است</li><li>NFP، CPI، FOMC مهم‌ترین اخبار هستند</li><li>News Trading پرریسک است و فقط برای حرفه‌ای‌ها</li></ul>",
+ "quiz": [
+{
+ "question": "Range Trading در چه بازاری کار می‌کند؟",
+ "options": ["بازار روندی", "بازار رنج (Sideways)", "بازار خبری", "همه بازارها"],
+ "correct": 1,
+ "explanation": "Range Trading در بازار رنج کار می‌کند که قیمت بین یک سقف و کف مشخص نوسان می‌کند."
+},
+{
+ "question": "مهم‌ترین اخبار اقتصادی برای News Trading کدامند؟",
+ "options": ["اخبار ورزشی", "NFP، CPI، FOMC", "اخبار سیاسی", "اخبار آب و هوا"],
+ "correct": 1,
+ "explanation": "NFP (آمار اشتغال)، CPI (تورم)، FOMC (تصمیمات فدرال رزرو) مهم‌ترین اخبار اقتصادی برای ترید هستند."
+},
+{
+ "question": "چرا News Trading پرریسک است؟",
+ "options": ["چون اسپرد کم می‌شود", "چون اسپرد افزایش می‌یابد و لغزش رایج است", "چون بازار تعطیل است", "چون فقط در کریپتو کار می‌کند"],
+ "correct": 1,
+ "explanation": "News Trading پرریسک است چون اسپرد به شدت افزایش می‌یابد و لغزش (Slippage) رایج است."
+}
+]
+},
+{
+ "id": "c11l3",
+ "title": "استراتژی Multi-Timeframe Analysis",
+ "image": "",
+ "content": "<h3> هدف این درس</h3><p>یادگیری تحلیل چند تایم‌فریمی (Multi-Timeframe Analysis)، یکی از مهم‌ترین مهارت‌های تریدرهای حرفه‌ای.</p><h3>چرا Multi-Timeframe Analysis مهم است؟</h3><p>هر تایم‌فریم اطلاعات متفاوتی می‌دهد. تایم‌فریم بالا روند کلی را نشان می‌دهد، تایم‌فریم پایین نقاط ورود دقیق را.</p><div class='info-box'><strong>💡 قانون طلایی:</strong> همیشه در جهت تایم‌فریم بالا ترید کنید. اگر H4 صعودی است، در M15 فقط به دنبال خرید باشید.</div><h3>تایم‌فریم‌های پیشنهادی</h3><ul><li><strong>Swing Trading:</strong> D1 (تحلیل)، H4 (تأیید)، H1 (ورود)</li><li><strong>Day Trading:</strong> H4 (تحلیل)، H1 (تأیید)، M15 (ورود)</li><li><strong>Scalping:</strong> H1 (تحلیل)، M15 (تأیید)، M5 (ورود)</li></ul><h3>مراحل Multi-Timeframe Analysis</h3><ul><li><strong>گام ۱ - تایم‌فریم بالا (HTF):</strong><ul><li>ساختار بازار را شناسایی کنید</li><li>نواحی کلیدی (OB، FVG، حمایت/مقاومت) را مشخص کنید</li><li>جهت کلی را تعیین کنید</li></ul></li><li><strong>گام ۲ - تایم‌فریم میانی (MTF):</strong><ul><li>تأیید جهت HTF را پیدا کنید</li><li>الگوهای معاملاتی را شناسایی کنید</li></ul></li><li><strong>گام ۳ - تایم‌فریم پایین (LTF):</strong><ul><li>نقطه ورود دقیق را پیدا کنید</li><li>Stop Loss و Take Profit را تعیین کنید</li></ul></li></ul><h3>مثال عملی</h3><p><strong>سناریو:</strong> EUR/USD Day Trading:</p><ul><li>H4: ساختار صعودی، Bullish OB در 1.0800</li><li>H1: قیمت به 1.0800 نزدیک می‌شود</li><li>M15: کندل برگشتی روی 1.0800</li><li>ورود در 1.0810، Stop Loss در 1.0790، Take Profit در 1.0850</li></ul><div class='warning-box'><strong>⚠️ نکته:</strong> اگر تایم‌فریم‌ها با هم تضاد دارند، وارد معامله نشوید! مثلاً اگر H4 صعودی است اما H1 نزولی، صبر کنید تا هم‌جهت شوند.</div><h3>مزایای Multi-Timeframe Analysis</h3><ul><li>دقت بالاتر در ورود</li><li>Stop Loss کوتاه‌تر</li><li>R:R بهتر</li><li>کاهش معاملات اشتباه</li></ul><h3>خلاصه درس</h3><ul><li>Multi-Timeframe Analysis از سه تایم‌فریم استفاده می‌کند</li><li>HTF جهت کلی را نشان می‌دهد</li><li>LTF نقطه ورود دقیق را نشان می‌دهد</li><li>همیشه در جهت HTF ترید کنید</li><li>اگر تایم‌فریم‌ها تضاد دارند، وارد نشوید</li></ul>",
+ "quiz": [
+{
+ "question": "قانون طلایی Multi-Timeframe Analysis چیست؟",
+ "options": ["در هر جهتی ترید کنید", "همیشه در جهت تایم‌فریم بالا ترید کنید", "فقط در تایم‌فریم پایین ترید کنید", "تایم‌فریم مهم نیست"],
+ "correct": 1,
+ "explanation": "قانون طلایی: همیشه در جهت تایم‌فریم بالا ترید کنید. اگر H4 صعودی است، در M15 فقط به دنبال خرید باشید."
+},
+{
+ "question": "برای Day Trading، کدام تایم‌فریم‌ها پیشنهاد می‌شود؟",
+ "options": ["M1، M5، M15", "H4 (تحلیل)، H1 (تأیید)، M15 (ورود)", "D1، W1، M1", "فقط M15"],
+ "correct": 1,
+ "explanation": "برای Day Trading: H4 برای تحلیل، H1 برای تأیید، M15 برای ورود."
+},
+{
+ "question": "اگر تایم‌فریم‌ها با هم تضاد دارند، چه باید کرد؟",
+ "options": ["وارد معامله شویم", "صبر کنیم تا هم‌جهت شوند", "با حجم کمتر وارد شویم", "Stop Loss را کوچک‌تر بگذاریم"],
+ "correct": 1,
+ "explanation": "اگر تایم‌فریم‌ها تضاد دارند، وارد معامله نشوید! صبر کنید تا هم‌جهت شوند."
+}
+]
+},
+{
+ "id": "c11l4",
+ "title": "بک‌تست و بهینه‌سازی استراتژی",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>یادگیری نحوه بک‌تست (Backtest) و بهینه‌سازی استراتژی معاملاتی.</p><h3>بک‌تست چیست؟</h3><p>بک‌تست یعنی تست کردن استراتژی روی داده‌های گذشته برای دیدن اینکه آیا سودده است یا نه.</p><div class='info-box'><strong>💡 چرا بک‌تست مهم است؟</strong> قبل از اینکه سرمایه واقعی را ریسک کنید، باید بدانید استراتژی شما در گذشته چگونه عمل کرده است.</div><h3>مراحل بک‌تست</h3><ul><li><strong>گام ۱:</strong> استراتژی خود را دقیق تعریف کنید (قوانین ورود، خروج، مدیریت ریسک)</li><li><strong>گام ۲:</strong> داده‌های گذشته را باز کنید (حداقل ۱۰۰ معامله)</li><li><strong>گام ۳:</strong> معامله به معامله پیش بروید و نتایج را ثبت کنید</li><li><strong>گام :</strong> آمار را محاسبه کنید (Win Rate، R:R، Drawdown)</li></ul><h3>آمارهای مهم</h3><ul><li><strong>Win Rate:</strong> درصد معاملات سودده. حداقل ۴۰-۵٪.</li><li><strong>R:R متوسط:</strong> نسبت ریسک به ریوارد. حداقل ۱:۲.</li><li><strong>Profit Factor:</strong> سود کل ÷ ضرر کل. بالای ۱.۵ خوب است.</li><li><strong>Max Drawdown:</strong> بیشترین کاهش سرمایه. زیر ۲۰٪ خوب است.</li><li><strong>تعداد معاملات:</strong> حداقل ۱۰ معامله برای اعتبار آماری.</li></ul><div class='warning-box'><strong>️ Overfitting:</strong> اگر استراتژی را بیش از حد بهینه کنید، فقط روی داده‌های گذشته کار می‌کند و در آینده شکست می‌خورد!</div><h3>بهینه‌سازی استراتژی</h3><ul><li><strong>۱. پارامترها را تغییر دهید:</strong> مثلاً دوره MA را از ۵۰ به ۱۰۰ تغییر دهید</li><li><strong>۲. فیلترها اضافه کنید:</strong> مثلاً فقط در Kill Zones ترید کنید</li><li><strong>۳. شرایط ورود را سخت‌گیرانه‌تر کنید:</strong> مثلاً نیاز به تأیید بیشتر</li><li><strong>۴. بک‌تست مجدد:</strong> بعد از هر تغییر، بک‌تست بگیرید</li></ul><h3>Forward Test</h3><p>بعد از بک‌تست، استراتژی را در حساب دمو تست کنید (Forward Test). این مهم‌تر از بک‌تست است!</p><ul><li>حداقل ۳ ماه در دمو ترید کنید</li><li>نتایج را با بک‌تست مقایسه کنید</li><li>اگر نتایج مشابه بود، وارد حساب واقعی شوید</li></ul><h3>مثال عملی</h3><p><strong>سناریو:</strong> بک‌تست استراتژی Pullback:</p><ul><li>۱۰۰ معامله در EUR/USD H4</li><li>Win Rate: ۵۵٪</li><li>R:R متوسط: ۱:۲.۵</li><li>Profit Factor: ۱.۸</li><li>Max Drawdown: ۱۵٪</li><li>نتیجه: استراتژی سودده است</li></ul><h3>خلاصه درس</h3><ul><li>بک‌تست تست استراتژی روی داده‌های گذشته است</li><li>حداقل ۱۰۰ معامله برای اعتبار آماری</li><li>Win Rate حداقل ۴۰-۵۰٪، R:R حداقل ۱:۲</li><li>از Overfitting جلوگیری کنید</li><li>Forward Test در دمو مهم‌تر از بک‌تست است</li><li>حداقل ۳ ماه در دمو ترید کنید</li></ul>",
+ "quiz": [
+{
+ "question": "بک‌تست چیست؟",
+ "options": ["تست استراتژی در حساب واقعی", "تست استراتژی روی داده‌های گذشته", "تست استراتژی در دمو", "تست استراتژی در تایم‌فریم پایین"],
+ "correct": 1,
+ "explanation": "بک‌تست یعنی تست کردن استراتژی روی داده‌های گذشته برای دیدن اینکه آیا سودده است یا نه."
+},
+{
+ "question": "حداقل چند معامله برای بک‌تست معتبر نیاز است؟",
+ "options": ["۱۰ معامله", "۵۰ معامله", "۱۰۰ معامله", "۱۰۰۰ معامله"],
+ "correct": 2,
+ "explanation": "حداقل ۱۰۰ معامله برای اعتبار آماری بک‌تست نیاز است."
+},
+{
+ "question": "Overfitting چیست؟",
+ "options": ["بهینه‌سازی بیش از حد که فقط روی داده‌های گذشته کار می‌کند", "بک‌تست نکردن", "Forward Test", "استفاده از لوریج بالا"],
+ "correct": 0,
+ "explanation": "Overfitting یعنی بهینه‌سازی بیش از حد استراتژی که فقط روی داده‌های گذشته کار می‌کند و در آینده شکست می‌خورد."
+}
+]
+}
+]
+},
+{
+ "id": "c12",
+ "level": "پیشرفته",
+ "title": "روانشناسی و مدیریت سرمایه پیشرفته",
+ "lessons": [
+{
+ "id": "c12l1",
+ "title": "روانشناسی معامله‌گری حرفه‌ای",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>یادگیری روانشناسی معامله‌گری حرفه‌ای و نحوه کنترل احساسات در ترید.</p><h3>چرا روانشناسی مهم است؟</h3><p>۰٪ موفقیت در ترید به روانشناسی بستگی دارد، نه استراتژی! حتی بهترین استراتژی دنیا بدون روانشناسی قوی، شکست می‌خورد.</p><div class='info-box'><strong>💡 آمار:</strong> ۹٪ تریدرها ضرر می‌کنند. دلیل اصلی؟ نه استراتژی بد، بلکه روانشناسی ضعیف.</div><h3>احساسات مخرب در ترید</h3><ul><li><strong>ترس (Fear):</strong> ترس از ضرر باعث می‌شود زود از معامله خارج شوید یا اصلاً وارد نشوید.</li><li><strong>طمع (Greed):</strong> طمع باعث می‌شود حجم بالا بزنید یا Take Profit را جابجا کنید.</li><li><strong>FOMO (Fear of Missing Out):</strong> ترس از دست دادن فرصت باعث ورود عجولانه می‌شود.</li><li><strong>انتقام (Revenge):</strong> بعد از ضرر، می‌خواهید سریع جبران کنید و بیشتر ضرر می‌کنید.</li><li><strong>اعتماد به نفس کاذب:</strong> بعد از چند سود، فکر می‌کنید شکست‌ناپذیرید و ریسک بالا می‌زنید.</li></ul><h3>نشانه‌های روانشناسی ضعیف</h3><ul><li>جابجا کردن Stop Loss</li><li>بستن زودتر از موعد معامله سودده</li><li>نگه داشتن معامله زیان‌ده به امید برگشت</li><li>ترید بعد از ضرر بزرگ (Revenge Trading)</li><li>افزایش حجم بعد از سود بزرگ</li><li>ترید بدون ستاپ کامل</li></ul><div class='warning-box'><strong>⚠️ قانون طلایی:</strong> اگر احساسی هستید، ترید نکنید! بازار فردا هم هست.</div><h3>راه‌های تقویت روانشناسی</h3><ul><li><strong>۱. ژورنال‌نویسی:</strong> هر معامله را ثبت کنید (چرا وارد شدید؟ چه احساسی داشتید؟)</li><li><strong>۲. برنامه معاملاتی:</strong> قوانین مشخص داشته باشید و به آن‌ها پایبند باشید</li><li><strong>۳. مدیریت ریسک:</strong> حداکثر -۲٪ ریسک در هر معامله</li><li><strong>۴. استراحت:</strong> بعد از ضرر بزرگ، حداقل یک روز استراحت کنید</li><li><strong>۵. مدیتیشن:</strong> برای کنترل استرس و افزایش تمرکز</li><li><strong>۶. ورزش:</strong> برای سلامت روان و جسم</li></ul><h3>مثال عملی</h3><p><strong>سناریو:</strong> بعد از ۳ ضرر متوالی:</p><ul><li>احساس: خشم، ناامیدی، می‌خواهید جبران کنید</li><li>اشتباه: افزایش حجم، ورود بدون ستاپ</li><li>درست: استراحت یک روز، بررسی ژورنال، بازگشت با ذهن آرام</li></ul><h3>خلاصه درس</h3><ul><li>۹۰٪ موفقیت در ترید به روانشناسی بستگی دارد</li><li>احساسات مخرب: ترس، طمع، FOMO، انتقام</li><li>اگر احساسی هستید، ترید نکنید</li><li>ژورنال‌نویسی مهم‌ترین ابزار تقویت روانشناسی است</li><li>بعد از ضرر بزرگ، استراحت کنید</li></ul>",
+ "quiz": [
+{
+ "question": "چند درصد موفقیت در ترید به روانشناسی بستگی دارد؟",
+ "options": ["۰٪", "۵۰٪", "۹۰٪", "۱۰۰٪"],
+ "correct": 2,
+ "explanation": "۹۰٪ موفقیت در ترید به روانشناسی بستگی دارد، نه استراتژی!"
+},
+{
+ "question": "FOMO چیست؟",
+ "options": ["ترس از ضرر", "ترس از دست دادن فرصت", "طمع", "انتقام"],
+ "correct": 1,
+ "explanation": "FOMO (Fear of Missing Out) ترس از دست دادن فرصت است که باعث ورود عجولانه می‌شود."
+},
+{
+ "question": "بعد از ۳ ضرر متوالی، چه باید کرد؟",
+ "options": ["افزایش حجم برای جبران", "ورود بدون ستاپ", "استراحت یک روز و بررسی ژورنال", "ترید بیشتر"],
+ "correct": 2,
+ "explanation": "بعد از ضرر بزرگ، حداقل یک روز استراحت کنید، ژورنال را بررسی کنید و با ذهن آرام برگردید."
+}
+]
+},
+{
+ "id": "c12l2",
+ "title": "مدیریت سرمایه پیشرفته (Kelly Criterion)",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>یادگیری مدیریت سرمایه پیشرفته با Kelly Criterion و Risk of Ruin.</p><h3>Kelly Criterion چیست؟</h3><p>Kelly Criterion فرمولی است که حجم بهینه معامله را بر اساس Win Rate و R:R محاسبه می‌کند.</p><div class='info-box'><strong>💡 فرمول:</strong> Kelly % = Win Rate - [(1 - Win Rate)  R:R]</div><h3>مثال Kelly Criterion</h3><p>فرض کنید:</p><ul><li>Win Rate: ۵۵٪</li><li>R:R: ۱:۲</li><li>Kelly % = ۰.۵ - [(۱ - ۰.۵۵) ÷ ۲] = .۵۵ - ۰.۲۵ = ۰.۳۲۵ = ۳۲.۵٪</li></ul><p>این یعنی ۳۲.۵٪ سرمایه را ریسک کنید! اما این خیلی زیاد است. معمولاً از Half Kelly (نصف Kelly) استفاده می‌کنند: ۱۶.۲۵٪.</p><div class='warning-box'><strong>⚠️ نکته:</strong> Kelly Criterion برای تریدرهای حرفه‌ای با Win Rate و R:R ثابت است. برای مبتدیان، قانون ۱-۲٪ بهتر است.</div><h3>Risk of Ruin چیست؟</h3><p>Risk of Ruin احتمال از دست دادن کل سرمایه است. این به Win Rate، R:R و حجم ریسک بستگی دارد.</p><h3>جدول Risk of Ruin</h3><ul><li>ریسک ۱٪ در هر معامله: Risk of Ruin ≈ ۰٪</li><li>ریسک ۲٪ در هر معامله: Risk of Ruin ≈ ۱٪</li><li>ریسک ۵٪ در هر معامله: Risk of Ruin ≈ ۱۵٪</li><li>ریسک ۱۰٪ در هر معامله: Risk of Ruin ≈ ۵۰٪!</li></ul><div class='info-box'><strong>💡 نتیجه:</strong> هرچه ریسک در هر معامله بیشتر شود، Risk of Ruin به شدت افزایش می‌یابد!</div><h3>Compounding (سود مرکب)</h3><p>Compounding یعنی سود را دوباره سرمایه‌گذاری کنید. این باعث رشد نمایی سرمایه می‌شود.</p><p><strong>مثال:</strong> ۱۰۰ دلار با ۵٪ سود ماهانه:</p><ul><li>ماه ۱: ۱۵۰ دلار</li><li>ماه ۲: ۱۱۰۲ دلار</li><li>ماه ۲: ۱۷۹۵ دلار</li><li>ماه ۴: ۳۲۲ دلار</li></ul><h3>Drawdown و Recovery</h3><ul><li>Drawdown ۱۰٪ → نیاز به ۱۱.۱٪ سود برای جبران</li><li>Drawdown ۰٪ → نیاز به ۲۵٪ سود</li><li>Drawdown ۰٪ → نیاز به ۱۰۰٪ سود!</li></ul><h3>خلاصه درس</h3><ul><li>Kelly Criterion حجم بهینه معامله را محاسبه می‌کند</li><li>معمولاً از Half Kelly استفاده می‌کنند</li><li>Risk of Ruin با افزایش ریسک، به شدت افزایش می‌یابد</li><li>Compounding باعث رشد نمایی سرمایه می‌شود</li><li>Drawdown بیشتر = جبران سخت‌تر</li></ul>",
+ "quiz": [
+{
+ "question": "Kelly Criterion چیست؟",
+ "options": ["فرمول محاسبه حجم بهینه معامله", "فرمول محاسبه سود", "فرمول محاسبه ضرر", "فرمول محاسبه لوریج"],
+ "correct": 0,
+ "explanation": "Kelly Criterion فرمولی است که حجم بهینه معامله را بر اساس Win Rate و R:R محاسبه می‌کند."
+},
+{
+ "question": "اگر ریسک ۱٪ در هر معامله باشد، Risk of Ruin چقدر است؟",
+ "options": ["۰٪", "۱٪", "۱۵٪", "۵۰٪"],
+ "correct": 3,
+ "explanation": "اگر ریسک ۱۰٪ در هر معامله باشد، Risk of Ruin حدود ۵٪ است! این خیلی بالاست."
+},
+{
+ "question": "Compounding چیست؟",
+ "options": ["ضرر مرکب", "سود مرکب (سود را دوباره سرمایه‌گذاری کردن)", "ریسک مرکب", "لوریج مرکب"],
+ "correct": 1,
+ "explanation": "Compounding یعنی سود را دوباره سرمایه‌گذاری کنید. این باعث رشد نمایی سرمایه می‌شود."
+}
+]
+},
+{
+ "id": "c12l3",
+ "title": "ژورنال‌نویسی حرفه‌ای",
+ "image": "",
+ "content": "<h3>🎯 هدف این درس</h3><p>یادگیری ژورنال‌نویسی حرفه‌ای و نحوه استفاده از آن برای بهبود عملکرد.</p><h3>ژورنال‌نویسی چیست؟</h3><p>ژورنال‌نویسی ثبت دقیق تمام معاملات است. این مهم‌ترین ابزار برای بهبود عملکرد تریدر است.</p><div class='info-box'><strong>💡 چرا ژورنال مهم است؟</strong> بدون ژورنال، نمی‌دانید کجا اشتباه می‌کنید و کجا درست عمل می‌کنید. ژورنال آینه عملکرد شماست.</div><h3>اطلاعاتی که باید ثبت کنید</h3><ul><li><strong>تاریخ و ساعت:</strong> کی وارد شدید؟</li><li><strong>جفت ارز/رمزارز:</strong> چه چیزی ترید کردید؟</li><li><strong>جهت:</strong> خرید یا فروش؟</li><li><strong>حجم:</strong> چند لات؟</li><li><strong>نقطه ورود:</strong> قیمت ورود</li><li><strong>Stop Loss:</strong> کجا گذاشتید؟</li><li><strong>Take Profit:</strong> کجا گذاشتید؟</li><li><strong>نقطه خروج:</strong> قیمت خروج</li><li><strong>سود/ضرر:</strong> چقدر سود/ضرر کردید؟</li><li><strong>ستاپ:</strong> چه الگویی دیدید؟</li><li><strong>احساسات:</strong> چه احساسی داشتید؟</li><li><strong>تصویر چارت:</strong> اسکرین‌شات از معامله</li></ul><h3>نحوه استفاده از ژورنال</h3><ul><li><strong>۱. بررسی هفتگی:</strong> هر هفته ژورنال را مرور کنید</li><li><strong>۲. شناسایی الگوها:</strong> کدام ستاپ‌ها سودده‌ترند؟</li><li><strong>۳. شناسایی اشتباهات:</strong> کجا اشتباه می‌کنید؟</li><li><strong>۴. بهبود:</strong> اشتباهات را اصلاح کنید</li></ul><div class='warning-box'><strong>⚠️ نکته:</strong> ژورنال‌نویسی بدون بررسی بی‌فایده است! باید مرتب ژورنال را مرور کنید.</div><h3>ابزارهای ژورنال‌نویسی</h3><ul><li><strong>Excel/Google Sheets:</strong> ساده و رایگان</li><li><strong>Notion:</strong> انعطاف‌پذیر و زیبا</li><li><strong>Trading Journal Software:</strong> مثل Edgewonk، TraderSync</li></ul><h3>مثال ژورنال</h3><p><strong>معامله ۱:</strong></p><ul><li>تاریخ: ۲۰۲-۰۱-۱۵</li><li>جفت ارز: EUR/USD</li><li>جهت: خرید</li><li>حجم: ۰.۱۰ لات</li><li>ورود: 1.0810</li><li>SL: 1.0790</li><li>TP: 1.0850</li><li>خروج: 1.0850</li><li>سود: ۴۰ دلار</li><li>ستاپ: Bullish OB + Silver Bullet</li><li>احساسات: آرام</li></ul><h3>خلاصه درس</h3><ul><li>ژورنال‌نویسی ثبت دقیق تمام معاملات است</li><li>مهم‌ترین ابزار برای بهبود عملکرد</li><li>اطلاعات کامل را ثبت کنید</li><li>هر هفته ژورنال را مرور کنید</li><li>الگوها و اشتباهات را شناسایی کنید</li></ul>",
+ "quiz": [
+{
+ "question": "ژورنال‌نویسی چیست؟",
+ "options": ["ثبت اخبار", "ثبت دقیق تمام معاملات", "ثبت تحلیل‌ها", "ثبت احساسات"],
+ "correct": 1,
+ "explanation": "ژورنال‌نویسی ثبت دقیق تمام معاملات است. این مهم‌ترین ابزار برای بهبود عملکرد تریدر است."
+},
+{
+ "question": "چرا ژورنال مهم است؟",
+ "options": ["چون زیبا است", "چون بدون آن نمی‌دانید کجا اشتباه می‌کنید", "چون اجباری است", "چون سود می‌دهد"],
+ "correct": 1,
+ "explanation": "بدون ژورنال، نمی‌دانید کجا اشتباه می‌کنید و کجا درست عمل می‌کنید. ژورنال آینه عملکرد شماست."
+},
+{
+ "question": "چند وقت یکبار باید ژورنال را مرور کرد؟",
+ "options": ["هر روز", "هر هفته", "هر ماه", "هر سال"],
+ "correct": 1,
+ "explanation": "هر هفته ژورنال را مرور کنید تا الگوها و اشتباهات را شناسایی کنید."
+}
+]
+},
+{
+ "id": "c12l4",
+ "title": "ساخت برنامه معاملاتی کامل",
+ "image": "",
+ "content": "<h3> هدف این درس</h3><p>یادگیری نحوه ساخت برنامه معاملاتی (Trading Plan) کامل و حرفه‌ای.</p><h3>برنامه معاملاتی چیست؟</h3><p>برنامه معاملاتی سند مکتوبی است که تمام قوانین ترید شما را مشخص می‌کند. این مانند نقشه راه برای ترید است.</p><div class='info-box'><strong>💡 چرا برنامه معاملاتی مهم است؟</strong> بدون برنامه، ترید یعنی قمار! برنامه معاملاتی به شما کمک می‌کند احساسات را کنترل کنید و منظم ترید کنید.</div><h3>اجزای برنامه معاملاتی</h3><ul><li><strong>۱. اهداف:</strong> اهداف کوتاه‌مدت و بلندمدت</li><li><strong>۲. استراتژی:</strong> قوانین ورود و خروج</li><li><strong>۳. مدیریت ریسک:</strong> حداکثر ریسک در هر معامله</li><li><strong>۴. زمان‌بندی:</strong> کی ترید می‌کنید؟</li><li><strong>۵. ژورنال‌نویسی:</strong> نحوه ثبت معاملات</li><li><strong>۶. بررسی عملکرد:</strong> کی ژورنال را مرور می‌کنید؟</li></ul><h3>مثال برنامه معاملاتی</h3><p><strong>اهداف:</strong></p><ul><li>کوتاه‌مدت: ۵٪ سود ماهانه</li><li>بلندمدت: ۵۰٪ سود سالانه</li></ul><p><strong>استراتژی:</strong></p><ul><li>فقط در London و New York Kill Zones ترید کن</li><li>فقط با ستاپ SMC/ICT وارد شو</li><li>حداکثر ۲ معامله در روز</li></ul><p><strong>مدیریت ریسک:</strong></p><ul><li>حداکثر ۱٪ ریسک در هر معامله</li><li>حداکثر ۳٪ ریسک در روز</li><li>R:R حداقل ۱:</li></ul><p><strong>زمان‌بندی:</strong></p><ul><li>London Kill Zone: ۱۱:۳۰ تا ۱۴:۰</li><li>New York Kill Zone: ۱۶:۳۰ تا ۱۹:۳۰</li></ul><p><strong>ژورنال‌نویسی:</strong></p><ul><li>هر معامله را در Google Sheets ثبت کن</li><li>هر هفته ژورنال را مرور کن</li></ul><div class='warning-box'><strong>⚠️ نکته:</strong> برنامه معاملاتی را بنویسید و جایی بگذارید که ببینید! قبل از هر معامله، برنامه را مرور کنید.</div><h3>نحوه استفاده از برنامه معاملاتی</h3><ul><li><strong>قبل از ترید:</strong> برنامه را مرور کنید</li><li><strong>حین ترید:</strong> به برنامه پایبند باشید</li><li><strong>بعد از ترید:</strong> ژورنال را ثبت کنید</li><li><strong>هفتگی:</strong> برنامه را بررسی و بهینه کنید</li></ul><h3>خلاصه درس</h3><ul><li>برنامه معاملاتی سند مکتوب قوانین ترید است</li><li>بدون برنامه، ترید یعنی قمار</li><li>اجزا: اهداف، استراتژی، مدیریت ریسک، زمان‌بندی، ژورنال</li><li>برنامه را بنویسید و جایی بگذارید که ببینید</li><li>قبل از هر معامله، برنامه را مرور کنید</li></ul>",
+ "quiz": [
+{
+ "question": "برنامه معاملاتی چیست؟",
+ "options": ["لیست معاملات", "سند مکتوب قوانین ترید", "لیست اخبار", "لیست جفت ارزها"],
+ "correct": 1,
+ "explanation": "برنامه معاملاتی سند مکتوبی است که تمام قوانین ترید شما را مشخص می‌کند."
+},
+{
+ "question": "بدون برنامه معاملاتی، ترید یعنی چه؟",
+ "options": ["سرمایه‌گذاری", "قمار", "تحلیل", "آموزش"],
+ "correct": 1,
+ "explanation": "بدون برنامه، ترید یعنی قمار! برنامه معاملاتی به شما کمک می‌کند احساسات را کنترل کنید."
+},
+{
+ "question": "حداکثر ریسک در هر معامله چقدر باید باشد؟",
+ "options": ["۵٪", "۰٪", "۱-۲٪", "۲۰٪"],
+ "correct": 2,
+ "explanation": "حداکثر ۱-۲٪ ریسک در هر معامله توصیه می‌شود."
+}
+]
+}
+]
+}
+]
+}
