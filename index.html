@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1D9E75">
-  <title>آکادمی ترید | آموزش حرفه‌ای</title>
+  <title>آکادمی ترید</title>
   <link rel="manifest" href="manifest.json">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #F7F7F5; color: #2C3E50; line-height: 1.6; padding-bottom: 100px; }
+    body { font-family: Tahoma, Arial, sans-serif; background: #F7F7F5; color: #2C3E50; line-height: 1.6; padding-bottom: 100px; }
     .container { max-width: 800px; margin: 0 auto; padding: 16px; }
     .header { background: linear-gradient(135deg, #1D9E75 0%, #15785A 100%); color: white; padding: 24px 20px; border-radius: 16px; margin-bottom: 20px; text-align: center; }
     .header h1 { font-size: 24px; margin-bottom: 8px; }
@@ -17,7 +17,6 @@
     .nav-tab { flex: 1; padding: 12px; text-align: center; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; }
     .nav-tab.active { background: #1D9E75; color: white; }
     .level-card { background: white; border-radius: 16px; padding: 32px 20px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); cursor: pointer; text-align: center; }
-    .level-card:active { transform: scale(0.98); }
     .level-icon { font-size: 56px; margin-bottom: 12px; }
     .level-title { font-size: 22px; font-weight: 800; color: #1D9E75; margin-bottom: 8px; }
     .level-count { color: #7F8C8D; font-size: 15px; font-weight: 500; }
@@ -31,8 +30,6 @@
     .lesson-title { flex: 1; font-size: 16px; font-weight: 500; }
     .lesson-content { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .lesson-image { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; display: block; }
-    .lesson-images { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 8px; }
-    .lesson-images img { min-width: 200px; height: 150px; object-fit: cover; border-radius: 8px; }
     .image-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); border-radius: 12px; margin-bottom: 20px; display: none; align-items: center; justify-content: center; font-size: 72px; color: #1D9E75; }
     .lesson-content h3 { color: #1D9E75; margin: 20px 0 12px 0; font-size: 20px; }
     .lesson-content p { margin-bottom: 12px; text-align: justify; }
@@ -58,6 +55,13 @@
     .back-button { position: fixed; bottom: 20px; left: 20px; right: 20px; background: #1D9E75; color: white; border: none; padding: 16px 24px; border-radius: 50px; cursor: pointer; font-size: 18px; font-weight: 700; box-shadow: 0 4px 12px rgba(29, 158, 117, 0.4); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 1000; }
     .back-icon { font-size: 24px; font-weight: 900; }
     .loading { text-align: center; padding: 40px; color: #7F8C8D; font-size: 18px; }
+    @media (max-width: 600px) {
+      .container { padding: 12px; }
+      .header h1 { font-size: 20px; }
+      .level-title { font-size: 18px; }
+      .course-title { font-size: 16px; }
+      .back-button { font-size: 16px; padding: 14px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -92,21 +96,21 @@
     function getLessonIcon(title) {
       title = title.toLowerCase();
       if (title.includes('کندل') || title.includes('الگو')) return '🕯️';
-      if (title.includes('بلاکچین') || title.includes('کریپتو') || title.includes('رمز')) return '🔗';
+      if (title.includes('بلاکچین') || title.includes('کریپتو') || title.includes('رمز')) return '';
       if (title.includes('کیف پول')) return '👛';
-      if (title.includes('بازار')) return '📊';
-      if (title.includes('فارکس') || title.includes('ارز')) return '💱';
-      if (title.includes('حمایت') || title.includes('مقاومت')) return '📈';
-      if (title.includes('روند')) return '';
-      if (title.includes('پرایس اکشن')) return '💹';
+      if (title.includes('بازار')) return '';
+      if (title.includes('فارکس') || title.includes('ارز')) return '';
+      if (title.includes('حمایت') || title.includes('مقاومت')) return '';
+      if (title.includes('روند')) return '📉';
+      if (title.includes('پرایس اکشن')) return '';
       if (title.includes('لوریج') || title.includes('مارجین')) return '⚖️';
-      if (title.includes('ریسک') || title.includes('مدیریت سرمایه')) return '️';
-      if (title.includes('آزمون') || title.includes('تست')) return '';
+      if (title.includes('ریسک') || title.includes('مدیریت سرمایه')) return '🛡️';
+      if (title.includes('آزمون') || title.includes('تست')) return '📝';
       if (title.includes('اسمارت') || title.includes('smart')) return '🧠';
       if (title.includes('ict') || title.includes('kill zone')) return '🎯';
-      if (title.includes('استراتژی')) return '️';
-      if (title.includes('روانشناسی') || title.includes('ژورنال')) return '🧘';
-      return '';
+      if (title.includes('استراتژی')) return '⚙️';
+      if (title.includes('روانشناسی') || title.includes('ژورنال')) return '';
+      return '📚';
     }
 
     async function initApp() {
@@ -128,7 +132,7 @@
         handleRoute();
       } catch (error) {
         console.error('Error:', error);
-        document.getElementById('app').innerHTML = '<div class="loading">❌ خطا در بارگذاری. لطفاً صفحه را رفرش کنید.</div>';
+        document.getElementById('app').innerHTML = '<div class="loading"> خطا در بارگذاری. لطفاً صفحه را رفرش کنید.</div>';
       }
     }
 
@@ -240,7 +244,6 @@
       const cleanUrl = getCleanImageUrl(currentLesson.image);
       const hasImage = cleanUrl && !cleanUrl.includes('PENDING');
       
-      // پشتیبانی از چند تصویر (images array)
       const imagesArray = currentLesson.images || [];
       const hasMultipleImages = imagesArray.length > 0;
 
@@ -339,7 +342,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? ' خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container">
           <div class="quiz-result">
