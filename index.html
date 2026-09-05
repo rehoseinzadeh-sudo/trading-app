@@ -55,24 +55,23 @@
     .back-button { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); width: 180px; background: #6366F1; color: white; border: none; padding: 10px 16px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 1000; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
     
-    /* ===== استایل‌های دمو تریدینگ (شبیه CoinEx) ===== */
-    .trade-page { background: white; min-height: 100vh; padding-bottom: 60px; }
+    /* ===== استایل‌های دمو تریدینگ (LTR) ===== */
+    .trade-page { background: white; min-height: 100vh; padding-bottom: 60px; direction: ltr; text-align: left; }
     
-    /* هدر جفت ارز - چپ به راست */
+    /* هدر جفت ارز - سمت راست */
     .trade-header { background: white; padding: 12px 16px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
     .pair-info { display: flex; align-items: center; gap: 12px; }
     .pair-selector { display: flex; align-items: center; gap: 6px; cursor: pointer; }
-    .pair-name { font-size: 16px; font-weight: 700; color: #1A1A1A; direction: ltr; text-align: left; }
+    .pair-name { font-size: 16px; font-weight: 700; color: #1A1A1A; }
     .pair-dropdown { font-size: 10px; color: #7F8C8D; }
-    .pair-change { font-size: 13px; color: #0ECB81; font-weight: 600; direction: ltr; }
+    .pair-change { font-size: 13px; color: #0ECB81; font-weight: 600; }
     .chart-toggle { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: #F5F5F5; border-radius: 6px; }
-    .chart-toggle svg { width: 20px; height: 20px; }
     
     /* لایه اصلی: دو ستون */
     .trade-main { display: flex; gap: 12px; padding: 12px; }
     
     /* ستون چپ: فرم سفارش */
-    .trade-form-col { flex: 1; max-width: 45%; }
+    .trade-form-col { flex: 1; max-width: 55%; }
     .trade-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
     .trade-tab { flex: 1; padding: 10px; border: none; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; background: #F5F5F5; color: #7F8C8D; }
     .trade-tab.buy { background: #0ECB81; color: white; }
@@ -84,7 +83,7 @@
     
     .form-group { margin-bottom: 12px; }
     .form-label { font-size: 12px; color: #7F8C8D; margin-bottom: 6px; display: block; }
-    .form-input { width: 100%; padding: 10px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 4px; color: #1A1A1A; font-size: 13px; direction: ltr; text-align: left; }
+    .form-input { width: 100%; padding: 10px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 4px; color: #1A1A1A; font-size: 13px; }
     .form-input:focus { outline: none; border-color: #F0B90B; }
     
     .amount-slider { margin-bottom: 16px; }
@@ -96,7 +95,7 @@
     .slider-markers { display: flex; justify-content: space-between; margin-top: 6px; }
     .slider-marker { width: 6px; height: 6px; background: #E0E0E0; border-radius: 50%; }
     
-    .trade-info-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12px; border-bottom: 1px solid #F5F5F5; direction: ltr; text-align: left; }
+    .trade-info-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12px; border-bottom: 1px solid #F5F5F5; }
     .trade-info-label { color: #7F8C8D; }
     .trade-info-value { color: #1A1A1A; font-weight: 500; }
     
@@ -109,29 +108,29 @@
     .submit-btn.sell { background: #F64653; color: white; }
     
     /* ستون راست: Order Book */
-    .order-book-col { flex: 1; max-width: 55%; }
-    .price-display { text-align: center; padding: 12px 0; }
-    .current-price { font-size: 28px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; direction: ltr; }
-    .price-change-text { font-size: 12px; color: #7F8C8D; direction: ltr; }
+    .order-book-col { flex: 1; max-width: 45%; }
+    .price-display { text-align: left; padding: 12px 0; }
+    .current-price { font-size: 28px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
+    .price-change-text { font-size: 12px; color: #7F8C8D; }
     
     .order-book { background: white; border: 1px solid #E8E8E8; border-radius: 6px; overflow: hidden; }
-    .order-header { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 6px 10px; background: #F5F5F5; font-size: 11px; color: #7F8C8D; font-weight: 500; direction: ltr; text-align: left; }
-    .order-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 4px 10px; font-size: 12px; cursor: pointer; direction: ltr; text-align: left; }
+    .order-header { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 6px 10px; background: #F5F5F5; font-size: 11px; color: #7F8C8D; font-weight: 500; }
+    .order-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 4px 10px; font-size: 11px; cursor: pointer; }
     .order-row.ask { background: rgba(246, 70, 83, 0.08); }
     .order-row.bid { background: rgba(14, 203, 129, 0.08); }
     .order-row .price { font-weight: 600; }
     .order-row .price.ask { color: #F64653; }
     .order-row .price.bid { color: #0ECB81; }
-    .order-row .amount { color: #1A1A1A; text-align: left; }
-    .order-row .total { color: #7F8C8D; text-align: left; font-size: 11px; }
+    .order-row .amount { color: #1A1A1A; text-align: right; }
+    .order-row .total { color: #7F8C8D; text-align: right; font-size: 10px; }
     
-    /* تب‌های پوزیشن - چپ به راست */
-    .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; margin-top: 12px; direction: ltr; text-align: left; }
+    /* تب‌های پوزیشن */
+    .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; margin-top: 12px; }
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 13px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
     
     .positions-content { padding: 12px; }
-    .position-item { background: #F5F5F5; border-radius: 6px; padding: 12px; margin-bottom: 8px; direction: ltr; text-align: left; }
+    .position-item { background: #F5F5F5; border-radius: 6px; padding: 12px; margin-bottom: 8px; }
     .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .position-pair { font-size: 14px; font-weight: 700; color: #1A1A1A; }
     .position-side { font-size: 12px; padding: 3px 8px; border-radius: 3px; font-weight: 600; }
@@ -167,15 +166,19 @@
     .indicator-btn { padding: 6px 12px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 11px; cursor: pointer; white-space: nowrap; }
     .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     
-    .indicator-charts { height: 200px; background: white; border-top: 1px solid #E8E8E8; overflow-y: auto; }
-    .indicator-item { padding: 8px 16px; border-bottom: 1px solid #F0F0F0; }
-    .indicator-name { font-size: 12px; font-weight: 600; color: #1A1A1A; margin-bottom: 4px; }
-    .indicator-value { font-size: 11px; color: #7F8C8D; }
+    .indicator-charts { height: 150px; background: white; border-top: 1px solid #E8E8E8; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .trade-main { flex-direction: column; }
+      .trade-form-col, .order-book-col { max-width: 100%; }
+      .current-price { font-size: 24px; }
+    }
   </style>
 </head>
 <body>
   <div class="container" id="app">
-    <div class="loading">⏳ در حال بارگذاری...</div>
+    <div class="loading"> در حال بارگذاری...</div>
   </div>
 
   <script>
@@ -192,6 +195,8 @@
     let activeTab = 'positions';
     let activeIndicators = [];
     let chartData = [];
+    let indicatorSeries = {};
+    let positionLines = {};
 
     function cleanJsonKeys(obj) {
       if (Array.isArray(obj)) return obj.map(item => cleanJsonKeys(item));
@@ -211,18 +216,18 @@
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '🔗';
-      if (t.includes('کیف پول')) return '';
-      if (t.includes('بازار')) return '📊';
+      if (t.includes('بلاکچین') || t.includes('کریپتو') || t.includes('رمز')) return '';
+      if (t.includes('کیف پول')) return '👛';
+      if (t.includes('بازار')) return '';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
-      if (t.includes('حمایت') || t.includes('مقاومت')) return '';
+      if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
-      if (t.includes('پرایس اکشن')) return '';
+      if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک') || t.includes('مدیریت سرمایه')) return '🛡️';
       if (t.includes('آزمون') || t.includes('تست')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
-      if (t.includes('ict') || t.includes('kill zone')) return '🎯';
+      if (t.includes('ict') || t.includes('kill zone')) return '';
       if (t.includes('استراتژی')) return '⚙️';
       if (t.includes('روانشناسی') || t.includes('ژورنال')) return '🧘';
       return '📚';
@@ -287,8 +292,8 @@
     function renderHome() {
       const levels = [
         { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
-        { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
-        { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
+        { id: 'intermediate', icon: '', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'advanced', icon: '', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `
         <div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
@@ -335,7 +340,7 @@
       const lessons = currentCourse.lessons || [];
       let html = `<div class="header"><h1>${currentCourse.title}</h1><p>${lessons.length} درس</p></div>`;
       if (lessons.length === 0) {
-        html += `<div class="loading">️ این دوره هنوز درسی ندارد</div>`;
+        html += `<div class="loading">⚠️ این دوره هنوز درسی ندارد</div>`;
       } else {
         lessons.forEach((l, i) => {
           html += `<div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')"><div class="lesson-number">${i + 1}</div><div class="lesson-title">${l.title}</div></div>`;
@@ -362,7 +367,7 @@
       } else {
         imageHtml = `<div style="width:100%;height:180px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:10px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:64px;color:#1D9E75">${lessonIcon}</div>`;
       }
-      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${currentLesson.quiz && currentLesson.quiz.length > 0 ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div><button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')">↶ بازگشت</button>`;
+      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${currentLesson.quiz && currentLesson.quiz.length > 0 ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div><button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')"> بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
       window.scrollTo(0, 0);
     }
@@ -394,12 +399,10 @@
               </div>
               <span class="pair-change">+0.53%</span>
             </div>
-            <div class="chart-toggle" onclick="openChartModal()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
+            <div class="chart-toggle" onclick="openChartModal()" title="Open Chart">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 3v18h18"/>
+                <path d="M7 14l4-4 4 4 5-5"/>
               </svg>
             </div>
           </div>
@@ -425,7 +428,7 @@
               </div>
 
               <div class="amount-slider">
-                <div class="slider-container">
+                <div class="slider-container" id="sliderContainer">
                   <div class="slider-track"></div>
                   <div class="slider-fill" id="sliderFill"></div>
                   <div class="slider-dot" id="sliderDot"></div>
@@ -513,11 +516,8 @@
               <button class="indicator-btn" onclick="toggleIndicator('MA')">MA</button>
               <button class="indicator-btn" onclick="toggleIndicator('EMA')">EMA</button>
               <button class="indicator-btn" onclick="toggleIndicator('BOLL')">BOLL</button>
-              <button class="indicator-btn" onclick="toggleIndicator('SAR')">SAR</button>
-              <button class="indicator-btn" onclick="toggleIndicator('VOLUME')">VOLUME</button>
-              <button class="indicator-btn" onclick="toggleIndicator('MACD')">MACD</button>
-              <button class="indicator-btn" onclick="toggleIndicator('KDJ')">KDJ</button>
               <button class="indicator-btn" onclick="toggleIndicator('RSI')">RSI</button>
+              <button class="indicator-btn" onclick="toggleIndicator('MACD')">MACD</button>
             </div>
             <div class="indicator-charts" id="indicatorCharts"></div>
           </div>
@@ -541,6 +541,7 @@
     function closeChartModal() {
       document.getElementById('chartModal').classList.remove('active');
       if (chart) { chart.remove(); chart = null; }
+      indicatorSeries = {};
     }
 
     function setupResize() {
@@ -590,7 +591,7 @@
       if (!container) return;
       
       if (typeof LightweightCharts === 'undefined') {
-        container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>';
+        container.innerHTML = '<div class="empty-state"> خطا در بارگذاری چارت</div>';
         return;
       }
       
@@ -625,7 +626,8 @@
             candleSeries.setData(chartData);
             currentPrice = chartData[chartData.length - 1].close;
             updatePriceDisplay();
-            renderIndicators();
+            drawPositionLines();
+            drawIndicators();
           })
           .catch(err => {
             console.error('Error fetching historical data:', err);
@@ -645,6 +647,7 @@
           if (candleSeries) candleSeries.update(candle);
           currentPrice = candle.close;
           updatePriceDisplay();
+          updatePositionsPnL();
         };
         ws.onerror = (err) => console.error('WebSocket error:', err);
       } catch (err) {
@@ -657,6 +660,7 @@
       currentTimeframe = tf;
       if (ws) { ws.close(); ws = null; }
       if (chart) { chart.remove(); chart = null; }
+      indicatorSeries = {};
       initChart();
     }
 
@@ -667,8 +671,8 @@
       } else {
         activeIndicators.push(indicator);
       }
-      renderIndicators();
       updateIndicatorButtons();
+      drawIndicators();
     }
 
     function updateIndicatorButtons() {
@@ -677,79 +681,291 @@
       });
     }
 
-    function renderIndicators() {
+    function drawIndicators() {
+      if (!chart || !candleSeries || chartData.length === 0) return;
+      
+      // پاک کردن اندیکاتورهای قبلی
+      Object.values(indicatorSeries).forEach(s => {
+        if (s && s.remove) s.remove();
+      });
+      indicatorSeries = {};
+      
       const container = document.getElementById('indicatorCharts');
-      if (!container) return;
+      if (container) container.innerHTML = '';
       
-      if (activeIndicators.length === 0) {
-        container.innerHTML = '';
-        return;
+      if (activeIndicators.includes('MA')) {
+        const ma20 = calculateMA(chartData, 20);
+        const ma50 = calculateMA(chartData, 50);
+        indicatorSeries.ma20 = chart.addLineSeries({ color: '#2196F3', lineWidth: 2, title: 'MA20' });
+        indicatorSeries.ma50 = chart.addLineSeries({ color: '#FF9800', lineWidth: 2, title: 'MA50' });
+        indicatorSeries.ma20.setData(ma20);
+        indicatorSeries.ma50.setData(ma50);
       }
       
-      if (!chartData || chartData.length === 0) {
-        container.innerHTML = '<div class="empty-state">در حال بارگذاری داده‌ها...</div>';
-        return;
+      if (activeIndicators.includes('EMA')) {
+        const ema12 = calculateEMA(chartData, 12);
+        const ema26 = calculateEMA(chartData, 26);
+        indicatorSeries.ema12 = chart.addLineSeries({ color: '#9C27B0', lineWidth: 2, title: 'EMA12' });
+        indicatorSeries.ema26 = chart.addLineSeries({ color: '#E91E63', lineWidth: 2, title: 'EMA26' });
+        indicatorSeries.ema12.setData(ema12);
+        indicatorSeries.ema26.setData(ema26);
       }
       
-      container.innerHTML = activeIndicators.map(ind => {
-        const values = calculateIndicator(ind, chartData);
-        return `
-          <div class="indicator-item">
-            <div class="indicator-name">${ind}</div>
-            <div class="indicator-value">${values}</div>
-          </div>
-        `;
-      }).join('');
+      if (activeIndicators.includes('BOLL')) {
+        const boll = calculateBollinger(chartData, 20, 2);
+        indicatorSeries.bollUpper = chart.addLineSeries({ color: '#9E9E9E', lineWidth: 1, lineStyle: 2, title: 'Upper' });
+        indicatorSeries.bollMiddle = chart.addLineSeries({ color: '#2196F3', lineWidth: 2, title: 'Middle' });
+        indicatorSeries.bollLower = chart.addLineSeries({ color: '#9E9E9E', lineWidth: 1, lineStyle: 2, title: 'Lower' });
+        indicatorSeries.bollUpper.setData(boll.upper);
+        indicatorSeries.bollMiddle.setData(boll.middle);
+        indicatorSeries.bollLower.setData(boll.lower);
+      }
+      
+      if (activeIndicators.includes('RSI')) {
+        const rsi = calculateRSI(chartData, 14);
+        const rsiContainer = document.getElementById('indicatorCharts');
+        if (rsiContainer) {
+          rsiContainer.innerHTML += '<div style="height:100px;position:relative;"><canvas id="rsiCanvas" style="width:100%;height:100%;"></canvas></div>';
+          setTimeout(() => drawRSI(rsi), 50);
+        }
+      }
+      
+      if (activeIndicators.includes('MACD')) {
+        const macd = calculateMACD(chartData);
+        const macdContainer = document.getElementById('indicatorCharts');
+        if (macdContainer) {
+          macdContainer.innerHTML += '<div style="height:100px;position:relative;"><canvas id="macdCanvas" style="width:100%;height:100%;"></canvas></div>';
+          setTimeout(() => drawMACD(macd), 50);
+        }
+      }
     }
 
-    function calculateIndicator(type, data) {
-      const closes = data.map(d => d.close);
-      const lastClose = closes[closes.length - 1];
-      
-      switch(type) {
-        case 'MA':
-          const ma5 = (closes.slice(-5).reduce((a,b) => a+b, 0) / 5).toFixed(2);
-          const ma10 = (closes.slice(-10).reduce((a,b) => a+b, 0) / 10).toFixed(2);
-          return `MA5: ${ma5} | MA10: ${ma10}`;
-        
-        case 'EMA':
-          const ema12 = lastClose.toFixed(2);
-          const ema26 = (lastClose * 0.95).toFixed(2);
-          return `EMA12: ${ema12} | EMA26: ${ema26}`;
-        
-        case 'BOLL':
-          const upper = (lastClose * 1.02).toFixed(2);
-          const middle = lastClose.toFixed(2);
-          const lower = (lastClose * 0.98).toFixed(2);
-          return `Upper: ${upper} | Middle: ${middle} | Lower: ${lower}`;
-        
-        case 'SAR':
-          const sar = (lastClose * 0.99).toFixed(2);
-          return `SAR: ${sar} (Bullish)`;
-        
-        case 'VOLUME':
-          const vol = (Math.random() * 100).toFixed(2);
-          return `VOL: ${vol}`;
-        
-        case 'MACD':
-          const macd = (Math.random() * 100 - 50).toFixed(2);
-          const dif = (Math.random() * 50 - 25).toFixed(2);
-          const dea = (Math.random() * 50 - 25).toFixed(2);
-          return `MACD: ${macd} | DIF: ${dif} | DEA: ${dea}`;
-        
-        case 'KDJ':
-          const k = (Math.random() * 100).toFixed(0);
-          const d = (Math.random() * 100).toFixed(0);
-          const j = (Math.random() * 100).toFixed(0);
-          return `K: ${k} | D: ${d} | J: ${j}`;
-        
-        case 'RSI':
-          const rsi = (Math.random() * 40 + 30).toFixed(0);
-          return `RSI[14]: ${rsi}`;
-        
-        default:
-          return '--';
+    function calculateMA(data, period) {
+      const result = [];
+      for (let i = period - 1; i < data.length; i++) {
+        let sum = 0;
+        for (let j = 0; j < period; j++) sum += data[i - j].close;
+        result.push({ time: data[i].time, value: sum / period });
       }
+      return result;
+    }
+
+    function calculateEMA(data, period) {
+      const result = [];
+      const multiplier = 2 / (period + 1);
+      let ema = data[0].close;
+      for (let i = 0; i < data.length; i++) {
+        if (i < period - 1) {
+          ema = (data[i].close + (period - 1) * ema) / period;
+        } else {
+          ema = (data[i].close - ema) * multiplier + ema;
+        }
+        if (i >= period - 1) result.push({ time: data[i].time, value: ema });
+      }
+      return result;
+    }
+
+    function calculateBollinger(data, period, stdDev) {
+      const upper = [], middle = [], lower = [];
+      for (let i = period - 1; i < data.length; i++) {
+        let sum = 0;
+        for (let j = 0; j < period; j++) sum += data[i - j].close;
+        const avg = sum / period;
+        let variance = 0;
+        for (let j = 0; j < period; j++) variance += Math.pow(data[i - j].close - avg, 2);
+        const std = Math.sqrt(variance / period);
+        upper.push({ time: data[i].time, value: avg + stdDev * std });
+        middle.push({ time: data[i].time, value: avg });
+        lower.push({ time: data[i].time, value: avg - stdDev * std });
+      }
+      return { upper, middle, lower };
+    }
+
+    function calculateRSI(data, period) {
+      const result = [];
+      let gains = 0, losses = 0;
+      for (let i = 1; i <= period; i++) {
+        const change = data[i].close - data[i - 1].close;
+        if (change > 0) gains += change; else losses -= change;
+      }
+      let avgGain = gains / period;
+      let avgLoss = losses / period;
+      for (let i = period; i < data.length; i++) {
+        const change = data[i].close - data[i - 1].close;
+        const gain = change > 0 ? change : 0;
+        const loss = change < 0 ? -change : 0;
+        avgGain = (avgGain * (period - 1) + gain) / period;
+        avgLoss = (avgLoss * (period - 1) + loss) / period;
+        const rs = avgLoss === 0 ? 100 : avgGain / avgLoss;
+        const rsi = 100 - (100 / (1 + rs));
+        result.push({ time: data[i].time, value: rsi });
+      }
+      return result;
+    }
+
+    function calculateMACD(data) {
+      const ema12 = calculateEMA(data, 12);
+      const ema26 = calculateEMA(data, 26);
+      const macdLine = [];
+      const signalLine = [];
+      const histogram = [];
+      
+      const ema12Map = new Map(ema12.map(e => [e.time, e.value]));
+      const ema26Map = new Map(ema26.map(e => [e.time, e.value]));
+      
+      const macdValues = [];
+      data.forEach(d => {
+        if (ema12Map.has(d.time) && ema26Map.has(d.time)) {
+          const macd = ema12Map.get(d.time) - ema26Map.get(d.time);
+          macdValues.push({ time: d.time, value: macd });
+        }
+      });
+      
+      const signalMultiplier = 2 / 10;
+      let signal = macdValues[0]?.value || 0;
+      macdValues.forEach((m, i) => {
+        if (i < 9) signal = (m.value + 9 * signal) / 10;
+        else signal = (m.value - signal) * signalMultiplier + signal;
+        signalLine.push({ time: m.time, value: signal });
+        histogram.push({ time: m.time, value: m.value - signal });
+      });
+      
+      return { macd: macdValues, signal: signalLine, histogram };
+    }
+
+    function drawRSI(rsiData) {
+      const canvas = document.getElementById('rsiCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // خطوط مرجع
+      ctx.strokeStyle = '#E0E0E0';
+      ctx.setLineDash([2, 2]);
+      [30, 50, 70].forEach(level => {
+        const y = canvas.height - (level / 100) * canvas.height;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      });
+      ctx.setLineDash([]);
+      
+      // رسم RSI
+      ctx.strokeStyle = '#FF9800';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      rsiData.forEach((r, i) => {
+        const x = (i / (rsiData.length - 1)) * canvas.width;
+        const y = canvas.height - (r.value / 100) * canvas.height;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    }
+
+    function drawMACD(macdData) {
+      const canvas = document.getElementById('macdCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      const allValues = [...macdData.macd, ...macdData.signal, ...macdData.histogram];
+      const max = Math.max(...allValues.map(v => Math.abs(v.value)));
+      const midY = canvas.height / 2;
+      
+      // خط صفر
+      ctx.strokeStyle = '#E0E0E0';
+      ctx.beginPath();
+      ctx.moveTo(0, midY);
+      ctx.lineTo(canvas.width, midY);
+      ctx.stroke();
+      
+      // هیستوگرام
+      const barWidth = canvas.width / macdData.histogram.length;
+      macdData.histogram.forEach((h, i) => {
+        const x = i * barWidth;
+        const h_px = (h.value / max) * (canvas.height / 2);
+        ctx.fillStyle = h.value >= 0 ? '#0ECB81' : '#F64653';
+        ctx.fillRect(x, midY - h_px, barWidth - 1, h_px);
+      });
+      
+      // خط MACD
+      ctx.strokeStyle = '#2196F3';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      macdData.macd.forEach((m, i) => {
+        const x = (i / (macdData.macd.length - 1)) * canvas.width;
+        const y = midY - (m.value / max) * (canvas.height / 2);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      
+      // خط سیگنال
+      ctx.strokeStyle = '#FF9800';
+      ctx.beginPath();
+      macdData.signal.forEach((s, i) => {
+        const x = (i / (macdData.signal.length - 1)) * canvas.width;
+        const y = midY - (s.value / max) * (canvas.height / 2);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    }
+
+    function drawPositionLines() {
+      if (!chart || !candleSeries) return;
+      
+      // پاک کردن خطوط قبلی
+      Object.values(positionLines).forEach(l => {
+        if (l && l.remove) l.remove();
+      });
+      positionLines = {};
+      
+      demoAccount.positions.forEach((pos, idx) => {
+        // خط ورود
+        positionLines[`entry_${idx}`] = candleSeries.createPriceLine({
+          price: pos.entryPrice,
+          color: '#2196F3',
+          lineWidth: 2,
+          lineStyle: 0,
+          axisLabelVisible: true,
+          title: `Entry ${idx + 1}`,
+        });
+        
+        // خط SL
+        if (pos.sl) {
+          positionLines[`sl_${idx}`] = candleSeries.createPriceLine({
+            price: pos.sl,
+            color: '#F64653',
+            lineWidth: 2,
+            lineStyle: 2,
+            axisLabelVisible: true,
+            title: `SL ${idx + 1}`,
+          });
+        }
+        
+        // خط TP
+        if (pos.tp) {
+          positionLines[`tp_${idx}`] = candleSeries.createPriceLine({
+            price: pos.tp,
+            color: '#0ECB81',
+            lineWidth: 2,
+            lineStyle: 2,
+            axisLabelVisible: true,
+            title: `TP ${idx + 1}`,
+          });
+        }
+      });
     }
 
     function generateOrderBook() {
@@ -821,17 +1037,10 @@
     function setupSlider() {
       const sliderDot = document.getElementById('sliderDot');
       const sliderFill = document.getElementById('sliderFill');
-      const sliderContainer = document.querySelector('.slider-container');
+      const sliderContainer = document.getElementById('sliderContainer');
       if (!sliderDot || !sliderFill || !sliderContainer) return;
       
       let isDragging = false;
-
-      sliderDot.addEventListener('mousedown', startDrag);
-      sliderDot.addEventListener('touchstart', startDrag, {passive: true});
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('touchmove', drag, {passive: true});
-      document.addEventListener('mouseup', endDrag);
-      document.addEventListener('touchend', endDrag);
 
       function startDrag(e) {
         isDragging = true;
@@ -853,6 +1062,24 @@
       function endDrag() {
         isDragging = false;
       }
+
+      sliderDot.addEventListener('mousedown', startDrag);
+      sliderDot.addEventListener('touchstart', startDrag, {passive: true});
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('touchmove', drag, {passive: true});
+      document.addEventListener('mouseup', endDrag);
+      document.addEventListener('touchend', endDrag);
+      
+      // کلیک روی track
+      sliderContainer.addEventListener('click', (e) => {
+        const rect = sliderContainer.getBoundingClientRect();
+        let x = ((e.clientX - rect.left) / rect.width) * 100;
+        x = Math.max(0, Math.min(100, x));
+        sliderValue = x;
+        sliderDot.style.left = x + '%';
+        sliderFill.style.width = x + '%';
+        updateTradeInfo();
+      });
     }
 
     function updateTradeInfo() {
@@ -881,11 +1108,11 @@
         container.innerHTML = `
           <div class="form-group" style="margin-top: 12px;">
             <label class="form-label">Take Profit (USDT)</label>
-            <input type="number" class="form-input" placeholder="0.00">
+            <input type="number" class="form-input" id="tpInput" placeholder="0.00">
           </div>
           <div class="form-group">
             <label class="form-label">Stop Loss (USDT)</label>
-            <input type="number" class="form-input" placeholder="0.00">
+            <input type="number" class="form-input" id="slInput" placeholder="0.00">
           </div>
         `;
       } else {
@@ -900,6 +1127,9 @@
         return;
       }
       const leverage = parseInt(document.querySelector('.leverage-btn.active')?.textContent) || 3;
+      const tp = parseFloat(document.getElementById('tpInput')?.value) || null;
+      const sl = parseFloat(document.getElementById('slInput')?.value) || null;
+      
       const position = {
         id: Date.now(),
         pair: 'BTCUSDT',
@@ -907,11 +1137,14 @@
         amount: amount * sliderValue / 100,
         entryPrice: currentPrice,
         leverage: leverage,
+        tp: tp,
+        sl: sl,
         pnl: 0,
         pnlPercent: 0
       };
       demoAccount.positions.push(position);
       saveDemoAccount();
+      drawPositionLines();
       renderPositions();
       alert('Order submitted successfully!');
     }
@@ -923,6 +1156,20 @@
       renderPositions();
     }
 
+    function updatePositionsPnL() {
+      demoAccount.positions.forEach(pos => {
+        if (pos.side === 'buy') {
+          pos.pnl = (currentPrice - pos.entryPrice) * pos.amount;
+        } else {
+          pos.pnl = (pos.entryPrice - currentPrice) * pos.amount;
+        }
+        pos.pnlPercent = (pos.pnl / (pos.amount * pos.entryPrice / pos.leverage)) * 100;
+      });
+      demoAccount.equity = demoAccount.balance + demoAccount.positions.reduce((sum, p) => sum + p.pnl, 0);
+      saveDemoAccount();
+      if (activeTab === 'positions') renderPositions();
+    }
+
     function renderPositions() {
       const container = document.getElementById('positionsContent');
       if (!container) return;
@@ -932,34 +1179,38 @@
           container.innerHTML = '<div class="empty-state">No open positions</div>';
           return;
         }
-        container.innerHTML = demoAccount.positions.map(pos => `
-          <div class="position-item">
-            <div class="position-header">
-              <span class="position-pair">${pos.pair}</span>
-              <span class="position-side ${pos.side}">${pos.side === 'buy' ? 'Long' : 'Short'}</span>
+        container.innerHTML = demoAccount.positions.map(pos => {
+          const pnlClass = pos.pnl >= 0 ? 'profit' : 'loss';
+          const pnlSign = pos.pnl >= 0 ? '+' : '';
+          return `
+            <div class="position-item">
+              <div class="position-header">
+                <span class="position-pair">${pos.pair}</span>
+                <span class="position-side ${pos.side}">${pos.side === 'buy' ? 'Long' : 'Short'}</span>
+              </div>
+              <div class="position-details">
+                <div class="position-detail">
+                  <span class="position-detail-label">Amount</span>
+                  <span class="position-detail-value">${pos.amount.toFixed(4)} BTC</span>
+                </div>
+                <div class="position-detail">
+                  <span class="position-detail-label">Entry</span>
+                  <span class="position-detail-value">${pos.entryPrice.toFixed(2)}</span>
+                </div>
+                <div class="position-detail">
+                  <span class="position-detail-label">Leverage</span>
+                  <span class="position-detail-value">${pos.leverage}x</span>
+                </div>
+                <div class="position-detail">
+                  <span class="position-detail-label">Margin</span>
+                  <span class="position-detail-value">${(pos.amount * pos.entryPrice / pos.leverage).toFixed(2)} USDT</span>
+                </div>
+              </div>
+              <div class="position-pnl ${pnlClass}">${pnlSign}$${pos.pnl.toFixed(2)} (${pnlSign}${pos.pnlPercent.toFixed(2)}%)</div>
+              <button class="close-btn" onclick="closePosition(${pos.id})">Close Position</button>
             </div>
-            <div class="position-details">
-              <div class="position-detail">
-                <span class="position-detail-label">Amount</span>
-                <span class="position-detail-value">${pos.amount.toFixed(4)} BTC</span>
-              </div>
-              <div class="position-detail">
-                <span class="position-detail-label">Entry Price</span>
-                <span class="position-detail-value">${pos.entryPrice.toFixed(2)}</span>
-              </div>
-              <div class="position-detail">
-                <span class="position-detail-label">Leverage</span>
-                <span class="position-detail-value">${pos.leverage}x</span>
-              </div>
-              <div class="position-detail">
-                <span class="position-detail-label">Margin</span>
-                <span class="position-detail-value">${(pos.amount * pos.entryPrice / pos.leverage).toFixed(2)} USDT</span>
-              </div>
-            </div>
-            <div class="position-pnl profit">+$0.00 (0.00%)</div>
-            <button class="close-btn" onclick="closePosition(${pos.id})">Close Position</button>
-          </div>
-        `).join('');
+          `;
+        }).join('');
       } else if (activeTab === 'pending') {
         container.innerHTML = '<div class="empty-state">No pending orders</div>';
       } else if (activeTab === 'history') {
@@ -967,32 +1218,36 @@
           container.innerHTML = '<div class="empty-state">No order history</div>';
           return;
         }
-        container.innerHTML = demoAccount.history.slice().reverse().map(h => `
-          <div class="position-item">
-            <div class="position-header">
-              <span class="position-pair">${h.pair}</span>
-              <span class="position-side ${h.side}">${h.side === 'buy' ? 'Long' : 'Short'}</span>
+        container.innerHTML = demoAccount.history.slice().reverse().map(h => {
+          const pnlClass = h.pnl >= 0 ? 'profit' : 'loss';
+          const pnlSign = h.pnl >= 0 ? '+' : '';
+          return `
+            <div class="position-item">
+              <div class="position-header">
+                <span class="position-pair">${h.pair}</span>
+                <span class="position-side ${h.side}">${h.side === 'buy' ? 'Long' : 'Short'}</span>
+              </div>
+              <div class="position-details">
+                <div class="position-detail">
+                  <span class="position-detail-label">Amount</span>
+                  <span class="position-detail-value">${h.amount.toFixed(4)} BTC</span>
+                </div>
+                <div class="position-detail">
+                  <span class="position-detail-label">Entry</span>
+                  <span class="position-detail-value">${h.entryPrice.toFixed(2)}</span>
+                </div>
+                <div class="position-detail">
+                  <span class="position-detail-label">Exit</span>
+                  <span class="position-detail-value">${h.closePrice?.toFixed(2) || '--'}</span>
+                </div>
+                <div class="position-detail">
+                  <span class="position-detail-label">PnL</span>
+                  <span class="position-detail-value ${pnlClass}">${pnlSign}$${h.pnl.toFixed(2)}</span>
+                </div>
+              </div>
             </div>
-            <div class="position-details">
-              <div class="position-detail">
-                <span class="position-detail-label">Amount</span>
-                <span class="position-detail-value">${h.amount.toFixed(4)} BTC</span>
-              </div>
-              <div class="position-detail">
-                <span class="position-detail-label">Entry</span>
-                <span class="position-detail-value">${h.entryPrice.toFixed(2)}</span>
-              </div>
-              <div class="position-detail">
-                <span class="position-detail-label">Exit</span>
-                <span class="position-detail-value">${h.closePrice?.toFixed(2) || '--'}</span>
-              </div>
-              <div class="position-detail">
-                <span class="position-detail-label">PnL</span>
-                <span class="position-detail-value">${h.pnl?.toFixed(2) || '0.00'} USDT</span>
-              </div>
-            </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
       }
     }
 
@@ -1001,11 +1256,16 @@
       if (posIndex === -1) return;
       const pos = demoAccount.positions[posIndex];
       pos.closePrice = currentPrice;
-      pos.pnl = (pos.side === 'buy' ? 1 : -1) * (currentPrice - pos.entryPrice) * pos.amount;
+      if (pos.side === 'buy') {
+        pos.pnl = (currentPrice - pos.entryPrice) * pos.amount;
+      } else {
+        pos.pnl = (pos.entryPrice - currentPrice) * pos.amount;
+      }
       demoAccount.balance += pos.pnl;
       demoAccount.history.push(pos);
       demoAccount.positions.splice(posIndex, 1);
       saveDemoAccount();
+      drawPositionLines();
       renderPositions();
     }
 
@@ -1032,7 +1292,7 @@
           <div id="options-container">
             ${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}
           </div>
-          <div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div>
+          <div class="quiz-explanation" id="explanation"> ${q.explanation}</div>
           <div class="quiz-nav">
             <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button>
           </div>
@@ -1067,7 +1327,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? ' عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
       document.getElementById('app').innerHTML = `
         <div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div>
         <button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>
@@ -1091,10 +1351,13 @@
     
     setInterval(() => {
       if (document.getElementById('chartModal')?.classList.contains('active')) {
+        updatePositionsPnL();
+      }
+      if (location.hash === '#demo') {
         currentPrice += (Math.random() - 0.5) * 50;
         updatePriceDisplay();
         renderOrderBook();
-        if (activeIndicators.length > 0) renderIndicators();
+        updatePositionsPnL();
       }
     }, 3000);
     
