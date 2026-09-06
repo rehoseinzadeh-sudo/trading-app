@@ -55,173 +55,216 @@
     .back-button.hidden { display: none; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
     
-    /* Trade Page */
+    /* Trade Page - Compact Header */
     .trade-page { background: white; min-height: 100vh; padding-bottom: 20px; direction: ltr; text-align: left; }
     
-    .trade-header { background: white; padding: 12px 16px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-    .pair-info { display: flex; align-items: center; gap: 12px; }
-    .pair-selector { display: flex; align-items: center; gap: 6px; cursor: pointer; }
-    .pair-name { font-size: 18px; font-weight: 700; color: #2196F3; }
-    .pair-change { font-size: 13px; font-weight: 600; }
+    .trade-header { 
+      background: white; 
+      padding: 8px 12px; 
+      border-bottom: 1px solid #E8E8E8; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      position: sticky; 
+      top: 0; 
+      z-index: 100;
+      gap: 8px;
+    }
+    .pair-info { display: flex; align-items: center; gap: 8px; flex: 1; }
+    .pair-selector { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .pair-name { font-size: 16px; font-weight: 700; color: #2196F3; }
+    .pair-change { font-size: 12px; font-weight: 600; }
     .pair-change.up { color: #0ECB81; }
     .pair-change.down { color: #F64653; }
-    .back-icon { font-size: 24px; cursor: pointer; color: #1A1A1A; padding: 4px; font-weight: 900; }
-    .chart-icon-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: #F5F5F5; border-radius: 6px; border: none; }
+    .back-icon { font-size: 20px; cursor: pointer; color: #1A1A1A; padding: 4px; font-weight: 900; }
+    
+    /* آیکون کندل مثل کوینکس - دو کندل کمرنگ بدون کادر */
+    .chart-icon-btn { 
+      width: 32px; 
+      height: 32px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      cursor: pointer; 
+      background: transparent; 
+      border: none;
+      padding: 4px;
+    }
+    .chart-icon-btn svg {
+      width: 24px;
+      height: 24px;
+    }
     
     .pair-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 200; }
     .pair-overlay.show { display: block; }
-    .pair-dropdown-menu { display: none; position: fixed; top: 60px; left: 16px; right: 16px; background: white; border: 1px solid #E0E0E0; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); z-index: 201; max-height: 70vh; overflow-y: auto; }
+    .pair-dropdown-menu { display: none; position: fixed; top: 50px; left: 12px; right: 12px; background: white; border: 1px solid #E0E0E0; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); z-index: 201; max-height: 70vh; overflow-y: auto; }
     .pair-dropdown-menu.show { display: block; }
-    .pair-option { padding: 14px 16px; cursor: pointer; font-size: 14px; border-bottom: 1px solid #F5F5F5; display: flex; justify-content: space-between; align-items: center; }
+    .pair-option { padding: 12px 14px; cursor: pointer; font-size: 14px; border-bottom: 1px solid #F5F5F5; display: flex; justify-content: space-between; align-items: center; }
     .pair-option:hover { background: #F5F5F5; }
     .pair-option:last-child { border-bottom: none; }
     
-    /* Two Column Layout */
-    .trade-main { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid #E8E8E8; }
+    /* Two Column Layout - کنار هم */
+    .trade-main { 
+      display: flex; 
+      gap: 0; 
+      border-bottom: 1px solid #E8E8E8;
+    }
     
-    /* Left Column - Order Form & Position Info */
-    .order-form-col { padding: 12px; border-right: 1px solid #E8E8E8; }
-    .trade-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
-    .trade-tab { flex: 1; padding: 12px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; background: #F5F5F5; color: #7F8C8D; }
+    /* Left Column - Order Form */
+    .order-form-col { 
+      flex: 1; 
+      padding: 10px; 
+      border-right: 1px solid #E8E8E8;
+      min-width: 0;
+    }
+    .trade-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+    .trade-tab { flex: 1; padding: 10px; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; background: #F5F5F5; color: #7F8C8D; }
     .trade-tab.buy { background: #0ECB81; color: white; }
     .trade-tab.sell { background: #F64653; color: white; }
     
-    .leverage-selector { display: flex; gap: 6px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; }
-    .leverage-btn { padding: 8px 12px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 6px; color: #1A1A1A; font-size: 12px; cursor: pointer; white-space: nowrap; }
+    .leverage-selector { display: flex; gap: 4px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
+    .leverage-btn { padding: 6px 10px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 6px; color: #1A1A1A; font-size: 11px; cursor: pointer; white-space: nowrap; }
     .leverage-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     
-    .form-group { margin-bottom: 14px; }
-    .form-label { font-size: 12px; color: #7F8C8D; margin-bottom: 6px; display: block; }
-    .form-input { width: 100%; padding: 10px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 6px; color: #1A1A1A; font-size: 13px; }
+    .form-group { margin-bottom: 10px; }
+    .form-label { font-size: 11px; color: #7F8C8D; margin-bottom: 4px; display: block; }
+    .form-input { width: 100%; padding: 8px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 6px; color: #1A1A1A; font-size: 13px; }
     .form-input:focus { outline: none; border-color: #F0B90B; }
     
-    .slider-container { position: relative; height: 32px; display: flex; align-items: center; margin: 16px 0; }
+    .slider-container { position: relative; height: 28px; display: flex; align-items: center; margin: 12px 0; }
     .slider-track { position: absolute; width: 100%; height: 3px; background: #E0E0E0; border-radius: 2px; }
     .slider-fill { position: absolute; height: 100%; background: #F0B90B; border-radius: 2px; width: 0%; }
-    .slider-dot { position: absolute; width: 18px; height: 18px; background: #F0B90B; border-radius: 50%; cursor: grab; left: 0%; transform: translateX(-50%); box-shadow: 0 2px 6px rgba(0,0,0,0.2); z-index: 10; touch-action: none; }
+    .slider-dot { position: absolute; width: 16px; height: 16px; background: #F0B90B; border-radius: 50%; cursor: grab; left: 0%; transform: translateX(-50%); box-shadow: 0 2px 6px rgba(0,0,0,0.2); z-index: 10; touch-action: none; }
     .slider-dot:active { cursor: grabbing; }
-    .slider-markers { display: flex; justify-content: space-between; margin-top: 6px; padding: 0 2px; }
-    .slider-marker { width: 6px; height: 6px; background: #E0E0E0; border-radius: 50%; }
-    .slider-percent { text-align: center; font-size: 11px; color: #F0B90B; font-weight: 600; margin-top: 4px; }
+    .slider-markers { display: flex; justify-content: space-between; margin-top: 4px; padding: 0 2px; }
+    .slider-marker { width: 5px; height: 5px; background: #E0E0E0; border-radius: 50%; }
+    .slider-percent { text-align: center; font-size: 10px; color: #F0B90B; font-weight: 600; margin-top: 2px; }
     
-    .trade-info-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 12px; border-bottom: 1px solid #F5F5F5; }
+    .trade-info-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 11px; border-bottom: 1px solid #F5F5F5; }
     .trade-info-label { color: #7F8C8D; }
     .trade-info-value { color: #1A1A1A; font-weight: 500; }
     
-    .tp-sl-checkbox { display: flex; align-items: center; gap: 6px; margin: 14px 0; cursor: pointer; }
-    .tp-sl-checkbox input[type="checkbox"] { width: 16px; height: 16px; accent-color: #F0B90B; }
-    .tp-sl-checkbox label { font-size: 13px; color: #1A1A1A; cursor: pointer; }
+    .tp-sl-checkbox { display: flex; align-items: center; gap: 6px; margin: 10px 0; cursor: pointer; }
+    .tp-sl-checkbox input[type="checkbox"] { width: 14px; height: 14px; accent-color: #F0B90B; }
+    .tp-sl-checkbox label { font-size: 12px; color: #1A1A1A; cursor: pointer; }
     
-    .submit-btn { width: 100%; padding: 14px; border: none; border-radius: 6px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+    .submit-btn { width: 100%; padding: 12px; border: none; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 6px; }
     .submit-btn.buy { background: #0ECB81; color: white; }
     .submit-btn.sell { background: #F64653; color: white; }
     
-    /* Right Column - Live Price & Order Book */
-    .order-book-col { padding: 12px; }
-    .price-display { text-align: center; padding: 16px 0; border-bottom: 1px solid #F0F0F0; margin-bottom: 12px; }
-    .current-price { font-size: 32px; font-weight: 700; color: #0ECB81; margin-bottom: 4px; }
-    .price-change-text { font-size: 12px; color: #7F8C8D; }
+    /* Right Column - Price & Order Book */
+    .order-book-col { 
+      flex: 1; 
+      padding: 10px;
+      min-width: 0;
+    }
+    .price-display { 
+      text-align: center; 
+      padding: 8px 0;
+      margin-bottom: 8px;
+    }
+    .current-price { font-size: 24px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
+    .price-change-text { font-size: 11px; color: #7F8C8D; }
     
-    /* Order Book - 2 columns only */
     .order-book { background: white; border: 1px solid #E8E8E8; border-radius: 6px; overflow: hidden; }
-    .order-header { display: grid; grid-template-columns: 1fr 1fr; padding: 8px 10px; background: #F5F5F5; font-size: 11px; color: #7F8C8D; font-weight: 600; }
-    .order-row { display: grid; grid-template-columns: 1fr 1fr; padding: 5px 10px; font-size: 12px; cursor: pointer; }
+    .order-header { display: grid; grid-template-columns: 1fr 1fr; padding: 6px 8px; background: #F5F5F5; font-size: 10px; color: #7F8C8D; font-weight: 600; }
+    .order-row { display: grid; grid-template-columns: 1fr 1fr; padding: 4px 8px; font-size: 11px; cursor: pointer; }
     .order-row.ask { background: rgba(246, 70, 83, 0.08); }
     .order-row.bid { background: rgba(14, 203, 129, 0.08); }
-    .order-row .col-amount { color: #1A1A1A; text-align: right; font-weight: 500; }
-    .order-row .col-price { font-weight: 700; text-align: left; }
+    .order-row .col-amount { color: #1A1A1A; text-align: right; font-weight: 500; font-size: 10px; }
+    .order-row .col-price { font-weight: 700; text-align: left; font-size: 10px; }
     .order-row .col-price.ask { color: #F64653; }
     .order-row .col-price.bid { color: #0ECB81; }
     
     /* Positions */
     .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; }
-    .position-tab { flex: 1; padding: 12px; text-align: center; font-size: 13px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+    .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
-    .positions-content { padding: 12px; }
-    .position-item { background: #F5F5F5; border-radius: 6px; padding: 12px; margin-bottom: 8px; }
-    .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .position-pair { font-size: 14px; font-weight: 700; color: #2196F3; }
-    .position-side { font-size: 12px; padding: 3px 8px; border-radius: 3px; font-weight: 600; }
+    .positions-content { padding: 10px; }
+    .position-item { background: #F5F5F5; border-radius: 6px; padding: 10px; margin-bottom: 6px; }
+    .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .position-pair { font-size: 13px; font-weight: 700; color: #2196F3; }
+    .position-side { font-size: 11px; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
     .position-side.long { background: rgba(14, 203, 129, 0.15); color: #0ECB81; }
     .position-side.short { background: rgba(246, 70, 83, 0.15); color: #F64653; }
-    .position-details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; margin-bottom: 8px; }
-    .position-detail { display: flex; justify-content: space-between; padding: 4px 0; }
+    .position-details { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; margin-bottom: 6px; }
+    .position-detail { display: flex; justify-content: space-between; padding: 2px 0; }
     .position-detail-label { color: #64B5F6; }
     .position-detail-value { color: #81C784; font-weight: 500; }
-    .position-pnl { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .position-pnl { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
     .position-pnl.profit { color: #0ECB81; }
     .position-pnl.loss { color: #F64653 !important; }
-    .close-btn { width: 100%; padding: 10px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; }
-    .empty-state { text-align: center; padding: 32px 16px; color: #7F8C8D; font-size: 13px; }
+    .close-btn { width: 100%; padding: 8px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .empty-state { text-align: center; padding: 24px 12px; color: #7F8C8D; font-size: 12px; }
     
     /* Chart Modal */
     .chart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; flex-direction: column; }
     .chart-modal.active { display: flex; }
-    .chart-header { display: flex; align-items: center; justify-content: flex-start; gap: 8px; padding: 10px 12px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; flex-wrap: wrap; }
-    .chart-pair-name { font-size: 15px; font-weight: 700; color: #2196F3; }
-    .data-mode-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+    .chart-header { display: flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; flex-wrap: wrap; }
+    .chart-pair-name { font-size: 14px; font-weight: 700; color: #2196F3; }
+    .data-mode-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; border-radius: 8px; font-size: 9px; font-weight: 600; }
     .data-mode-badge.free { background: #FFF3E0; color: #F57C00; }
     .data-mode-badge.premium { background: #E8F5E9; color: #2E7D32; }
-    .data-mode-badge .dot { width: 5px; height: 5px; border-radius: 50%; animation: pulse 2s infinite; }
+    .data-mode-badge .dot { width: 4px; height: 4px; border-radius: 50%; animation: pulse 2s infinite; }
     .data-mode-badge.free .dot { background: #F57C00; }
     .data-mode-badge.premium .dot { background: #2E7D32; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     .chart-timeframes { display: flex; gap: 3px; flex: 1; }
-    .chart-action-btn { padding: 5px 8px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 10px; cursor: pointer; }
+    .chart-action-btn { padding: 4px 7px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 10px; cursor: pointer; }
     .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
-    .chart-back { font-size: 22px; cursor: pointer; color: #F64653; padding: 4px 10px; font-weight: 900; line-height: 1; margin-left: auto; }
+    .chart-back { font-size: 20px; cursor: pointer; color: #F64653; padding: 2px 8px; font-weight: 900; line-height: 1; margin-left: auto; }
     
     .chart-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-    .chart-main { position: relative; min-height: 300px; height: 50vh; flex-shrink: 0; }
+    .chart-main { position: relative; min-height: 280px; height: 45vh; flex-shrink: 0; }
     .chart-container { width: 100%; height: 100%; background: white; }
     .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: #F0B90B; cursor: ns-resize; opacity: 0.6; z-index: 100; touch-action: none; }
     .resize-handle:hover { opacity: 1; }
     
-    .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto; flex-shrink: 0; }
-    .indicator-btn { padding: 6px 10px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 11px; cursor: pointer; white-space: nowrap; }
+    .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 6px 10px; display: flex; gap: 4px; overflow-x: auto; flex-shrink: 0; }
+    .indicator-btn { padding: 5px 8px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 10px; cursor: pointer; white-space: nowrap; }
     .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     
-    .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 35vh; }
-    .indicator-subchart { height: 150px; position: relative; border-bottom: 1px solid #F0F0F0; }
+    /* MACD Subchart - ارتفاع بیشتر */
+    .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 40vh; }
+    .indicator-subchart { height: 180px; position: relative; border-bottom: 1px solid #F0F0F0; }
     .indicator-subchart:last-child { border-bottom: none; }
     .indicator-subchart canvas { width: 100%; height: 100%; display: block; }
-    .indicator-label { position: absolute; top: 6px; left: 10px; font-size: 11px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 3px; }
+    .indicator-label { position: absolute; top: 4px; left: 8px; font-size: 10px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 5px; border-radius: 3px; }
     
     /* Profile Page */
-    .profile-page { padding: 16px; }
-    .profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 24px 16px; border-radius: 12px; text-align: center; margin-bottom: 16px; }
-    .profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 12px; }
-    .profile-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-    .profile-email { font-size: 12px; opacity: 0.8; }
-    .profile-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-    .stat-card { background: white; border-radius: 10px; padding: 14px 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .stat-value { font-size: 20px; font-weight: 700; color: #1D9E75; }
-    .stat-label { font-size: 11px; color: #7F8C8D; margin-top: 4px; }
-    .profile-section { background: white; border-radius: 10px; padding: 14px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .profile-section-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #1A1A1A; }
-    .profile-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #F5F5F5; }
+    .profile-page { padding: 12px; }
+    .profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 14px; border-radius: 12px; text-align: center; margin-bottom: 12px; }
+    .profile-avatar { width: 70px; height: 70px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 10px; }
+    .profile-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .profile-email { font-size: 11px; opacity: 0.8; }
+    .profile-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+    .stat-card { background: white; border-radius: 10px; padding: 12px 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .stat-value { font-size: 18px; font-weight: 700; color: #1D9E75; }
+    .stat-label { font-size: 10px; color: #7F8C8D; margin-top: 3px; }
+    .profile-section { background: white; border-radius: 10px; padding: 12px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .profile-section-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #1A1A1A; }
+    .profile-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #F5F5F5; }
     .profile-item:last-child { border-bottom: none; }
-    .profile-item-label { font-size: 13px; color: #1A1A1A; }
-    .profile-item-value { font-size: 13px; color: #7F8C8D; font-weight: 500; }
-    .profile-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+    .profile-item-label { font-size: 12px; color: #1A1A1A; }
+    .profile-item-value { font-size: 12px; color: #7F8C8D; font-weight: 500; }
+    .profile-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 6px; }
     .profile-btn.primary { background: #1D9E75; color: white; }
     .profile-btn.secondary { background: #F5F5F5; color: #1A1A1A; }
     .profile-btn.danger { background: #FFEBEE; color: #F64653; }
-    .toggle-switch { position: relative; width: 44px; height: 24px; background: #E0E0E0; border-radius: 12px; cursor: pointer; transition: background 0.3s; }
+    .toggle-switch { position: relative; width: 40px; height: 22px; background: #E0E0E0; border-radius: 11px; cursor: pointer; transition: background 0.3s; }
     .toggle-switch.active { background: #1D9E75; }
-    .toggle-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.3s; }
-    .toggle-switch.active::after { transform: translateX(20px); }
-    .subscription-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+    .toggle-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: white; border-radius: 50%; transition: transform 0.3s; }
+    .toggle-switch.active::after { transform: translateX(18px); }
+    .subscription-badge { display: inline-block; padding: 3px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
     .subscription-badge.free { background: #FFF3E0; color: #F57C00; }
     .subscription-badge.premium { background: #E8F5E9; color: #2E7D32; }
     
-    /* Loading overlay for chart */
-    .chart-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; z-index: 50; font-size: 14px; color: #7F8C8D; }
+    .chart-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; z-index: 50; font-size: 13px; color: #7F8C8D; }
     
     @media (max-width: 768px) {
-      .trade-main { grid-template-columns: 1fr; }
+      .trade-main { flex-direction: column; }
       .order-form-col { border-right: none; border-bottom: 1px solid #E8E8E8; }
-      .current-price { font-size: 28px; }
+      .current-price { font-size: 22px; }
     }
   </style>
 </head>
@@ -266,21 +309,21 @@
 
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
-      if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
+      if (t.includes('کندل') || t.includes('الگو')) return '️';
       if (t.includes('بلاکچین') || t.includes('کریپتو')) return '🔗';
       if (t.includes('کیف پول')) return '👛';
       if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
-      if (t.includes('روند')) return '';
+      if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
-      if (t.includes('ریسک')) return '️';
+      if (t.includes('ریسک')) return '🛡️';
       if (t.includes('آزمون')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
-      if (t.includes('ict')) return '🎯';
+      if (t.includes('ict')) return '';
       if (t.includes('استراتژی')) return '⚙️';
-      if (t.includes('روانشناسی')) return '🧘';
+      if (t.includes('روانشناسی')) return '';
       return '📚';
     }
 
@@ -345,8 +388,8 @@
     function renderHome() {
       const levels = [
         { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
-        { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
-        { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
+        { id: 'intermediate', icon: '', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'advanced', icon: '', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
         <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
@@ -408,7 +451,7 @@
         imageHtml = `<div style="width:100%;height:180px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:10px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:64px;color:#1D9E75">${lessonIcon}</div>`;
       }
       const hasQuiz = currentLesson.quiz && currentLesson.quiz.length > 0;
-      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${hasQuiz ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div>`;
+      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${hasQuiz ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})"> شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div>`;
       html += `<button class="back-button ${hasQuiz ? 'hidden' : ''}" onclick="navigateTo('#course-${cleanCourseId}')">↶ بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
       window.scrollTo(0, 0);
@@ -426,7 +469,6 @@
       navigateTo('#quiz');
     }
 
-    // ===== Profile Page =====
     function renderProfile() {
       const totalLessons = appData.courses.reduce((sum, c) => sum + c.lessons.length, 0);
       const progress = Math.round((userProfile.lessonsCompleted / totalLessons) * 100);
@@ -436,7 +478,7 @@
           <div class="profile-avatar">👤</div>
           <div class="profile-name">${userProfile.name}</div>
           <div class="profile-email">${userProfile.email}</div>
-          <div style="margin-top: 8px;"><span class="subscription-badge ${isPremiumUser ? 'premium' : 'free'}">${isPremiumUser ? '⭐ Premium' : '🆓 Free'}</span></div>
+          <div style="margin-top: 6px;"><span class="subscription-badge ${isPremiumUser ? 'premium' : 'free'}">${isPremiumUser ? '⭐ Premium' : '🆓 Free'}</span></div>
         </div>
         
         <div class="profile-stats">
@@ -465,7 +507,7 @@
         </div>
         
         <div class="profile-section">
-          <div class="profile-section-title"> آمار ترید</div>
+          <div class="profile-section-title">📊 آمار ترید</div>
           <div class="profile-item"><span class="profile-item-label">پوزیشن‌های باز</span><span class="profile-item-value">${demoAccount.positions.length}</span></div>
           <div class="profile-item"><span class="profile-item-label">تاریخچه معاملات</span><span class="profile-item-value">${demoAccount.history.length}</span></div>
           <div class="profile-item"><span class="profile-item-label">سود/زیان کل</span><span class="profile-item-value" style="color: ${demoAccount.balance >= 10000 ? '#0ECB81' : '#F64653'}">${(demoAccount.balance - 10000).toFixed(2)} USDT</span></div>
@@ -479,7 +521,7 @@
         
         <button class="profile-btn primary" onclick="resetDemoAccount()">🔄 ریست حساب دمو</button>
         <button class="profile-btn secondary" onclick="exportData()">📤 خروجی از داده‌ها</button>
-        <button class="profile-btn danger" onclick="clearAllData()">🗑️ پاک کردن همه داده‌ها</button>
+        <button class="profile-btn danger" onclick="clearAllData()">️ پاک کردن همه داده‌ها</button>
       </div>
       <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
       
@@ -536,7 +578,6 @@
       localStorage.setItem('isPremium', isPremiumUser);
     }
 
-    // ===== Trade Page =====
     function renderTradePage() {
       if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); else clearInterval(ws); ws = null; }
       if (chart) { chart.remove(); chart = null; }
@@ -554,16 +595,16 @@
             <span class="back-icon" onclick="navigateTo('#home')">←</span>
             <div class="pair-selector" onclick="togglePairDropdown(event)">
               <span class="pair-name" id="pairNameDisplay">${info.name}</span>
-              <span style="font-size: 10px; color: #7F8C8D;">▼</span>
+              <span style="font-size: 9px; color: #7F8C8D;">▼</span>
             </div>
             <span class="pair-change ${changeClass}" id="pairChange">${changeSign}${info.change.toFixed(2)}%</span>
           </div>
           <button class="chart-icon-btn" onclick="openChartModal()" title="نمودار">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <line x1="7" y1="17" x2="7" y2="10"/>
-              <line x1="12" y1="17" x2="12" y2="7"/>
-              <line x1="17" y1="17" x2="17" y2="13"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+              <line x1="7" y1="3" x2="7" y2="21"/>
+              <rect x="5" y="9" width="4" height="8" fill="#0ECB81" opacity="0.6" stroke="none"/>
+              <line x1="17" y1="3" x2="17" y2="21"/>
+              <rect x="15" y="11" width="4" height="6" fill="#F64653" opacity="0.6" stroke="none"/>
             </svg>
           </button>
         </div>
@@ -672,7 +713,7 @@
         </div>
       </div>
 
-      <button class="back-button" onclick="navigateTo('#home')"> بازگشت</button>`;
+      <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
       
       document.getElementById('app').innerHTML = html;
       renderOrderBook();
@@ -751,7 +792,6 @@
       document.addEventListener('touchend', stopResize);
     }
 
-    // API with timeout and fallback
     async function fetchWithTimeout(url, timeout = 6000) {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeout);
@@ -768,9 +808,8 @@
 
     async function fetchChartData() {
       const now = Date.now();
-      // Rate limiting: max 1 call per 10 seconds to avoid bans
       if (now - lastApiCall < 10000 && apiCallCount > 5) {
-        console.log('Rate limited, using cached data');
+        console.log('Rate limited');
         return null;
       }
       
@@ -832,18 +871,28 @@
       const container = document.getElementById('chartContainer');
       if (!container) return;
       if (typeof LightweightCharts === 'undefined') {
-        container.innerHTML = '<div class="empty-state"> خطا در بارگذاری چارت</div>';
+        container.innerHTML = '<div class="empty-state">خطا در بارگذاری چارت</div>';
         return;
       }
       try {
         chart = LightweightCharts.createChart(container, {
           width: container.clientWidth,
           height: container.clientHeight - 10,
-          layout: { background: { color: '#FFFFFF' }, textColor: '#1A1A1A', fontSize: 11 },
+          layout: { background: { color: '#FFFFFF' }, textColor: '#1A1A1A', fontSize: 10 },
           grid: { vertLines: { color: '#F0F0F0' }, horzLines: { color: '#F0F0F0' } },
           crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
           rightPriceScale: { borderColor: '#E8E8E8', scaleMargins: { top: 0.1, bottom: 0.1 } },
-          timeScale: { borderColor: '#E8E8E8', timeVisible: true, rightOffset: 5 },
+          timeScale: { 
+            borderColor: '#E8E8E8', 
+            timeVisible: true, 
+            rightOffset: 5,
+            tickMarkFormatter: (time) => {
+              const date = new Date(time * 1000);
+              const hours = date.getHours().toString().padStart(2, '0');
+              const minutes = date.getMinutes().toString().padStart(2, '0');
+              return `${hours}:${minutes}`;
+            }
+          },
           handleScroll: { vertTouchDrag: false, horzTouchDrag: true, mouseWheel: true },
           handleScale: { axisPressedMouseMove: { price: true, time: true }, mouseWheel: true, pinch: true }
         });
@@ -855,11 +904,10 @@
         const isCrypto = currentPair === 'BTCUSDT' || currentPair === 'ETHUSDT';
         
         if (isPremiumUser && isCrypto) {
-          // Show loading
           const loadingDiv = document.createElement('div');
           loadingDiv.className = 'chart-loading';
           loadingDiv.id = 'chartLoading';
-          loadingDiv.textContent = '⏳ در حال دریافت داده...';
+          loadingDiv.textContent = ' در حال دریافت داده...';
           container.appendChild(loadingDiv);
           
           fetchChartData().then(data => {
@@ -1117,13 +1165,13 @@
         ctx.lineTo(w, y);
         ctx.stroke();
         ctx.fillStyle = '#7F8C8D';
-        ctx.font = 'bold 11px Arial';
+        ctx.font = 'bold 10px Arial';
         ctx.textAlign = 'left';
-        ctx.fillText(level.toString(), 6, y - 4);
+        ctx.fillText(level.toString(), 6, y - 3);
       });
       ctx.setLineDash([]);
       ctx.strokeStyle = '#FF9800';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
       rsiData.forEach((r, i) => {
         const x = (i / (rsiData.length - 1)) * w;
@@ -1134,6 +1182,7 @@
       ctx.stroke();
     }
 
+    // MACD درست - میله‌ها و خطوط هم‌اندازه
     function drawMACD(macdData, canvas) {
       if (!canvas) return;
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -1147,16 +1196,16 @@
       ctx.fillStyle = 'white';
       ctx.fillRect(0, 0, w, h);
       
-      // Scale histogram to match MACD line range
+      // مقیاس بر اساس MACD line (نه histogram)
       const maxMACD = Math.max(...macdData.macd.map(v => Math.abs(v.value)));
-      const maxHist = Math.max(...macdData.histogram.map(v => Math.abs(v.value)));
       const maxSignal = Math.max(...macdData.signal.map(v => Math.abs(v.value)));
-      const maxAbs = Math.max(maxMACD, maxSignal, maxHist) * 1.2;
+      const maxAbs = Math.max(maxMACD, maxSignal) * 1.3;
       
       if (maxAbs === 0) return;
       const midY = h / 2;
       const scaleY = (h / 2) / maxAbs;
       
+      // خط صفر
       ctx.strokeStyle = '#E0E0E0';
       ctx.lineWidth = 1;
       ctx.beginPath();
@@ -1164,18 +1213,22 @@
       ctx.lineTo(w, midY);
       ctx.stroke();
       
-      const barWidth = Math.max(2, (w / macdData.histogram.length) * 0.8);
+      // میله‌های هیستوگرام - ضخیم‌تر و با opacity
+      const barWidth = Math.max(3, (w / macdData.histogram.length) * 0.85);
       macdData.histogram.forEach((h_val, i) => {
         const x = (i / (macdData.histogram.length - 1)) * w;
         const h_px = h_val.value * scaleY;
+        ctx.globalAlpha = 0.7;
         ctx.fillStyle = h_val.value >= 0 ? '#0ECB81' : '#F64653';
         const barHeight = Math.abs(h_px);
         const y = h_val.value >= 0 ? midY - barHeight : midY;
         ctx.fillRect(x - barWidth/2, y, barWidth, barHeight);
       });
+      ctx.globalAlpha = 1.0;
       
+      // خط MACD - نازک
       ctx.strokeStyle = '#2196F3';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
       macdData.macd.forEach((m, i) => {
         const x = (i / (macdData.macd.length - 1)) * w;
@@ -1185,8 +1238,9 @@
       });
       ctx.stroke();
       
+      // خط سیگنال - نازک
       ctx.strokeStyle = '#FF9800';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
       macdData.signal.forEach((s, i) => {
         const x = (i / (macdData.signal.length - 1)) * w;
@@ -1352,7 +1406,7 @@
       const container = document.getElementById('tpSlInputs');
       if (!container) return;
       if (checkbox?.checked) {
-        container.innerHTML = `<div class="form-group" style="margin-top: 12px;"><label class="form-label">Take Profit</label><input type="number" class="form-input" id="tpInput" placeholder="0.00"></div><div class="form-group"><label class="form-label">Stop Loss</label><input type="number" class="form-input" id="slInput" placeholder="0.00"></div>`;
+        container.innerHTML = `<div class="form-group" style="margin-top: 10px;"><label class="form-label">Take Profit</label><input type="number" class="form-input" id="tpInput" placeholder="0.00"></div><div class="form-group"><label class="form-label">Stop Loss</label><input type="number" class="form-input" id="slInput" placeholder="0.00"></div>`;
       } else { container.innerHTML = ''; }
     }
 
@@ -1389,7 +1443,6 @@
       demoAccount.positions.forEach(pos => {
         const priceChange = pos.side === 'buy' ? (currentPrice - pos.entryPrice) : (pos.entryPrice - currentPrice);
         pos.pnl = priceChange * pos.amount;
-        // Correct PnL% calculation: (price change % ) * leverage
         pos.pnlPercent = (priceChange / pos.entryPrice) * pos.leverage * 100;
       });
       demoAccount.equity = demoAccount.balance + demoAccount.positions.reduce((sum, p) => sum + p.pnl, 0);
@@ -1488,7 +1541,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? ' خوب بود' : '📚 دوباره مرور کنید';
       if (pct >= 70) {
         userProfile.quizzesPassed++;
         userProfile.lessonsCompleted++;
