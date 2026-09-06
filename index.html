@@ -6,6 +6,12 @@
   <meta name="theme-color" content="#00D68F">
   <title>آکادمی ترید</title>
   <link rel="manifest" href="manifest.json">
+  
+  <!-- Firebase SDK (Compat version) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Arial, sans-serif; background: #F5F5F5; color: #1A1A1A; line-height: 1.5; width: 100%; overflow-x: hidden; }
@@ -20,10 +26,12 @@
     .level-icon { font-size: 48px; margin-bottom: 10px; }
     .level-title { font-size: 18px; font-weight: 700; color: #1D9E75; margin-bottom: 6px; }
     .level-count { color: #7F8C8D; font-size: 13px; font-weight: 500; }
-    .course-card { background: white; border-radius: 10px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; }
+    .course-card { background: white; border-radius: 10px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; position: relative; }
     .course-title { font-size: 15px; font-weight: 600; }
     .course-info { color: #7F8C8D; font-size: 12px; margin-top: 4px; }
+    .lock-badge { position: absolute; top: 12px; left: 12px; font-size: 16px; }
     .lesson-item { background: white; border-radius: 10px; padding: 14px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; display: flex; align-items: center; }
+    .lesson-item.locked { opacity: 0.5; }
     .lesson-number { width: 36px; height: 36px; background: #A7D7C5; color: #1D9E75; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-left: 12px; flex-shrink: 0; font-size: 14px; }
     .lesson-title { flex: 1; font-size: 14px; font-weight: 500; }
     .lesson-content { background: white; border-radius: 10px; padding: 16px; padding-bottom: 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
@@ -52,6 +60,84 @@
     .back-button { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 180px; background: #6366F1; color: white; border: none; padding: 10px 16px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 1000; }
     .back-button.hidden { display: none !important; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
+    
+    /* Auth Modal */
+    .auth-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 3000; align-items: center; justify-content: center; padding: 20px; }
+    .auth-overlay.show { display: flex; }
+    .auth-modal { background: white; border-radius: 16px; padding: 24px; max-width: 400px; width: 100%; max-height: 90vh; overflow-y: auto; }
+    .auth-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; text-align: center; }
+    .auth-input { width: 100%; padding: 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 14px; margin-bottom: 12px; direction: ltr; text-align: left; }
+    .auth-input:focus { outline: none; border-color: #1D9E75; }
+    .auth-btn { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 8px; }
+    .auth-btn.primary { background: #1D9E75; color: white; }
+    .auth-btn.secondary { background: #F5F5F5; color: #1A1A1A; }
+    .auth-error { background: #FFEBEE; color: #C62828; padding: 10px; border-radius: 6px; font-size: 13px; margin-bottom: 12px; display: none; text-align: center; }
+    .auth-error.show { display: block; }
+    .auth-switch { text-align: center; font-size: 13px; color: #7F8C8D; margin-top: 12px; }
+    .auth-switch a { color: #1D9E75; cursor: pointer; font-weight: 600; }
+    .auth-loading { text-align: center; padding: 20px; color: #7F8C8D; }
+    
+    /* Profile */
+    .profile-page { padding: 12px; padding-bottom: 100px; }
+    .profile-header-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 24px 16px; border-radius: 16px; text-align: center; margin-bottom: 16px; }
+    .profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .profile-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .profile-email { font-size: 12px; opacity: 0.9; direction: ltr; }
+    .subscription-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-right: 4px solid #F0B90B; }
+    .subscription-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .subscription-title { font-size: 14px; font-weight: 700; color: #1A1A1A; }
+    .subscription-badge { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+    .subscription-badge.free { background: #FFF3E0; color: #F57C00; }
+    .subscription-badge.pro { background: #E8F5E9; color: #2E7D32; }
+    .subscription-info { font-size: 12px; color: #7F8C8D; margin-bottom: 12px; }
+    .upgrade-btn { width: 100%; padding: 12px; background: linear-gradient(135deg, #F0B90B 0%, #FF9800 100%); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
+    .progress-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .progress-title { font-size: 14px; font-weight: 700; color: #1A1A1A; margin-bottom: 12px; }
+    .progress-bar-container { background: #F0F0F0; border-radius: 8px; height: 12px; overflow: hidden; margin-bottom: 8px; }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #1D9E75 0%, #6BC4A0 100%); border-radius: 8px; transition: width 0.3s; }
+    .progress-text { font-size: 12px; color: #7F8C8D; text-align: center; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+    .stat-card { background: white; border-radius: 10px; padding: 12px 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .stat-value { font-size: 18px; font-weight: 700; color: #1D9E75; }
+    .stat-label { font-size: 10px; color: #7F8C8D; margin-top: 3px; }
+    .section-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .section-title { font-size: 14px; font-weight: 700; color: #1A1A1A; margin-bottom: 12px; }
+    .feature-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #F5F5F5; font-size: 13px; }
+    .feature-item:last-child { border-bottom: none; }
+    .feature-icon { margin-left: 10px; font-size: 16px; }
+    .feature-text { flex: 1; }
+    .feature-status { font-size: 11px; padding: 2px 8px; border-radius: 8px; }
+    .feature-status.active { background: #E8F5E9; color: #2E7D32; }
+    .feature-status.locked { background: #FFEBEE; color: #C62828; }
+    .settings-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #F5F5F5; font-size: 13px; }
+    .settings-item:last-child { border-bottom: none; }
+    .toggle-switch { position: relative; width: 44px; height: 24px; background: #E0E0E0; border-radius: 12px; cursor: pointer; transition: background 0.3s; }
+    .toggle-switch.active { background: #1D9E75; }
+    .toggle-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    .toggle-switch.active::after { transform: translateX(20px); }
+    .action-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 8px; }
+    .action-btn.primary { background: #1D9E75; color: white; }
+    .action-btn.secondary { background: #F5F5F5; color: #1A1A1A; }
+    .action-btn.danger { background: #FFEBEE; color: #F64653; }
+    
+    /* Upgrade Modal */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.show { display: flex; }
+    .modal-content { background: white; border-radius: 16px; padding: 24px; max-width: 400px; width: 100%; max-height: 90vh; overflow-y: auto; }
+    .modal-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; text-align: center; }
+    .plan-option { border: 2px solid #E0E0E0; border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; transition: all 0.2s; }
+    .plan-option:hover { border-color: #1D9E75; }
+    .plan-option.selected { border-color: #1D9E75; background: #E8F5E9; }
+    .plan-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .plan-price { font-size: 14px; color: #1D9E75; font-weight: 600; margin-bottom: 8px; }
+    .plan-features { font-size: 12px; color: #7F8C8D; padding-right: 0; }
+    .plan-features li { margin-bottom: 4px; list-style: none; }
+    .modal-actions { display: flex; gap: 8px; margin-top: 16px; }
+    .modal-actions button { flex: 1; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
+    .modal-cancel { background: #F5F5F5; color: #1A1A1A; }
+    .modal-confirm { background: #1D9E75; color: white; }
+    
+    /* Trade page */
     .trade-page { background: white; min-height: 100vh; padding-bottom: 20px; direction: ltr; text-align: left; }
     .trade-header { background: white; padding: 8px 12px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 8px; }
     .pair-info { display: flex; align-items: center; gap: 8px; flex: 1; }
@@ -114,7 +200,6 @@
     .order-row .col-price { font-weight: 700; text-align: left; font-size: 10px; font-variant-numeric: tabular-nums; padding-left: 8px; }
     .order-row .col-price.ask { color: #F64653; }
     .order-row .col-price.bid { color: #0ECB81; }
-    
     .chart-section { border-bottom: 1px solid #E8E8E8; background: white; }
     .chart-section-header { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #E8E8E8; flex-wrap: wrap; }
     .chart-pair-name { font-size: 14px; font-weight: 700; color: #2196F3; }
@@ -124,7 +209,6 @@
     .chart-close-btn { font-size: 18px; cursor: pointer; color: #F64653; padding: 2px 8px; font-weight: 900; background: none; border: none; margin-left: auto; }
     .chart-main-inline { position: relative; width: 100%; height: 500px; flex-shrink: 0; }
     .chart-container { width: 100%; height: 100%; background: white; }
-    
     .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; }
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
@@ -144,26 +228,6 @@
     .position-pnl.loss { color: #F64653; }
     .close-btn { width: 100%; padding: 8px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; }
     .empty-state { text-align: center; padding: 24px 12px; color: #7F8C8D; font-size: 12px; }
-    
-    .profile-page { padding: 12px; }
-    .profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 14px; border-radius: 12px; text-align: center; margin-bottom: 12px; }
-    .profile-avatar { width: 70px; height: 70px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 10px; }
-    .profile-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-    .profile-email { font-size: 11px; opacity: 0.8; }
-    .profile-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
-    .stat-card { background: white; border-radius: 10px; padding: 12px 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .stat-value { font-size: 18px; font-weight: 700; color: #1D9E75; }
-    .stat-label { font-size: 10px; color: #7F8C8D; margin-top: 3px; }
-    .profile-section { background: white; border-radius: 10px; padding: 12px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .profile-section-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #1A1A1A; }
-    .profile-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #F5F5F5; }
-    .profile-item:last-child { border-bottom: none; }
-    .profile-item-label { font-size: 12px; color: #1A1A1A; }
-    .profile-item-value { font-size: 12px; color: #7F8C8D; font-weight: 500; }
-    .profile-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 6px; }
-    .profile-btn.primary { background: #1D9E75; color: white; }
-    .profile-btn.secondary { background: #F5F5F5; color: #1A1A1A; }
-    .profile-btn.danger { background: #FFEBEE; color: #F64653; }
     @media (max-width: 768px) { .current-price { font-size: 22px; } }
   </style>
 </head>
@@ -172,25 +236,258 @@
     <div class="loading">⏳ در حال بارگذاری...</div>
   </div>
 
+  <!-- Auth Modal -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-modal">
+      <div class="auth-title" id="authTitle">ورود به حساب</div>
+      <div class="auth-error" id="authError"></div>
+      <input type="email" class="auth-input" id="authEmail" placeholder="email@example.com">
+      <input type="password" class="auth-input" id="authPassword" placeholder="رمز عبور (حداقل 6 کاراکتر)">
+      <button class="auth-btn primary" id="authSubmitBtn" onclick="handleAuth()">ورود</button>
+      <button class="auth-btn secondary" onclick="closeAuthModal()">انصراف</button>
+      <div class="auth-switch">
+        <span id="authSwitchText">حساب ندارید؟</span>
+        <a onclick="toggleAuthMode()" id="authSwitchLink">ثبت‌نام کنید</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upgrade Modal -->
+  <div class="modal-overlay" id="upgradeModal">
+    <div class="modal-content">
+      <div class="modal-title">🚀 ارتقا به Pro</div>
+      <div class="plan-option selected" onclick="selectPlan(this, 'monthly')">
+        <div class="plan-name">اشتراک ماهانه</div>
+        <div class="plan-price">۹۹,۰۰۰ تومان</div>
+        <ul class="plan-features">
+          <li>✅ تمام دروس مقدماتی و پیشرفته</li>
+          <li>✅ چارت زنده TradingView</li>
+          <li>✅ دمو ترید نامحدود</li>
+          <li>✅ حذف تبلیغات</li>
+          <li>✅ پشتیبانی ایمیلی</li>
+        </ul>
+      </div>
+      <div class="plan-option" onclick="selectPlan(this, 'yearly')">
+        <div class="plan-name">اشتراک سالانه</div>
+        <div class="plan-price">۹۹۰,۰۰۰ تومان <span style="font-size:11px;color:#F0B90B;">(۲ ماه رایگان)</span></div>
+        <ul class="plan-features">
+          <li>✅ تمام امکانات ماهانه</li>
+          <li>✅ صرفه‌جویی ۲۰٪</li>
+          <li>✅ اولویت در پشتیبانی</li>
+        </ul>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-cancel" onclick="closeUpgradeModal()">انصراف</button>
+        <button class="modal-confirm" onclick="processPayment()">پرداخت</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // ===== Firebase Configuration (YOUR CONFIG) =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyDeJyfAIBtrF7eMo8vjRtJzNsCQz1tTtwE",
+      authDomain: "academy-trade.firebaseapp.com",
+      projectId: "academy-trade",
+      storageBucket: "academy-trade.firebasestorage.app",
+      messagingSenderId: "890455278945",
+      appId: "1:890455278945:web:2d9e63ccc3e660560ff120"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // ===== App State =====
     let appData = { courses: [] };
     let currentCourse = null, currentLesson = null;
     let quizState = { currentQuestion: 0, score: 0, answered: false };
     let demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] };
-    let userProfile = { name: 'کاربر آکادمی', email: 'user@academy.com', joinDate: '2026-09-06', lessonsCompleted: 0, quizzesPassed: 0, totalTrades: 0, winRate: 0 };
+    let currentUser = null;
+    let userProfile = { 
+      name: 'کاربر آکادمی', 
+      email: '', 
+      joinDate: '', 
+      lessonsCompleted: 0, 
+      quizzesPassed: 0, 
+      totalTrades: 0, 
+      winRate: 0,
+      subscription: { plan: 'free', expiryDate: null },
+      settings: { notifications: true, sound: true }
+    };
     let currentPrice = 0, priceUpdateInterval, pnlInterval;
     let tradeType = 'buy', sliderValue = 0;
     let activeTab = 'positions';
     let currentPair = 'BTCUSDT';
     let isChartVisible = false;
     let lastPriceFetch = 0;
+    let selectedPlan = 'monthly';
+    let authMode = 'login';
+    let isAuthReady = false;
     
     let pairInfo = {
-      BTCUSDT: { name: 'BTC/USDT', price: 0, change: 0, decimals: 2, basePrice: 80000, cgId: 'bitcoin', tvSymbol: 'BINANCE:BTCUSDT' },
-      ETHUSDT: { name: 'ETH/USDT', price: 0, change: 0, decimals: 2, basePrice: 3800, cgId: 'ethereum', tvSymbol: 'BINANCE:ETHUSDT' },
-      XAUUSD:  { name: 'XAU/USD',  price: 0, change: 0, decimals: 2, basePrice: 2650, cgId: null, tvSymbol: 'OANDA:XAUUSD' },
-      EURUSD:  { name: 'EUR/USD',  price: 0, change: 0, decimals: 4, basePrice: 1.0850, cgId: null, tvSymbol: 'OANDA:EURUSD' }
+      BTCUSDT: { name: 'BTC/USDT', price: 0, change: 0, decimals: 2, basePrice: 80000, tvSymbol: 'BINANCE:BTCUSDT' },
+      ETHUSDT: { name: 'ETH/USDT', price: 0, change: 0, decimals: 2, basePrice: 3800, tvSymbol: 'BINANCE:ETHUSDT' },
+      XAUUSD:  { name: 'XAU/USD',  price: 0, change: 0, decimals: 2, basePrice: 2650, tvSymbol: 'OANDA:XAUUSD' },
+      EURUSD:  { name: 'EUR/USD',  price: 0, change: 0, decimals: 4, basePrice: 1.0850, tvSymbol: 'OANDA:EURUSD' }
     };
+
+    // ===== Access Control =====
+    function hasAccess(requiredPlan) {
+      if (!currentUser) return false;
+      const planLevels = { 'free': 0, 'pro': 1 };
+      const userLevel = planLevels[userProfile.subscription.plan] || 0;
+      const requiredLevel = planLevels[requiredPlan] || 0;
+      const isExpired = userProfile.subscription.expiryDate && new Date(userProfile.subscription.expiryDate) < new Date();
+      return userLevel >= requiredLevel && !isExpired;
+    }
+
+    function isLessonUnlocked(lessonId) {
+      const freeLessons = ['c1l1', 'c1l2', 'c1l3'];
+      if (freeLessons.includes(lessonId)) return true;
+      return hasAccess('pro');
+    }
+
+    // ===== Auth Functions =====
+    function showAuthModal() {
+      document.getElementById('authOverlay').classList.add('show');
+      authMode = 'login';
+      updateAuthUI();
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authOverlay').classList.remove('show');
+      document.getElementById('authEmail').value = '';
+      document.getElementById('authPassword').value = '';
+      document.getElementById('authError').classList.remove('show');
+    }
+
+    function toggleAuthMode() {
+      authMode = authMode === 'login' ? 'signup' : 'login';
+      updateAuthUI();
+    }
+
+    function updateAuthUI() {
+      const title = document.getElementById('authTitle');
+      const submitBtn = document.getElementById('authSubmitBtn');
+      const switchText = document.getElementById('authSwitchText');
+      const switchLink = document.getElementById('authSwitchLink');
+      
+      if (authMode === 'login') {
+        title.textContent = 'ورود به حساب';
+        submitBtn.textContent = 'ورود';
+        switchText.textContent = 'حساب ندارید؟';
+        switchLink.textContent = 'ثبت‌نام کنید';
+      } else {
+        title.textContent = 'ثبت‌نام';
+        submitBtn.textContent = 'ثبت‌نام';
+        switchText.textContent = 'حساب دارید؟';
+        switchLink.textContent = 'وارد شوید';
+      }
+    }
+
+    function showAuthError(message) {
+      const errorEl = document.getElementById('authError');
+      errorEl.textContent = message;
+      errorEl.classList.add('show');
+    }
+
+    async function handleAuth() {
+      const email = document.getElementById('authEmail').value.trim();
+      const password = document.getElementById('authPassword').value;
+      const submitBtn = document.getElementById('authSubmitBtn');
+      
+      if (!email || !password) {
+        showAuthError('لطفاً ایمیل و رمز عبور را وارد کنید');
+        return;
+      }
+      
+      if (password.length < 6) {
+        showAuthError('رمز عبور باید حداقل 6 کاراکتر باشد');
+        return;
+      }
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⏳ در حال پردازش...';
+      
+      try {
+        if (authMode === 'login') {
+          await auth.signInWithEmailAndPassword(email, password);
+        } else {
+          await auth.createUserWithEmailAndPassword(email, password);
+        }
+        closeAuthModal();
+      } catch (error) {
+        let message = 'خطا در احراز هویت';
+        if (error.code === 'auth/user-not-found') message = 'کاربری با این ایمیل یافت نشد';
+        else if (error.code === 'auth/wrong-password') message = 'رمز عبور اشتباه است';
+        else if (error.code === 'auth/invalid-credential') message = 'ایمیل یا رمز عبور اشتباه است';
+        else if (error.code === 'auth/email-already-in-use') message = 'این ایمیل قبلاً ثبت شده است';
+        else if (error.code === 'auth/invalid-email') message = 'ایمیل نامعتبر است';
+        else if (error.code === 'auth/weak-password') message = 'رمز عبور ضعیف است';
+        else if (error.code === 'auth/network-request-failed') message = 'خطای شبکه. اتصال اینترنت را بررسی کنید';
+        else message = error.message;
+        showAuthError(message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = authMode === 'login' ? 'ورود' : 'ثبت‌نام';
+      }
+    }
+
+    function signOut() {
+      if (confirm('آیا می‌خواهید از حساب خارج شوید؟')) {
+        auth.signOut().then(() => {
+          currentUser = null;
+          navigateTo('#home');
+        });
+      }
+    }
+
+    // Firebase Auth State Listener
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        currentUser = user;
+        try {
+          const userDoc = await db.collection('users').doc(user.uid).get();
+          if (userDoc.exists) {
+            const data = userDoc.data();
+            userProfile = { ...userProfile, ...data };
+            userProfile.email = user.email;
+          } else {
+            userProfile.email = user.email;
+            userProfile.joinDate = new Date().toISOString();
+            await db.collection('users').doc(user.uid).set(userProfile);
+          }
+        } catch (error) {
+          console.error('Error loading profile:', error);
+        }
+      } else {
+        currentUser = null;
+        userProfile = { 
+          name: 'کاربر آکادمی', 
+          email: '', 
+          joinDate: '', 
+          lessonsCompleted: 0, 
+          quizzesPassed: 0, 
+          totalTrades: 0, 
+          winRate: 0,
+          subscription: { plan: 'free', expiryDate: null },
+          settings: { notifications: true, sound: true }
+        };
+      }
+      isAuthReady = true;
+      handleRoute();
+    });
+
+    async function saveUserProfileToFirestore() {
+      if (!currentUser) return;
+      try {
+        await db.collection('users').doc(currentUser.uid).set(userProfile, { merge: true });
+      } catch (error) {
+        console.error('Error saving profile:', error);
+      }
+    }
 
     function cleanJsonKeys(obj) {
       if (Array.isArray(obj)) return obj.map(item => cleanJsonKeys(item));
@@ -207,19 +504,19 @@
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '';
+      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '₿';
       if (t.includes('کیف پول')) return '👛';
-      if (t.includes('بازار')) return '';
+      if (t.includes('بازار')) return '🏛️';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
-      if (t.includes('حمایت') || t.includes('مقاومت')) return '';
-      if (t.includes('روند')) return '';
+      if (t.includes('حمایت') || t.includes('مقاومت')) return '📊';
+      if (t.includes('روند')) return '📈';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک')) return '🛡️';
-      if (t.includes('آزمون')) return '';
+      if (t.includes('آزمون')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict')) return '🎯';
-      if (t.includes('استراتژی')) return '️';
+      if (t.includes('استراتژی')) return '⚙️';
       if (t.includes('روانشناسی')) return '🧘';
       return '📚';
     }
@@ -258,7 +555,6 @@
           return;
         }
         loadDemoAccount();
-        loadUserProfile();
         await fetchRealPrices();
         if (!location.hash) history.replaceState({ view: 'home' }, '', '#home');
         handleRoute();
@@ -271,7 +567,6 @@
     async function fetchRealPrices() {
       const now = Date.now();
       if (now - lastPriceFetch < 10000) return;
-      
       try {
         const cgRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true', { signal: AbortSignal.timeout(5000) });
         if (cgRes.ok) {
@@ -282,7 +577,6 @@
           return;
         }
       } catch(e) { console.log('CoinGecko failed:', e.message); }
-      
       try {
         const ccRes = await fetch('https://api.coincap.io/v2/assets?ids=bitcoin,ethereum', { signal: AbortSignal.timeout(5000) });
         if (ccRes.ok) {
@@ -297,7 +591,6 @@
           return;
         }
       } catch(e) { console.log('CoinCap failed:', e.message); }
-      
       if (pairInfo.BTCUSDT.price === 0) pairInfo.BTCUSDT.price = 80000;
       if (pairInfo.ETHUSDT.price === 0) pairInfo.ETHUSDT.price = 3800;
       if (pairInfo.XAUUSD.price === 0) pairInfo.XAUUSD.price = 2650;
@@ -306,6 +599,10 @@
     }
 
     function handleRoute() {
+      if (!isAuthReady) {
+        document.getElementById('app').innerHTML = '<div class="loading">⏳ در حال بارگذاری...</div>';
+        return;
+      }
       const hash = location.hash;
       if (hash === '#home' || hash === '' || !hash) renderHome();
       else if (hash.startsWith('#level-')) renderLevelCourses(hash.replace('#level-', ''));
@@ -326,7 +623,8 @@
         { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
-      let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
+      const userGreeting = currentUser ? `👋 ${userProfile.name}` : '👋 مهمان';
+      let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>${userGreeting} - مسیر شما تا حرفه‌ای شدن</p></div>
         <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
       levels.forEach(level => {
         if (level.count > 0) {
@@ -360,12 +658,26 @@
       }
       const lessons = currentCourse.lessons || [];
       let html = `<div class="header"><h1>${currentCourse.title}</h1><p>${lessons.length} درس</p></div>`;
-      if (lessons.length === 0) html += `<div class="loading">️ این دوره هنوز درسی ندارد</div>`;
+      if (lessons.length === 0) html += `<div class="loading">⚠️ این دوره هنوز درسی ندارد</div>`;
       else lessons.forEach((l, i) => {
-        html += `<div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')"><div class="lesson-number">${i + 1}</div><div class="lesson-title">${l.title}</div></div>`;
+        const lessonId = `${cleanCourseId}l${i+1}`;
+        const isUnlocked = isLessonUnlocked(lessonId);
+        const lockIcon = isUnlocked ? '' : '<span class="lock-badge">🔒</span>';
+        const clickHandler = isUnlocked ? `onclick="navigateTo('#lesson-${currentCourse.id}-${i}')"` : `onclick="showUpgradeRequired()"`;
+        html += `<div class="lesson-item ${isUnlocked ? '' : 'locked'}" ${clickHandler}><div class="lesson-number">${i + 1}</div><div class="lesson-title">${l.title}</div>${lockIcon}</div>`;
       });
       html += `<button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
+    }
+
+    function showUpgradeRequired() {
+      if (!currentUser) {
+        alert('🔒 برای دسترسی به این درس، ابتدا وارد حساب کاربری شوید.');
+        showAuthModal();
+      } else {
+        alert('🔒 این درس نیاز به اشتراک Pro دارد.\n\nبرای دسترسی به تمام دروس، اشتراک Pro را تهیه کنید.');
+        showUpgradeModal();
+      }
     }
 
     function renderLesson(courseId, lessonIndex) {
@@ -376,6 +688,21 @@
       if (lessonIndex < 0 || lessonIndex >= lessons.length) return navigateTo(`#course-${cleanCourseId}`);
       const currentLesson = lessons[lessonIndex];
       if (!currentLesson) return navigateTo(`#course-${cleanCourseId}`);
+      
+      const lessonId = `${cleanCourseId}l${lessonIndex+1}`;
+      if (!isLessonUnlocked(lessonId)) {
+        document.getElementById('app').innerHTML = `
+          <div class="lesson-content" style="text-align:center; padding:40px 20px;">
+            <div style="font-size:64px; margin-bottom:16px;">🔒</div>
+            <h2 style="color:#1D9E75; margin-bottom:16px;">این درس قفل است</h2>
+            <p style="color:#7F8C8D; margin-bottom:24px;">برای دسترسی به این درس، اشتراک Pro را تهیه کنید.</p>
+            <button class="quiz-button" onclick="showUpgradeModal()">🚀 ارتقا به Pro</button>
+          </div>
+          <button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')">↶ بازگشت</button>
+        `;
+        return;
+      }
+      
       const lessonIcon = getLessonIcon(currentLesson.title);
       const cleanUrl = getCleanImageUrl(currentLesson.image);
       const hasImage = cleanUrl && !cleanUrl.includes('PENDING');
@@ -405,47 +732,207 @@
     }
 
     function renderProfile() {
+      if (!currentUser) {
+        let html = `<div class="profile-page">
+          <div class="profile-header-card">
+            <div class="profile-avatar">👤</div>
+            <div class="profile-name">مهمان</div>
+            <div class="profile-email">وارد نشده‌اید</div>
+          </div>
+          <div class="section-card" style="text-align:center; padding:40px 20px;">
+            <div style="font-size:64px; margin-bottom:16px;">🔐</div>
+            <h2 style="color:#1D9E75; margin-bottom:16px;">وارد حساب شوید</h2>
+            <p style="color:#7F8C8D; margin-bottom:24px;">برای مشاهده پروفایل و پیشرفت خود، وارد شوید یا ثبت‌نام کنید.</p>
+            <button class="action-btn primary" onclick="showAuthModal()">🔑 ورود / ثبت‌نام</button>
+          </div>
+        </div>
+        <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+        document.getElementById('app').innerHTML = html;
+        return;
+      }
+      
       const totalLessons = appData.courses.reduce((sum, c) => sum + c.lessons.length, 0);
-      const progress = Math.round((userProfile.lessonsCompleted / totalLessons) * 100);
+      const progress = totalLessons > 0 ? Math.round((userProfile.lessonsCompleted / totalLessons) * 100) : 0;
+      const isPro = hasAccess('pro');
+      const expiryText = userProfile.subscription.expiryDate ? 
+        `⏰ انقضا: ${new Date(userProfile.subscription.expiryDate).toLocaleDateString('fa-IR')}` : 
+        '⏰ بدون انقضا';
+      
       let html = `<div class="profile-page">
-        <div class="profile-header">
+        <div class="profile-header-card">
           <div class="profile-avatar">👤</div>
           <div class="profile-name">${userProfile.name}</div>
-          <div class="profile-email">${userProfile.email}</div>
+          <div class="profile-email">${currentUser.email}</div>
         </div>
-        <div class="profile-stats">
-          <div class="stat-card"><div class="stat-value">${userProfile.lessonsCompleted}</div><div class="stat-label">درس تکمیل‌شده</div></div>
-          <div class="stat-card"><div class="stat-value">${userProfile.quizzesPassed}</div><div class="stat-label">آزمون پاس‌شده</div></div>
-          <div class="stat-card"><div class="stat-value">${progress}%</div><div class="stat-label">پیشرفت کلی</div></div>
+        
+        <div class="subscription-card">
+          <div class="subscription-header">
+            <div class="subscription-title">🎫 وضعیت اشتراک</div>
+            <div class="subscription-badge ${isPro ? 'pro' : 'free'}">${isPro ? 'Pro' : 'Free'}</div>
+          </div>
+          <div class="subscription-info">${expiryText}</div>
+          ${!isPro ? `<button class="upgrade-btn" onclick="showUpgradeModal()">🚀 ارتقا به Pro</button>` : '<div style="text-align:center; color:#2E7D32; font-size:13px; font-weight:600;">✅ اشتراک فعال</div>'}
         </div>
-        <div class="profile-section">
-          <div class="profile-section-title">💰 حساب دمو</div>
-          <div class="profile-item"><span class="profile-item-label">موجودی</span><span class="profile-item-value" style="color: #1D9E75; font-weight: 700;">${demoAccount.balance.toFixed(2)} USDT</span></div>
-          <div class="profile-item"><span class="profile-item-label">تعداد معاملات</span><span class="profile-item-value">${userProfile.totalTrades}</span></div>
+        
+        <div class="progress-card">
+          <div class="progress-title">📚 پیشرفت تحصیلی</div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: ${progress}%"></div>
+          </div>
+          <div class="progress-text">${userProfile.lessonsCompleted} از ${totalLessons} درس (${progress}٪)</div>
         </div>
-        <button class="profile-btn primary" onclick="resetDemoAccount()">🔄 ریست حساب دمو</button>
-        <button class="profile-btn danger" onclick="clearAllData()">️ پاک کردن همه داده‌ها</button>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value">${userProfile.quizzesPassed}</div>
+            <div class="stat-label">آزمون پاس‌شده</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${userProfile.totalTrades}</div>
+            <div class="stat-label">معامله دمو</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${userProfile.winRate}٪</div>
+            <div class="stat-label">نرخ برد</div>
+          </div>
+        </div>
+        
+        <div class="section-card">
+          <div class="section-title">🔓 دسترسی‌های شما</div>
+          <div class="feature-item">
+            <span class="feature-icon">📚</span>
+            <span class="feature-text">۳ درس اول رایگان</span>
+            <span class="feature-status active">فعال</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📊</span>
+            <span class="feature-text">چارت زنده TradingView</span>
+            <span class="feature-status ${isPro ? 'active' : 'locked'}">${isPro ? 'فعال' : 'Pro'}</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🎮</span>
+            <span class="feature-text">دمو ترید نامحدود</span>
+            <span class="feature-status ${isPro ? 'active' : 'locked'}">${isPro ? 'فعال' : 'Pro'}</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📢</span>
+            <span class="feature-text">حذف تبلیغات</span>
+            <span class="feature-status ${isPro ? 'active' : 'locked'}">${isPro ? 'فعال' : 'Pro'}</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📧</span>
+            <span class="feature-text">پشتیبانی ایمیلی</span>
+            <span class="feature-status ${isPro ? 'active' : 'locked'}">${isPro ? 'فعال' : 'Pro'}</span>
+          </div>
+        </div>
+        
+        <div class="section-card">
+          <div class="section-title">⚙️ تنظیمات</div>
+          <div class="settings-item">
+            <span>🔔 اعلان‌ها</span>
+            <div class="toggle-switch ${userProfile.settings.notifications ? 'active' : ''}" onclick="toggleSetting('notifications')"></div>
+          </div>
+          <div class="settings-item">
+            <span>🔊 صدا</span>
+            <div class="toggle-switch ${userProfile.settings.sound ? 'active' : ''}" onclick="toggleSetting('sound')"></div>
+          </div>
+        </div>
+        
+        <button class="action-btn secondary" onclick="exportData()">📤 خروجی از داده‌ها</button>
+        <button class="action-btn danger" onclick="signOut()">🚪 خروج از حساب</button>
       </div>
       <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+      
       document.getElementById('app').innerHTML = html;
     }
 
-    function resetDemoAccount() { if (confirm('آیا مطمئن هستید؟')) { demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] }; saveDemoAccount(); renderProfile(); } }
-    function clearAllData() { if (confirm('آیا مطمئن هستید؟')) { localStorage.clear(); location.reload(); } }
-    function loadUserProfile() { const saved = localStorage.getItem('userProfile'); if (saved) { try { userProfile = JSON.parse(saved); } catch (e) {} } }
-    function saveUserProfile() { localStorage.setItem('userProfile', JSON.stringify(userProfile)); }
+    function toggleSetting(key) {
+      userProfile.settings[key] = !userProfile.settings[key];
+      saveUserProfileToFirestore();
+      renderProfile();
+    }
+
+    function showUpgradeModal() {
+      if (!currentUser) {
+        alert('لطفاً ابتدا وارد حساب کاربری شوید.');
+        showAuthModal();
+        return;
+      }
+      document.getElementById('upgradeModal').classList.add('show');
+    }
+
+    function closeUpgradeModal() {
+      document.getElementById('upgradeModal').classList.remove('show');
+    }
+
+    function selectPlan(element, plan) {
+      selectedPlan = plan;
+      document.querySelectorAll('.plan-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    async function processPayment() {
+      if (!currentUser) {
+        alert('لطفاً ابتدا وارد حساب کاربری شوید.');
+        closeUpgradeModal();
+        showAuthModal();
+        return;
+      }
+      
+      const price = selectedPlan === 'monthly' ? '99,000' : '990,000';
+      const period = selectedPlan === 'monthly' ? 'یک ماه' : 'یک سال';
+      const days = selectedPlan === 'monthly' ? 30 : 365;
+      
+      if (confirm(`آیا می‌خواهید اشتراک ${period} به مبلغ ${price} تومان را خریداری کنید؟\n\n(در نسخه واقعی، به درگاه پرداخت هدایت می‌شوید)`)) {
+        const now = new Date();
+        const expiry = new Date(now);
+        expiry.setDate(expiry.getDate() + days);
+        
+        userProfile.subscription = {
+          plan: 'pro',
+          startDate: now.toISOString(),
+          expiryDate: expiry.toISOString()
+        };
+        
+        await saveUserProfileToFirestore();
+        closeUpgradeModal();
+        alert('✅ پرداخت موفق!\nاشتراک Pro شما فعال شد.');
+        renderProfile();
+      }
+    }
+
+    function clearAllData() { 
+      if (confirm('آیا مطمئن هستید؟ تمام داده‌ها پاک می‌شوند.')) { 
+        localStorage.clear(); 
+        location.reload(); 
+      } 
+    }
+
+    function loadDemoAccount() { 
+      const saved = localStorage.getItem('demoAccount'); 
+      if (saved) { try { demoAccount = JSON.parse(saved); } catch (e) {} } 
+    }
+
+    function saveDemoAccount() { 
+      localStorage.setItem('demoAccount', JSON.stringify(demoAccount)); 
+    }
 
     function renderTradePage() {
+      if (!currentUser) {
+        alert('لطفاً ابتدا وارد حساب کاربری شوید.');
+        showAuthModal();
+        navigateTo('#profile');
+        return;
+      }
+      
       if (priceUpdateInterval) { clearInterval(priceUpdateInterval); priceUpdateInterval = null; }
       if (pnlInterval) { clearInterval(pnlInterval); pnlInterval = null; }
       isChartVisible = false;
-      
       const info = pairInfo[currentPair];
       if (info.price === 0) info.price = info.basePrice;
       currentPrice = info.price;
       const changeClass = info.change >= 0 ? 'up' : 'down';
       const changeSign = info.change >= 0 ? '+' : '';
-      
       let html = `<div class="trade-page">
         <div class="trade-header">
           <div class="pair-info">
@@ -478,18 +965,9 @@
               <button class="leverage-btn" onclick="setLeverage(10, this)">10x</button>
               <button class="leverage-btn" onclick="setLeverage(20, this)">20x</button>
             </div>
-            <div class="form-group">
-              <label class="form-label">Amount (USDT)</label>
-              <input type="number" class="form-input" id="tradeAmount" placeholder="0.00" step="0.01" oninput="updateTradeInfo()">
-            </div>
-            <div class="slider-container" id="sliderContainer">
-              <div class="slider-track"></div>
-              <div class="slider-fill" id="sliderFill"></div>
-              <div class="slider-dot" id="sliderDot"></div>
-            </div>
-            <div class="slider-markers">
-              <div class="slider-marker"></div><div class="slider-marker"></div><div class="slider-marker"></div><div class="slider-marker"></div><div class="slider-marker"></div>
-            </div>
+            <div class="form-group"><label class="form-label">Amount (USDT)</label><input type="number" class="form-input" id="tradeAmount" placeholder="0.00" step="0.01" oninput="updateTradeInfo()"></div>
+            <div class="slider-container" id="sliderContainer"><div class="slider-track"></div><div class="slider-fill" id="sliderFill"></div><div class="slider-dot" id="sliderDot"></div></div>
+            <div class="slider-markers"><div class="slider-marker"></div><div class="slider-marker"></div><div class="slider-marker"></div><div class="slider-marker"></div><div class="slider-marker"></div></div>
             <div class="slider-percent" id="sliderPercent">0%</div>
             <div class="trade-info-row"><span class="trade-info-label">Margin</span><span class="trade-info-value" id="marginValue">0 USDT</span></div>
             <div class="trade-info-row"><span class="trade-info-label">Avbl</span><span class="trade-info-value" id="availableValue">0 USDT</span></div>
@@ -500,15 +978,8 @@
             <button class="submit-btn buy" id="submitBtn" onclick="submitOrder()">Buy/Long</button>
           </div>
           <div class="order-book-col">
-            <div class="price-display">
-              <div class="current-price" id="currentPrice">${info.price.toFixed(info.decimals)}</div>
-              <div class="price-change-text" id="priceChangeText">${info.name}</div>
-            </div>
-            <div class="order-book">
-              <div class="order-header"><span>Amount</span><span>Price</span></div>
-              <div id="orderBookAsks"></div>
-              <div id="orderBookBids"></div>
-            </div>
+            <div class="price-display"><div class="current-price" id="currentPrice">${info.price.toFixed(info.decimals)}</div><div class="price-change-text" id="priceChangeText">${info.name}</div></div>
+            <div class="order-book"><div class="order-header"><span>Amount</span><span>Price</span></div><div id="orderBookAsks"></div><div id="orderBookBids"></div></div>
           </div>
         </div>
         <div class="chart-section" id="chartSection" style="display:none;">
@@ -517,9 +988,7 @@
             <span class="live-badge"><span class="dot"></span><span>LIVE</span></span>
             <button class="chart-close-btn" onclick="toggleChart()">✕</button>
           </div>
-          <div class="chart-main-inline">
-            <div class="chart-container" id="tradingview-widget"></div>
-          </div>
+          <div class="chart-main-inline"><div class="chart-container" id="tradingview-widget"></div></div>
         </div>
         <div class="positions-tabs">
           <div class="position-tab ${activeTab === 'positions' ? 'active' : ''}" onclick="switchTab('positions', event)">Current Position</div>
@@ -538,7 +1007,6 @@
         }).join('')}
       </div>
       <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
-      
       document.getElementById('app').innerHTML = html;
       renderOrderBook();
       renderPositions();
@@ -552,7 +1020,6 @@
       isChartVisible = !isChartVisible;
       const section = document.getElementById('chartSection');
       if (!section) return;
-      
       if (isChartVisible) {
         section.style.display = 'block';
         document.getElementById('chartPairName').textContent = pairInfo[currentPair].name;
@@ -567,36 +1034,24 @@
       const container = document.getElementById('tradingview-widget');
       if (!container) return;
       container.innerHTML = '';
-      
       const info = pairInfo[currentPair];
       const symbol = info.tvSymbol;
-      
       const widget = document.createElement('div');
       widget.className = 'tradingview-widget-container';
       widget.style.height = '100%';
       widget.style.width = '100%';
       container.appendChild(widget);
-      
       const script = document.createElement('script');
       script.src = 'https://s3.tradingview.com/tv.js';
       script.onload = () => {
         if (typeof TradingView !== 'undefined') {
           new TradingView.widget({
-            autosize: true,
-            symbol: symbol,
-            interval: '15',
-            timezone: 'Asia/Tehran',
-            theme: 'light',
-            style: '1',
-            locale: 'fa',
-            toolbar_bg: '#f1f3f6',
-            enable_publishing: false,
-            allow_symbol_change: true,
+            autosize: true, symbol: symbol, interval: '15', timezone: 'Asia/Tehran',
+            theme: 'light', style: '1', locale: 'fa', toolbar_bg: '#f1f3f6',
+            enable_publishing: false, allow_symbol_change: true,
             container_id: 'tradingview-widget',
             studies: ['RSI@tv-basicstudies', 'MACD@tv-basicstudies', 'MAExp@tv-basicstudies'],
-            show_popup_button: true,
-            popup_width: '1000',
-            popup_height: '650'
+            show_popup_button: true, popup_width: '1000', popup_height: '650'
           });
         }
       };
@@ -616,20 +1071,12 @@
 
     function startPnLUpdates() {
       if (pnlInterval) clearInterval(pnlInterval);
-      pnlInterval = setInterval(() => {
-        updatePositionsPnL();
-      }, 1000);
+      pnlInterval = setInterval(() => { updatePositionsPnL(); }, 1000);
     }
 
     function togglePairDropdown(e) { if (e) e.stopPropagation(); document.getElementById('pairOverlay').classList.add('show'); document.getElementById('pairDropdown').classList.add('show'); }
     function closePairDropdown() { document.getElementById('pairOverlay').classList.remove('show'); document.getElementById('pairDropdown').classList.remove('show'); }
-
-    function selectPair(id, event) {
-      if (event) event.stopPropagation();
-      currentPair = id;
-      closePairDropdown();
-      renderTradePage();
-    }
+    function selectPair(id, event) { if (event) event.stopPropagation(); currentPair = id; closePairDropdown(); renderTradePage(); }
 
     function setupSlider() {
       const sliderDot = document.getElementById('sliderDot'); const sliderFill = document.getElementById('sliderFill'); const sliderContainer = document.getElementById('sliderContainer');
@@ -657,11 +1104,7 @@
       if (maxEl) maxEl.textContent = (finalAmount * sliderValue / 100 / currentPrice).toFixed(6);
       if (liqEl) {
         if (demoAccount.positions.length === 0) liqEl.textContent = '--';
-        else {
-          const pos = demoAccount.positions[demoAccount.positions.length - 1];
-          const liqPrice = pos.side === 'buy' ? (pos.entryPrice * (1 - 1/pos.leverage)).toFixed(pairInfo[currentPair].decimals) : (pos.entryPrice * (1 + 1/pos.leverage)).toFixed(pairInfo[currentPair].decimals);
-          liqEl.textContent = liqPrice;
-        }
+        else { const pos = demoAccount.positions[demoAccount.positions.length - 1]; const liqPrice = pos.side === 'buy' ? (pos.entryPrice * (1 - 1/pos.leverage)).toFixed(pairInfo[currentPair].decimals) : (pos.entryPrice * (1 + 1/pos.leverage)).toFixed(pairInfo[currentPair].decimals); liqEl.textContent = liqPrice; }
       }
     }
 
@@ -676,7 +1119,8 @@
       const position = { id: Date.now(), pair: currentPair, side: tradeType, amount: (amount * sliderValue / 100) / currentPrice, entryPrice: currentPrice, leverage: leverage, tp: tp, sl: sl, pnl: 0, pnlPercent: 0, openTime: Date.now() };
       demoAccount.positions.push(position);
       userProfile.totalTrades++;
-      saveDemoAccount(); saveUserProfile();
+      saveDemoAccount();
+      saveUserProfileToFirestore();
       renderPositions(); updateTradeInfo();
       alert('Order submitted!');
     }
@@ -689,11 +1133,7 @@
         const priceChange = pos.side === 'buy' ? (currentPrice - pos.entryPrice) : (pos.entryPrice - currentPrice);
         const newPnl = priceChange * pos.amount;
         const newPnlPercent = (priceChange / pos.entryPrice) * pos.leverage * 100;
-        if (Math.abs(newPnl - pos.pnl) > 0.001) {
-          pos.pnl = newPnl;
-          pos.pnlPercent = newPnlPercent;
-          changed = true;
-        }
+        if (Math.abs(newPnl - pos.pnl) > 0.001) { pos.pnl = newPnl; pos.pnlPercent = newPnlPercent; changed = true; }
       });
       demoAccount.equity = demoAccount.balance + demoAccount.positions.reduce((sum, p) => sum + p.pnl, 0);
       saveDemoAccount();
@@ -706,88 +1146,45 @@
       if (activeTab === 'positions') {
         const positions = demoAccount.positions.filter(p => p.pair === currentPair);
         if (positions.length === 0) { container.innerHTML = '<div class="empty-state">No open positions</div>'; return; }
-        container.innerHTML = positions.map(pos => { 
-          const pnlClass = pos.pnl >= 0 ? 'profit' : 'loss'; 
-          const pnlSign = pos.pnl >= 0 ? '+' : ''; 
-          const sideClass = pos.side === 'buy' ? 'buy' : 'sell';
-          const sideText = pos.side === 'buy' ? 'Long' : 'Short';
-          return `<div class="position-item"><div class="position-header"><span class="position-pair">${pos.pair}</span><span class="position-side ${sideClass}">${sideText}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${pos.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Leverage</span><span class="position-detail-value">${pos.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${pos.entryPrice.toFixed(pairInfo[pos.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Margin</span><span class="position-detail-value">${(pos.amount * pos.entryPrice / pos.leverage).toFixed(2)} USDT</span></div></div><div class="position-pnl ${pnlClass}">${pnlSign}$${pos.pnl.toFixed(2)} (${pnlSign}${pos.pnlPercent.toFixed(2)}%)</div><button class="close-btn" onclick="closePosition(${pos.id})">Close Position</button></div>`; 
-        }).join('');
+        container.innerHTML = positions.map(pos => { const pnlClass = pos.pnl >= 0 ? 'profit' : 'loss'; const pnlSign = pos.pnl >= 0 ? '+' : ''; const sideClass = pos.side === 'buy' ? 'buy' : 'sell'; const sideText = pos.side === 'buy' ? 'Long' : 'Short'; return `<div class="position-item"><div class="position-header"><span class="position-pair">${pos.pair}</span><span class="position-side ${sideClass}">${sideText}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${pos.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Leverage</span><span class="position-detail-value">${pos.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${pos.entryPrice.toFixed(pairInfo[pos.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Margin</span><span class="position-detail-value">${(pos.amount * pos.entryPrice / pos.leverage).toFixed(2)} USDT</span></div></div><div class="position-pnl ${pnlClass}">${pnlSign}$${pos.pnl.toFixed(2)} (${pnlSign}${pos.pnlPercent.toFixed(2)}%)</div><button class="close-btn" onclick="closePosition(${pos.id})">Close Position</button></div>`; }).join('');
       } else if (activeTab === 'pending') { container.innerHTML = '<div class="empty-state">No pending orders<br><small>Use Limit Order to create one</small></div>'; }
-      else if (activeTab === 'history') { 
-        const history = demoAccount.history.filter(h => h.pair === currentPair); 
-        if (history.length === 0) { container.innerHTML = '<div class="empty-state">No order history</div>'; return; } 
-        container.innerHTML = history.slice().reverse().map(h => { 
-          const pnlClass = h.pnl >= 0 ? 'profit' : 'loss'; 
-          const pnlSign = h.pnl >= 0 ? '+' : '';
-          const sideClass = h.side === 'buy' ? 'buy' : 'sell';
-          const sideText = h.side === 'buy' ? 'Long' : 'Short';
-          return `<div class="position-item"><div class="position-header"><span class="position-pair">${h.pair}</span><span class="position-side ${sideClass}">${sideText}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${h.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${h.entryPrice.toFixed(pairInfo[h.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Exit</span><span class="position-detail-value">${h.closePrice?.toFixed(pairInfo[h.pair]?.decimals || 2) || '--'}</span></div><div class="position-detail"><span class="position-detail-label">PnL</span><span class="position-detail-value ${pnlClass}">${pnlSign}$${h.pnl.toFixed(2)}</span></div></div></div>`; 
-        }).join(''); 
-      }
+      else if (activeTab === 'history') { const history = demoAccount.history.filter(h => h.pair === currentPair); if (history.length === 0) { container.innerHTML = '<div class="empty-state">No order history</div>'; return; } container.innerHTML = history.slice().reverse().map(h => { const pnlClass = h.pnl >= 0 ? 'profit' : 'loss'; const pnlSign = h.pnl >= 0 ? '+' : ''; const sideClass = h.side === 'buy' ? 'buy' : 'sell'; const sideText = h.side === 'buy' ? 'Long' : 'Short'; return `<div class="position-item"><div class="position-header"><span class="position-pair">${h.pair}</span><span class="position-side ${sideClass}">${sideText}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${h.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${h.entryPrice.toFixed(pairInfo[h.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Exit</span><span class="position-detail-value">${h.closePrice?.toFixed(pairInfo[h.pair]?.decimals || 2) || '--'}</span></div><div class="position-detail"><span class="position-detail-label">PnL</span><span class="position-detail-value ${pnlClass}">${pnlSign}$${h.pnl.toFixed(2)}</span></div></div></div>`; }).join(''); }
     }
 
-    function closePosition(id) { 
-      const posIndex = demoAccount.positions.findIndex(p => p.id === id); 
-      if (posIndex === -1) return; 
-      const pos = demoAccount.positions[posIndex]; 
-      pos.closePrice = currentPrice;
-      const priceChange = pos.side === 'buy' ? (currentPrice - pos.entryPrice) : (pos.entryPrice - currentPrice);
-      pos.pnl = priceChange * pos.amount;
-      pos.pnlPercent = (priceChange / pos.entryPrice) * pos.leverage * 100;
-      demoAccount.balance += pos.pnl; 
-      demoAccount.history.push(pos); 
-      demoAccount.positions.splice(posIndex, 1); 
-      if (pos.pnl > 0) userProfile.winRate = Math.round((userProfile.quizzesPassed / Math.max(1, userProfile.totalTrades)) * 100); 
-      saveDemoAccount(); 
-      saveUserProfile(); 
-      renderPositions(); 
-      updateTradeInfo(); 
-    }
+    function closePosition(id) { const posIndex = demoAccount.positions.findIndex(p => p.id === id); if (posIndex === -1) return; const pos = demoAccount.positions[posIndex]; pos.closePrice = currentPrice; const priceChange = pos.side === 'buy' ? (currentPrice - pos.entryPrice) : (pos.entryPrice - currentPrice); pos.pnl = priceChange * pos.amount; pos.pnlPercent = (priceChange / pos.entryPrice) * pos.leverage * 100; demoAccount.balance += pos.pnl; demoAccount.history.push(pos); demoAccount.positions.splice(posIndex, 1); if (pos.pnl > 0) userProfile.winRate = Math.round((userProfile.quizzesPassed / Math.max(1, userProfile.totalTrades)) * 100); saveDemoAccount(); saveUserProfileToFirestore(); renderPositions(); updateTradeInfo(); }
 
     function generateOrderBook() {
       const asks = [], bids = [];
       const info = pairInfo[currentPair];
       const decimals = info.decimals;
       const step = currentPair === 'BTCUSDT' ? 10 : currentPair === 'ETHUSDT' ? 1 : currentPair === 'XAUUSD' ? 0.5 : 0.0005;
-      for (let i = 1; i <= 8; i++) {
-        asks.push({ price: (currentPrice + i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) });
-        bids.push({ price: (currentPrice - i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) });
-      }
+      for (let i = 1; i <= 8; i++) { asks.push({ price: (currentPrice + i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) }); bids.push({ price: (currentPrice - i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) }); }
       return { asks: asks.reverse(), bids };
     }
 
     function renderOrderBook() {
       const { asks, bids } = generateOrderBook();
-      const asksEl = document.getElementById('orderBookAsks');
-      const bidsEl = document.getElementById('orderBookBids');
+      const asksEl = document.getElementById('orderBookAsks'); const bidsEl = document.getElementById('orderBookBids');
       if (asksEl) asksEl.innerHTML = asks.map(o => `<div class="order-row ask"><span class="col-amount">${o.amount}</span><span class="col-price ask">${o.price}</span></div>`).join('');
       if (bidsEl) bidsEl.innerHTML = bids.map(o => `<div class="order-row bid"><span class="col-amount">${o.amount}</span><span class="col-price bid">${o.price}</span></div>`).join('');
     }
 
     function updatePriceDisplay() {
       const info = pairInfo[currentPair];
-      const priceEl = document.getElementById('currentPrice');
-      const changeEl = document.getElementById('pairChange');
+      const priceEl = document.getElementById('currentPrice'); const changeEl = document.getElementById('pairChange');
       if (priceEl) priceEl.textContent = currentPrice.toFixed(info.decimals);
-      if (changeEl) {
-        const changeClass = info.change >= 0 ? 'up' : 'down';
-        const changeSign = info.change >= 0 ? '+' : '';
-        changeEl.textContent = `${changeSign}${info.change.toFixed(2)}%`;
-        changeEl.className = `pair-change ${changeClass}`;
-      }
+      if (changeEl) { const changeClass = info.change >= 0 ? 'up' : 'down'; const changeSign = info.change >= 0 ? '+' : ''; changeEl.textContent = `${changeSign}${info.change.toFixed(2)}%`; changeEl.className = `pair-change ${changeClass}`; }
     }
 
     function setTradeType(type) { tradeType = type; const buyTab = document.getElementById('buyTab'); const sellTab = document.getElementById('sellTab'); const submitBtn = document.getElementById('submitBtn'); if (buyTab) buyTab.className = 'trade-tab ' + (type === 'buy' ? 'buy' : ''); if (sellTab) sellTab.className = 'trade-tab ' + (type === 'sell' ? 'sell' : ''); if (submitBtn) { submitBtn.className = 'submit-btn ' + type; submitBtn.textContent = type === 'buy' ? 'Buy/Long' : 'Sell/Short'; } updateTradeInfo(); }
     function setLeverage(lev, btn) { document.querySelectorAll('.leverage-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); updateTradeInfo(); }
 
-    function loadDemoAccount() { const saved = localStorage.getItem('demoAccount'); if (saved) { try { demoAccount = JSON.parse(saved); } catch (e) {} } }
-    function saveDemoAccount() { localStorage.setItem('demoAccount', JSON.stringify(demoAccount)); }
-
     function renderQuizQuestion() { if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) return navigateTo('#home'); const q = currentLesson.quiz[quizState.currentQuestion]; const total = currentLesson.quiz.length; const num = quizState.currentQuestion + 1; let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`; document.getElementById('app').innerHTML = html; quizState.answered = false; }
     function selectAnswer(index) { if (quizState.answered) return; quizState.answered = true; const q = currentLesson.quiz[quizState.currentQuestion]; if (index === q.correct) quizState.score++; document.querySelectorAll('.quiz-option').forEach((el, i) => { el.style.pointerEvents = 'none'; if (i === q.correct) el.classList.add('correct'); if (i === index && i !== q.correct) el.classList.add('incorrect'); }); document.getElementById('explanation').classList.add('show'); document.getElementById('btn-next').disabled = false; }
     function nextQuestion() { quizState.currentQuestion++; if (quizState.currentQuestion >= currentLesson.quiz.length) showQuizResult(); else renderQuizQuestion(); }
-    function showQuizResult() { const total = currentLesson.quiz.length; const score = quizState.score; const pct = Math.round((score / total) * 100); let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید'; if (pct >= 70) { userProfile.quizzesPassed++; userProfile.lessonsCompleted++; saveUserProfile(); } document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`; }
+    function showQuizResult() { const total = currentLesson.quiz.length; const score = quizState.score; const pct = Math.round((score / total) * 100); let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید'; if (pct >= 70) { userProfile.quizzesPassed++; userProfile.lessonsCompleted++; saveUserProfileToFirestore(); } document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`; }
+
+    function exportData() { const data = { profile: userProfile, demoAccount: demoAccount }; const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'academy-data.json'; a.click(); URL.revokeObjectURL(url); }
 
     function navigateTo(hash) { history.pushState({ hash }, '', hash); handleRoute(); }
     window.addEventListener('popstate', () => handleRoute());
