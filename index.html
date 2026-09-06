@@ -49,7 +49,6 @@
     .back-button { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); width: 180px; background: #6366F1; color: white; border: none; padding: 10px 16px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 1000; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
     
-    /* Trade Page Layout */
     .trade-page { background: white; min-height: 100vh; padding-bottom: 60px; direction: ltr; text-align: left; }
     
     .trade-header { background: white; padding: 12px 16px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
@@ -63,20 +62,14 @@
     
     .pair-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 200; }
     .pair-overlay.show { display: block; }
-    .pair-dropdown-menu { 
-      display: none; position: fixed; top: 60px; left: 16px; right: 16px; background: white; 
-      border: 1px solid #E0E0E0; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); 
-      z-index: 201; max-height: 70vh; overflow-y: auto;
-    }
+    .pair-dropdown-menu { display: none; position: fixed; top: 60px; left: 16px; right: 16px; background: white; border: 1px solid #E0E0E0; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); z-index: 201; max-height: 70vh; overflow-y: auto; }
     .pair-dropdown-menu.show { display: block; }
     .pair-option { padding: 14px 16px; cursor: pointer; font-size: 14px; border-bottom: 1px solid #F5F5F5; display: flex; justify-content: space-between; align-items: center; }
     .pair-option:hover { background: #F5F5F5; }
     .pair-option:last-child { border-bottom: none; }
     
-    /* Main Trading Layout - Side by Side */
     .trade-main { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
     
-    /* Left Column - Order Form */
     .order-form-col { padding: 12px; border-right: 1px solid #E8E8E8; }
     .trade-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
     .trade-tab { flex: 1; padding: 12px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; background: #F5F5F5; color: #7F8C8D; }
@@ -113,7 +106,6 @@
     .submit-btn.buy { background: #0ECB81; color: white; }
     .submit-btn.sell { background: #F64653; color: white; }
     
-    /* Right Column - Order Book */
     .order-book-col { padding: 12px; }
     .price-display { text-align: center; padding: 12px 0; }
     .current-price { font-size: 28px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
@@ -130,7 +122,6 @@
     .order-row .col-price.bid { color: #0ECB81; }
     .order-row .col-total { color: #7F8C8D; text-align: left; font-size: 10px; }
     
-    /* Positions Tabs */
     .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; margin-top: 12px; }
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 13px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
@@ -151,7 +142,6 @@
     .close-btn { width: 100%; padding: 10px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; }
     .empty-state { text-align: center; padding: 32px 16px; color: #7F8C8D; font-size: 13px; }
     
-    /* Chart Modal */
     .chart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; flex-direction: column; }
     .chart-modal.active { display: flex; }
     .chart-header { display: flex; align-items: center; justify-content: flex-start; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; }
@@ -161,19 +151,46 @@
     .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
     .chart-back { font-size: 24px; cursor: pointer; color: #1A1A1A; padding: 4px 12px; font-weight: 900; line-height: 1; margin-left: auto; }
     
+    /* نشانگر حالت داده */
+    .data-mode-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .data-mode-badge.free {
+      background: #FFF3E0;
+      color: #F57C00;
+      border: 1px solid #FFE0B2;
+    }
+    .data-mode-badge.premium {
+      background: #E8F5E9;
+      color: #2E7D32;
+      border: 1px solid #C8E6C9;
+    }
+    .data-mode-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    .data-mode-badge.free .dot { background: #F57C00; }
+    .data-mode-badge.premium .dot { background: #2E7D32; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    
     .chart-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
     .chart-main { position: relative; min-height: 350px; height: 55vh; flex-shrink: 0; }
     .chart-container { width: 100%; height: 100%; background: white; }
-    .resize-handle { 
-      position: absolute; bottom: 0; left: 0; right: 0; height: 12px; 
-      background: linear-gradient(to bottom, transparent, #F0B90B); 
-      cursor: ns-resize; opacity: 0.7; z-index: 100; touch-action: none;
-    }
+    .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 12px; background: linear-gradient(to bottom, transparent, #F0B90B); cursor: ns-resize; opacity: 0.7; z-index: 100; touch-action: none; }
     .resize-handle:hover { opacity: 1; }
-    .resize-handle::after {
-      content: '⋮'; position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%); color: white; font-size: 10px; letter-spacing: 2px;
-    }
+    .resize-handle::after { content: '⋮'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 10px; letter-spacing: 2px; }
     
     .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto; flex-shrink: 0; }
     .indicator-btn { padding: 6px 10px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 11px; cursor: pointer; white-space: nowrap; }
@@ -184,6 +201,20 @@
     .indicator-subchart:last-child { border-bottom: none; }
     .indicator-subchart canvas { width: 100%; height: 100%; display: block; }
     .indicator-label { position: absolute; top: 6px; left: 10px; font-size: 11px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 3px; }
+    
+    /* دکمه تغییر حالت */
+    .mode-toggle-btn {
+      padding: 6px 12px;
+      border: 1px solid #E0E0E0;
+      border-radius: 6px;
+      background: white;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .mode-toggle-btn:hover { background: #F5F5F5; }
     
     @media (max-width: 768px) {
       .trade-main { grid-template-columns: 1fr; }
@@ -207,6 +238,9 @@
     let chartData = [], indicatorSeries = {}, positionLines = {};
     let currentPair = 'BTCUSDT';
     
+    // سیستم رایگان/پرمیوم
+    let isPremiumUser = false; // پیش‌فرض رایگان
+    
     let pairInfo = {
       BTCUSDT: { name: 'BTC/USDT', price: 80027, change: 0.53, decimals: 2, volatility: 500, basePrice: 80000 },
       ETHUSDT: { name: 'ETH/USDT', price: 3850, change: -1.24, decimals: 2, volatility: 30, basePrice: 3800 },
@@ -228,17 +262,17 @@
 
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
-      if (t.includes('کندل') || t.includes('الگو')) return '️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '🔗';
+      if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
+      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '';
       if (t.includes('کیف پول')) return '👛';
-      if (t.includes('بازار')) return '📊';
+      if (t.includes('بازار')) return '';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
-      if (t.includes('لوریج') || t.includes('مارجین')) return '️';
+      if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک')) return '🛡️';
-      if (t.includes('آزمون')) return '';
+      if (t.includes('آزمون')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
@@ -304,12 +338,12 @@
 
     function renderHome() {
       const levels = [
-        { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
+        { id: 'beginner', icon: '', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
         { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
-        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div><div class="nav-tab"> پروفایل</div></div>`;
+        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div><div class="nav-tab">👤 پروفایل</div></div>`;
       levels.forEach(level => {
         if (level.count > 0) {
           html += `<div class="level-card" onclick="navigateTo('#level-${level.id}')"><div class="level-icon">${level.icon}</div><div class="level-title">${level.title}</div><div class="level-count">${level.count} دوره آموزشی</div></div>`;
@@ -342,7 +376,7 @@
       }
       const lessons = currentCourse.lessons || [];
       let html = `<div class="header"><h1>${currentCourse.title}</h1><p>${lessons.length} درس</p></div>`;
-      if (lessons.length === 0) html += `<div class="loading">️ این دوره هنوز درسی ندارد</div>`;
+      if (lessons.length === 0) html += `<div class="loading">⚠️ این دوره هنوز درسی ندارد</div>`;
       else lessons.forEach((l, i) => {
         html += `<div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')"><div class="lesson-number">${i + 1}</div><div class="lesson-title">${l.title}</div></div>`;
       });
@@ -483,6 +517,13 @@
       <div class="chart-modal" id="chartModal">
         <div class="chart-header">
           <span class="chart-pair-name" id="chartPairName">${info.name}</span>
+          <span class="data-mode-badge ${isPremiumUser ? 'premium' : 'free'}" id="dataModeBadge">
+            <span class="dot"></span>
+            <span id="dataModeText">${isPremiumUser ? 'LIVE' : 'DELAYED 1H'}</span>
+          </span>
+          <button class="mode-toggle-btn" onclick="toggleDataMode()" title="تغییر حالت داده">
+            ${isPremiumUser ? '🔓 Premium' : '🔒 Free'}
+          </button>
           <div class="chart-timeframes">
             <button class="chart-action-btn" onclick="changeTimeframe('1m', event)">1m</button>
             <button class="chart-action-btn" onclick="changeTimeframe('5m', event)">5m</button>
@@ -516,6 +557,37 @@
       setupSlider();
       setupResize();
       updateTradeInfo();
+    }
+
+    // تغییر حالت داده (رایگان/پرمیوم)
+    function toggleDataMode() {
+      isPremiumUser = !isPremiumUser;
+      const badge = document.getElementById('dataModeBadge');
+      const text = document.getElementById('dataModeText');
+      const btn = document.querySelector('.mode-toggle-btn');
+      
+      if (isPremiumUser) {
+        badge.className = 'data-mode-badge premium';
+        text.textContent = 'LIVE';
+        btn.innerHTML = '🔓 Premium';
+      } else {
+        badge.className = 'data-mode-badge free';
+        text.textContent = 'DELAYED 1H';
+        btn.innerHTML = '🔒 Free';
+      }
+      
+      // رفرش چارت با حالت جدید
+      if (chart) {
+        chart.remove();
+        chart = null;
+      }
+      indicatorSeries = {};
+      if (ws) {
+        if (typeof ws === 'object' && ws.close) ws.close();
+        else clearInterval(ws);
+        ws = null;
+      }
+      setTimeout(() => initChart(), 100);
     }
 
     function togglePairDropdown(e) { if (e) e.stopPropagation(); document.getElementById('pairOverlay').classList.add('show'); document.getElementById('pairDropdown').classList.add('show'); }
@@ -587,22 +659,46 @@
       document.addEventListener('touchend', stopResize);
     }
 
+    // تابع کمکی برای تولید عدد تصادفی با توزیع نرمال (Box-Muller)
+    function randomNormal() {
+      let u = 0, v = 0;
+      while(u === 0) u = Math.random();
+      while(v === 0) v = Math.random();
+      return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    }
+
+    // تولید داده شبیه‌سازی‌شده با کندل‌های طبیعی
     function generateSimulatedData() {
       const info = pairInfo[currentPair];
       chartData = [];
       let price = info.basePrice;
       const now = Math.floor(Date.now() / 1000);
       const intervalSeconds = currentTimeframe === '1m' ? 60 : currentTimeframe === '5m' ? 300 : currentTimeframe === '15m' ? 900 : currentTimeframe === '1h' ? 3600 : 14400;
+      
+      // برای حالت رایگان، داده‌ها با تاخیر 1 ساعت
+      const delayOffset = isPremiumUser ? 0 : 3600; // 1 ساعت = 3600 ثانیه
+      
       for (let i = 199; i >= 0; i--) {
-        const time = now - i * intervalSeconds;
-        const change = (Math.random() - 0.5) * info.volatility * 0.5;
+        const time = now - delayOffset - i * intervalSeconds;
+        
+        // تغییر قیمت با توزیع نرمال (طبیعی‌تر)
+        const change = randomNormal() * info.volatility * 0.15;
         const open = price;
         const close = price + change;
-        const high = Math.max(open, close) + Math.random() * info.volatility * 0.3;
-        const low = Math.min(open, close) - Math.random() * info.volatility * 0.3;
+        
+        // سایه‌ها: معمولاً کوچک (10-30% بدنه)، گاهی بزرگ‌تر
+        const bodySize = Math.abs(close - open);
+        const shadowMultiplier = Math.random() < 0.8 ? 
+          (0.1 + Math.random() * 0.3) : // 80% مواقع سایه کوچک
+          (0.3 + Math.random() * 0.7);  // 20% مواقع سایه بزرگ
+        
+        const high = Math.max(open, close) + bodySize * shadowMultiplier * Math.random();
+        const low = Math.min(open, close) - bodySize * shadowMultiplier * Math.random();
+        
         chartData.push({ time, open, high, low, close });
         price = close;
       }
+      
       currentPrice = chartData[chartData.length - 1].close;
       pairInfo[currentPair].price = currentPrice;
       if (candleSeries) candleSeries.setData(chartData);
@@ -634,8 +730,11 @@
           upColor: '#0ECB81', downColor: '#F64653',
           borderVisible: false, wickUpColor: '#0ECB81', wickDownColor: '#F64653',
         });
+        
         const isCrypto = currentPair === 'BTCUSDT' || currentPair === 'ETHUSDT';
-        if (isCrypto) {
+        
+        if (isPremiumUser && isCrypto) {
+          // حالت پرمیوم: داده زنده از API
           fetch(`https://api.binance.com/api/v3/klines?symbol=${currentPair}&interval=${currentTimeframe}&limit=200`)
             .then(r => r.json())
             .then(data => {
@@ -667,18 +766,19 @@
             })
             .catch(err => { console.error('API error:', err); generateSimulatedData(); });
         } else {
+          // حالت رایگان: داده شبیه‌سازی‌شده با تاخیر
           generateSimulatedData();
           if (ws) { clearInterval(ws); }
           ws = setInterval(() => {
             const info = pairInfo[currentPair];
-            const change = (Math.random() - 0.5) * info.volatility * 0.1;
+            const change = randomNormal() * info.volatility * 0.05;
             currentPrice += change;
             pairInfo[currentPair].price = currentPrice;
             if (chartData.length > 0) {
               const lastCandle = chartData[chartData.length - 1];
               lastCandle.close = currentPrice;
-              if (currentPrice > lastCandle.high) lastCandle.high = currentPrice;
-              if (currentPrice < lastCandle.low) lastCandle.low = currentPrice;
+              if (currentPrice > lastCandle.high) lastCandle.high = currentPrice + Math.abs(change) * 0.3;
+              if (currentPrice < lastCandle.low) lastCandle.low = currentPrice - Math.abs(change) * 0.3;
               if (candleSeries) candleSeries.update(lastCandle);
             }
             updatePriceDisplay();
