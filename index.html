@@ -51,7 +51,7 @@
     .quiz-result { text-align: center; padding: 32px 16px; }
     .quiz-score { font-size: 40px; font-weight: 700; color: #1D9E75; margin-bottom: 12px; }
     .quiz-message { font-size: 16px; margin-bottom: 20px; }
-    .back-button { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); width: 180px; background: #6366F1; color: white; border: none; padding: 10px 16px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 1000; }
+    .back-button { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 180px; background: #6366F1; color: white; border: none; padding: 10px 16px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 1000; }
     .back-button.hidden { display: none; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
     
@@ -82,8 +82,9 @@
     .trade-tab.buy { background: #0ECB81; color: white; }
     .trade-tab.sell { background: #F64653; color: white; }
     
-    .leverage-selector { display: flex; gap: 4px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
-    .leverage-btn { padding: 6px 10px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 6px; color: #1A1A1A; font-size: 11px; cursor: pointer; white-space: nowrap; }
+    /* اصلاح مشکل 2: لوریج ریزتر */
+    .leverage-selector { display: flex; gap: 3px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
+    .leverage-btn { padding: 4px 7px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 4px; color: #1A1A1A; font-size: 10px; cursor: pointer; white-space: nowrap; }
     .leverage-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     
     .form-group { margin-bottom: 10px; }
@@ -117,20 +118,54 @@
     .current-price { font-size: 22px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
     .price-change-text { font-size: 11px; color: #7F8C8D; }
     
+    /* اصلاح مشکل 1: Order Book alignment دقیق */
     .order-book { background: white; border: 1px solid #E8E8E8; border-radius: 6px; overflow: hidden; }
-    .order-header { display: grid; grid-template-columns: 1fr 1fr; padding: 6px 8px; background: #F5F5F5; font-size: 10px; color: #7F8C8D; font-weight: 600; }
-    .order-row { display: grid; grid-template-columns: 1fr 1fr; padding: 4px 8px; font-size: 11px; cursor: pointer; }
-    .order-row.ask { background: rgba(246, 70, 83, 0.08); }
-    .order-row.bid { background: rgba(14, 203, 129, 0.08); }
-    .order-row .col-amount { color: #1A1A1A; text-align: right; font-weight: 500; font-size: 10px; }
-    .order-row .col-price { font-weight: 700; text-align: left; font-size: 10px; }
+    .order-header { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      padding: 6px 10px; 
+      background: #F5F5F5; 
+      font-size: 10px; 
+      color: #7F8C8D; 
+      font-weight: 600;
+      border-bottom: 1px solid #E8E8E8;
+    }
+    .order-header span:first-child { text-align: right; }
+    .order-header span:last-child { text-align: left; }
+    
+    .order-row { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      padding: 4px 10px; 
+      font-size: 11px; 
+      cursor: pointer;
+      gap: 8px;
+    }
+    .order-row.ask { background: rgba(246, 70, 83, 0.06); }
+    .order-row.bid { background: rgba(14, 203, 129, 0.06); }
+    .order-row .col-amount { 
+      color: #1A1A1A; 
+      text-align: right; 
+      font-weight: 500; 
+      font-size: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+    .order-row .col-price { 
+      font-weight: 700; 
+      text-align: left; 
+      font-size: 10px;
+      font-variant-numeric: tabular-nums;
+    }
     .order-row .col-price.ask { color: #F64653; }
     .order-row .col-price.bid { color: #0ECB81; }
     
     .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; }
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
-    .positions-content { padding: 10px; }
+    
+    /* اصلاح مشکل 3: padding-bottom برای جلوگیری از افتادن دکمه بازگشت */
+    .positions-content { padding: 10px; padding-bottom: 100px; }
+    
     .position-item { background: #F5F5F5; border-radius: 6px; padding: 10px; margin-bottom: 6px; }
     .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .position-pair { font-size: 13px; font-weight: 700; color: #2196F3; }
@@ -260,15 +295,15 @@
       if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
-      if (t.includes('روند')) return '📉';
-      if (t.includes('پرایس اکشن')) return '';
+      if (t.includes('روند')) return '';
+      if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک')) return '🛡️';
       if (t.includes('آزمون')) return '📝';
-      if (t.includes('اسمارت') || t.includes('smart')) return '';
-      if (t.includes('ict')) return '🎯';
+      if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
+      if (t.includes('ict')) return '';
       if (t.includes('استراتژی')) return '⚙️';
-      if (t.includes('روانشناسی')) return '🧘';
+      if (t.includes('روانشناسی')) return '';
       return '📚';
     }
 
@@ -337,7 +372,7 @@
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
-        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
+        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
       levels.forEach(level => {
         if (level.count > 0) {
           html += `<div class="level-card" onclick="navigateTo('#level-${level.id}')"><div class="level-icon">${level.icon}</div><div class="level-title">${level.title}</div><div class="level-count">${level.count} دوره آموزشی</div></div>`;
@@ -350,7 +385,7 @@
       let levelName = levelId === 'beginner' ? 'مقدماتی' : levelId === 'intermediate' ? 'میانی' : levelId === 'advanced' ? 'پیشرفته' : decodeURIComponent(levelId);
       const courses = appData.courses.filter(c => c.level.includes(levelName));
       if (courses.length === 0) {
-        document.getElementById('app').innerHTML = `<div class="loading">️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+        document.getElementById('app').innerHTML = `<div class="loading">⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
         return;
       }
       let html = `<div class="header"><h1>${levelName}</h1><p>${courses.length} دوره در این سطح</p></div>`;
@@ -459,7 +494,7 @@
         </div>
         
         <div class="profile-section">
-          <div class="profile-section-title">️ درباره اپلیکیشن</div>
+          <div class="profile-section-title">ℹ️ درباره اپلیکیشن</div>
           <div class="profile-item"><span class="profile-item-label">نسخه</span><span class="profile-item-value">1.0.0</span></div>
           <div class="profile-item"><span class="profile-item-label">تاریخ عضویت</span><span class="profile-item-value">${userProfile.joinDate}</span></div>
         </div>
@@ -468,7 +503,7 @@
         <button class="profile-btn secondary" onclick="exportData()">📤 خروجی از داده‌ها</button>
         <button class="profile-btn danger" onclick="clearAllData()">🗑️ پاک کردن همه داده‌ها</button>
       </div>
-      <button class="back-button" onclick="navigateTo('#home')"> بازگشت</button>`;
+      <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
       
       document.getElementById('app').innerHTML = html;
     }
@@ -640,7 +675,7 @@
             <button class="chart-action-btn" onclick="changeTimeframe('1h', event)">1h</button>
             <button class="chart-action-btn" onclick="changeTimeframe('4h', event)">4h</button>
           </div>
-          <span class="chart-back" onclick="closeChartModal()"></span>
+          <span class="chart-back" onclick="closeChartModal()">✕</span>
         </div>
         <div class="chart-body">
           <div class="chart-main" id="chartMain">
@@ -860,7 +895,7 @@
           const loadingDiv = document.createElement('div');
           loadingDiv.className = 'chart-loading';
           loadingDiv.id = 'chartLoading';
-          loadingDiv.textContent = '⏳ در حال دریافت داده...';
+          loadingDiv.textContent = ' در حال دریافت داده...';
           container.appendChild(loadingDiv);
           
           fetchChartData().then(data => {
@@ -952,7 +987,12 @@
     }
 
     function drawIndicators() {
-      if (!chart || !candleSeries || chartData.length === 0) return;
+      // اصلاح مشکل 4: فقط اگر chartData واقعی داریم رسم کن
+      if (!chart || !candleSeries || chartData.length < 30) {
+        console.log('chartData not ready yet, length:', chartData.length);
+        return;
+      }
+      
       Object.keys(indicatorSeries).forEach(key => {
         try {
           const s = indicatorSeries[key];
@@ -1048,52 +1088,89 @@
       return { upper, middle, lower };
     }
 
+    // اصلاح مشکل 4: RSI واقعی با الگوریتم Wilder
     function calculateRSI(data, period) {
       const result = [];
-      let gains = 0, losses = 0;
+      if (data.length < period + 1) return result;
+      
+      let avgGain = 0;
+      let avgLoss = 0;
+      
+      // محاسبه اولیه
       for (let i = 1; i <= period; i++) {
         const change = data[i].close - data[i - 1].close;
-        if (change > 0) gains += change; else losses -= change;
+        if (change > 0) avgGain += change;
+        else avgLoss += Math.abs(change);
       }
-      let avgGain = gains / period, avgLoss = losses / period;
-      for (let i = period; i < data.length; i++) {
+      avgGain /= period;
+      avgLoss /= period;
+      
+      // اولین مقدار RSI
+      const firstRSI = avgLoss === 0 ? 100 : 100 - (100 / (1 + avgGain / avgLoss));
+      result.push({ time: data[period].time, value: firstRSI });
+      
+      // مقادیر بعدی با smoothing Wilder
+      for (let i = period + 1; i < data.length; i++) {
         const change = data[i].close - data[i - 1].close;
         const gain = change > 0 ? change : 0;
-        const loss = change < 0 ? -change : 0;
+        const loss = change < 0 ? Math.abs(change) : 0;
+        
         avgGain = (avgGain * (period - 1) + gain) / period;
         avgLoss = (avgLoss * (period - 1) + loss) / period;
-        const rs = avgLoss === 0 ? 100 : avgGain / avgLoss;
-        const rsi = 100 - (100 / (1 + rs));
+        
+        const rsi = avgLoss === 0 ? 100 : 100 - (100 / (1 + avgGain / avgLoss));
         result.push({ time: data[i].time, value: rsi });
       }
+      
       return result;
     }
 
+    // اصلاح مشکل 4: MACD واقعی
     function calculateMACD(data) {
+      if (data.length < 35) return { macd: [], signal: [], histogram: [] };
+      
       const ema12 = calculateEMA(data, 12);
       const ema26 = calculateEMA(data, 26);
-      const ema12Map = new Map(ema12.map(e => [e.time, e.value]));
+      
+      // هم‌تراز کردن EMA12 و EMA26 بر اساس time
       const ema26Map = new Map(ema26.map(e => [e.time, e.value]));
       const macdValues = [];
-      data.forEach(d => {
-        if (ema12Map.has(d.time) && ema26Map.has(d.time)) {
-          macdValues.push({ time: d.time, value: ema12Map.get(d.time) - ema26Map.get(d.time) });
+      
+      ema12.forEach(e12 => {
+        if (ema26Map.has(e12.time)) {
+          macdValues.push({ time: e12.time, value: e12.value - ema26Map.get(e12.time) });
         }
       });
+      
+      if (macdValues.length < 9) return { macd: [], signal: [], histogram: [] };
+      
+      // محاسبه Signal Line (EMA9 از MACD)
       const signalMultiplier = 2 / 10;
       const signalLine = [];
-      let signal = macdValues[0]?.value || 0;
+      let signal = macdValues[0].value;
+      
       macdValues.forEach((m, i) => {
-        if (i < 9) signal = (m.value + 9 * signal) / 10;
-        else signal = (m.value - signal) * signalMultiplier + signal;
-        signalLine.push({ time: m.time, value: signal });
+        if (i < 8) {
+          signal = (m.value + i * signal) / (i + 1);
+        } else {
+          signal = (m.value - signal) * signalMultiplier + signal;
+        }
+        if (i >= 8) {
+          signalLine.push({ time: m.time, value: signal });
+        }
       });
-      const histogram = macdValues.map((m, i) => ({ time: m.time, value: m.value - (signalLine[i]?.value || 0) }));
+      
+      // محاسبه Histogram
+      const signalMap = new Map(signalLine.map(s => [s.time, s.value]));
+      const histogram = macdValues
+        .filter(m => signalMap.has(m.time))
+        .map(m => ({ time: m.time, value: m.value - signalMap.get(m.time) }));
+      
       return { macd: macdValues, signal: signalLine, histogram };
     }
 
     function drawRSI(rsiData, canvas) {
-      if (!canvas) return;
+      if (!canvas || rsiData.length === 0) return;
       const rect = canvas.parentElement.getBoundingClientRect();
       canvas.width = rect.width * 2;
       canvas.height = rect.height * 2;
@@ -1135,9 +1212,8 @@
       ctx.stroke();
     }
 
-    // MACD با مقیاس دوگانه - هیستوگرام بزرگ‌تر و واضح‌تر
     function drawMACD(macdData, canvas) {
-      if (!canvas) return;
+      if (!canvas || macdData.macd.length === 0) return;
       const rect = canvas.parentElement.getBoundingClientRect();
       canvas.width = rect.width * 2;
       canvas.height = rect.height * 2;
@@ -1151,7 +1227,7 @@
       
       const midY = h / 2;
       
-      // مقیاس جداگانه برای خطوط MACD و Signal
+      // مقیاس بر اساس MACD line (نه histogram)
       const maxLine = Math.max(
         ...macdData.macd.map(v => Math.abs(v.value)),
         ...macdData.signal.map(v => Math.abs(v.value))
@@ -1477,7 +1553,7 @@
       const q = currentLesson.quiz[quizState.currentQuestion];
       const total = currentLesson.quiz.length;
       const num = quizState.currentQuestion + 1;
-      let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`;
+      let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation"> ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`;
       document.getElementById('app').innerHTML = html;
       quizState.answered = false;
     }
