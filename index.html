@@ -105,16 +105,42 @@
     .current-price { font-size: 22px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
     .price-change-text { font-size: 11px; color: #7F8C8D; }
     .order-book { background: white; border: 1px solid #E8E8E8; border-radius: 6px; overflow: hidden; }
-    .order-header { display: grid; grid-template-columns: 1fr 1fr; padding: 6px 10px; background: #F5F5F5; font-size: 10px; color: #7F8C8D; font-weight: 600; border-bottom: 1px solid #E8E8E8; }
-    .order-header span:first-child { text-align: right; }
-    .order-header span:last-child { text-align: left; }
-    .order-row { display: grid; grid-template-columns: 1fr 1fr; padding: 4px 10px; font-size: 11px; cursor: pointer; gap: 8px; }
+    .order-header { display: grid; grid-template-columns: 1fr 1fr; padding: 6px 12px; background: #F5F5F5; font-size: 10px; color: #7F8C8D; font-weight: 600; border-bottom: 1px solid #E8E8E8; }
+    .order-header span:first-child { text-align: right; padding-right: 8px; }
+    .order-header span:last-child { text-align: left; padding-left: 8px; }
+    .order-row { display: grid; grid-template-columns: 1fr 1fr; padding: 4px 12px; font-size: 11px; cursor: pointer; }
     .order-row.ask { background: rgba(246, 70, 83, 0.06); }
     .order-row.bid { background: rgba(14, 203, 129, 0.06); }
-    .order-row .col-amount { color: #1A1A1A; text-align: right; font-weight: 500; font-size: 10px; font-variant-numeric: tabular-nums; }
-    .order-row .col-price { font-weight: 700; text-align: left; font-size: 10px; font-variant-numeric: tabular-nums; }
+    .order-row .col-amount { color: #1A1A1A; text-align: right; font-weight: 500; font-size: 10px; font-variant-numeric: tabular-nums; padding-right: 8px; }
+    .order-row .col-price { font-weight: 700; text-align: left; font-size: 10px; font-variant-numeric: tabular-nums; padding-left: 8px; }
     .order-row .col-price.ask { color: #F64653; }
     .order-row .col-price.bid { color: #0ECB81; }
+    
+    /* Inline chart section */
+    .chart-section { border-bottom: 1px solid #E8E8E8; background: white; }
+    .chart-section-header { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #E8E8E8; flex-wrap: wrap; }
+    .chart-pair-name { font-size: 14px; font-weight: 700; color: #2196F3; }
+    .live-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; border-radius: 8px; font-size: 9px; font-weight: 600; background: #E8F5E9; color: #2E7D32; }
+    .live-badge .dot { width: 4px; height: 4px; border-radius: 50%; background: #2E7D32; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .chart-timeframes { display: flex; gap: 3px; flex: 1; }
+    .chart-action-btn { padding: 4px 7px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 10px; cursor: pointer; }
+    .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
+    .chart-close-btn { font-size: 18px; cursor: pointer; color: #F64653; padding: 2px 8px; font-weight: 900; background: none; border: none; }
+    .chart-main-inline { position: relative; min-height: 280px; height: 45vh; flex-shrink: 0; }
+    .chart-container { width: 100%; height: 100%; background: white; }
+    .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: #F0B90B; cursor: ns-resize; opacity: 0.6; z-index: 100; touch-action: none; }
+    .resize-handle:hover { opacity: 1; }
+    .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 6px 10px; display: flex; gap: 4px; overflow-x: auto; flex-shrink: 0; }
+    .indicator-btn { padding: 5px 8px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 10px; cursor: pointer; white-space: nowrap; }
+    .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
+    .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 40vh; }
+    .indicator-subchart { height: 150px; position: relative; border-bottom: 1px solid #F0F0F0; overflow: hidden; }
+    .indicator-subchart:last-child { border-bottom: none; }
+    .indicator-subchart canvas { display: block; }
+    .indicator-label { position: absolute; top: 4px; left: 8px; font-size: 10px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 5px; border-radius: 3px; }
+    .chart-error { padding: 20px; text-align: center; color: #F64653; font-size: 13px; }
+    
     .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; }
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
@@ -134,36 +160,7 @@
     .position-pnl.loss { color: #F64653 !important; }
     .close-btn { width: 100%; padding: 8px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; }
     .empty-state { text-align: center; padding: 24px 12px; color: #7F8C8D; font-size: 12px; }
-    .chart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; flex-direction: column; }
-    .chart-modal.active { display: flex; }
-    .chart-header { display: flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; flex-wrap: wrap; }
-    .chart-pair-name { font-size: 14px; font-weight: 700; color: #2196F3; }
-    .data-mode-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; border-radius: 8px; font-size: 9px; font-weight: 600; cursor: pointer; }
-    .data-mode-badge.free { background: #FFF3E0; color: #F57C00; }
-    .data-mode-badge.premium { background: #E8F5E9; color: #2E7D32; }
-    .data-mode-badge .dot { width: 4px; height: 4px; border-radius: 50%; animation: pulse 2s infinite; }
-    .data-mode-badge.free .dot { background: #F57C00; }
-    .data-mode-badge.premium .dot { background: #2E7D32; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .chart-timeframes { display: flex; gap: 3px; flex: 1; }
-    .chart-action-btn { padding: 4px 7px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 10px; cursor: pointer; }
-    .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
-    .chart-back { font-size: 22px; cursor: pointer; color: #F64653; padding: 2px 10px; font-weight: 900; line-height: 1; margin-left: auto; }
-    .chart-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-    .chart-main { position: relative; min-height: 280px; height: 50vh; flex-shrink: 0; }
-    .chart-container { width: 100%; height: 100%; background: white; }
-    .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: #F0B90B; cursor: ns-resize; opacity: 0.6; z-index: 100; touch-action: none; }
-    .resize-handle:hover { opacity: 1; }
-    .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 6px 10px; display: flex; gap: 4px; overflow-x: auto; flex-shrink: 0; }
-    .indicator-btn { padding: 5px 8px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 10px; cursor: pointer; white-space: nowrap; }
-    .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
-    .indicator-btn.disabled { opacity: 0.4; cursor: not-allowed; }
-    .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 40vh; }
-    .indicator-subchart { height: 150px; position: relative; border-bottom: 1px solid #F0F0F0; overflow: hidden; }
-    .indicator-subchart:last-child { border-bottom: none; }
-    .indicator-subchart canvas { width: 100% !important; height: 100% !important; display: block; }
-    .indicator-label { position: absolute; top: 4px; left: 8px; font-size: 10px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 5px; border-radius: 3px; }
-    .indicator-warning { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255, 243, 224, 0.95); padding: 12px 16px; border-radius: 8px; font-size: 11px; color: #F57C00; text-align: center; z-index: 10; border: 1px solid #FFB74D; }
+    
     .profile-page { padding: 12px; }
     .profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 14px; border-radius: 12px; text-align: center; margin-bottom: 12px; }
     .profile-avatar { width: 70px; height: 70px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 10px; }
@@ -190,7 +187,6 @@
     .subscription-badge { display: inline-block; padding: 3px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
     .subscription-badge.free { background: #FFF3E0; color: #F57C00; }
     .subscription-badge.premium { background: #E8F5E9; color: #2E7D32; }
-    .chart-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; z-index: 50; font-size: 13px; color: #7F8C8D; }
     @media (max-width: 768px) { .current-price { font-size: 22px; } }
   </style>
 </head>
@@ -205,13 +201,12 @@
     let quizState = { currentQuestion: 0, score: 0, answered: false };
     let demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] };
     let userProfile = { name: 'کاربر آکادمی', email: 'user@academy.com', joinDate: '2026-09-06', lessonsCompleted: 0, quizzesPassed: 0, totalTrades: 0, winRate: 0, theme: 'light', notifications: true };
-    let chart, candleSeries, currentPrice = 0, ws, priceUpdateInterval;
+    let chart, candleSeries, currentPrice = 0, priceUpdateInterval, pnlInterval;
     let currentTimeframe = '15m', tradeType = 'buy', sliderValue = 0;
     let activeTab = 'positions', activeIndicators = [];
     let chartData = [], indicatorSeries = {}, positionLines = {};
     let currentPair = 'BTCUSDT';
-    let isPremiumUser = false;
-    let isDataReal = false;
+    let isChartVisible = false;
     let lastPriceFetch = 0;
     
     let pairInfo = {
@@ -299,7 +294,7 @@
 
     async function fetchRealPrices() {
       const now = Date.now();
-      if (now - lastPriceFetch < 30000) return;
+      if (now - lastPriceFetch < 10000) return;
       
       try {
         const cgRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true', { signal: AbortSignal.timeout(5000) });
@@ -308,7 +303,6 @@
           if (cgData.bitcoin) { pairInfo.BTCUSDT.price = cgData.bitcoin.usd; pairInfo.BTCUSDT.change = cgData.bitcoin.usd_24h_change || 0; }
           if (cgData.ethereum) { pairInfo.ETHUSDT.price = cgData.ethereum.usd; pairInfo.ETHUSDT.change = cgData.ethereum.usd_24h_change || 0; }
           lastPriceFetch = now;
-          isDataReal = true;
           console.log('✅ CoinGecko prices loaded');
           return;
         }
@@ -325,20 +319,16 @@
             else if (asset.id === 'ethereum') { pairInfo.ETHUSDT.price = price; pairInfo.ETHUSDT.change = change24h; }
           });
           lastPriceFetch = now;
-          isDataReal = true;
           console.log('✅ CoinCap prices loaded');
           return;
         }
       } catch(e) { console.log('CoinCap failed:', e.message); }
       
-      console.log('⚠️ Using simulated prices');
-      isDataReal = false;
-      const btcBase = 80000 + (Math.random() - 0.5) * 4000;
-      const ethBase = 3800 + (Math.random() - 0.5) * 200;
-      pairInfo.BTCUSDT.price = btcBase; pairInfo.BTCUSDT.change = (Math.random() - 0.5) * 6;
-      pairInfo.ETHUSDT.price = ethBase; pairInfo.ETHUSDT.change = (Math.random() - 0.5) * 6;
-      pairInfo.XAUUSD.price = 2650 + (Math.random() - 0.5) * 30; pairInfo.XAUUSD.change = (Math.random() - 0.5) * 2;
-      pairInfo.EURUSD.price = 1.0850 + (Math.random() - 0.5) * 0.01; pairInfo.EURUSD.change = (Math.random() - 0.5) * 0.5;
+      console.log('⚠️ Using fallback prices');
+      if (pairInfo.BTCUSDT.price === 0) pairInfo.BTCUSDT.price = 80000;
+      if (pairInfo.ETHUSDT.price === 0) pairInfo.ETHUSDT.price = 3800;
+      if (pairInfo.XAUUSD.price === 0) pairInfo.XAUUSD.price = 2650;
+      if (pairInfo.EURUSD.price === 0) pairInfo.EURUSD.price = 1.0850;
       lastPriceFetch = now;
     }
 
@@ -362,29 +352,6 @@
       return null;
     }
 
-    function generateSimulatedCandles() {
-      const info = pairInfo[currentPair];
-      const candles = [];
-      let price = info.basePrice;
-      const now = Math.floor(Date.now() / 1000);
-      const intervalSeconds = currentTimeframe === '1m' ? 60 : currentTimeframe === '5m' ? 300 : currentTimeframe === '15m' ? 900 : currentTimeframe === '1h' ? 3600 : 14400;
-      const volatility = info.basePrice * 0.002;
-      
-      for (let i = 199; i >= 0; i--) {
-        const time = now - i * intervalSeconds;
-        const change = (Math.random() - 0.5) * volatility;
-        const open = price;
-        const close = price + change;
-        const bodySize = Math.abs(close - open);
-        const shadowMultiplier = 0.1 + Math.random() * 0.5;
-        const high = Math.max(open, close) + bodySize * shadowMultiplier;
-        const low = Math.min(open, close) - bodySize * shadowMultiplier;
-        candles.push({ time, open, high, low, close });
-        price = close;
-      }
-      return candles;
-    }
-
     function handleRoute() {
       const hash = location.hash;
       if (hash === '#home' || hash === '' || !hash) renderHome();
@@ -402,7 +369,7 @@
 
     function renderHome() {
       const levels = [
-        { id: 'beginner', icon: '', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
+        { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
         { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
@@ -492,7 +459,6 @@
           <div class="profile-avatar">👤</div>
           <div class="profile-name">${userProfile.name}</div>
           <div class="profile-email">${userProfile.email}</div>
-          <div style="margin-top: 6px;"><span class="subscription-badge ${isPremiumUser ? 'premium' : 'free'}">${isPremiumUser ? '⭐ Premium' : '🆓 Free'}</span></div>
         </div>
         <div class="profile-stats">
           <div class="stat-card"><div class="stat-value">${userProfile.lessonsCompleted}</div><div class="stat-label">درس تکمیل‌شده</div></div>
@@ -503,34 +469,27 @@
           <div class="profile-section-title">💰 حساب دمو</div>
           <div class="profile-item"><span class="profile-item-label">موجودی</span><span class="profile-item-value" style="color: #1D9E75; font-weight: 700;">${demoAccount.balance.toFixed(2)} USDT</span></div>
           <div class="profile-item"><span class="profile-item-label">تعداد معاملات</span><span class="profile-item-value">${userProfile.totalTrades}</span></div>
-          <div class="profile-item"><span class="profile-item-label">نرخ برد</span><span class="profile-item-value">${userProfile.winRate}%</span></div>
-        </div>
-        <div class="profile-section">
-          <div class="profile-section-title">⚙️ تنظیمات</div>
-          <div class="profile-item"><span class="profile-item-label">اعلان‌ها</span><div class="toggle-switch ${userProfile.notifications ? 'active' : ''}" onclick="toggleNotification()"></div></div>
-          <div class="profile-item"><span class="profile-item-label">حالت پرمیوم</span><div class="toggle-switch ${isPremiumUser ? 'active' : ''}" onclick="togglePremium()"></div></div>
         </div>
         <button class="profile-btn primary" onclick="resetDemoAccount()">🔄 ریست حساب دمو</button>
-        <button class="profile-btn secondary" onclick="exportData()">📤 خروجی از داده‌ها</button>
-        <button class="profile-btn danger" onclick="clearAllData()">️ پاک کردن همه داده‌ها</button>
+        <button class="profile-btn danger" onclick="clearAllData()">🗑️ پاک کردن همه داده‌ها</button>
       </div>
-      <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+      <button class="back-button" onclick="navigateTo('#home')"> بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
     }
 
     function toggleNotification() { userProfile.notifications = !userProfile.notifications; saveUserProfile(); renderProfile(); }
-    function togglePremium() { isPremiumUser = !isPremiumUser; saveUserProfile(); renderProfile(); }
     function resetDemoAccount() { if (confirm('آیا مطمئن هستید؟')) { demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] }; saveDemoAccount(); renderProfile(); } }
-    function exportData() { const data = { profile: userProfile, demoAccount: demoAccount }; const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'academy-data.json'; a.click(); URL.revokeObjectURL(url); }
     function clearAllData() { if (confirm('آیا مطمئن هستید؟')) { localStorage.clear(); location.reload(); } }
-    function loadUserProfile() { const saved = localStorage.getItem('userProfile'); if (saved) { try { userProfile = JSON.parse(saved); } catch (e) {} } const premium = localStorage.getItem('isPremium'); if (premium) isPremiumUser = premium === 'true'; }
-    function saveUserProfile() { localStorage.setItem('userProfile', JSON.stringify(userProfile)); localStorage.setItem('isPremium', isPremiumUser); }
+    function loadUserProfile() { const saved = localStorage.getItem('userProfile'); if (saved) { try { userProfile = JSON.parse(saved); } catch (e) {} } }
+    function saveUserProfile() { localStorage.setItem('userProfile', JSON.stringify(userProfile)); }
 
     function renderTradePage() {
       if (priceUpdateInterval) { clearInterval(priceUpdateInterval); priceUpdateInterval = null; }
+      if (pnlInterval) { clearInterval(pnlInterval); pnlInterval = null; }
       if (chart) { chart.remove(); chart = null; }
       indicatorSeries = {};
       positionLines = {};
+      isChartVisible = false;
       
       const info = pairInfo[currentPair];
       if (info.price === 0) info.price = info.basePrice;
@@ -548,7 +507,7 @@
             </div>
             <span class="pair-change ${changeClass}" id="pairChange">${changeSign}${info.change.toFixed(2)}%</span>
           </div>
-          <button class="chart-icon-btn" onclick="openChartModal()" title="نمودار">
+          <button class="chart-icon-btn" onclick="toggleChart()" title="نمودار">
             <svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
               <line x1="7" y1="3" x2="7" y2="21"/>
               <rect x="5" y="9" width="4" height="8" fill="#0ECB81" opacity="0.6" stroke="none"/>
@@ -603,6 +562,32 @@
             </div>
           </div>
         </div>
+        <div class="chart-section" id="chartSection" style="display:none;">
+          <div class="chart-section-header">
+            <span class="chart-pair-name" id="chartPairName">${info.name}</span>
+            <span class="live-badge"><span class="dot"></span><span>LIVE</span></span>
+            <div class="chart-timeframes">
+              <button class="chart-action-btn" onclick="changeTimeframe('1m', event)">1m</button>
+              <button class="chart-action-btn" onclick="changeTimeframe('5m', event)">5m</button>
+              <button class="chart-action-btn ${currentTimeframe === '15m' ? 'active' : ''}" onclick="changeTimeframe('15m', event)">15m</button>
+              <button class="chart-action-btn" onclick="changeTimeframe('1h', event)">1h</button>
+              <button class="chart-action-btn" onclick="changeTimeframe('4h', event)">4h</button>
+            </div>
+            <button class="chart-close-btn" onclick="toggleChart()">✕</button>
+          </div>
+          <div class="chart-main-inline" id="chartMainInline">
+            <div class="chart-container" id="chartContainer"></div>
+            <div class="resize-handle" id="resizeHandle"></div>
+          </div>
+          <div class="indicators-panel">
+            <button class="indicator-btn" onclick="toggleIndicator('SMA', event)">SMA</button>
+            <button class="indicator-btn" onclick="toggleIndicator('EMA', event)">EMA</button>
+            <button class="indicator-btn" onclick="toggleIndicator('BOLL', event)">BOLL</button>
+            <button class="indicator-btn" onclick="toggleIndicator('RSI', event)">RSI</button>
+            <button class="indicator-btn" onclick="toggleIndicator('MACD', event)">MACD</button>
+          </div>
+          <div class="indicator-charts" id="indicatorCharts"></div>
+        </div>
         <div class="positions-tabs">
           <div class="position-tab ${activeTab === 'positions' ? 'active' : ''}" onclick="switchTab('positions', event)">Current Position</div>
           <div class="position-tab ${activeTab === 'pending' ? 'active' : ''}" onclick="switchTab('pending', event)">Pending Order</div>
@@ -619,37 +604,6 @@
           return `<div class="pair-option" onclick="selectPair('${id}', event)"><span class="pair-option-name">${p.name}</span><span class="pair-option-price ${pchangeClass}">${pchangeSign}${p.change.toFixed(2)}% · ${p.price.toFixed(p.decimals)}</span></div>`;
         }).join('')}
       </div>
-      <div class="chart-modal" id="chartModal">
-        <div class="chart-header">
-          <span class="chart-pair-name" id="chartPairName">${info.name}</span>
-          <span class="data-mode-badge ${isDataReal ? 'premium' : 'free'}" id="dataModeBadge" onclick="toggleDataMode()">
-            <span class="dot"></span>
-            <span id="dataModeText">${isDataReal ? 'LIVE' : 'SIMULATED'}</span>
-          </span>
-          <div class="chart-timeframes">
-            <button class="chart-action-btn" onclick="changeTimeframe('1m', event)">1m</button>
-            <button class="chart-action-btn" onclick="changeTimeframe('5m', event)">5m</button>
-            <button class="chart-action-btn ${currentTimeframe === '15m' ? 'active' : ''}" onclick="changeTimeframe('15m', event)">15m</button>
-            <button class="chart-action-btn" onclick="changeTimeframe('1h', event)">1h</button>
-            <button class="chart-action-btn" onclick="changeTimeframe('4h', event)">4h</button>
-          </div>
-          <span class="chart-back" onclick="closeChartModal()">✕</span>
-        </div>
-        <div class="chart-body">
-          <div class="chart-main" id="chartMain">
-            <div class="chart-container" id="chartContainer"></div>
-            <div class="resize-handle" id="resizeHandle"></div>
-          </div>
-          <div class="indicators-panel">
-            <button class="indicator-btn" onclick="toggleIndicator('SMA', event)">SMA</button>
-            <button class="indicator-btn" onclick="toggleIndicator('EMA', event)">EMA</button>
-            <button class="indicator-btn" onclick="toggleIndicator('BOLL', event)">BOLL</button>
-            <button class="indicator-btn" onclick="toggleIndicator('RSI', event)">RSI</button>
-            <button class="indicator-btn" onclick="toggleIndicator('MACD', event)">MACD</button>
-          </div>
-          <div class="indicator-charts" id="indicatorCharts"></div>
-        </div>
-      </div>
       <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
       
       document.getElementById('app').innerHTML = html;
@@ -659,6 +613,24 @@
       setupResize();
       updateTradeInfo();
       startPriceUpdates();
+      startPnLUpdates();
+    }
+
+    function toggleChart() {
+      isChartVisible = !isChartVisible;
+      const section = document.getElementById('chartSection');
+      if (!section) return;
+      
+      if (isChartVisible) {
+        section.style.display = 'block';
+        document.getElementById('chartPairName').textContent = pairInfo[currentPair].name;
+        setTimeout(() => initChart(), 100);
+      } else {
+        section.style.display = 'none';
+        if (chart) { chart.remove(); chart = null; }
+        indicatorSeries = {};
+        positionLines = {};
+      }
     }
 
     function startPriceUpdates() {
@@ -669,6 +641,12 @@
         currentPrice = info.price;
         updatePriceDisplay();
         renderOrderBook();
+      }, 3000);
+    }
+
+    function startPnLUpdates() {
+      if (pnlInterval) clearInterval(pnlInterval);
+      pnlInterval = setInterval(() => {
         updatePositionsPnL();
       }, 1000);
     }
@@ -683,33 +661,9 @@
       renderTradePage();
     }
 
-    function openChartModal() {
-      document.getElementById('chartModal').classList.add('active');
-      document.getElementById('chartPairName').textContent = pairInfo[currentPair].name;
-      const backButton = document.querySelector('.back-button');
-      if (backButton) backButton.classList.add('hidden');
-      setTimeout(() => initChart(), 150);
-    }
-
-    function closeChartModal() {
-      document.getElementById('chartModal').classList.remove('active');
-      if (chart) { chart.remove(); chart = null; }
-      indicatorSeries = {};
-      const backButton = document.querySelector('.back-button');
-      if (backButton) backButton.classList.remove('hidden');
-    }
-
-    function toggleDataMode() {
-      isPremiumUser = !isPremiumUser;
-      saveUserProfile();
-      if (chart) { chart.remove(); chart = null; }
-      indicatorSeries = {};
-      setTimeout(() => initChart(), 100);
-    }
-
     function setupResize() {
       const handle = document.getElementById('resizeHandle');
-      const chartMain = document.getElementById('chartMain');
+      const chartMain = document.getElementById('chartMainInline');
       if (!handle || !chartMain) return;
       let isResizing = false, startY, startHeight;
       const startResize = (e) => { isResizing = true; startY = e.touches ? e.touches[0].clientY : e.clientY; startHeight = chartMain.clientHeight; e.preventDefault(); e.stopPropagation(); };
@@ -726,7 +680,7 @@
     async function initChart() {
       const container = document.getElementById('chartContainer');
       if (!container) return;
-      if (typeof LightweightCharts === 'undefined') { container.innerHTML = '<div class="empty-state">خطا در بارگذاری چارت</div>'; return; }
+      if (typeof LightweightCharts === 'undefined') { container.innerHTML = '<div class="chart-error">خطا در بارگذاری چارت</div>'; return; }
       try {
         chart = LightweightCharts.createChart(container, {
           width: container.clientWidth, height: container.clientHeight - 10,
@@ -740,21 +694,10 @@
         });
         candleSeries = chart.addCandlestickSeries({ upColor: '#0ECB81', downColor: '#F64653', borderVisible: false, wickUpColor: '#0ECB81', wickDownColor: '#F64653' });
         
-        const loadingDiv = document.createElement('div');
-        loadingDiv.className = 'chart-loading';
-        loadingDiv.id = 'chartLoading';
-        loadingDiv.textContent = '⏳ در حال دریافت داده واقعی...';
-        container.appendChild(loadingDiv);
-        
-        let candles = null;
-        if (isPremiumUser) {
-          candles = await fetchRealCandles();
-        }
-        if (!candles) {
-          candles = generateSimulatedCandles();
-          isDataReal = false;
-        } else {
-          isDataReal = true;
+        const candles = await fetchRealCandles();
+        if (!candles || candles.length === 0) {
+          container.innerHTML = '<div class="chart-error">️ Unable to load live data. Please check your connection.</div>';
+          return;
         }
         
         chartData = candles;
@@ -762,20 +705,10 @@
         currentPrice = chartData[chartData.length - 1].close;
         pairInfo[currentPair].price = currentPrice;
         
-        const ld = document.getElementById('chartLoading');
-        if (ld) ld.remove();
-        
         updatePriceDisplay();
         drawPositionLines();
         setTimeout(() => drawIndicators(), 200);
-        
-        const badge = document.getElementById('dataModeBadge');
-        const text = document.getElementById('dataModeText');
-        if (badge && text) {
-          badge.className = 'data-mode-badge ' + (isDataReal ? 'premium' : 'free');
-          text.textContent = isDataReal ? 'LIVE' : 'SIMULATED';
-        }
-      } catch (err) { console.error('Chart error:', err); container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>'; }
+      } catch (err) { console.error('Chart error:', err); container.innerHTML = '<div class="chart-error">📊 خطا در بارگذاری چارت</div>'; }
     }
 
     function changeTimeframe(tf, event) {
@@ -785,15 +718,12 @@
       if (event && event.target) event.target.classList.add('active');
       if (chart) { chart.remove(); chart = null; }
       indicatorSeries = {};
+      positionLines = {};
       setTimeout(() => initChart(), 100);
     }
 
     function toggleIndicator(indicator, event) {
       if (event) event.stopPropagation();
-      if ((indicator === 'RSI' || indicator === 'MACD') && !isDataReal) {
-        alert('⚠️ RSI و MACD فقط با داده‌های واقعی کار می‌کنند.\nلطفاً حالت Live را فعال کنید.');
-        return;
-      }
       const idx = activeIndicators.indexOf(indicator);
       if (idx > -1) activeIndicators.splice(idx, 1);
       else activeIndicators.push(indicator);
@@ -803,10 +733,7 @@
 
     function updateIndicatorButtons() {
       document.querySelectorAll('.indicator-btn').forEach(btn => {
-        const isActive = activeIndicators.includes(btn.textContent);
-        btn.classList.toggle('active', isActive);
-        if ((btn.textContent === 'RSI' || btn.textContent === 'MACD') && !isDataReal) btn.classList.add('disabled');
-        else btn.classList.remove('disabled');
+        btn.classList.toggle('active', activeIndicators.includes(btn.textContent));
       });
     }
 
@@ -839,13 +766,11 @@
         indicatorSeries.bollLower.setData(boll.lower);
       }
       if (activeIndicators.includes('RSI')) {
-        if (!isDataReal) { const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">RSI(14)</div><div class="indicator-warning">⚠️ فقط با داده واقعی</div>'; container.appendChild(c); return; }
         const rsiData = calculateRSI(chartData, 14);
         const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">RSI(14)</div><canvas></canvas>'; container.appendChild(c);
         setTimeout(() => drawRSI(rsiData, c.querySelector('canvas')), 100);
       }
       if (activeIndicators.includes('MACD')) {
-        if (!isDataReal) { const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><div class="indicator-warning">⚠️ فقط با داده واقعی</div>'; container.appendChild(c); return; }
         const macdData = calculateMACD(chartData);
         const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><canvas></canvas>'; container.appendChild(c);
         setTimeout(() => drawMACD(macdData, c.querySelector('canvas')), 100);
@@ -889,11 +814,15 @@
 
     function drawRSI(rsiData, canvas) {
       if (!canvas || rsiData.length === 0) return;
-      const rect = canvas.parentElement.getBoundingClientRect();
-      canvas.width = rect.width * 2; canvas.height = rect.height * 2;
-      canvas.style.width = rect.width + 'px'; canvas.style.height = rect.height + 'px';
+      const chartContainer = document.getElementById('chartContainer');
+      const chartWidth = chartContainer ? chartContainer.clientWidth : canvas.parentElement.clientWidth;
+      const chartHeight = canvas.parentElement.clientHeight;
+      canvas.width = chartWidth * 2;
+      canvas.height = chartHeight * 2;
+      canvas.style.width = chartWidth + 'px';
+      canvas.style.height = chartHeight + 'px';
       const ctx = canvas.getContext('2d'); ctx.scale(2, 2);
-      const w = rect.width, h = rect.height;
+      const w = chartWidth, h = chartHeight;
       ctx.fillStyle = 'white'; ctx.fillRect(0, 0, w, h);
       ctx.fillStyle = 'rgba(246, 70, 83, 0.08)'; ctx.fillRect(0, 0, w, h * 0.3);
       ctx.fillStyle = 'rgba(14, 203, 129, 0.08)'; ctx.fillRect(0, h * 0.7, w, h * 0.3);
@@ -906,11 +835,15 @@
 
     function drawMACD(macdData, canvas) {
       if (!canvas || macdData.macd.length === 0) return;
-      const rect = canvas.parentElement.getBoundingClientRect();
-      canvas.width = rect.width * 2; canvas.height = rect.height * 2;
-      canvas.style.width = rect.width + 'px'; canvas.style.height = rect.height + 'px';
+      const chartContainer = document.getElementById('chartContainer');
+      const chartWidth = chartContainer ? chartContainer.clientWidth : canvas.parentElement.clientWidth;
+      const chartHeight = canvas.parentElement.clientHeight;
+      canvas.width = chartWidth * 2;
+      canvas.height = chartHeight * 2;
+      canvas.style.width = chartWidth + 'px';
+      canvas.style.height = chartHeight + 'px';
       const ctx = canvas.getContext('2d'); ctx.scale(2, 2);
-      const w = rect.width, h = rect.height;
+      const w = chartWidth, h = chartHeight;
       ctx.fillStyle = 'white'; ctx.fillRect(0, 0, w, h);
       const midY = h / 2;
       const maxLine = Math.max(...macdData.macd.map(v => Math.abs(v.value)), ...macdData.signal.map(v => Math.abs(v.value)));
@@ -1020,7 +953,7 @@
       const leverage = parseInt(document.querySelector('.leverage-btn.active')?.textContent) || 3;
       const tp = parseFloat(document.getElementById('tpInput')?.value) || null;
       const sl = parseFloat(document.getElementById('slInput')?.value) || null;
-      const position = { id: Date.now(), pair: currentPair, side: tradeType, amount: (amount * sliderValue / 100) / currentPrice, entryPrice: currentPrice, leverage: leverage, tp: tp, sl: sl, pnl: 0, pnlPercent: 0 };
+      const position = { id: Date.now(), pair: currentPair, side: tradeType, amount: (amount * sliderValue / 100) / currentPrice, entryPrice: currentPrice, leverage: leverage, tp: tp, sl: sl, pnl: 0, pnlPercent: 0, openTime: Date.now() };
       demoAccount.positions.push(position);
       userProfile.totalTrades++;
       saveDemoAccount(); saveUserProfile();
@@ -1031,14 +964,20 @@
     function switchTab(tab, event) { if (event) event.stopPropagation(); activeTab = tab; document.querySelectorAll('.position-tab').forEach(t => t.classList.remove('active')); if (event && event.target) event.target.classList.add('active'); renderPositions(); }
 
     function updatePositionsPnL() {
+      let changed = false;
       demoAccount.positions.forEach(pos => {
         const priceChange = pos.side === 'buy' ? (currentPrice - pos.entryPrice) : (pos.entryPrice - currentPrice);
-        pos.pnl = priceChange * pos.amount;
-        pos.pnlPercent = (priceChange / pos.entryPrice) * pos.leverage * 100;
+        const newPnl = priceChange * pos.amount;
+        const newPnlPercent = (priceChange / pos.entryPrice) * pos.leverage * 100;
+        if (Math.abs(newPnl - pos.pnl) > 0.001) {
+          pos.pnl = newPnl;
+          pos.pnlPercent = newPnlPercent;
+          changed = true;
+        }
       });
       demoAccount.equity = demoAccount.balance + demoAccount.positions.reduce((sum, p) => sum + p.pnl, 0);
       saveDemoAccount();
-      if (activeTab === 'positions') renderPositions();
+      if (changed && activeTab === 'positions') renderPositions();
     }
 
     function renderPositions() {
@@ -1057,14 +996,14 @@
     function loadDemoAccount() { const saved = localStorage.getItem('demoAccount'); if (saved) { try { demoAccount = JSON.parse(saved); } catch (e) {} } }
     function saveDemoAccount() { localStorage.setItem('demoAccount', JSON.stringify(demoAccount)); }
 
-    function renderQuizQuestion() { if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) return navigateTo('#home'); const q = currentLesson.quiz[quizState.currentQuestion]; const total = currentLesson.quiz.length; const num = quizState.currentQuestion + 1; let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`; document.getElementById('app').innerHTML = html; quizState.answered = false; }
+    function renderQuizQuestion() { if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) return navigateTo('#home'); const q = currentLesson.quiz[quizState.currentQuestion]; const total = currentLesson.quiz.length; const num = quizState.currentQuestion + 1; let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation"> ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`; document.getElementById('app').innerHTML = html; quizState.answered = false; }
     function selectAnswer(index) { if (quizState.answered) return; quizState.answered = true; const q = currentLesson.quiz[quizState.currentQuestion]; if (index === q.correct) quizState.score++; document.querySelectorAll('.quiz-option').forEach((el, i) => { el.style.pointerEvents = 'none'; if (i === q.correct) el.classList.add('correct'); if (i === index && i !== q.correct) el.classList.add('incorrect'); }); document.getElementById('explanation').classList.add('show'); document.getElementById('btn-next').disabled = false; }
     function nextQuestion() { quizState.currentQuestion++; if (quizState.currentQuestion >= currentLesson.quiz.length) showQuizResult(); else renderQuizQuestion(); }
     function showQuizResult() { const total = currentLesson.quiz.length; const score = quizState.score; const pct = Math.round((score / total) * 100); let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید'; if (pct >= 70) { userProfile.quizzesPassed++; userProfile.lessonsCompleted++; saveUserProfile(); } document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`; }
 
     function navigateTo(hash) { if (chart) { chart.remove(); chart = null; } history.pushState({ hash }, '', hash); handleRoute(); }
     window.addEventListener('popstate', () => handleRoute());
-    window.addEventListener('resize', () => { if (chart && document.getElementById('chartModal')?.classList.contains('active')) { const container = document.getElementById('chartContainer'); const chartMain = document.getElementById('chartMain'); if (container && chartMain) { try { chart.applyOptions({ width: container.clientWidth, height: chartMain.clientHeight - 10 }); } catch(e) {} } } });
+    window.addEventListener('resize', () => { if (chart && isChartVisible) { const container = document.getElementById('chartContainer'); const chartMain = document.getElementById('chartMainInline'); if (container && chartMain) { try { chart.applyOptions({ width: container.clientWidth, height: chartMain.clientHeight - 10 }); } catch(e) {} } } });
     
     initApp();
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('service-worker.js?v=99').catch(console.error); }
