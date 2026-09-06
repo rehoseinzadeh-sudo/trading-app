@@ -55,21 +55,9 @@
     .back-button.hidden { display: none; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
     
-    /* Trade Page - Compact Header */
     .trade-page { background: white; min-height: 100vh; padding-bottom: 20px; direction: ltr; text-align: left; }
     
-    .trade-header { 
-      background: white; 
-      padding: 8px 12px; 
-      border-bottom: 1px solid #E8E8E8; 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between; 
-      position: sticky; 
-      top: 0; 
-      z-index: 100;
-      gap: 8px;
-    }
+    .trade-header { background: white; padding: 8px 12px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 8px; }
     .pair-info { display: flex; align-items: center; gap: 8px; flex: 1; }
     .pair-selector { display: flex; align-items: center; gap: 4px; cursor: pointer; }
     .pair-name { font-size: 16px; font-weight: 700; color: #2196F3; }
@@ -77,23 +65,7 @@
     .pair-change.up { color: #0ECB81; }
     .pair-change.down { color: #F64653; }
     .back-icon { font-size: 20px; cursor: pointer; color: #1A1A1A; padding: 4px; font-weight: 900; }
-    
-    /* آیکون کندل مثل کوینکس - دو کندل کمرنگ بدون کادر */
-    .chart-icon-btn { 
-      width: 32px; 
-      height: 32px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      cursor: pointer; 
-      background: transparent; 
-      border: none;
-      padding: 4px;
-    }
-    .chart-icon-btn svg {
-      width: 24px;
-      height: 24px;
-    }
+    .chart-icon-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: transparent; border: none; padding: 4px; }
     
     .pair-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 200; }
     .pair-overlay.show { display: block; }
@@ -103,20 +75,8 @@
     .pair-option:hover { background: #F5F5F5; }
     .pair-option:last-child { border-bottom: none; }
     
-    /* Two Column Layout - کنار هم */
-    .trade-main { 
-      display: flex; 
-      gap: 0; 
-      border-bottom: 1px solid #E8E8E8;
-    }
-    
-    /* Left Column - Order Form */
-    .order-form-col { 
-      flex: 1; 
-      padding: 10px; 
-      border-right: 1px solid #E8E8E8;
-      min-width: 0;
-    }
+    .trade-main { display: flex; gap: 0; border-bottom: 1px solid #E8E8E8; width: 100%; }
+    .order-form-col { flex: 1; padding: 10px; border-right: 1px solid #E8E8E8; min-width: 0; width: 50%; }
     .trade-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
     .trade-tab { flex: 1; padding: 10px; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; background: #F5F5F5; color: #7F8C8D; }
     .trade-tab.buy { background: #0ECB81; color: white; }
@@ -152,18 +112,9 @@
     .submit-btn.buy { background: #0ECB81; color: white; }
     .submit-btn.sell { background: #F64653; color: white; }
     
-    /* Right Column - Price & Order Book */
-    .order-book-col { 
-      flex: 1; 
-      padding: 10px;
-      min-width: 0;
-    }
-    .price-display { 
-      text-align: center; 
-      padding: 8px 0;
-      margin-bottom: 8px;
-    }
-    .current-price { font-size: 24px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
+    .order-book-col { flex: 1; padding: 10px; min-width: 0; width: 50%; }
+    .price-display { text-align: center; padding: 8px 0; margin-bottom: 8px; }
+    .current-price { font-size: 22px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
     .price-change-text { font-size: 11px; color: #7F8C8D; }
     
     .order-book { background: white; border: 1px solid #E8E8E8; border-radius: 6px; overflow: hidden; }
@@ -176,7 +127,6 @@
     .order-row .col-price.ask { color: #F64653; }
     .order-row .col-price.bid { color: #0ECB81; }
     
-    /* Positions */
     .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; }
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
@@ -197,7 +147,6 @@
     .close-btn { width: 100%; padding: 8px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; }
     .empty-state { text-align: center; padding: 24px 12px; color: #7F8C8D; font-size: 12px; }
     
-    /* Chart Modal */
     .chart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; flex-direction: column; }
     .chart-modal.active { display: flex; }
     .chart-header { display: flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; flex-wrap: wrap; }
@@ -212,10 +161,10 @@
     .chart-timeframes { display: flex; gap: 3px; flex: 1; }
     .chart-action-btn { padding: 4px 7px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 10px; cursor: pointer; }
     .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
-    .chart-back { font-size: 20px; cursor: pointer; color: #F64653; padding: 2px 8px; font-weight: 900; line-height: 1; margin-left: auto; }
+    .chart-back { font-size: 22px; cursor: pointer; color: #F64653; padding: 2px 10px; font-weight: 900; line-height: 1; margin-left: auto; }
     
     .chart-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-    .chart-main { position: relative; min-height: 280px; height: 45vh; flex-shrink: 0; }
+    .chart-main { position: relative; min-height: 280px; height: 50vh; flex-shrink: 0; }
     .chart-container { width: 100%; height: 100%; background: white; }
     .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: #F0B90B; cursor: ns-resize; opacity: 0.6; z-index: 100; touch-action: none; }
     .resize-handle:hover { opacity: 1; }
@@ -224,14 +173,12 @@
     .indicator-btn { padding: 5px 8px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 10px; cursor: pointer; white-space: nowrap; }
     .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     
-    /* MACD Subchart - ارتفاع بیشتر */
     .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 40vh; }
     .indicator-subchart { height: 180px; position: relative; border-bottom: 1px solid #F0F0F0; }
     .indicator-subchart:last-child { border-bottom: none; }
     .indicator-subchart canvas { width: 100%; height: 100%; display: block; }
     .indicator-label { position: absolute; top: 4px; left: 8px; font-size: 10px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 5px; border-radius: 3px; }
     
-    /* Profile Page */
     .profile-page { padding: 12px; }
     .profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 14px; border-radius: 12px; text-align: center; margin-bottom: 12px; }
     .profile-avatar { width: 70px; height: 70px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 10px; }
@@ -262,8 +209,6 @@
     .chart-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; z-index: 50; font-size: 13px; color: #7F8C8D; }
     
     @media (max-width: 768px) {
-      .trade-main { flex-direction: column; }
-      .order-form-col { border-right: none; border-bottom: 1px solid #E8E8E8; }
       .current-price { font-size: 22px; }
     }
   </style>
@@ -309,21 +254,21 @@
 
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
-      if (t.includes('کندل') || t.includes('الگو')) return '️';
+      if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
       if (t.includes('بلاکچین') || t.includes('کریپتو')) return '🔗';
       if (t.includes('کیف پول')) return '👛';
       if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
-      if (t.includes('پرایس اکشن')) return '💹';
+      if (t.includes('پرایس اکشن')) return '';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک')) return '🛡️';
       if (t.includes('آزمون')) return '📝';
-      if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
-      if (t.includes('ict')) return '';
+      if (t.includes('اسمارت') || t.includes('smart')) return '';
+      if (t.includes('ict')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
-      if (t.includes('روانشناسی')) return '';
+      if (t.includes('روانشناسی')) return '🧘';
       return '📚';
     }
 
@@ -388,11 +333,11 @@
     function renderHome() {
       const levels = [
         { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
-        { id: 'intermediate', icon: '', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
-        { id: 'advanced', icon: '', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
+        { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
-        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
+        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
       levels.forEach(level => {
         if (level.count > 0) {
           html += `<div class="level-card" onclick="navigateTo('#level-${level.id}')"><div class="level-icon">${level.icon}</div><div class="level-title">${level.title}</div><div class="level-count">${level.count} دوره آموزشی</div></div>`;
@@ -405,7 +350,7 @@
       let levelName = levelId === 'beginner' ? 'مقدماتی' : levelId === 'intermediate' ? 'میانی' : levelId === 'advanced' ? 'پیشرفته' : decodeURIComponent(levelId);
       const courses = appData.courses.filter(c => c.level.includes(levelName));
       if (courses.length === 0) {
-        document.getElementById('app').innerHTML = `<div class="loading">⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+        document.getElementById('app').innerHTML = `<div class="loading">️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
         return;
       }
       let html = `<div class="header"><h1>${levelName}</h1><p>${courses.length} دوره در این سطح</p></div>`;
@@ -451,7 +396,7 @@
         imageHtml = `<div style="width:100%;height:180px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:10px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:64px;color:#1D9E75">${lessonIcon}</div>`;
       }
       const hasQuiz = currentLesson.quiz && currentLesson.quiz.length > 0;
-      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${hasQuiz ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})"> شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div>`;
+      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${hasQuiz ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div>`;
       html += `<button class="back-button ${hasQuiz ? 'hidden' : ''}" onclick="navigateTo('#course-${cleanCourseId}')">↶ بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
       window.scrollTo(0, 0);
@@ -514,16 +459,16 @@
         </div>
         
         <div class="profile-section">
-          <div class="profile-section-title">ℹ️ درباره اپلیکیشن</div>
+          <div class="profile-section-title">️ درباره اپلیکیشن</div>
           <div class="profile-item"><span class="profile-item-label">نسخه</span><span class="profile-item-value">1.0.0</span></div>
           <div class="profile-item"><span class="profile-item-label">تاریخ عضویت</span><span class="profile-item-value">${userProfile.joinDate}</span></div>
         </div>
         
         <button class="profile-btn primary" onclick="resetDemoAccount()">🔄 ریست حساب دمو</button>
         <button class="profile-btn secondary" onclick="exportData()">📤 خروجی از داده‌ها</button>
-        <button class="profile-btn danger" onclick="clearAllData()">️ پاک کردن همه داده‌ها</button>
+        <button class="profile-btn danger" onclick="clearAllData()">🗑️ پاک کردن همه داده‌ها</button>
       </div>
-      <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+      <button class="back-button" onclick="navigateTo('#home')"> بازگشت</button>`;
       
       document.getElementById('app').innerHTML = html;
     }
@@ -695,7 +640,7 @@
             <button class="chart-action-btn" onclick="changeTimeframe('1h', event)">1h</button>
             <button class="chart-action-btn" onclick="changeTimeframe('4h', event)">4h</button>
           </div>
-          <span class="chart-back" onclick="closeChartModal()">←</span>
+          <span class="chart-back" onclick="closeChartModal()"></span>
         </div>
         <div class="chart-body">
           <div class="chart-main" id="chartMain">
@@ -881,7 +826,11 @@
           layout: { background: { color: '#FFFFFF' }, textColor: '#1A1A1A', fontSize: 10 },
           grid: { vertLines: { color: '#F0F0F0' }, horzLines: { color: '#F0F0F0' } },
           crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
-          rightPriceScale: { borderColor: '#E8E8E8', scaleMargins: { top: 0.1, bottom: 0.1 } },
+          rightPriceScale: { 
+            borderColor: '#E8E8E8', 
+            scaleMargins: { top: 0.02, bottom: 0.02 },
+            entireTextOnly: false
+          },
           timeScale: { 
             borderColor: '#E8E8E8', 
             timeVisible: true, 
@@ -894,7 +843,11 @@
             }
           },
           handleScroll: { vertTouchDrag: false, horzTouchDrag: true, mouseWheel: true },
-          handleScale: { axisPressedMouseMove: { price: true, time: true }, mouseWheel: true, pinch: true }
+          handleScale: { 
+            axisPressedMouseMove: { price: true, time: true }, 
+            mouseWheel: true, 
+            pinch: true 
+          }
         });
         candleSeries = chart.addCandlestickSeries({
           upColor: '#0ECB81', downColor: '#F64653',
@@ -907,7 +860,7 @@
           const loadingDiv = document.createElement('div');
           loadingDiv.className = 'chart-loading';
           loadingDiv.id = 'chartLoading';
-          loadingDiv.textContent = ' در حال دریافت داده...';
+          loadingDiv.textContent = '⏳ در حال دریافت داده...';
           container.appendChild(loadingDiv);
           
           fetchChartData().then(data => {
@@ -1182,7 +1135,7 @@
       ctx.stroke();
     }
 
-    // MACD درست - میله‌ها و خطوط هم‌اندازه
+    // MACD با مقیاس دوگانه - هیستوگرام بزرگ‌تر و واضح‌تر
     function drawMACD(macdData, canvas) {
       if (!canvas) return;
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -1196,14 +1149,18 @@
       ctx.fillStyle = 'white';
       ctx.fillRect(0, 0, w, h);
       
-      // مقیاس بر اساس MACD line (نه histogram)
-      const maxMACD = Math.max(...macdData.macd.map(v => Math.abs(v.value)));
-      const maxSignal = Math.max(...macdData.signal.map(v => Math.abs(v.value)));
-      const maxAbs = Math.max(maxMACD, maxSignal) * 1.3;
-      
-      if (maxAbs === 0) return;
       const midY = h / 2;
-      const scaleY = (h / 2) / maxAbs;
+      
+      // مقیاس جداگانه برای خطوط MACD و Signal
+      const maxLine = Math.max(
+        ...macdData.macd.map(v => Math.abs(v.value)),
+        ...macdData.signal.map(v => Math.abs(v.value))
+      );
+      const lineScale = (midY * 0.85) / (maxLine || 1);
+      
+      // مقیاس جداگانه برای هیستوگرام (بزرگ‌نمایی 2.5 برابری)
+      const maxHist = Math.max(...macdData.histogram.map(v => Math.abs(v.value)));
+      const histScale = (midY * 0.85 * 2.5) / (maxHist || 1);
       
       // خط صفر
       ctx.strokeStyle = '#E0E0E0';
@@ -1213,12 +1170,12 @@
       ctx.lineTo(w, midY);
       ctx.stroke();
       
-      // میله‌های هیستوگرام - ضخیم‌تر و با opacity
+      // رسم هیستوگرام با مقیاس مستقل (بزرگ‌تر)
       const barWidth = Math.max(3, (w / macdData.histogram.length) * 0.85);
       macdData.histogram.forEach((h_val, i) => {
         const x = (i / (macdData.histogram.length - 1)) * w;
-        const h_px = h_val.value * scaleY;
-        ctx.globalAlpha = 0.7;
+        const h_px = h_val.value * histScale;
+        ctx.globalAlpha = 0.75;
         ctx.fillStyle = h_val.value >= 0 ? '#0ECB81' : '#F64653';
         const barHeight = Math.abs(h_px);
         const y = h_val.value >= 0 ? midY - barHeight : midY;
@@ -1226,29 +1183,37 @@
       });
       ctx.globalAlpha = 1.0;
       
-      // خط MACD - نازک
+      // رسم خط MACD با مقیاس خطوط
       ctx.strokeStyle = '#2196F3';
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 2;
       ctx.beginPath();
       macdData.macd.forEach((m, i) => {
         const x = (i / (macdData.macd.length - 1)) * w;
-        const y = midY - m.value * scaleY;
+        const y = midY - m.value * lineScale;
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       });
       ctx.stroke();
       
-      // خط سیگنال - نازک
+      // رسم خط Signal با مقیاس خطوط
       ctx.strokeStyle = '#FF9800';
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 2;
       ctx.beginPath();
       macdData.signal.forEach((s, i) => {
         const x = (i / (macdData.signal.length - 1)) * w;
-        const y = midY - s.value * scaleY;
+        const y = midY - s.value * lineScale;
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       });
       ctx.stroke();
+      
+      // لیبل مقادیر
+      ctx.fillStyle = '#2196F3';
+      ctx.font = 'bold 9px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText('MACD', 8, 14);
+      ctx.fillStyle = '#FF9800';
+      ctx.fillText('Signal', 50, 14);
     }
 
     function drawPositionLines() {
@@ -1541,7 +1506,7 @@
       const total = currentLesson.quiz.length;
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? ' خوب بود' : '📚 دوباره مرور کنید';
+      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
       if (pct >= 70) {
         userProfile.quizzesPassed++;
         userProfile.lessonsCompleted++;
