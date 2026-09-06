@@ -51,7 +51,7 @@
     .quiz-score { font-size: 40px; font-weight: 700; color: #1D9E75; margin-bottom: 12px; }
     .quiz-message { font-size: 16px; margin-bottom: 20px; }
     .back-button { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 180px; background: #6366F1; color: white; border: none; padding: 10px 16px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 1000; }
-    .back-button.hidden { display: none; }
+    .back-button.hidden { display: none !important; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
     .trade-page { background: white; min-height: 100vh; padding-bottom: 20px; direction: ltr; text-align: left; }
     .trade-header { background: white; padding: 8px 12px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 8px; }
@@ -159,9 +159,9 @@
     .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     .indicator-btn.disabled { opacity: 0.4; cursor: not-allowed; }
     .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 40vh; }
-    .indicator-subchart { height: 180px; position: relative; border-bottom: 1px solid #F0F0F0; }
+    .indicator-subchart { height: 150px; position: relative; border-bottom: 1px solid #F0F0F0; overflow: hidden; }
     .indicator-subchart:last-child { border-bottom: none; }
-    .indicator-subchart canvas { width: 100%; height: 100%; display: block; }
+    .indicator-subchart canvas { width: 100% !important; height: 100% !important; display: block; }
     .indicator-label { position: absolute; top: 4px; left: 8px; font-size: 10px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 5px; border-radius: 3px; }
     .indicator-warning { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255, 243, 224, 0.95); padding: 12px 16px; border-radius: 8px; font-size: 11px; color: #F57C00; text-align: center; z-index: 10; border: 1px solid #FFB74D; }
     .profile-page { padding: 12px; }
@@ -191,9 +191,6 @@
     .subscription-badge.free { background: #FFF3E0; color: #F57C00; }
     .subscription-badge.premium { background: #E8F5E9; color: #2E7D32; }
     .chart-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; z-index: 50; font-size: 13px; color: #7F8C8D; }
-    .status-indicator { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 4px; }
-    .status-indicator.live { background: #0ECB81; animation: pulse 1.5s infinite; }
-    .status-indicator.delayed { background: #F57C00; }
     @media (max-width: 768px) { .current-price { font-size: 22px; } }
   </style>
 </head>
@@ -217,7 +214,6 @@
     let isDataReal = false;
     let lastPriceFetch = 0;
     
-    // قیمت‌های اولیه خالی - فقط placeholder
     let pairInfo = {
       BTCUSDT: { name: 'BTC/USDT', price: 0, change: 0, decimals: 2, basePrice: 80000, cgId: 'bitcoin', ccSym: 'BTC' },
       ETHUSDT: { name: 'ETH/USDT', price: 0, change: 0, decimals: 2, basePrice: 3800, cgId: 'ethereum', ccSym: 'ETH' },
@@ -240,17 +236,17 @@
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '';
+      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '🔗';
       if (t.includes('کیف پول')) return '👛';
-      if (t.includes('بازار')) return '';
+      if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
-      if (t.includes('لوریج') || t.includes('مارجین')) return '️';
+      if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک')) return '🛡️';
-      if (t.includes('آزمون')) return '';
-      if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
+      if (t.includes('آزمون')) return '📝';
+      if (t.includes('اسمارت') || t.includes('smart')) return '';
       if (t.includes('ict')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
       if (t.includes('روانشناسی')) return '🧘';
@@ -292,7 +288,6 @@
         }
         loadDemoAccount();
         loadUserProfile();
-        // گرفتن قیمت‌های واقعی قبل از render
         await fetchRealPrices();
         if (!location.hash) history.replaceState({ view: 'home' }, '', '#home');
         handleRoute();
@@ -302,24 +297,16 @@
       }
     }
 
-    // گرفتن قیمت واقعی از چند API fallback
     async function fetchRealPrices() {
       const now = Date.now();
-      if (now - lastPriceFetch < 30000) return; // هر 30 ثانیه
+      if (now - lastPriceFetch < 30000) return;
       
       try {
-        // API 1: CoinGecko
         const cgRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true', { signal: AbortSignal.timeout(5000) });
         if (cgRes.ok) {
           const cgData = await cgRes.json();
-          if (cgData.bitcoin) {
-            pairInfo.BTCUSDT.price = cgData.bitcoin.usd;
-            pairInfo.BTCUSDT.change = cgData.bitcoin.usd_24h_change || 0;
-          }
-          if (cgData.ethereum) {
-            pairInfo.ETHUSDT.price = cgData.ethereum.usd;
-            pairInfo.ETHUSDT.change = cgData.ethereum.usd_24h_change || 0;
-          }
+          if (cgData.bitcoin) { pairInfo.BTCUSDT.price = cgData.bitcoin.usd; pairInfo.BTCUSDT.change = cgData.bitcoin.usd_24h_change || 0; }
+          if (cgData.ethereum) { pairInfo.ETHUSDT.price = cgData.ethereum.usd; pairInfo.ETHUSDT.change = cgData.ethereum.usd_24h_change || 0; }
           lastPriceFetch = now;
           isDataReal = true;
           console.log('✅ CoinGecko prices loaded');
@@ -328,20 +315,14 @@
       } catch(e) { console.log('CoinGecko failed:', e.message); }
       
       try {
-        // API 2: CoinCap
         const ccRes = await fetch('https://api.coincap.io/v2/assets?ids=bitcoin,ethereum', { signal: AbortSignal.timeout(5000) });
         if (ccRes.ok) {
           const ccData = await ccRes.json();
           ccData.data.forEach(asset => {
             const price = parseFloat(asset.priceUsd);
             const change24h = parseFloat(asset.changePercent24Hr);
-            if (asset.id === 'bitcoin') {
-              pairInfo.BTCUSDT.price = price;
-              pairInfo.BTCUSDT.change = change24h;
-            } else if (asset.id === 'ethereum') {
-              pairInfo.ETHUSDT.price = price;
-              pairInfo.ETHUSDT.change = change24h;
-            }
+            if (asset.id === 'bitcoin') { pairInfo.BTCUSDT.price = price; pairInfo.BTCUSDT.change = change24h; }
+            else if (asset.id === 'ethereum') { pairInfo.ETHUSDT.price = price; pairInfo.ETHUSDT.change = change24h; }
           });
           lastPriceFetch = now;
           isDataReal = true;
@@ -350,48 +331,20 @@
         }
       } catch(e) { console.log('CoinCap failed:', e.message); }
       
-      try {
-        // API 3: CryptoCompare
-        const crRes = await fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH&tsyms=USD', { signal: AbortSignal.timeout(5000) });
-        if (crRes.ok) {
-          const crData = await crRes.json();
-          const btc = crData.RAW?.BTC?.USD;
-          const eth = crData.RAW?.ETH?.USD;
-          if (btc) {
-            pairInfo.BTCUSDT.price = btc.PRICE;
-            pairInfo.BTCUSDT.change = btc.CHANGEPCT24HOUR;
-          }
-          if (eth) {
-            pairInfo.ETHUSDT.price = eth.PRICE;
-            pairInfo.ETHUSDT.change = eth.CHANGEPCT24HOUR;
-          }
-          lastPriceFetch = now;
-          isDataReal = true;
-          console.log('✅ CryptoCompare prices loaded');
-          return;
-        }
-      } catch(e) { console.log('CryptoCompare failed:', e.message); }
-      
-      // Fallback: شبیه‌سازی با seed بر اساس زمان
-      console.log('️ Using simulated prices');
+      console.log('⚠️ Using simulated prices');
       isDataReal = false;
       const btcBase = 80000 + (Math.random() - 0.5) * 4000;
       const ethBase = 3800 + (Math.random() - 0.5) * 200;
-      pairInfo.BTCUSDT.price = btcBase;
-      pairInfo.BTCUSDT.change = (Math.random() - 0.5) * 6;
-      pairInfo.ETHUSDT.price = ethBase;
-      pairInfo.ETHUSDT.change = (Math.random() - 0.5) * 6;
-      pairInfo.XAUUSD.price = 2650 + (Math.random() - 0.5) * 30;
-      pairInfo.XAUUSD.change = (Math.random() - 0.5) * 2;
-      pairInfo.EURUSD.price = 1.0850 + (Math.random() - 0.5) * 0.01;
-      pairInfo.EURUSD.change = (Math.random() - 0.5) * 0.5;
+      pairInfo.BTCUSDT.price = btcBase; pairInfo.BTCUSDT.change = (Math.random() - 0.5) * 6;
+      pairInfo.ETHUSDT.price = ethBase; pairInfo.ETHUSDT.change = (Math.random() - 0.5) * 6;
+      pairInfo.XAUUSD.price = 2650 + (Math.random() - 0.5) * 30; pairInfo.XAUUSD.change = (Math.random() - 0.5) * 2;
+      pairInfo.EURUSD.price = 1.0850 + (Math.random() - 0.5) * 0.01; pairInfo.EURUSD.change = (Math.random() - 0.5) * 0.5;
       lastPriceFetch = now;
     }
 
-    // گرفتن کندل‌های واقعی
     async function fetchRealCandles() {
       const info = pairInfo[currentPair];
-      if (!info.ccSym) return null; // فقط کریپتو
+      if (!info.ccSym) return null;
       
       const aggregate = currentTimeframe === '1m' ? 1 : currentTimeframe === '5m' ? 5 : currentTimeframe === '15m' ? 15 : currentTimeframe === '1h' ? 60 : 240;
       const limit = 200;
@@ -401,44 +354,10 @@
         if (res.ok) {
           const data = await res.json();
           if (data.Data && data.Data.Data && data.Data.Data.length > 0) {
-            return data.Data.Data.map(d => ({
-              time: d.time,
-              open: d.open,
-              high: d.high,
-              low: d.low,
-              close: d.close
-            }));
+            return data.Data.Data.map(d => ({ time: d.time, open: d.open, high: d.high, low: d.low, close: d.close }));
           }
         }
       } catch(e) { console.log('CryptoCompare candles failed:', e.message); }
-      
-      try {
-        const days = currentTimeframe === '1m' || currentTimeframe === '5m' ? 1 : currentTimeframe === '15m' ? 2 : 7;
-        const interval = currentTimeframe === '1m' ? 'minute' : currentTimeframe === '5m' ? 'minute' : 'hour';
-        const res = await fetch(`https://api.coingecko.com/api/v3/coins/${info.cgId}/market_chart?vs_currency=usd&days=${days}&interval=${interval}`, { signal: AbortSignal.timeout(6000) });
-        if (res.ok) {
-          const data = await res.json();
-          if (data.prices && data.prices.length > 0) {
-            const candles = [];
-            const candleSize = currentTimeframe === '1m' ? 60000 : currentTimeframe === '5m' ? 300000 : currentTimeframe === '15m' ? 900000 : 3600000;
-            let currentCandle = null;
-            data.prices.forEach(([ts, price]) => {
-              const time = Math.floor(ts / 1000);
-              const candleTime = Math.floor(time / (candleSize/1000)) * (candleSize/1000);
-              if (!currentCandle || currentCandle.time !== candleTime) {
-                if (currentCandle) candles.push(currentCandle);
-                currentCandle = { time: candleTime, open: price, high: price, low: price, close: price };
-              } else {
-                currentCandle.high = Math.max(currentCandle.high, price);
-                currentCandle.low = Math.min(currentCandle.low, price);
-                currentCandle.close = price;
-              }
-            });
-            if (currentCandle) candles.push(currentCandle);
-            return candles.slice(-limit);
-          }
-        }
-      } catch(e) { console.log('CoinGecko candles failed:', e.message); }
       
       return null;
     }
@@ -488,7 +407,7 @@
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
-        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
+        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
       levels.forEach(level => {
         if (level.count > 0) {
           html += `<div class="level-card" onclick="navigateTo('#level-${level.id}')"><div class="level-icon">${level.icon}</div><div class="level-title">${level.title}</div><div class="level-count">${level.count} دوره آموزشی</div></div>`;
@@ -501,7 +420,7 @@
       let levelName = levelId === 'beginner' ? 'مقدماتی' : levelId === 'intermediate' ? 'میانی' : levelId === 'advanced' ? 'پیشرفته' : decodeURIComponent(levelId);
       const courses = appData.courses.filter(c => c.level.includes(levelName));
       if (courses.length === 0) {
-        document.getElementById('app').innerHTML = `<div class="loading">⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+        document.getElementById('app').innerHTML = `<div class="loading">️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
         return;
       }
       let html = `<div class="header"><h1>${levelName}</h1><p>${courses.length} دوره در این سطح</p></div>`;
@@ -516,7 +435,7 @@
       const cleanCourseId = String(courseId).replace(/\s+/g, '');
       const currentCourse = appData.courses.find(c => c.id === cleanCourseId);
       if (!currentCourse) {
-        document.getElementById('app').innerHTML = `<div class="loading"> دوره پیدا نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+        document.getElementById('app').innerHTML = `<div class="loading">❌ دوره پیدا نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
         return;
       }
       const lessons = currentCourse.lessons || [];
@@ -547,7 +466,7 @@
         imageHtml = `<div style="width:100%;height:180px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:10px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:64px;color:#1D9E75">${lessonIcon}</div>`;
       }
       const hasQuiz = currentLesson.quiz && currentLesson.quiz.length > 0;
-      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${hasQuiz ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div>`;
+      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${hasQuiz ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})"> شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div>`;
       html += `<button class="back-button ${hasQuiz ? 'hidden' : ''}" onclick="navigateTo('#course-${cleanCourseId}')">↶ بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
       window.scrollTo(0, 0);
@@ -591,15 +510,9 @@
           <div class="profile-item"><span class="profile-item-label">اعلان‌ها</span><div class="toggle-switch ${userProfile.notifications ? 'active' : ''}" onclick="toggleNotification()"></div></div>
           <div class="profile-item"><span class="profile-item-label">حالت پرمیوم</span><div class="toggle-switch ${isPremiumUser ? 'active' : ''}" onclick="togglePremium()"></div></div>
         </div>
-        <div class="profile-section">
-          <div class="profile-section-title">📊 آمار ترید</div>
-          <div class="profile-item"><span class="profile-item-label">پوزیشن‌های باز</span><span class="profile-item-value">${demoAccount.positions.length}</span></div>
-          <div class="profile-item"><span class="profile-item-label">تاریخچه معاملات</span><span class="profile-item-value">${demoAccount.history.length}</span></div>
-          <div class="profile-item"><span class="profile-item-label">سود/زیان کل</span><span class="profile-item-value" style="color: ${demoAccount.balance >= 10000 ? '#0ECB81' : '#F64653'}">${(demoAccount.balance - 10000).toFixed(2)} USDT</span></div>
-        </div>
         <button class="profile-btn primary" onclick="resetDemoAccount()">🔄 ریست حساب دمو</button>
         <button class="profile-btn secondary" onclick="exportData()">📤 خروجی از داده‌ها</button>
-        <button class="profile-btn danger" onclick="clearAllData()">🗑️ پاک کردن همه داده‌ها</button>
+        <button class="profile-btn danger" onclick="clearAllData()">️ پاک کردن همه داده‌ها</button>
       </div>
       <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
@@ -614,7 +527,6 @@
     function saveUserProfile() { localStorage.setItem('userProfile', JSON.stringify(userProfile)); localStorage.setItem('isPremium', isPremiumUser); }
 
     function renderTradePage() {
-      if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); ws = null; }
       if (priceUpdateInterval) { clearInterval(priceUpdateInterval); priceUpdateInterval = null; }
       if (chart) { chart.remove(); chart = null; }
       indicatorSeries = {};
@@ -721,7 +633,7 @@
             <button class="chart-action-btn" onclick="changeTimeframe('1h', event)">1h</button>
             <button class="chart-action-btn" onclick="changeTimeframe('4h', event)">4h</button>
           </div>
-          <span class="chart-back" onclick="closeChartModal()"></span>
+          <span class="chart-back" onclick="closeChartModal()">✕</span>
         </div>
         <div class="chart-body">
           <div class="chart-main" id="chartMain">
@@ -749,7 +661,6 @@
       startPriceUpdates();
     }
 
-    // به‌روزرسانی قیمت هر 5 ثانیه
     function startPriceUpdates() {
       if (priceUpdateInterval) clearInterval(priceUpdateInterval);
       priceUpdateInterval = setInterval(async () => {
@@ -759,7 +670,7 @@
         updatePriceDisplay();
         renderOrderBook();
         updatePositionsPnL();
-      }, 5000);
+      }, 1000);
     }
 
     function togglePairDropdown(e) { if (e) e.stopPropagation(); document.getElementById('pairOverlay').classList.add('show'); document.getElementById('pairDropdown').classList.add('show'); }
@@ -856,7 +767,7 @@
         
         updatePriceDisplay();
         drawPositionLines();
-        drawIndicators();
+        setTimeout(() => drawIndicators(), 200);
         
         const badge = document.getElementById('dataModeBadge');
         const text = document.getElementById('dataModeText');
@@ -887,7 +798,7 @@
       if (idx > -1) activeIndicators.splice(idx, 1);
       else activeIndicators.push(indicator);
       updateIndicatorButtons();
-      drawIndicators();
+      setTimeout(() => drawIndicators(), 100);
     }
 
     function updateIndicatorButtons() {
@@ -928,16 +839,16 @@
         indicatorSeries.bollLower.setData(boll.lower);
       }
       if (activeIndicators.includes('RSI')) {
-        if (!isDataReal) { const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">RSI(14)</div><div class="indicator-warning">️ فقط با داده واقعی</div>'; container.appendChild(c); return; }
+        if (!isDataReal) { const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">RSI(14)</div><div class="indicator-warning">⚠️ فقط با داده واقعی</div>'; container.appendChild(c); return; }
         const rsiData = calculateRSI(chartData, 14);
         const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">RSI(14)</div><canvas></canvas>'; container.appendChild(c);
-        setTimeout(() => drawRSI(rsiData, c.querySelector('canvas')), 80);
+        setTimeout(() => drawRSI(rsiData, c.querySelector('canvas')), 100);
       }
       if (activeIndicators.includes('MACD')) {
         if (!isDataReal) { const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><div class="indicator-warning">⚠️ فقط با داده واقعی</div>'; container.appendChild(c); return; }
         const macdData = calculateMACD(chartData);
         const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><canvas></canvas>'; container.appendChild(c);
-        setTimeout(() => drawMACD(macdData, c.querySelector('canvas')), 80);
+        setTimeout(() => drawMACD(macdData, c.querySelector('canvas')), 100);
       }
     }
 
@@ -1091,7 +1002,6 @@
       if (marginEl) marginEl.textContent = margin.toFixed(2) + ' USDT';
       if (availableEl) availableEl.textContent = available.toFixed(2) + ' USDT';
       if (maxEl) maxEl.textContent = (finalAmount * sliderValue / 100 / currentPrice).toFixed(6);
-      // لیکوییدیتی فقط اگر پوزیشن باز باشد
       if (liqEl) {
         if (demoAccount.positions.length === 0) liqEl.textContent = '--';
         else {
@@ -1150,9 +1060,9 @@
     function renderQuizQuestion() { if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) return navigateTo('#home'); const q = currentLesson.quiz[quizState.currentQuestion]; const total = currentLesson.quiz.length; const num = quizState.currentQuestion + 1; let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`; document.getElementById('app').innerHTML = html; quizState.answered = false; }
     function selectAnswer(index) { if (quizState.answered) return; quizState.answered = true; const q = currentLesson.quiz[quizState.currentQuestion]; if (index === q.correct) quizState.score++; document.querySelectorAll('.quiz-option').forEach((el, i) => { el.style.pointerEvents = 'none'; if (i === q.correct) el.classList.add('correct'); if (i === index && i !== q.correct) el.classList.add('incorrect'); }); document.getElementById('explanation').classList.add('show'); document.getElementById('btn-next').disabled = false; }
     function nextQuestion() { quizState.currentQuestion++; if (quizState.currentQuestion >= currentLesson.quiz.length) showQuizResult(); else renderQuizQuestion(); }
-    function showQuizResult() { const total = currentLesson.quiz.length; const score = quizState.score; const pct = Math.round((score / total) * 100); let msg = pct === 100 ? ' عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید'; if (pct >= 70) { userProfile.quizzesPassed++; userProfile.lessonsCompleted++; saveUserProfile(); } document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`; }
+    function showQuizResult() { const total = currentLesson.quiz.length; const score = quizState.score; const pct = Math.round((score / total) * 100); let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید'; if (pct >= 70) { userProfile.quizzesPassed++; userProfile.lessonsCompleted++; saveUserProfile(); } document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`; }
 
-    function navigateTo(hash) { if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); ws = null; } if (chart) { chart.remove(); chart = null; } history.pushState({ hash }, '', hash); handleRoute(); }
+    function navigateTo(hash) { if (chart) { chart.remove(); chart = null; } history.pushState({ hash }, '', hash); handleRoute(); }
     window.addEventListener('popstate', () => handleRoute());
     window.addEventListener('resize', () => { if (chart && document.getElementById('chartModal')?.classList.contains('active')) { const container = document.getElementById('chartContainer'); const chartMain = document.getElementById('chartMain'); if (container && chartMain) { try { chart.applyOptions({ width: container.clientWidth, height: chartMain.clientHeight - 10 }); } catch(e) {} } } });
     
