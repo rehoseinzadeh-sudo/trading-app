@@ -14,6 +14,7 @@
     
     .header { background: linear-gradient(135deg, #1D9E75 0%, #15785A 100%); color: white; padding: 20px 16px; border-radius: 12px; margin-bottom: 16px; text-align: center; }
     .header h1 { font-size: 20px; margin-bottom: 6px; }
+    .header p { font-size: 13px; opacity: 0.9; }
     .nav-tabs { display: flex; background: white; border-radius: 10px; padding: 6px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .nav-tab { flex: 1; padding: 10px; text-align: center; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; }
     .nav-tab.active { background: #1D9E75; color: white; }
@@ -27,9 +28,12 @@
     .lesson-item { background: white; border-radius: 10px; padding: 14px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; display: flex; align-items: center; }
     .lesson-number { width: 36px; height: 36px; background: #A7D7C5; color: #1D9E75; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-left: 12px; flex-shrink: 0; font-size: 14px; }
     .lesson-title { flex: 1; font-size: 14px; font-weight: 500; }
-    .lesson-content { background: white; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .lesson-content { background: white; border-radius: 10px; padding: 16px; padding-bottom: 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .lesson-content h3 { color: #1D9E75; margin: 16px 0 10px 0; font-size: 16px; }
     .lesson-content p { margin-bottom: 10px; text-align: justify; font-size: 14px; unicode-bidi: embed; }
+    .lesson-content ul { margin: 10px 0; padding-right: 18px; font-size: 14px; }
+    .lesson-content li { margin-bottom: 6px; unicode-bidi: embed; }
+    .lesson-content strong { unicode-bidi: embed; }
     .info-box { background: #E8F5E9; border-right: 3px solid #3498DB; padding: 12px; border-radius: 6px; margin: 12px 0; font-size: 13px; unicode-bidi: embed; }
     .warning-box { background: #FFF3E0; border-right: 3px solid #F39C12; padding: 12px; border-radius: 6px; margin: 12px 0; font-size: 13px; unicode-bidi: embed; }
     .quiz-button { width: 100%; background: #6BC4A0; color: white; border: none; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 20px; }
@@ -46,19 +50,23 @@
     .btn-next:disabled { background: #E0E0E0; color: #7F8C8D; cursor: not-allowed; }
     .quiz-result { text-align: center; padding: 32px 16px; }
     .quiz-score { font-size: 40px; font-weight: 700; color: #1D9E75; margin-bottom: 12px; }
+    .quiz-message { font-size: 16px; margin-bottom: 20px; }
     .back-button { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); width: 180px; background: #6366F1; color: white; border: none; padding: 10px 16px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 1000; }
+    .back-button.hidden { display: none; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
     
-    .trade-page { background: white; min-height: 100vh; padding-bottom: 60px; direction: ltr; text-align: left; }
+    /* Trade Page */
+    .trade-page { background: white; min-height: 100vh; padding-bottom: 20px; direction: ltr; text-align: left; }
     
     .trade-header { background: white; padding: 12px 16px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-    .pair-info { display: flex; align-items: center; gap: 12px; position: relative; }
+    .pair-info { display: flex; align-items: center; gap: 12px; }
     .pair-selector { display: flex; align-items: center; gap: 6px; cursor: pointer; }
     .pair-name { font-size: 18px; font-weight: 700; color: #2196F3; }
     .pair-change { font-size: 13px; font-weight: 600; }
     .pair-change.up { color: #0ECB81; }
     .pair-change.down { color: #F64653; }
     .back-icon { font-size: 24px; cursor: pointer; color: #1A1A1A; padding: 4px; font-weight: 900; }
+    .chart-icon-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: #F5F5F5; border-radius: 6px; border: none; }
     
     .pair-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 200; }
     .pair-overlay.show { display: block; }
@@ -68,8 +76,10 @@
     .pair-option:hover { background: #F5F5F5; }
     .pair-option:last-child { border-bottom: none; }
     
-    .trade-main { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    /* Two Column Layout */
+    .trade-main { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid #E8E8E8; }
     
+    /* Left Column - Order Form & Position Info */
     .order-form-col { padding: 12px; border-right: 1px solid #E8E8E8; }
     .trade-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
     .trade-tab { flex: 1; padding: 12px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; background: #F5F5F5; color: #7F8C8D; }
@@ -106,24 +116,26 @@
     .submit-btn.buy { background: #0ECB81; color: white; }
     .submit-btn.sell { background: #F64653; color: white; }
     
+    /* Right Column - Live Price & Order Book */
     .order-book-col { padding: 12px; }
-    .price-display { text-align: center; padding: 12px 0; }
-    .current-price { font-size: 28px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
+    .price-display { text-align: center; padding: 16px 0; border-bottom: 1px solid #F0F0F0; margin-bottom: 12px; }
+    .current-price { font-size: 32px; font-weight: 700; color: #0ECB81; margin-bottom: 4px; }
     .price-change-text { font-size: 12px; color: #7F8C8D; }
     
+    /* Order Book - 2 columns only */
     .order-book { background: white; border: 1px solid #E8E8E8; border-radius: 6px; overflow: hidden; }
-    .order-header { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 8px 10px; background: #F5F5F5; font-size: 11px; color: #7F8C8D; font-weight: 600; }
-    .order-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 5px 10px; font-size: 11px; cursor: pointer; }
+    .order-header { display: grid; grid-template-columns: 1fr 1fr; padding: 8px 10px; background: #F5F5F5; font-size: 11px; color: #7F8C8D; font-weight: 600; }
+    .order-row { display: grid; grid-template-columns: 1fr 1fr; padding: 5px 10px; font-size: 12px; cursor: pointer; }
     .order-row.ask { background: rgba(246, 70, 83, 0.08); }
     .order-row.bid { background: rgba(14, 203, 129, 0.08); }
-    .order-row .col-amount { color: #1A1A1A; text-align: right; }
-    .order-row .col-price { font-weight: 600; text-align: center; }
+    .order-row .col-amount { color: #1A1A1A; text-align: right; font-weight: 500; }
+    .order-row .col-price { font-weight: 700; text-align: left; }
     .order-row .col-price.ask { color: #F64653; }
     .order-row .col-price.bid { color: #0ECB81; }
-    .order-row .col-total { color: #7F8C8D; text-align: left; font-size: 10px; }
     
-    .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; margin-top: 12px; }
-    .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 13px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+    /* Positions */
+    .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; }
+    .position-tab { flex: 1; padding: 12px; text-align: center; font-size: 13px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
     .positions-content { padding: 12px; }
     .position-item { background: #F5F5F5; border-radius: 6px; padding: 12px; margin-bottom: 8px; }
@@ -142,83 +154,74 @@
     .close-btn { width: 100%; padding: 10px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; }
     .empty-state { text-align: center; padding: 32px 16px; color: #7F8C8D; font-size: 13px; }
     
+    /* Chart Modal */
     .chart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; flex-direction: column; }
     .chart-modal.active { display: flex; }
-    .chart-header { display: flex; align-items: center; justify-content: flex-start; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; }
-    .chart-pair-name { font-size: 16px; font-weight: 700; color: #2196F3; margin-right: 8px; }
-    .chart-timeframes { display: flex; gap: 4px; flex: 1; }
-    .chart-action-btn { padding: 6px 10px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; }
-    .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
-    .chart-back { font-size: 24px; cursor: pointer; color: #1A1A1A; padding: 4px 12px; font-weight: 900; line-height: 1; margin-left: auto; }
-    
-    /* نشانگر حالت داده */
-    .data-mode-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: 600;
-      margin-left: 8px;
-    }
-    .data-mode-badge.free {
-      background: #FFF3E0;
-      color: #F57C00;
-      border: 1px solid #FFE0B2;
-    }
-    .data-mode-badge.premium {
-      background: #E8F5E9;
-      color: #2E7D32;
-      border: 1px solid #C8E6C9;
-    }
-    .data-mode-badge .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
+    .chart-header { display: flex; align-items: center; justify-content: flex-start; gap: 8px; padding: 10px 12px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; flex-wrap: wrap; }
+    .chart-pair-name { font-size: 15px; font-weight: 700; color: #2196F3; }
+    .data-mode-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+    .data-mode-badge.free { background: #FFF3E0; color: #F57C00; }
+    .data-mode-badge.premium { background: #E8F5E9; color: #2E7D32; }
+    .data-mode-badge .dot { width: 5px; height: 5px; border-radius: 50%; animation: pulse 2s infinite; }
     .data-mode-badge.free .dot { background: #F57C00; }
     .data-mode-badge.premium .dot { background: #2E7D32; }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .chart-timeframes { display: flex; gap: 3px; flex: 1; }
+    .chart-action-btn { padding: 5px 8px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 10px; cursor: pointer; }
+    .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
+    .chart-back { font-size: 22px; cursor: pointer; color: #F64653; padding: 4px 10px; font-weight: 900; line-height: 1; margin-left: auto; }
     
-    .chart-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
-    .chart-main { position: relative; min-height: 350px; height: 55vh; flex-shrink: 0; }
+    .chart-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .chart-main { position: relative; min-height: 300px; height: 50vh; flex-shrink: 0; }
     .chart-container { width: 100%; height: 100%; background: white; }
-    .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 12px; background: linear-gradient(to bottom, transparent, #F0B90B); cursor: ns-resize; opacity: 0.7; z-index: 100; touch-action: none; }
+    .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: #F0B90B; cursor: ns-resize; opacity: 0.6; z-index: 100; touch-action: none; }
     .resize-handle:hover { opacity: 1; }
-    .resize-handle::after { content: '⋮'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 10px; letter-spacing: 2px; }
     
     .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto; flex-shrink: 0; }
     .indicator-btn { padding: 6px 10px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 11px; cursor: pointer; white-space: nowrap; }
     .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     
-    .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 40vh; }
-    .indicator-subchart { height: 160px; position: relative; border-bottom: 1px solid #F0F0F0; }
+    .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 35vh; }
+    .indicator-subchart { height: 150px; position: relative; border-bottom: 1px solid #F0F0F0; }
     .indicator-subchart:last-child { border-bottom: none; }
     .indicator-subchart canvas { width: 100%; height: 100%; display: block; }
-    .indicator-label { position: absolute; top: 6px; left: 10px; font-size: 11px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 3px; }
+    .indicator-label { position: absolute; top: 6px; left: 10px; font-size: 11px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 3px; }
     
-    /* دکمه تغییر حالت */
-    .mode-toggle-btn {
-      padding: 6px 12px;
-      border: 1px solid #E0E0E0;
-      border-radius: 6px;
-      background: white;
-      font-size: 11px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .mode-toggle-btn:hover { background: #F5F5F5; }
+    /* Profile Page */
+    .profile-page { padding: 16px; }
+    .profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 24px 16px; border-radius: 12px; text-align: center; margin-bottom: 16px; }
+    .profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 12px; }
+    .profile-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .profile-email { font-size: 12px; opacity: 0.8; }
+    .profile-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+    .stat-card { background: white; border-radius: 10px; padding: 14px 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .stat-value { font-size: 20px; font-weight: 700; color: #1D9E75; }
+    .stat-label { font-size: 11px; color: #7F8C8D; margin-top: 4px; }
+    .profile-section { background: white; border-radius: 10px; padding: 14px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .profile-section-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #1A1A1A; }
+    .profile-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #F5F5F5; }
+    .profile-item:last-child { border-bottom: none; }
+    .profile-item-label { font-size: 13px; color: #1A1A1A; }
+    .profile-item-value { font-size: 13px; color: #7F8C8D; font-weight: 500; }
+    .profile-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+    .profile-btn.primary { background: #1D9E75; color: white; }
+    .profile-btn.secondary { background: #F5F5F5; color: #1A1A1A; }
+    .profile-btn.danger { background: #FFEBEE; color: #F64653; }
+    .toggle-switch { position: relative; width: 44px; height: 24px; background: #E0E0E0; border-radius: 12px; cursor: pointer; transition: background 0.3s; }
+    .toggle-switch.active { background: #1D9E75; }
+    .toggle-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.3s; }
+    .toggle-switch.active::after { transform: translateX(20px); }
+    .subscription-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+    .subscription-badge.free { background: #FFF3E0; color: #F57C00; }
+    .subscription-badge.premium { background: #E8F5E9; color: #2E7D32; }
+    
+    /* Loading overlay for chart */
+    .chart-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; z-index: 50; font-size: 14px; color: #7F8C8D; }
     
     @media (max-width: 768px) {
       .trade-main { grid-template-columns: 1fr; }
       .order-form-col { border-right: none; border-bottom: 1px solid #E8E8E8; }
+      .current-price { font-size: 28px; }
     }
   </style>
 </head>
@@ -232,14 +235,15 @@
     let currentCourse = null, currentLesson = null;
     let quizState = { currentQuestion: 0, score: 0, answered: false };
     let demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] };
+    let userProfile = { name: 'کاربر آکادمی', email: 'user@academy.com', joinDate: '2026-09-06', lessonsCompleted: 0, quizzesPassed: 0, totalTrades: 0, winRate: 0, theme: 'light', notifications: true };
     let chart, candleSeries, currentPrice = 80027, ws;
     let currentTimeframe = '15m', tradeType = 'buy', sliderValue = 0;
     let activeTab = 'positions', activeIndicators = [];
     let chartData = [], indicatorSeries = {}, positionLines = {};
     let currentPair = 'BTCUSDT';
-    
-    // سیستم رایگان/پرمیوم
-    let isPremiumUser = false; // پیش‌فرض رایگان
+    let isPremiumUser = false;
+    let apiCallCount = 0;
+    let lastApiCall = 0;
     
     let pairInfo = {
       BTCUSDT: { name: 'BTC/USDT', price: 80027, change: 0.53, decimals: 2, volatility: 500, basePrice: 80000 },
@@ -263,15 +267,15 @@
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '';
+      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '🔗';
       if (t.includes('کیف پول')) return '👛';
-      if (t.includes('بازار')) return '';
+      if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
-      if (t.includes('روند')) return '📉';
+      if (t.includes('روند')) return '';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
-      if (t.includes('ریسک')) return '🛡️';
+      if (t.includes('ریسک')) return '️';
       if (t.includes('آزمون')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict')) return '🎯';
@@ -314,6 +318,7 @@
           return;
         }
         loadDemoAccount();
+        loadUserProfile();
         if (!location.hash) history.replaceState({ view: 'home' }, '', '#home');
         handleRoute();
       } catch (error) {
@@ -333,17 +338,18 @@
       }
       else if (hash === '#quiz') renderQuizQuestion();
       else if (hash === '#demo') renderTradePage();
+      else if (hash === '#profile') renderProfile();
       else renderHome();
     }
 
     function renderHome() {
       const levels = [
-        { id: 'beginner', icon: '', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
+        { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
         { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
-        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div><div class="nav-tab">👤 پروفایل</div></div>`;
+        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
       levels.forEach(level => {
         if (level.count > 0) {
           html += `<div class="level-card" onclick="navigateTo('#level-${level.id}')"><div class="level-icon">${level.icon}</div><div class="level-title">${level.title}</div><div class="level-count">${level.count} دوره آموزشی</div></div>`;
@@ -401,7 +407,9 @@
       } else {
         imageHtml = `<div style="width:100%;height:180px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:10px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:64px;color:#1D9E75">${lessonIcon}</div>`;
       }
-      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${currentLesson.quiz && currentLesson.quiz.length > 0 ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div><button class="back-button" onclick="navigateTo('#course-${cleanCourseId}')">↶ بازگشت</button>`;
+      const hasQuiz = currentLesson.quiz && currentLesson.quiz.length > 0;
+      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${hasQuiz ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div>`;
+      html += `<button class="back-button ${hasQuiz ? 'hidden' : ''}" onclick="navigateTo('#course-${cleanCourseId}')">↶ بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
       window.scrollTo(0, 0);
     }
@@ -418,6 +426,117 @@
       navigateTo('#quiz');
     }
 
+    // ===== Profile Page =====
+    function renderProfile() {
+      const totalLessons = appData.courses.reduce((sum, c) => sum + c.lessons.length, 0);
+      const progress = Math.round((userProfile.lessonsCompleted / totalLessons) * 100);
+      
+      let html = `<div class="profile-page">
+        <div class="profile-header">
+          <div class="profile-avatar">👤</div>
+          <div class="profile-name">${userProfile.name}</div>
+          <div class="profile-email">${userProfile.email}</div>
+          <div style="margin-top: 8px;"><span class="subscription-badge ${isPremiumUser ? 'premium' : 'free'}">${isPremiumUser ? '⭐ Premium' : '🆓 Free'}</span></div>
+        </div>
+        
+        <div class="profile-stats">
+          <div class="stat-card"><div class="stat-value">${userProfile.lessonsCompleted}</div><div class="stat-label">درس تکمیل‌شده</div></div>
+          <div class="stat-card"><div class="stat-value">${userProfile.quizzesPassed}</div><div class="stat-label">آزمون پاس‌شده</div></div>
+          <div class="stat-card"><div class="stat-value">${progress}%</div><div class="stat-label">پیشرفت کلی</div></div>
+        </div>
+        
+        <div class="profile-section">
+          <div class="profile-section-title">💰 حساب دمو</div>
+          <div class="profile-item"><span class="profile-item-label">موجودی</span><span class="profile-item-value" style="color: #1D9E75; font-weight: 700;">${demoAccount.balance.toFixed(2)} USDT</span></div>
+          <div class="profile-item"><span class="profile-item-label">تعداد معاملات</span><span class="profile-item-value">${userProfile.totalTrades}</span></div>
+          <div class="profile-item"><span class="profile-item-label">نرخ برد</span><span class="profile-item-value">${userProfile.winRate}%</span></div>
+        </div>
+        
+        <div class="profile-section">
+          <div class="profile-section-title">⚙️ تنظیمات</div>
+          <div class="profile-item">
+            <span class="profile-item-label">اعلان‌ها</span>
+            <div class="toggle-switch ${userProfile.notifications ? 'active' : ''}" onclick="toggleNotification()"></div>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item-label">حالت پرمیوم</span>
+            <div class="toggle-switch ${isPremiumUser ? 'active' : ''}" onclick="togglePremium()"></div>
+          </div>
+        </div>
+        
+        <div class="profile-section">
+          <div class="profile-section-title"> آمار ترید</div>
+          <div class="profile-item"><span class="profile-item-label">پوزیشن‌های باز</span><span class="profile-item-value">${demoAccount.positions.length}</span></div>
+          <div class="profile-item"><span class="profile-item-label">تاریخچه معاملات</span><span class="profile-item-value">${demoAccount.history.length}</span></div>
+          <div class="profile-item"><span class="profile-item-label">سود/زیان کل</span><span class="profile-item-value" style="color: ${demoAccount.balance >= 10000 ? '#0ECB81' : '#F64653'}">${(demoAccount.balance - 10000).toFixed(2)} USDT</span></div>
+        </div>
+        
+        <div class="profile-section">
+          <div class="profile-section-title">ℹ️ درباره اپلیکیشن</div>
+          <div class="profile-item"><span class="profile-item-label">نسخه</span><span class="profile-item-value">1.0.0</span></div>
+          <div class="profile-item"><span class="profile-item-label">تاریخ عضویت</span><span class="profile-item-value">${userProfile.joinDate}</span></div>
+        </div>
+        
+        <button class="profile-btn primary" onclick="resetDemoAccount()">🔄 ریست حساب دمو</button>
+        <button class="profile-btn secondary" onclick="exportData()">📤 خروجی از داده‌ها</button>
+        <button class="profile-btn danger" onclick="clearAllData()">🗑️ پاک کردن همه داده‌ها</button>
+      </div>
+      <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+      
+      document.getElementById('app').innerHTML = html;
+    }
+
+    function toggleNotification() {
+      userProfile.notifications = !userProfile.notifications;
+      saveUserProfile();
+      renderProfile();
+    }
+
+    function togglePremium() {
+      isPremiumUser = !isPremiumUser;
+      saveUserProfile();
+      renderProfile();
+    }
+
+    function resetDemoAccount() {
+      if (confirm('آیا مطمئن هستید؟ تمام پوزیشن‌ها و تاریخچه حذف می‌شوند.')) {
+        demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] };
+        saveDemoAccount();
+        renderProfile();
+      }
+    }
+
+    function exportData() {
+      const data = { profile: userProfile, demoAccount: demoAccount };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'academy-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearAllData() {
+      if (confirm('آیا مطمئن هستید؟ تمام داده‌ها پاک می‌شوند.')) {
+        localStorage.clear();
+        location.reload();
+      }
+    }
+
+    function loadUserProfile() {
+      const saved = localStorage.getItem('userProfile');
+      if (saved) { try { userProfile = JSON.parse(saved); } catch (e) {} }
+      const premium = localStorage.getItem('isPremium');
+      if (premium) isPremiumUser = premium === 'true';
+    }
+
+    function saveUserProfile() {
+      localStorage.setItem('userProfile', JSON.stringify(userProfile));
+      localStorage.setItem('isPremium', isPremiumUser);
+    }
+
+    // ===== Trade Page =====
     function renderTradePage() {
       if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); else clearInterval(ws); ws = null; }
       if (chart) { chart.remove(); chart = null; }
@@ -435,11 +554,18 @@
             <span class="back-icon" onclick="navigateTo('#home')">←</span>
             <div class="pair-selector" onclick="togglePairDropdown(event)">
               <span class="pair-name" id="pairNameDisplay">${info.name}</span>
-              <span>▼</span>
+              <span style="font-size: 10px; color: #7F8C8D;">▼</span>
             </div>
             <span class="pair-change ${changeClass}" id="pairChange">${changeSign}${info.change.toFixed(2)}%</span>
           </div>
-          <div style="font-size: 20px; cursor: pointer;" onclick="openChartModal()">📊</div>
+          <button class="chart-icon-btn" onclick="openChartModal()" title="نمودار">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="7" y1="17" x2="7" y2="10"/>
+              <line x1="12" y1="17" x2="12" y2="7"/>
+              <line x1="17" y1="17" x2="17" y2="13"/>
+            </svg>
+          </button>
         </div>
 
         <div class="trade-main">
@@ -486,10 +612,10 @@
           <div class="order-book-col">
             <div class="price-display">
               <div class="current-price" id="currentPrice">${info.price.toFixed(info.decimals)}</div>
-              <div class="price-change-text" id="priceChangeText">≈ ${info.price.toFixed(info.decimals)} ${currentPair.replace('USDT','').replace('USD','')}</div>
+              <div class="price-change-text" id="priceChangeText">${info.name}</div>
             </div>
             <div class="order-book">
-              <div class="order-header"><span>Amount</span><span>Price</span><span>Total</span></div>
+              <div class="order-header"><span>Amount</span><span>Price</span></div>
               <div id="orderBookAsks"></div>
               <div id="orderBookBids"></div>
             </div>
@@ -519,11 +645,8 @@
           <span class="chart-pair-name" id="chartPairName">${info.name}</span>
           <span class="data-mode-badge ${isPremiumUser ? 'premium' : 'free'}" id="dataModeBadge">
             <span class="dot"></span>
-            <span id="dataModeText">${isPremiumUser ? 'LIVE' : 'DELAYED 1H'}</span>
+            <span id="dataModeText">${isPremiumUser ? 'LIVE' : 'DELAYED'}</span>
           </span>
-          <button class="mode-toggle-btn" onclick="toggleDataMode()" title="تغییر حالت داده">
-            ${isPremiumUser ? '🔓 Premium' : '🔒 Free'}
-          </button>
           <div class="chart-timeframes">
             <button class="chart-action-btn" onclick="changeTimeframe('1m', event)">1m</button>
             <button class="chart-action-btn" onclick="changeTimeframe('5m', event)">5m</button>
@@ -549,7 +672,7 @@
         </div>
       </div>
 
-      <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+      <button class="back-button" onclick="navigateTo('#home')"> بازگشت</button>`;
       
       document.getElementById('app').innerHTML = html;
       renderOrderBook();
@@ -557,37 +680,6 @@
       setupSlider();
       setupResize();
       updateTradeInfo();
-    }
-
-    // تغییر حالت داده (رایگان/پرمیوم)
-    function toggleDataMode() {
-      isPremiumUser = !isPremiumUser;
-      const badge = document.getElementById('dataModeBadge');
-      const text = document.getElementById('dataModeText');
-      const btn = document.querySelector('.mode-toggle-btn');
-      
-      if (isPremiumUser) {
-        badge.className = 'data-mode-badge premium';
-        text.textContent = 'LIVE';
-        btn.innerHTML = '🔓 Premium';
-      } else {
-        badge.className = 'data-mode-badge free';
-        text.textContent = 'DELAYED 1H';
-        btn.innerHTML = '🔒 Free';
-      }
-      
-      // رفرش چارت با حالت جدید
-      if (chart) {
-        chart.remove();
-        chart = null;
-      }
-      indicatorSeries = {};
-      if (ws) {
-        if (typeof ws === 'object' && ws.close) ws.close();
-        else clearInterval(ws);
-        ws = null;
-      }
-      setTimeout(() => initChart(), 100);
     }
 
     function togglePairDropdown(e) { if (e) e.stopPropagation(); document.getElementById('pairOverlay').classList.add('show'); document.getElementById('pairDropdown').classList.add('show'); }
@@ -646,9 +738,9 @@
         e.stopPropagation();
         const y = e.touches ? e.touches[0].clientY : e.clientY;
         const delta = startY - y;
-        const newHeight = Math.max(250, Math.min(window.innerHeight * 0.75, startHeight + delta));
+        const newHeight = Math.max(200, Math.min(window.innerHeight * 0.8, startHeight + delta));
         chartMain.style.height = newHeight + 'px';
-        if (chart) { try { chart.applyOptions({ width: chartMain.clientWidth, height: newHeight - 12 }); } catch(err) {} }
+        if (chart) { try { chart.applyOptions({ width: chartMain.clientWidth, height: newHeight - 10 }); } catch(err) {} }
       };
       const stopResize = () => { isResizing = false; };
       handle.addEventListener('mousedown', startResize);
@@ -659,15 +751,55 @@
       document.addEventListener('touchend', stopResize);
     }
 
-    // تابع کمکی برای تولید عدد تصادفی با توزیع نرمال (Box-Muller)
-    function randomNormal() {
-      let u = 0, v = 0;
-      while(u === 0) u = Math.random();
-      while(v === 0) v = Math.random();
-      return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    // API with timeout and fallback
+    async function fetchWithTimeout(url, timeout = 6000) {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeout);
+      try {
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(id);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return await response.json();
+      } catch (e) {
+        clearTimeout(id);
+        throw e;
+      }
     }
 
-    // تولید داده شبیه‌سازی‌شده با کندل‌های طبیعی
+    async function fetchChartData() {
+      const now = Date.now();
+      // Rate limiting: max 1 call per 10 seconds to avoid bans
+      if (now - lastApiCall < 10000 && apiCallCount > 5) {
+        console.log('Rate limited, using cached data');
+        return null;
+      }
+      
+      const apis = [
+        { url: `https://api.binance.com/api/v3/klines?symbol=${currentPair}&interval=${currentTimeframe}&limit=200`, format: 'binance' },
+        { url: `https://api.binance.us/api/v3/klines?symbol=${currentPair}&interval=${currentTimeframe}&limit=200`, format: 'binance' },
+        { url: `https://data-api.binance.vision/api/v3/klines?symbol=${currentPair}&interval=${currentTimeframe}&limit=200`, format: 'binance' }
+      ];
+      
+      for (const api of apis) {
+        try {
+          const data = await fetchWithTimeout(api.url, 5000);
+          lastApiCall = Date.now();
+          apiCallCount++;
+          return data.map(k => ({
+            time: k[0] / 1000,
+            open: parseFloat(k[1]),
+            high: parseFloat(k[2]),
+            low: parseFloat(k[3]),
+            close: parseFloat(k[4]),
+          }));
+        } catch (e) {
+          console.log('API failed:', api.url, e.message);
+          continue;
+        }
+      }
+      return null;
+    }
+
     function generateSimulatedData() {
       const info = pairInfo[currentPair];
       chartData = [];
@@ -675,26 +807,15 @@
       const now = Math.floor(Date.now() / 1000);
       const intervalSeconds = currentTimeframe === '1m' ? 60 : currentTimeframe === '5m' ? 300 : currentTimeframe === '15m' ? 900 : currentTimeframe === '1h' ? 3600 : 14400;
       
-      // برای حالت رایگان، داده‌ها با تاخیر 1 ساعت
-      const delayOffset = isPremiumUser ? 0 : 3600; // 1 ساعت = 3600 ثانیه
-      
       for (let i = 199; i >= 0; i--) {
-        const time = now - delayOffset - i * intervalSeconds;
-        
-        // تغییر قیمت با توزیع نرمال (طبیعی‌تر)
-        const change = randomNormal() * info.volatility * 0.15;
+        const time = now - i * intervalSeconds;
+        const change = (Math.random() - 0.5) * info.volatility * 0.3;
         const open = price;
         const close = price + change;
-        
-        // سایه‌ها: معمولاً کوچک (10-30% بدنه)، گاهی بزرگ‌تر
         const bodySize = Math.abs(close - open);
-        const shadowMultiplier = Math.random() < 0.8 ? 
-          (0.1 + Math.random() * 0.3) : // 80% مواقع سایه کوچک
-          (0.3 + Math.random() * 0.7);  // 20% مواقع سایه بزرگ
-        
-        const high = Math.max(open, close) + bodySize * shadowMultiplier * Math.random();
-        const low = Math.min(open, close) - bodySize * shadowMultiplier * Math.random();
-        
+        const shadowMultiplier = 0.1 + Math.random() * 0.4;
+        const high = Math.max(open, close) + bodySize * shadowMultiplier;
+        const low = Math.min(open, close) - bodySize * shadowMultiplier;
         chartData.push({ time, open, high, low, close });
         price = close;
       }
@@ -717,14 +838,14 @@
       try {
         chart = LightweightCharts.createChart(container, {
           width: container.clientWidth,
-          height: container.clientHeight - 12,
+          height: container.clientHeight - 10,
           layout: { background: { color: '#FFFFFF' }, textColor: '#1A1A1A', fontSize: 11 },
           grid: { vertLines: { color: '#F0F0F0' }, horzLines: { color: '#F0F0F0' } },
           crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
           rightPriceScale: { borderColor: '#E8E8E8', scaleMargins: { top: 0.1, bottom: 0.1 } },
           timeScale: { borderColor: '#E8E8E8', timeVisible: true, rightOffset: 5 },
           handleScroll: { vertTouchDrag: false, horzTouchDrag: true, mouseWheel: true },
-          handleScale: { axisPressedMouseMove: true, mouseWheel: true, pinch: true }
+          handleScale: { axisPressedMouseMove: { price: true, time: true }, mouseWheel: true, pinch: true }
         });
         candleSeries = chart.addCandlestickSeries({
           upColor: '#0ECB81', downColor: '#F64653',
@@ -734,20 +855,26 @@
         const isCrypto = currentPair === 'BTCUSDT' || currentPair === 'ETHUSDT';
         
         if (isPremiumUser && isCrypto) {
-          // حالت پرمیوم: داده زنده از API
-          fetch(`https://api.binance.com/api/v3/klines?symbol=${currentPair}&interval=${currentTimeframe}&limit=200`)
-            .then(r => r.json())
-            .then(data => {
-              chartData = data.map(k => ({
-                time: k[0] / 1000,
-                open: parseFloat(k[1]), high: parseFloat(k[2]), low: parseFloat(k[3]), close: parseFloat(k[4]),
-              }));
+          // Show loading
+          const loadingDiv = document.createElement('div');
+          loadingDiv.className = 'chart-loading';
+          loadingDiv.id = 'chartLoading';
+          loadingDiv.textContent = '⏳ در حال دریافت داده...';
+          container.appendChild(loadingDiv);
+          
+          fetchChartData().then(data => {
+            const ld = document.getElementById('chartLoading');
+            if (ld) ld.remove();
+            
+            if (data && data.length > 0) {
+              chartData = data;
               candleSeries.setData(chartData);
               currentPrice = chartData[chartData.length - 1].close;
               pairInfo[currentPair].price = currentPrice;
               updatePriceDisplay();
               drawPositionLines();
               drawIndicators();
+              
               if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); else clearInterval(ws); }
               ws = new WebSocket(`wss://stream.binance.com:9443/ws/${currentPair.toLowerCase()}@kline_${currentTimeframe}`);
               ws.onmessage = (event) => {
@@ -763,15 +890,21 @@
                 } catch(e) {}
               };
               ws.onerror = () => {};
-            })
-            .catch(err => { console.error('API error:', err); generateSimulatedData(); });
+            } else {
+              generateSimulatedData();
+            }
+          }).catch(err => {
+            const ld = document.getElementById('chartLoading');
+            if (ld) ld.remove();
+            console.error('API error:', err);
+            generateSimulatedData();
+          });
         } else {
-          // حالت رایگان: داده شبیه‌سازی‌شده با تاخیر
           generateSimulatedData();
           if (ws) { clearInterval(ws); }
           ws = setInterval(() => {
             const info = pairInfo[currentPair];
-            const change = randomNormal() * info.volatility * 0.05;
+            const change = (Math.random() - 0.5) * info.volatility * 0.05;
             currentPrice += change;
             pairInfo[currentPair].price = currentPrice;
             if (chartData.length > 0) {
@@ -1013,18 +1146,25 @@
       const w = rect.width, h = rect.height;
       ctx.fillStyle = 'white';
       ctx.fillRect(0, 0, w, h);
-      const allValues = [...macdData.macd, ...macdData.signal];
-      const maxAbs = Math.max(...allValues.map(v => Math.abs(v.value))) * 1.3;
+      
+      // Scale histogram to match MACD line range
+      const maxMACD = Math.max(...macdData.macd.map(v => Math.abs(v.value)));
+      const maxHist = Math.max(...macdData.histogram.map(v => Math.abs(v.value)));
+      const maxSignal = Math.max(...macdData.signal.map(v => Math.abs(v.value)));
+      const maxAbs = Math.max(maxMACD, maxSignal, maxHist) * 1.2;
+      
       if (maxAbs === 0) return;
       const midY = h / 2;
       const scaleY = (h / 2) / maxAbs;
+      
       ctx.strokeStyle = '#E0E0E0';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(0, midY);
       ctx.lineTo(w, midY);
       ctx.stroke();
-      const barWidth = Math.max(1, (w / macdData.histogram.length) * 0.7);
+      
+      const barWidth = Math.max(2, (w / macdData.histogram.length) * 0.8);
       macdData.histogram.forEach((h_val, i) => {
         const x = (i / (macdData.histogram.length - 1)) * w;
         const h_px = h_val.value * scaleY;
@@ -1033,6 +1173,7 @@
         const y = h_val.value >= 0 ? midY - barHeight : midY;
         ctx.fillRect(x - barWidth/2, y, barWidth, barHeight);
       });
+      
       ctx.strokeStyle = '#2196F3';
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -1043,6 +1184,7 @@
         else ctx.lineTo(x, y);
       });
       ctx.stroke();
+      
       ctx.strokeStyle = '#FF9800';
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -1094,13 +1236,11 @@
       for (let i = 1; i <= 8; i++) {
         asks.push({
           price: (currentPrice + i * step).toFixed(decimals),
-          amount: (Math.random() * 10).toFixed(4),
-          total: (Math.random() * 100).toFixed(2)
+          amount: (Math.random() * 10).toFixed(4)
         });
         bids.push({
           price: (currentPrice - i * step).toFixed(decimals),
-          amount: (Math.random() * 10).toFixed(4),
-          total: (Math.random() * 100).toFixed(2)
+          amount: (Math.random() * 10).toFixed(4)
         });
       }
       return { asks: asks.reverse(), bids };
@@ -1108,8 +1248,8 @@
 
     function renderOrderBook() {
       const { asks, bids } = generateOrderBook();
-      const asksHtml = asks.map(o => `<div class="order-row ask"><span class="col-amount">${o.amount}</span><span class="col-price ask">${o.price}</span><span class="col-total">${o.total}</span></div>`).join('');
-      const bidsHtml = bids.map(o => `<div class="order-row bid"><span class="col-amount">${o.amount}</span><span class="col-price bid">${o.price}</span><span class="col-total">${o.total}</span></div>`).join('');
+      const asksHtml = asks.map(o => `<div class="order-row ask"><span class="col-amount">${o.amount}</span><span class="col-price ask">${o.price}</span></div>`).join('');
+      const bidsHtml = bids.map(o => `<div class="order-row bid"><span class="col-amount">${o.amount}</span><span class="col-price bid">${o.price}</span></div>`).join('');
       const asksEl = document.getElementById('orderBookAsks');
       const bidsEl = document.getElementById('orderBookBids');
       if (asksEl) asksEl.innerHTML = asksHtml;
@@ -1121,7 +1261,7 @@
       const priceEl = document.getElementById('currentPrice');
       const textEl = document.getElementById('priceChangeText');
       if (priceEl) priceEl.textContent = currentPrice.toFixed(info.decimals);
-      if (textEl) textEl.textContent = `≈ ${currentPrice.toFixed(info.decimals)} ${currentPair.replace('USDT','').replace('USD','')}`;
+      if (textEl) textEl.textContent = info.name;
     }
 
     function setTradeType(type) {
@@ -1229,7 +1369,9 @@
         pnl: 0, pnlPercent: 0
       };
       demoAccount.positions.push(position);
+      userProfile.totalTrades++;
       saveDemoAccount();
+      saveUserProfile();
       drawPositionLines();
       renderPositions();
       alert('Order submitted!');
@@ -1245,9 +1387,10 @@
 
     function updatePositionsPnL() {
       demoAccount.positions.forEach(pos => {
-        if (pos.side === 'buy') pos.pnl = (currentPrice - pos.entryPrice) * pos.amount;
-        else pos.pnl = (pos.entryPrice - currentPrice) * pos.amount;
-        pos.pnlPercent = (pos.pnl / (pos.amount * pos.entryPrice / pos.leverage)) * 100;
+        const priceChange = pos.side === 'buy' ? (currentPrice - pos.entryPrice) : (pos.entryPrice - currentPrice);
+        pos.pnl = priceChange * pos.amount;
+        // Correct PnL% calculation: (price change % ) * leverage
+        pos.pnlPercent = (priceChange / pos.entryPrice) * pos.leverage * 100;
       });
       demoAccount.equity = demoAccount.balance + demoAccount.positions.reduce((sum, p) => sum + p.pnl, 0);
       saveDemoAccount();
@@ -1289,7 +1432,9 @@
       demoAccount.balance += pos.pnl;
       demoAccount.history.push(pos);
       demoAccount.positions.splice(posIndex, 1);
+      if (pos.pnl > 0) userProfile.winRate = Math.round((userProfile.quizzesPassed / Math.max(1, userProfile.totalTrades)) * 100);
       saveDemoAccount();
+      saveUserProfile();
       drawPositionLines();
       renderPositions();
     }
@@ -1344,6 +1489,11 @@
       const score = quizState.score;
       const pct = Math.round((score / total) * 100);
       let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
+      if (pct >= 70) {
+        userProfile.quizzesPassed++;
+        userProfile.lessonsCompleted++;
+        saveUserProfile();
+      }
       document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`;
     }
 
@@ -1359,7 +1509,7 @@
       if (chart && document.getElementById('chartModal')?.classList.contains('active')) {
         const container = document.getElementById('chartContainer');
         const chartMain = document.getElementById('chartMain');
-        if (container && chartMain) { try { chart.applyOptions({ width: container.clientWidth, height: chartMain.clientHeight - 12 }); } catch(e) {} }
+        if (container && chartMain) { try { chart.applyOptions({ width: container.clientWidth, height: chartMain.clientHeight - 10 }); } catch(e) {} }
       }
     });
     
