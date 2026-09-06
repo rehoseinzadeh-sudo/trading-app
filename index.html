@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -12,7 +11,6 @@
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Arial, sans-serif; background: #F5F5F5; color: #1A1A1A; line-height: 1.5; width: 100%; overflow-x: hidden; }
     .container { max-width: 100%; margin: 0 auto; width: 100%; }
-    
     .header { background: linear-gradient(135deg, #1D9E75 0%, #15785A 100%); color: white; padding: 20px 16px; border-radius: 12px; margin-bottom: 16px; text-align: center; }
     .header h1 { font-size: 20px; margin-bottom: 6px; }
     .header p { font-size: 13px; opacity: 0.9; }
@@ -55,9 +53,7 @@
     .back-button { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 180px; background: #6366F1; color: white; border: none; padding: 10px 16px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 1000; }
     .back-button.hidden { display: none; }
     .loading { text-align: center; padding: 32px; color: #7F8C8D; font-size: 16px; }
-    
     .trade-page { background: white; min-height: 100vh; padding-bottom: 20px; direction: ltr; text-align: left; }
-    
     .trade-header { background: white; padding: 8px 12px; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 8px; }
     .pair-info { display: flex; align-items: center; gap: 8px; flex: 1; }
     .pair-selector { display: flex; align-items: center; gap: 4px; cursor: pointer; }
@@ -67,7 +63,6 @@
     .pair-change.down { color: #F64653; }
     .back-icon { font-size: 20px; cursor: pointer; color: #1A1A1A; padding: 4px; font-weight: 900; }
     .chart-icon-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: transparent; border: none; padding: 4px; }
-    
     .pair-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 200; }
     .pair-overlay.show { display: block; }
     .pair-dropdown-menu { display: none; position: fixed; top: 50px; left: 12px; right: 12px; background: white; border: 1px solid #E0E0E0; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); z-index: 201; max-height: 70vh; overflow-y: auto; }
@@ -75,23 +70,19 @@
     .pair-option { padding: 12px 14px; cursor: pointer; font-size: 14px; border-bottom: 1px solid #F5F5F5; display: flex; justify-content: space-between; align-items: center; }
     .pair-option:hover { background: #F5F5F5; }
     .pair-option:last-child { border-bottom: none; }
-    
     .trade-main { display: flex; gap: 0; border-bottom: 1px solid #E8E8E8; width: 100%; }
     .order-form-col { flex: 1; padding: 10px; border-right: 1px solid #E8E8E8; min-width: 0; width: 50%; }
     .trade-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
     .trade-tab { flex: 1; padding: 10px; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; background: #F5F5F5; color: #7F8C8D; }
     .trade-tab.buy { background: #0ECB81; color: white; }
     .trade-tab.sell { background: #F64653; color: white; }
-    
     .leverage-selector { display: flex; gap: 3px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
     .leverage-btn { padding: 4px 7px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 4px; color: #1A1A1A; font-size: 10px; cursor: pointer; white-space: nowrap; }
     .leverage-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
-    
     .form-group { margin-bottom: 10px; }
     .form-label { font-size: 11px; color: #7F8C8D; margin-bottom: 4px; display: block; }
     .form-input { width: 100%; padding: 8px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 6px; color: #1A1A1A; font-size: 13px; }
     .form-input:focus { outline: none; border-color: #F0B90B; }
-    
     .slider-container { position: relative; height: 28px; display: flex; align-items: center; margin: 12px 0; }
     .slider-track { position: absolute; width: 100%; height: 3px; background: #E0E0E0; border-radius: 2px; }
     .slider-fill { position: absolute; height: 100%; background: #F0B90B; border-radius: 2px; width: 0%; }
@@ -100,70 +91,34 @@
     .slider-markers { display: flex; justify-content: space-between; margin-top: 4px; padding: 0 2px; }
     .slider-marker { width: 5px; height: 5px; background: #E0E0E0; border-radius: 50%; }
     .slider-percent { text-align: center; font-size: 10px; color: #F0B90B; font-weight: 600; margin-top: 2px; }
-    
     .trade-info-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 11px; border-bottom: 1px solid #F5F5F5; }
     .trade-info-label { color: #7F8C8D; }
     .trade-info-value { color: #1A1A1A; font-weight: 500; }
-    
     .tp-sl-checkbox { display: flex; align-items: center; gap: 6px; margin: 10px 0; cursor: pointer; }
     .tp-sl-checkbox input[type="checkbox"] { width: 14px; height: 14px; accent-color: #F0B90B; }
     .tp-sl-checkbox label { font-size: 12px; color: #1A1A1A; cursor: pointer; }
-    
     .submit-btn { width: 100%; padding: 12px; border: none; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 6px; }
     .submit-btn.buy { background: #0ECB81; color: white; }
     .submit-btn.sell { background: #F64653; color: white; }
-    
     .order-book-col { flex: 1; padding: 10px; min-width: 0; width: 50%; }
     .price-display { text-align: center; padding: 8px 0; margin-bottom: 8px; }
     .current-price { font-size: 22px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
     .price-change-text { font-size: 11px; color: #7F8C8D; }
-    
     .order-book { background: white; border: 1px solid #E8E8E8; border-radius: 6px; overflow: hidden; }
-    .order-header { 
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      padding: 6px 10px; 
-      background: #F5F5F5; 
-      font-size: 10px; 
-      color: #7F8C8D; 
-      font-weight: 600;
-      border-bottom: 1px solid #E8E8E8;
-    }
+    .order-header { display: grid; grid-template-columns: 1fr 1fr; padding: 6px 10px; background: #F5F5F5; font-size: 10px; color: #7F8C8D; font-weight: 600; border-bottom: 1px solid #E8E8E8; }
     .order-header span:first-child { text-align: right; }
     .order-header span:last-child { text-align: left; }
-    
-    .order-row { 
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      padding: 4px 10px; 
-      font-size: 11px; 
-      cursor: pointer;
-      gap: 8px;
-    }
+    .order-row { display: grid; grid-template-columns: 1fr 1fr; padding: 4px 10px; font-size: 11px; cursor: pointer; gap: 8px; }
     .order-row.ask { background: rgba(246, 70, 83, 0.06); }
     .order-row.bid { background: rgba(14, 203, 129, 0.06); }
-    .order-row .col-amount { 
-      color: #1A1A1A; 
-      text-align: right; 
-      font-weight: 500; 
-      font-size: 10px;
-      font-variant-numeric: tabular-nums;
-    }
-    .order-row .col-price { 
-      font-weight: 700; 
-      text-align: left; 
-      font-size: 10px;
-      font-variant-numeric: tabular-nums;
-    }
+    .order-row .col-amount { color: #1A1A1A; text-align: right; font-weight: 500; font-size: 10px; font-variant-numeric: tabular-nums; }
+    .order-row .col-price { font-weight: 700; text-align: left; font-size: 10px; font-variant-numeric: tabular-nums; }
     .order-row .col-price.ask { color: #F64653; }
     .order-row .col-price.bid { color: #0ECB81; }
-    
     .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; }
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
-    
     .positions-content { padding: 10px; padding-bottom: 100px; }
-    
     .position-item { background: #F5F5F5; border-radius: 6px; padding: 10px; margin-bottom: 6px; }
     .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .position-pair { font-size: 13px; font-weight: 700; color: #2196F3; }
@@ -179,7 +134,6 @@
     .position-pnl.loss { color: #F64653 !important; }
     .close-btn { width: 100%; padding: 8px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; }
     .empty-state { text-align: center; padding: 24px 12px; color: #7F8C8D; font-size: 12px; }
-    
     .chart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; flex-direction: column; }
     .chart-modal.active { display: flex; }
     .chart-header { display: flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; flex-wrap: wrap; }
@@ -195,25 +149,21 @@
     .chart-action-btn { padding: 4px 7px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 10px; cursor: pointer; }
     .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
     .chart-back { font-size: 22px; cursor: pointer; color: #F64653; padding: 2px 10px; font-weight: 900; line-height: 1; margin-left: auto; }
-    
     .chart-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
     .chart-main { position: relative; min-height: 280px; height: 50vh; flex-shrink: 0; }
     .chart-container { width: 100%; height: 100%; background: white; }
     .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: #F0B90B; cursor: ns-resize; opacity: 0.6; z-index: 100; touch-action: none; }
     .resize-handle:hover { opacity: 1; }
-    
     .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 6px 10px; display: flex; gap: 4px; overflow-x: auto; flex-shrink: 0; }
     .indicator-btn { padding: 5px 8px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 10px; cursor: pointer; white-space: nowrap; }
     .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
     .indicator-btn.disabled { opacity: 0.4; cursor: not-allowed; }
-    
     .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 40vh; }
     .indicator-subchart { height: 180px; position: relative; border-bottom: 1px solid #F0F0F0; }
     .indicator-subchart:last-child { border-bottom: none; }
     .indicator-subchart canvas { width: 100%; height: 100%; display: block; }
     .indicator-label { position: absolute; top: 4px; left: 8px; font-size: 10px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 5px; border-radius: 3px; }
     .indicator-warning { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255, 243, 224, 0.95); padding: 12px 16px; border-radius: 8px; font-size: 11px; color: #F57C00; text-align: center; z-index: 10; border: 1px solid #FFB74D; }
-    
     .profile-page { padding: 12px; }
     .profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 14px; border-radius: 12px; text-align: center; margin-bottom: 12px; }
     .profile-avatar { width: 70px; height: 70px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 10px; }
@@ -240,12 +190,11 @@
     .subscription-badge { display: inline-block; padding: 3px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
     .subscription-badge.free { background: #FFF3E0; color: #F57C00; }
     .subscription-badge.premium { background: #E8F5E9; color: #2E7D32; }
-    
     .chart-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; z-index: 50; font-size: 13px; color: #7F8C8D; }
-    
-    @media (max-width: 768px) {
-      .current-price { font-size: 22px; }
-    }
+    .status-indicator { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 4px; }
+    .status-indicator.live { background: #0ECB81; animation: pulse 1.5s infinite; }
+    .status-indicator.delayed { background: #F57C00; }
+    @media (max-width: 768px) { .current-price { font-size: 22px; } }
   </style>
 </head>
 <body>
@@ -259,21 +208,21 @@
     let quizState = { currentQuestion: 0, score: 0, answered: false };
     let demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] };
     let userProfile = { name: 'کاربر آکادمی', email: 'user@academy.com', joinDate: '2026-09-06', lessonsCompleted: 0, quizzesPassed: 0, totalTrades: 0, winRate: 0, theme: 'light', notifications: true };
-    let chart, candleSeries, currentPrice = 80027, ws;
+    let chart, candleSeries, currentPrice = 0, ws, priceUpdateInterval;
     let currentTimeframe = '15m', tradeType = 'buy', sliderValue = 0;
     let activeTab = 'positions', activeIndicators = [];
     let chartData = [], indicatorSeries = {}, positionLines = {};
     let currentPair = 'BTCUSDT';
     let isPremiumUser = false;
-    let apiCallCount = 0;
-    let lastApiCall = 0;
     let isDataReal = false;
+    let lastPriceFetch = 0;
     
+    // قیمت‌های اولیه خالی - فقط placeholder
     let pairInfo = {
-      BTCUSDT: { name: 'BTC/USDT', price: 80027, change: 0.53, decimals: 2, volatility: 500, basePrice: 80000 },
-      ETHUSDT: { name: 'ETH/USDT', price: 3850, change: -1.24, decimals: 2, volatility: 30, basePrice: 3800 },
-      XAUUSD:  { name: 'XAU/USD',  price: 2650, change: 0.87, decimals: 2, volatility: 10, basePrice: 2650 },
-      EURUSD:  { name: 'EUR/USD',  price: 1.0850, change: 0.12, decimals: 4, volatility: 0.005, basePrice: 1.0850 }
+      BTCUSDT: { name: 'BTC/USDT', price: 0, change: 0, decimals: 2, basePrice: 80000, cgId: 'bitcoin', ccSym: 'BTC' },
+      ETHUSDT: { name: 'ETH/USDT', price: 0, change: 0, decimals: 2, basePrice: 3800, cgId: 'ethereum', ccSym: 'ETH' },
+      XAUUSD:  { name: 'XAU/USD',  price: 0, change: 0, decimals: 2, basePrice: 2650, cgId: null, ccSym: null },
+      EURUSD:  { name: 'EUR/USD',  price: 0, change: 0, decimals: 4, basePrice: 1.0850, cgId: null, ccSym: null }
     };
 
     function cleanJsonKeys(obj) {
@@ -291,16 +240,16 @@
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '🔗';
+      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '';
       if (t.includes('کیف پول')) return '👛';
-      if (t.includes('بازار')) return '📊';
+      if (t.includes('بازار')) return '';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
-      if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
+      if (t.includes('لوریج') || t.includes('مارجین')) return '️';
       if (t.includes('ریسک')) return '🛡️';
-      if (t.includes('آزمون')) return '📝';
+      if (t.includes('آزمون')) return '';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
@@ -343,12 +292,178 @@
         }
         loadDemoAccount();
         loadUserProfile();
+        // گرفتن قیمت‌های واقعی قبل از render
+        await fetchRealPrices();
         if (!location.hash) history.replaceState({ view: 'home' }, '', '#home');
         handleRoute();
       } catch (error) {
         console.error('Error:', error);
         document.getElementById('app').innerHTML = '<div class="loading">❌ خطای سیستم</div>';
       }
+    }
+
+    // گرفتن قیمت واقعی از چند API fallback
+    async function fetchRealPrices() {
+      const now = Date.now();
+      if (now - lastPriceFetch < 30000) return; // هر 30 ثانیه
+      
+      try {
+        // API 1: CoinGecko
+        const cgRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true', { signal: AbortSignal.timeout(5000) });
+        if (cgRes.ok) {
+          const cgData = await cgRes.json();
+          if (cgData.bitcoin) {
+            pairInfo.BTCUSDT.price = cgData.bitcoin.usd;
+            pairInfo.BTCUSDT.change = cgData.bitcoin.usd_24h_change || 0;
+          }
+          if (cgData.ethereum) {
+            pairInfo.ETHUSDT.price = cgData.ethereum.usd;
+            pairInfo.ETHUSDT.change = cgData.ethereum.usd_24h_change || 0;
+          }
+          lastPriceFetch = now;
+          isDataReal = true;
+          console.log('✅ CoinGecko prices loaded');
+          return;
+        }
+      } catch(e) { console.log('CoinGecko failed:', e.message); }
+      
+      try {
+        // API 2: CoinCap
+        const ccRes = await fetch('https://api.coincap.io/v2/assets?ids=bitcoin,ethereum', { signal: AbortSignal.timeout(5000) });
+        if (ccRes.ok) {
+          const ccData = await ccRes.json();
+          ccData.data.forEach(asset => {
+            const price = parseFloat(asset.priceUsd);
+            const change24h = parseFloat(asset.changePercent24Hr);
+            if (asset.id === 'bitcoin') {
+              pairInfo.BTCUSDT.price = price;
+              pairInfo.BTCUSDT.change = change24h;
+            } else if (asset.id === 'ethereum') {
+              pairInfo.ETHUSDT.price = price;
+              pairInfo.ETHUSDT.change = change24h;
+            }
+          });
+          lastPriceFetch = now;
+          isDataReal = true;
+          console.log('✅ CoinCap prices loaded');
+          return;
+        }
+      } catch(e) { console.log('CoinCap failed:', e.message); }
+      
+      try {
+        // API 3: CryptoCompare
+        const crRes = await fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH&tsyms=USD', { signal: AbortSignal.timeout(5000) });
+        if (crRes.ok) {
+          const crData = await crRes.json();
+          const btc = crData.RAW?.BTC?.USD;
+          const eth = crData.RAW?.ETH?.USD;
+          if (btc) {
+            pairInfo.BTCUSDT.price = btc.PRICE;
+            pairInfo.BTCUSDT.change = btc.CHANGEPCT24HOUR;
+          }
+          if (eth) {
+            pairInfo.ETHUSDT.price = eth.PRICE;
+            pairInfo.ETHUSDT.change = eth.CHANGEPCT24HOUR;
+          }
+          lastPriceFetch = now;
+          isDataReal = true;
+          console.log('✅ CryptoCompare prices loaded');
+          return;
+        }
+      } catch(e) { console.log('CryptoCompare failed:', e.message); }
+      
+      // Fallback: شبیه‌سازی با seed بر اساس زمان
+      console.log('️ Using simulated prices');
+      isDataReal = false;
+      const btcBase = 80000 + (Math.random() - 0.5) * 4000;
+      const ethBase = 3800 + (Math.random() - 0.5) * 200;
+      pairInfo.BTCUSDT.price = btcBase;
+      pairInfo.BTCUSDT.change = (Math.random() - 0.5) * 6;
+      pairInfo.ETHUSDT.price = ethBase;
+      pairInfo.ETHUSDT.change = (Math.random() - 0.5) * 6;
+      pairInfo.XAUUSD.price = 2650 + (Math.random() - 0.5) * 30;
+      pairInfo.XAUUSD.change = (Math.random() - 0.5) * 2;
+      pairInfo.EURUSD.price = 1.0850 + (Math.random() - 0.5) * 0.01;
+      pairInfo.EURUSD.change = (Math.random() - 0.5) * 0.5;
+      lastPriceFetch = now;
+    }
+
+    // گرفتن کندل‌های واقعی
+    async function fetchRealCandles() {
+      const info = pairInfo[currentPair];
+      if (!info.ccSym) return null; // فقط کریپتو
+      
+      const aggregate = currentTimeframe === '1m' ? 1 : currentTimeframe === '5m' ? 5 : currentTimeframe === '15m' ? 15 : currentTimeframe === '1h' ? 60 : 240;
+      const limit = 200;
+      
+      try {
+        const res = await fetch(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${info.ccSym}&tsym=USD&limit=${limit}&aggregate=${aggregate}`, { signal: AbortSignal.timeout(6000) });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.Data && data.Data.Data && data.Data.Data.length > 0) {
+            return data.Data.Data.map(d => ({
+              time: d.time,
+              open: d.open,
+              high: d.high,
+              low: d.low,
+              close: d.close
+            }));
+          }
+        }
+      } catch(e) { console.log('CryptoCompare candles failed:', e.message); }
+      
+      try {
+        const days = currentTimeframe === '1m' || currentTimeframe === '5m' ? 1 : currentTimeframe === '15m' ? 2 : 7;
+        const interval = currentTimeframe === '1m' ? 'minute' : currentTimeframe === '5m' ? 'minute' : 'hour';
+        const res = await fetch(`https://api.coingecko.com/api/v3/coins/${info.cgId}/market_chart?vs_currency=usd&days=${days}&interval=${interval}`, { signal: AbortSignal.timeout(6000) });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.prices && data.prices.length > 0) {
+            const candles = [];
+            const candleSize = currentTimeframe === '1m' ? 60000 : currentTimeframe === '5m' ? 300000 : currentTimeframe === '15m' ? 900000 : 3600000;
+            let currentCandle = null;
+            data.prices.forEach(([ts, price]) => {
+              const time = Math.floor(ts / 1000);
+              const candleTime = Math.floor(time / (candleSize/1000)) * (candleSize/1000);
+              if (!currentCandle || currentCandle.time !== candleTime) {
+                if (currentCandle) candles.push(currentCandle);
+                currentCandle = { time: candleTime, open: price, high: price, low: price, close: price };
+              } else {
+                currentCandle.high = Math.max(currentCandle.high, price);
+                currentCandle.low = Math.min(currentCandle.low, price);
+                currentCandle.close = price;
+              }
+            });
+            if (currentCandle) candles.push(currentCandle);
+            return candles.slice(-limit);
+          }
+        }
+      } catch(e) { console.log('CoinGecko candles failed:', e.message); }
+      
+      return null;
+    }
+
+    function generateSimulatedCandles() {
+      const info = pairInfo[currentPair];
+      const candles = [];
+      let price = info.basePrice;
+      const now = Math.floor(Date.now() / 1000);
+      const intervalSeconds = currentTimeframe === '1m' ? 60 : currentTimeframe === '5m' ? 300 : currentTimeframe === '15m' ? 900 : currentTimeframe === '1h' ? 3600 : 14400;
+      const volatility = info.basePrice * 0.002;
+      
+      for (let i = 199; i >= 0; i--) {
+        const time = now - i * intervalSeconds;
+        const change = (Math.random() - 0.5) * volatility;
+        const open = price;
+        const close = price + change;
+        const bodySize = Math.abs(close - open);
+        const shadowMultiplier = 0.1 + Math.random() * 0.5;
+        const high = Math.max(open, close) + bodySize * shadowMultiplier;
+        const low = Math.min(open, close) - bodySize * shadowMultiplier;
+        candles.push({ time, open, high, low, close });
+        price = close;
+      }
+      return candles;
     }
 
     function handleRoute() {
@@ -368,7 +483,7 @@
 
     function renderHome() {
       const levels = [
-        { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
+        { id: 'beginner', icon: '', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
         { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
@@ -401,7 +516,7 @@
       const cleanCourseId = String(courseId).replace(/\s+/g, '');
       const currentCourse = appData.courses.find(c => c.id === cleanCourseId);
       if (!currentCourse) {
-        document.getElementById('app').innerHTML = `<div class="loading">❌ دوره پیدا نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+        document.getElementById('app').innerHTML = `<div class="loading"> دوره پیدا نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
         return;
       }
       const lessons = currentCourse.lessons || [];
@@ -453,7 +568,6 @@
     function renderProfile() {
       const totalLessons = appData.courses.reduce((sum, c) => sum + c.lessons.length, 0);
       const progress = Math.round((userProfile.lessonsCompleted / totalLessons) * 100);
-      
       let html = `<div class="profile-page">
         <div class="profile-header">
           <div class="profile-avatar">👤</div>
@@ -461,112 +575,54 @@
           <div class="profile-email">${userProfile.email}</div>
           <div style="margin-top: 6px;"><span class="subscription-badge ${isPremiumUser ? 'premium' : 'free'}">${isPremiumUser ? '⭐ Premium' : '🆓 Free'}</span></div>
         </div>
-        
         <div class="profile-stats">
           <div class="stat-card"><div class="stat-value">${userProfile.lessonsCompleted}</div><div class="stat-label">درس تکمیل‌شده</div></div>
           <div class="stat-card"><div class="stat-value">${userProfile.quizzesPassed}</div><div class="stat-label">آزمون پاس‌شده</div></div>
           <div class="stat-card"><div class="stat-value">${progress}%</div><div class="stat-label">پیشرفت کلی</div></div>
         </div>
-        
         <div class="profile-section">
           <div class="profile-section-title">💰 حساب دمو</div>
           <div class="profile-item"><span class="profile-item-label">موجودی</span><span class="profile-item-value" style="color: #1D9E75; font-weight: 700;">${demoAccount.balance.toFixed(2)} USDT</span></div>
           <div class="profile-item"><span class="profile-item-label">تعداد معاملات</span><span class="profile-item-value">${userProfile.totalTrades}</span></div>
           <div class="profile-item"><span class="profile-item-label">نرخ برد</span><span class="profile-item-value">${userProfile.winRate}%</span></div>
         </div>
-        
         <div class="profile-section">
           <div class="profile-section-title">⚙️ تنظیمات</div>
-          <div class="profile-item">
-            <span class="profile-item-label">اعلان‌ها</span>
-            <div class="toggle-switch ${userProfile.notifications ? 'active' : ''}" onclick="toggleNotification()"></div>
-          </div>
-          <div class="profile-item">
-            <span class="profile-item-label">حالت پرمیوم</span>
-            <div class="toggle-switch ${isPremiumUser ? 'active' : ''}" onclick="togglePremium()"></div>
-          </div>
+          <div class="profile-item"><span class="profile-item-label">اعلان‌ها</span><div class="toggle-switch ${userProfile.notifications ? 'active' : ''}" onclick="toggleNotification()"></div></div>
+          <div class="profile-item"><span class="profile-item-label">حالت پرمیوم</span><div class="toggle-switch ${isPremiumUser ? 'active' : ''}" onclick="togglePremium()"></div></div>
         </div>
-        
         <div class="profile-section">
           <div class="profile-section-title">📊 آمار ترید</div>
           <div class="profile-item"><span class="profile-item-label">پوزیشن‌های باز</span><span class="profile-item-value">${demoAccount.positions.length}</span></div>
           <div class="profile-item"><span class="profile-item-label">تاریخچه معاملات</span><span class="profile-item-value">${demoAccount.history.length}</span></div>
           <div class="profile-item"><span class="profile-item-label">سود/زیان کل</span><span class="profile-item-value" style="color: ${demoAccount.balance >= 10000 ? '#0ECB81' : '#F64653'}">${(demoAccount.balance - 10000).toFixed(2)} USDT</span></div>
         </div>
-        
-        <div class="profile-section">
-          <div class="profile-section-title">ℹ️ درباره اپلیکیشن</div>
-          <div class="profile-item"><span class="profile-item-label">نسخه</span><span class="profile-item-value">1.0.0</span></div>
-          <div class="profile-item"><span class="profile-item-label">تاریخ عضویت</span><span class="profile-item-value">${userProfile.joinDate}</span></div>
-        </div>
-        
         <button class="profile-btn primary" onclick="resetDemoAccount()">🔄 ریست حساب دمو</button>
         <button class="profile-btn secondary" onclick="exportData()">📤 خروجی از داده‌ها</button>
         <button class="profile-btn danger" onclick="clearAllData()">🗑️ پاک کردن همه داده‌ها</button>
       </div>
       <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
-      
       document.getElementById('app').innerHTML = html;
     }
 
-    function toggleNotification() {
-      userProfile.notifications = !userProfile.notifications;
-      saveUserProfile();
-      renderProfile();
-    }
-
-    function togglePremium() {
-      isPremiumUser = !isPremiumUser;
-      saveUserProfile();
-      renderProfile();
-    }
-
-    function resetDemoAccount() {
-      if (confirm('آیا مطمئن هستید؟ تمام پوزیشن‌ها و تاریخچه حذف می‌شوند.')) {
-        demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] };
-        saveDemoAccount();
-        renderProfile();
-      }
-    }
-
-    function exportData() {
-      const data = { profile: userProfile, demoAccount: demoAccount };
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'academy-data.json';
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
-    function clearAllData() {
-      if (confirm('آیا مطمئن هستید؟ تمام داده‌ها پاک می‌شوند.')) {
-        localStorage.clear();
-        location.reload();
-      }
-    }
-
-    function loadUserProfile() {
-      const saved = localStorage.getItem('userProfile');
-      if (saved) { try { userProfile = JSON.parse(saved); } catch (e) {} }
-      const premium = localStorage.getItem('isPremium');
-      if (premium) isPremiumUser = premium === 'true';
-    }
-
-    function saveUserProfile() {
-      localStorage.setItem('userProfile', JSON.stringify(userProfile));
-      localStorage.setItem('isPremium', isPremiumUser);
-    }
+    function toggleNotification() { userProfile.notifications = !userProfile.notifications; saveUserProfile(); renderProfile(); }
+    function togglePremium() { isPremiumUser = !isPremiumUser; saveUserProfile(); renderProfile(); }
+    function resetDemoAccount() { if (confirm('آیا مطمئن هستید؟')) { demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] }; saveDemoAccount(); renderProfile(); } }
+    function exportData() { const data = { profile: userProfile, demoAccount: demoAccount }; const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'academy-data.json'; a.click(); URL.revokeObjectURL(url); }
+    function clearAllData() { if (confirm('آیا مطمئن هستید؟')) { localStorage.clear(); location.reload(); } }
+    function loadUserProfile() { const saved = localStorage.getItem('userProfile'); if (saved) { try { userProfile = JSON.parse(saved); } catch (e) {} } const premium = localStorage.getItem('isPremium'); if (premium) isPremiumUser = premium === 'true'; }
+    function saveUserProfile() { localStorage.setItem('userProfile', JSON.stringify(userProfile)); localStorage.setItem('isPremium', isPremiumUser); }
 
     function renderTradePage() {
-      if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); else clearInterval(ws); ws = null; }
+      if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); ws = null; }
+      if (priceUpdateInterval) { clearInterval(priceUpdateInterval); priceUpdateInterval = null; }
       if (chart) { chart.remove(); chart = null; }
       indicatorSeries = {};
       positionLines = {};
       
-      const pairs = [{ id: 'BTCUSDT', name: 'BTC/USDT' }, { id: 'ETHUSDT', name: 'ETH/USDT' }, { id: 'XAUUSD', name: 'XAU/USD (Gold)' }, { id: 'EURUSD', name: 'EUR/USD' }];
       const info = pairInfo[currentPair];
+      if (info.price === 0) info.price = info.basePrice;
+      currentPrice = info.price;
       const changeClass = info.change >= 0 ? 'up' : 'down';
       const changeSign = info.change >= 0 ? '+' : '';
       
@@ -589,14 +645,12 @@
             </svg>
           </button>
         </div>
-
         <div class="trade-main">
           <div class="order-form-col">
             <div class="trade-tabs">
               <button class="trade-tab buy" id="buyTab" onclick="setTradeType('buy')">Buy/Long</button>
               <button class="trade-tab sell" id="sellTab" onclick="setTradeType('sell')">Sell/Short</button>
             </div>
-
             <div class="leverage-selector">
               <button class="leverage-btn" onclick="setLeverage(1, this)">1x</button>
               <button class="leverage-btn active" onclick="setLeverage(3, this)">3x</button>
@@ -604,12 +658,10 @@
               <button class="leverage-btn" onclick="setLeverage(10, this)">10x</button>
               <button class="leverage-btn" onclick="setLeverage(20, this)">20x</button>
             </div>
-
             <div class="form-group">
               <label class="form-label">Amount (USDT)</label>
               <input type="number" class="form-input" id="tradeAmount" placeholder="0.00" step="0.01" oninput="updateTradeInfo()">
             </div>
-
             <div class="slider-container" id="sliderContainer">
               <div class="slider-track"></div>
               <div class="slider-fill" id="sliderFill"></div>
@@ -619,18 +671,14 @@
               <div class="slider-marker"></div><div class="slider-marker"></div><div class="slider-marker"></div><div class="slider-marker"></div><div class="slider-marker"></div>
             </div>
             <div class="slider-percent" id="sliderPercent">0%</div>
-
             <div class="trade-info-row"><span class="trade-info-label">Margin</span><span class="trade-info-value" id="marginValue">0 USDT</span></div>
             <div class="trade-info-row"><span class="trade-info-label">Avbl</span><span class="trade-info-value" id="availableValue">0 USDT</span></div>
             <div class="trade-info-row"><span class="trade-info-label">Max</span><span class="trade-info-value" id="maxValue">--</span></div>
-            <div class="trade-info-row"><span class="trade-info-label">Est. Liq. Price</span><span class="trade-info-value" id="liqPrice">-- USDT</span></div>
-
+            <div class="trade-info-row"><span class="trade-info-label">Est. Liq. Price</span><span class="trade-info-value" id="liqPrice">--</span></div>
             <label class="tp-sl-checkbox"><input type="checkbox" id="tpSlCheckbox" onchange="toggleTPSL()"><label for="tpSlCheckbox">TP/SL</label></label>
             <div id="tpSlInputs"></div>
-
             <button class="submit-btn buy" id="submitBtn" onclick="submitOrder()">Buy/Long</button>
           </div>
-
           <div class="order-book-col">
             <div class="price-display">
               <div class="current-price" id="currentPrice">${info.price.toFixed(info.decimals)}</div>
@@ -643,7 +691,6 @@
             </div>
           </div>
         </div>
-
         <div class="positions-tabs">
           <div class="position-tab ${activeTab === 'positions' ? 'active' : ''}" onclick="switchTab('positions', event)">Current Position</div>
           <div class="position-tab ${activeTab === 'pending' ? 'active' : ''}" onclick="switchTab('pending', event)">Pending Order</div>
@@ -651,23 +698,21 @@
         </div>
         <div class="positions-content" id="positionsContent"></div>
       </div>
-
       <div class="pair-overlay" id="pairOverlay" onclick="closePairDropdown()"></div>
       <div class="pair-dropdown-menu" id="pairDropdown">
-        ${pairs.map(p => {
-          const pinfo = pairInfo[p.id];
-          const pchangeClass = pinfo.change >= 0 ? 'up' : 'down';
-          const pchangeSign = pinfo.change >= 0 ? '+' : '';
-          return `<div class="pair-option" onclick="selectPair('${p.id}', event)"><span class="pair-option-name">${p.name}</span><span class="pair-option-price ${pchangeClass}">${pchangeSign}${pinfo.change.toFixed(2)}% · ${pinfo.price.toFixed(pinfo.decimals)}</span></div>`;
+        ${Object.keys(pairInfo).map(id => {
+          const p = pairInfo[id];
+          const pchangeClass = p.change >= 0 ? 'up' : 'down';
+          const pchangeSign = p.change >= 0 ? '+' : '';
+          return `<div class="pair-option" onclick="selectPair('${id}', event)"><span class="pair-option-name">${p.name}</span><span class="pair-option-price ${pchangeClass}">${pchangeSign}${p.change.toFixed(2)}% · ${p.price.toFixed(p.decimals)}</span></div>`;
         }).join('')}
       </div>
-
       <div class="chart-modal" id="chartModal">
         <div class="chart-header">
           <span class="chart-pair-name" id="chartPairName">${info.name}</span>
-          <span class="data-mode-badge ${isPremiumUser ? 'premium' : 'free'}" id="dataModeBadge" onclick="toggleDataMode()">
+          <span class="data-mode-badge ${isDataReal ? 'premium' : 'free'}" id="dataModeBadge" onclick="toggleDataMode()">
             <span class="dot"></span>
-            <span id="dataModeText">${isPremiumUser ? 'LIVE' : 'DELAYED'}</span>
+            <span id="dataModeText">${isDataReal ? 'LIVE' : 'SIMULATED'}</span>
           </span>
           <div class="chart-timeframes">
             <button class="chart-action-btn" onclick="changeTimeframe('1m', event)">1m</button>
@@ -676,7 +721,7 @@
             <button class="chart-action-btn" onclick="changeTimeframe('1h', event)">1h</button>
             <button class="chart-action-btn" onclick="changeTimeframe('4h', event)">4h</button>
           </div>
-          <span class="chart-back" onclick="closeChartModal()">✕</span>
+          <span class="chart-back" onclick="closeChartModal()"></span>
         </div>
         <div class="chart-body">
           <div class="chart-main" id="chartMain">
@@ -693,7 +738,6 @@
           <div class="indicator-charts" id="indicatorCharts"></div>
         </div>
       </div>
-
       <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
       
       document.getElementById('app').innerHTML = html;
@@ -702,6 +746,20 @@
       setupSlider();
       setupResize();
       updateTradeInfo();
+      startPriceUpdates();
+    }
+
+    // به‌روزرسانی قیمت هر 5 ثانیه
+    function startPriceUpdates() {
+      if (priceUpdateInterval) clearInterval(priceUpdateInterval);
+      priceUpdateInterval = setInterval(async () => {
+        await fetchRealPrices();
+        const info = pairInfo[currentPair];
+        currentPrice = info.price;
+        updatePriceDisplay();
+        renderOrderBook();
+        updatePositionsPnL();
+      }, 5000);
     }
 
     function togglePairDropdown(e) { if (e) e.stopPropagation(); document.getElementById('pairOverlay').classList.add('show'); document.getElementById('pairDropdown').classList.add('show'); }
@@ -710,24 +768,8 @@
     function selectPair(id, event) {
       if (event) event.stopPropagation();
       currentPair = id;
-      const info = pairInfo[id];
-      currentPrice = info.price;
-      document.getElementById('pairNameDisplay').textContent = info.name;
-      const changeClass = info.change >= 0 ? 'up' : 'down';
-      const changeSign = info.change >= 0 ? '+' : '';
-      const changeEl = document.getElementById('pairChange');
-      changeEl.textContent = `${changeSign}${info.change.toFixed(2)}%`;
-      changeEl.className = `pair-change ${changeClass}`;
       closePairDropdown();
-      updatePriceDisplay();
-      renderOrderBook();
-      updateTradeInfo();
-      if (document.getElementById('chartModal').classList.contains('active')) {
-        document.getElementById('chartPairName').textContent = info.name;
-        if (chart) { chart.remove(); chart = null; }
-        indicatorSeries = {};
-        setTimeout(() => initChart(), 100);
-      }
+      renderTradePage();
     }
 
     function openChartModal() {
@@ -749,15 +791,6 @@
     function toggleDataMode() {
       isPremiumUser = !isPremiumUser;
       saveUserProfile();
-      const badge = document.getElementById('dataModeBadge');
-      const text = document.getElementById('dataModeText');
-      if (isPremiumUser) {
-        badge.className = 'data-mode-badge premium';
-        text.textContent = 'LIVE';
-      } else {
-        badge.className = 'data-mode-badge free';
-        text.textContent = 'DELAYED';
-      }
       if (chart) { chart.remove(); chart = null; }
       indicatorSeries = {};
       setTimeout(() => initChart(), 100);
@@ -768,23 +801,8 @@
       const chartMain = document.getElementById('chartMain');
       if (!handle || !chartMain) return;
       let isResizing = false, startY, startHeight;
-      const startResize = (e) => {
-        isResizing = true;
-        startY = e.touches ? e.touches[0].clientY : e.clientY;
-        startHeight = chartMain.clientHeight;
-        e.preventDefault();
-        e.stopPropagation();
-      };
-      const doResize = (e) => {
-        if (!isResizing) return;
-        e.preventDefault();
-        e.stopPropagation();
-        const y = e.touches ? e.touches[0].clientY : e.clientY;
-        const delta = startY - y;
-        const newHeight = Math.max(200, Math.min(window.innerHeight * 0.8, startHeight + delta));
-        chartMain.style.height = newHeight + 'px';
-        if (chart) { try { chart.applyOptions({ width: chartMain.clientWidth, height: newHeight - 10 }); } catch(err) {} }
-      };
+      const startResize = (e) => { isResizing = true; startY = e.touches ? e.touches[0].clientY : e.clientY; startHeight = chartMain.clientHeight; e.preventDefault(); e.stopPropagation(); };
+      const doResize = (e) => { if (!isResizing) return; e.preventDefault(); e.stopPropagation(); const y = e.touches ? e.touches[0].clientY : e.clientY; const delta = startY - y; const newHeight = Math.max(200, Math.min(window.innerHeight * 0.8, startHeight + delta)); chartMain.style.height = newHeight + 'px'; if (chart) { try { chart.applyOptions({ width: chartMain.clientWidth, height: newHeight - 10 }); } catch(err) {} } };
       const stopResize = () => { isResizing = false; };
       handle.addEventListener('mousedown', startResize);
       handle.addEventListener('touchstart', startResize, {passive: false});
@@ -794,196 +812,59 @@
       document.addEventListener('touchend', stopResize);
     }
 
-    async function fetchWithTimeout(url, timeout = 6000) {
-      const controller = new AbortController();
-      const id = setTimeout(() => controller.abort(), timeout);
-      try {
-        const response = await fetch(url, { signal: controller.signal });
-        clearTimeout(id);
-        if (!response.ok) throw new Error('HTTP ' + response.status);
-        return await response.json();
-      } catch (e) {
-        clearTimeout(id);
-        throw e;
-      }
-    }
-
-    async function fetchChartData() {
-      const now = Date.now();
-      if (now - lastApiCall < 10000 && apiCallCount > 5) {
-        console.log('Rate limited');
-        return null;
-      }
-      
-      const apis = [
-        { url: `https://api.binance.com/api/v3/klines?symbol=${currentPair}&interval=${currentTimeframe}&limit=200`, format: 'binance' },
-        { url: `https://api.binance.us/api/v3/klines?symbol=${currentPair}&interval=${currentTimeframe}&limit=200`, format: 'binance' },
-        { url: `https://data-api.binance.vision/api/v3/klines?symbol=${currentPair}&interval=${currentTimeframe}&limit=200`, format: 'binance' }
-      ];
-      
-      for (const api of apis) {
-        try {
-          const data = await fetchWithTimeout(api.url, 5000);
-          lastApiCall = Date.now();
-          apiCallCount++;
-          return data.map(k => ({
-            time: k[0] / 1000,
-            open: parseFloat(k[1]),
-            high: parseFloat(k[2]),
-            low: parseFloat(k[3]),
-            close: parseFloat(k[4]),
-          }));
-        } catch (e) {
-          console.log('API failed:', api.url, e.message);
-          continue;
-        }
-      }
-      return null;
-    }
-
-    function generateSimulatedData() {
-      const info = pairInfo[currentPair];
-      chartData = [];
-      let price = info.basePrice;
-      const now = Math.floor(Date.now() / 1000);
-      const intervalSeconds = currentTimeframe === '1m' ? 60 : currentTimeframe === '5m' ? 300 : currentTimeframe === '15m' ? 900 : currentTimeframe === '1h' ? 3600 : 14400;
-      
-      for (let i = 199; i >= 0; i--) {
-        const time = now - i * intervalSeconds;
-        const change = (Math.random() - 0.5) * info.volatility * 0.3;
-        const open = price;
-        const close = price + change;
-        const bodySize = Math.abs(close - open);
-        const shadowMultiplier = 0.1 + Math.random() * 0.4;
-        const high = Math.max(open, close) + bodySize * shadowMultiplier;
-        const low = Math.min(open, close) - bodySize * shadowMultiplier;
-        chartData.push({ time, open, high, low, close });
-        price = close;
-      }
-      
-      currentPrice = chartData[chartData.length - 1].close;
-      pairInfo[currentPair].price = currentPrice;
-      if (candleSeries) candleSeries.setData(chartData);
-      updatePriceDisplay();
-      drawPositionLines();
-      drawIndicators();
-    }
-
-    function initChart() {
+    async function initChart() {
       const container = document.getElementById('chartContainer');
       if (!container) return;
-      if (typeof LightweightCharts === 'undefined') {
-        container.innerHTML = '<div class="empty-state">خطا در بارگذاری چارت</div>';
-        return;
-      }
+      if (typeof LightweightCharts === 'undefined') { container.innerHTML = '<div class="empty-state">خطا در بارگذاری چارت</div>'; return; }
       try {
         chart = LightweightCharts.createChart(container, {
-          width: container.clientWidth,
-          height: container.clientHeight - 10,
+          width: container.clientWidth, height: container.clientHeight - 10,
           layout: { background: { color: '#FFFFFF' }, textColor: '#1A1A1A', fontSize: 10 },
           grid: { vertLines: { color: '#F0F0F0' }, horzLines: { color: '#F0F0F0' } },
           crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
-          rightPriceScale: { 
-            borderColor: '#E8E8E8', 
-            scaleMargins: { top: 0.02, bottom: 0.02 },
-            entireTextOnly: false
-          },
-          timeScale: { 
-            borderColor: '#E8E8E8', 
-            timeVisible: true, 
-            rightOffset: 5,
-            tickMarkFormatter: (time) => {
-              const date = new Date(time * 1000);
-              const hours = date.getHours().toString().padStart(2, '0');
-              const minutes = date.getMinutes().toString().padStart(2, '0');
-              return `${hours}:${minutes}`;
-            }
-          },
+          rightPriceScale: { borderColor: '#E8E8E8', scaleMargins: { top: 0.05, bottom: 0.05 } },
+          timeScale: { borderColor: '#E8E8E8', timeVisible: true, rightOffset: 5, tickMarkFormatter: (time) => { const date = new Date(time * 1000); return date.getHours().toString().padStart(2, '0') + ':' + date.getMinutes().toString().padStart(2, '0'); } },
           handleScroll: { vertTouchDrag: false, horzTouchDrag: true, mouseWheel: true },
-          handleScale: { 
-            axisPressedMouseMove: { price: true, time: true }, 
-            mouseWheel: true, 
-            pinch: true 
-          }
+          handleScale: { axisPressedMouseMove: { price: true, time: true }, mouseWheel: true, pinch: true }
         });
-        candleSeries = chart.addCandlestickSeries({
-          upColor: '#0ECB81', downColor: '#F64653',
-          borderVisible: false, wickUpColor: '#0ECB81', wickDownColor: '#F64653',
-        });
+        candleSeries = chart.addCandlestickSeries({ upColor: '#0ECB81', downColor: '#F64653', borderVisible: false, wickUpColor: '#0ECB81', wickDownColor: '#F64653' });
         
-        const isCrypto = currentPair === 'BTCUSDT' || currentPair === 'ETHUSDT';
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'chart-loading';
+        loadingDiv.id = 'chartLoading';
+        loadingDiv.textContent = '⏳ در حال دریافت داده واقعی...';
+        container.appendChild(loadingDiv);
         
-        if (isPremiumUser && isCrypto) {
-          const loadingDiv = document.createElement('div');
-          loadingDiv.className = 'chart-loading';
-          loadingDiv.id = 'chartLoading';
-          loadingDiv.textContent = '⏳ در حال دریافت داده...';
-          container.appendChild(loadingDiv);
-          
-          fetchChartData().then(data => {
-            const ld = document.getElementById('chartLoading');
-            if (ld) ld.remove();
-            
-            if (data && data.length > 0) {
-              chartData = data;
-              isDataReal = true;
-              candleSeries.setData(chartData);
-              currentPrice = chartData[chartData.length - 1].close;
-              pairInfo[currentPair].price = currentPrice;
-              updatePriceDisplay();
-              drawPositionLines();
-              drawIndicators();
-              
-              if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); else clearInterval(ws); }
-              ws = new WebSocket(`wss://stream.binance.com:9443/ws/${currentPair.toLowerCase()}@kline_${currentTimeframe}`);
-              ws.onmessage = (event) => {
-                try {
-                  const data = JSON.parse(event.data);
-                  const k = data.k;
-                  const candle = { time: k.t / 1000, open: parseFloat(k.o), high: parseFloat(k.h), low: parseFloat(k.l), close: parseFloat(k.c) };
-                  if (candleSeries) candleSeries.update(candle);
-                  currentPrice = candle.close;
-                  pairInfo[currentPair].price = currentPrice;
-                  updatePriceDisplay();
-                  updatePositionsPnL();
-                } catch(e) {}
-              };
-              ws.onerror = () => {};
-            } else {
-              isDataReal = false;
-              generateSimulatedData();
-            }
-          }).catch(err => {
-            const ld = document.getElementById('chartLoading');
-            if (ld) ld.remove();
-            console.error('API error:', err);
-            isDataReal = false;
-            generateSimulatedData();
-          });
-        } else {
-          isDataReal = false;
-          generateSimulatedData();
-          if (ws) { clearInterval(ws); }
-          ws = setInterval(() => {
-            const info = pairInfo[currentPair];
-            const change = (Math.random() - 0.5) * info.volatility * 0.05;
-            currentPrice += change;
-            pairInfo[currentPair].price = currentPrice;
-            if (chartData.length > 0) {
-              const lastCandle = chartData[chartData.length - 1];
-              lastCandle.close = currentPrice;
-              if (currentPrice > lastCandle.high) lastCandle.high = currentPrice + Math.abs(change) * 0.3;
-              if (currentPrice < lastCandle.low) lastCandle.low = currentPrice - Math.abs(change) * 0.3;
-              if (candleSeries) candleSeries.update(lastCandle);
-            }
-            updatePriceDisplay();
-            updatePositionsPnL();
-          }, 2000);
+        let candles = null;
+        if (isPremiumUser) {
+          candles = await fetchRealCandles();
         }
-      } catch (err) {
-        console.error('Chart error:', err);
-        container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>';
-      }
+        if (!candles) {
+          candles = generateSimulatedCandles();
+          isDataReal = false;
+        } else {
+          isDataReal = true;
+        }
+        
+        chartData = candles;
+        candleSeries.setData(chartData);
+        currentPrice = chartData[chartData.length - 1].close;
+        pairInfo[currentPair].price = currentPrice;
+        
+        const ld = document.getElementById('chartLoading');
+        if (ld) ld.remove();
+        
+        updatePriceDisplay();
+        drawPositionLines();
+        drawIndicators();
+        
+        const badge = document.getElementById('dataModeBadge');
+        const text = document.getElementById('dataModeText');
+        if (badge && text) {
+          badge.className = 'data-mode-badge ' + (isDataReal ? 'premium' : 'free');
+          text.textContent = isDataReal ? 'LIVE' : 'SIMULATED';
+        }
+      } catch (err) { console.error('Chart error:', err); container.innerHTML = '<div class="empty-state">📊 خطا در بارگذاری چارت</div>'; }
     }
 
     function changeTimeframe(tf, event) {
@@ -991,7 +872,6 @@
       currentTimeframe = tf;
       document.querySelectorAll('.chart-action-btn').forEach(b => b.classList.remove('active'));
       if (event && event.target) event.target.classList.add('active');
-      if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); else clearInterval(ws); ws = null; }
       if (chart) { chart.remove(); chart = null; }
       indicatorSeries = {};
       setTimeout(() => initChart(), 100);
@@ -999,12 +879,10 @@
 
     function toggleIndicator(indicator, event) {
       if (event) event.stopPropagation();
-      
       if ((indicator === 'RSI' || indicator === 'MACD') && !isDataReal) {
         alert('⚠️ RSI و MACD فقط با داده‌های واقعی کار می‌کنند.\nلطفاً حالت Live را فعال کنید.');
         return;
       }
-      
       const idx = activeIndicators.indexOf(indicator);
       if (idx > -1) activeIndicators.splice(idx, 1);
       else activeIndicators.push(indicator);
@@ -1016,49 +894,30 @@
       document.querySelectorAll('.indicator-btn').forEach(btn => {
         const isActive = activeIndicators.includes(btn.textContent);
         btn.classList.toggle('active', isActive);
-        
-        if ((btn.textContent === 'RSI' || btn.textContent === 'MACD') && !isDataReal) {
-          btn.classList.add('disabled');
-        } else {
-          btn.classList.remove('disabled');
-        }
+        if ((btn.textContent === 'RSI' || btn.textContent === 'MACD') && !isDataReal) btn.classList.add('disabled');
+        else btn.classList.remove('disabled');
       });
     }
 
     function drawIndicators() {
-      if (!chart || !candleSeries || chartData.length < 30) {
-        console.log('chartData not ready yet, length:', chartData.length);
-        return;
-      }
-      
-      Object.keys(indicatorSeries).forEach(key => {
-        try {
-          const s = indicatorSeries[key];
-          if (s && typeof s.remove === 'function') s.remove();
-        } catch(e) {}
-      });
+      if (!chart || !candleSeries || chartData.length < 30) return;
+      Object.keys(indicatorSeries).forEach(key => { try { const s = indicatorSeries[key]; if (s && typeof s.remove === 'function') s.remove(); } catch(e) {} });
       indicatorSeries = {};
       const container = document.getElementById('indicatorCharts');
       if (container) container.innerHTML = '';
       
       if (activeIndicators.includes('SMA')) {
-        const sma20 = calculateMA(chartData, 20);
-        const sma50 = calculateMA(chartData, 50);
-        indicatorSeries.sma20 = chart.addLineSeries({ color: '#2196F3', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false, title: 'SMA20' });
-        indicatorSeries.sma50 = chart.addLineSeries({ color: '#FF9800', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false, title: 'SMA50' });
-        indicatorSeries.sma20.setData(sma20);
-        indicatorSeries.sma50.setData(sma50);
+        indicatorSeries.sma20 = chart.addLineSeries({ color: '#2196F3', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+        indicatorSeries.sma50 = chart.addLineSeries({ color: '#FF9800', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+        indicatorSeries.sma20.setData(calculateMA(chartData, 20));
+        indicatorSeries.sma50.setData(calculateMA(chartData, 50));
       }
-      
       if (activeIndicators.includes('EMA')) {
-        const ema9 = calculateEMA(chartData, 9);
-        const ema21 = calculateEMA(chartData, 21);
-        indicatorSeries.ema9 = chart.addLineSeries({ color: '#4CAF50', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false, title: 'EMA9' });
-        indicatorSeries.ema21 = chart.addLineSeries({ color: '#F44336', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false, title: 'EMA21' });
-        indicatorSeries.ema9.setData(ema9);
-        indicatorSeries.ema21.setData(ema21);
+        indicatorSeries.ema9 = chart.addLineSeries({ color: '#4CAF50', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+        indicatorSeries.ema21 = chart.addLineSeries({ color: '#F44336', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+        indicatorSeries.ema9.setData(calculateEMA(chartData, 9));
+        indicatorSeries.ema21.setData(calculateEMA(chartData, 21));
       }
-      
       if (activeIndicators.includes('BOLL')) {
         const boll = calculateBollinger(chartData, 20, 2);
         indicatorSeries.bollUpper = chart.addLineSeries({ color: '#9E9E9E', lineWidth: 1, lineStyle: 2, priceLineVisible: false, lastValueVisible: false });
@@ -1068,294 +927,106 @@
         indicatorSeries.bollMiddle.setData(boll.middle);
         indicatorSeries.bollLower.setData(boll.lower);
       }
-      
       if (activeIndicators.includes('RSI')) {
-        if (!isDataReal) {
-          const rsiContainer = document.createElement('div');
-          rsiContainer.className = 'indicator-subchart';
-          rsiContainer.innerHTML = '<div class="indicator-label">RSI(14)</div><div class="indicator-warning">⚠️ RSI فقط با داده‌های واقعی کار می‌کند<br>لطفاً حالت Live را فعال کنید</div>';
-          container.appendChild(rsiContainer);
-          return;
-        }
+        if (!isDataReal) { const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">RSI(14)</div><div class="indicator-warning">️ فقط با داده واقعی</div>'; container.appendChild(c); return; }
         const rsiData = calculateRSI(chartData, 14);
-        const rsiContainer = document.createElement('div');
-        rsiContainer.className = 'indicator-subchart';
-        rsiContainer.innerHTML = '<div class="indicator-label">RSI(14)</div><canvas></canvas>';
-        container.appendChild(rsiContainer);
-        setTimeout(() => drawRSI(rsiData, rsiContainer.querySelector('canvas')), 80);
+        const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">RSI(14)</div><canvas></canvas>'; container.appendChild(c);
+        setTimeout(() => drawRSI(rsiData, c.querySelector('canvas')), 80);
       }
-      
       if (activeIndicators.includes('MACD')) {
-        if (!isDataReal) {
-          const macdContainer = document.createElement('div');
-          macdContainer.className = 'indicator-subchart';
-          macdContainer.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><div class="indicator-warning">⚠️ MACD فقط با داده‌های واقعی کار می‌کند<br>لطفاً حالت Live را فعال کنید</div>';
-          container.appendChild(macdContainer);
-          return;
-        }
+        if (!isDataReal) { const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><div class="indicator-warning">⚠️ فقط با داده واقعی</div>'; container.appendChild(c); return; }
         const macdData = calculateMACD(chartData);
-        const macdContainer = document.createElement('div');
-        macdContainer.className = 'indicator-subchart';
-        macdContainer.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><canvas></canvas>';
-        container.appendChild(macdContainer);
-        setTimeout(() => drawMACD(macdData, macdContainer.querySelector('canvas')), 80);
+        const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><canvas></canvas>'; container.appendChild(c);
+        setTimeout(() => drawMACD(macdData, c.querySelector('canvas')), 80);
       }
     }
 
-    function calculateMA(data, period) {
-      const result = [];
-      for (let i = period - 1; i < data.length; i++) {
-        let sum = 0;
-        for (let j = 0; j < period; j++) sum += data[i - j].close;
-        result.push({ time: data[i].time, value: sum / period });
-      }
-      return result;
-    }
-
-    function calculateEMA(data, period) {
-      const result = [];
-      const multiplier = 2 / (period + 1);
-      let ema = data[0].close;
-      for (let i = 0; i < data.length; i++) {
-        if (i < period - 1) ema = (data[i].close + (period - 1) * ema) / period;
-        else ema = (data[i].close - ema) * multiplier + ema;
-        if (i >= period - 1) result.push({ time: data[i].time, value: ema });
-      }
-      return result;
-    }
-
-    function calculateBollinger(data, period, stdDev) {
-      const upper = [], middle = [], lower = [];
-      for (let i = period - 1; i < data.length; i++) {
-        let sum = 0;
-        for (let j = 0; j < period; j++) sum += data[i - j].close;
-        const avg = sum / period;
-        let variance = 0;
-        for (let j = 0; j < period; j++) variance += Math.pow(data[i - j].close - avg, 2);
-        const std = Math.sqrt(variance / period);
-        upper.push({ time: data[i].time, value: avg + stdDev * std });
-        middle.push({ time: data[i].time, value: avg });
-        lower.push({ time: data[i].time, value: avg - stdDev * std });
-      }
-      return { upper, middle, lower };
-    }
-
+    function calculateMA(data, period) { const result = []; for (let i = period - 1; i < data.length; i++) { let sum = 0; for (let j = 0; j < period; j++) sum += data[i - j].close; result.push({ time: data[i].time, value: sum / period }); } return result; }
+    function calculateEMA(data, period) { const result = []; const multiplier = 2 / (period + 1); let ema = data[0].close; for (let i = 0; i < data.length; i++) { if (i < period - 1) ema = (data[i].close + (period - 1) * ema) / period; else ema = (data[i].close - ema) * multiplier + ema; if (i >= period - 1) result.push({ time: data[i].time, value: ema }); } return result; }
+    function calculateBollinger(data, period, stdDev) { const upper = [], middle = [], lower = []; for (let i = period - 1; i < data.length; i++) { let sum = 0; for (let j = 0; j < period; j++) sum += data[i - j].close; const avg = sum / period; let variance = 0; for (let j = 0; j < period; j++) variance += Math.pow(data[i - j].close - avg, 2); const std = Math.sqrt(variance / period); upper.push({ time: data[i].time, value: avg + stdDev * std }); middle.push({ time: data[i].time, value: avg }); lower.push({ time: data[i].time, value: avg - stdDev * std }); } return { upper, middle, lower }; }
+    
     function calculateRSI(data, period) {
       const result = [];
       if (data.length < period + 1) return result;
-      
-      let avgGain = 0;
-      let avgLoss = 0;
-      
-      for (let i = 1; i <= period; i++) {
-        const change = data[i].close - data[i - 1].close;
-        if (change > 0) avgGain += change;
-        else avgLoss += Math.abs(change);
-      }
-      avgGain /= period;
-      avgLoss /= period;
-      
-      const firstRSI = avgLoss === 0 ? 100 : 100 - (100 / (1 + avgGain / avgLoss));
-      result.push({ time: data[period].time, value: firstRSI });
-      
+      let avgGain = 0, avgLoss = 0;
+      for (let i = 1; i <= period; i++) { const change = data[i].close - data[i - 1].close; if (change > 0) avgGain += change; else avgLoss += Math.abs(change); }
+      avgGain /= period; avgLoss /= period;
+      result.push({ time: data[period].time, value: avgLoss === 0 ? 100 : 100 - (100 / (1 + avgGain / avgLoss)) });
       for (let i = period + 1; i < data.length; i++) {
         const change = data[i].close - data[i - 1].close;
-        const gain = change > 0 ? change : 0;
-        const loss = change < 0 ? Math.abs(change) : 0;
-        
+        const gain = change > 0 ? change : 0, loss = change < 0 ? Math.abs(change) : 0;
         avgGain = (avgGain * (period - 1) + gain) / period;
         avgLoss = (avgLoss * (period - 1) + loss) / period;
-        
-        const rsi = avgLoss === 0 ? 100 : 100 - (100 / (1 + avgGain / avgLoss));
-        result.push({ time: data[i].time, value: rsi });
+        result.push({ time: data[i].time, value: avgLoss === 0 ? 100 : 100 - (100 / (1 + avgGain / avgLoss)) });
       }
-      
       return result;
     }
 
     function calculateMACD(data) {
       if (data.length < 35) return { macd: [], signal: [], histogram: [] };
-      
-      const ema12 = calculateEMA(data, 12);
-      const ema26 = calculateEMA(data, 26);
-      
+      const ema12 = calculateEMA(data, 12), ema26 = calculateEMA(data, 26);
       const ema26Map = new Map(ema26.map(e => [e.time, e.value]));
       const macdValues = [];
-      
-      ema12.forEach(e12 => {
-        if (ema26Map.has(e12.time)) {
-          macdValues.push({ time: e12.time, value: e12.value - ema26Map.get(e12.time) });
-        }
-      });
-      
+      ema12.forEach(e12 => { if (ema26Map.has(e12.time)) macdValues.push({ time: e12.time, value: e12.value - ema26Map.get(e12.time) }); });
       if (macdValues.length < 9) return { macd: [], signal: [], histogram: [] };
-      
-      const signalMultiplier = 2 / 10;
-      const signalLine = [];
-      let signal = macdValues[0].value;
-      
-      macdValues.forEach((m, i) => {
-        if (i < 8) {
-          signal = (m.value + i * signal) / (i + 1);
-        } else {
-          signal = (m.value - signal) * signalMultiplier + signal;
-        }
-        if (i >= 8) {
-          signalLine.push({ time: m.time, value: signal });
-        }
-      });
-      
+      const signalLine = []; let signal = macdValues[0].value;
+      macdValues.forEach((m, i) => { if (i < 8) signal = (m.value + i * signal) / (i + 1); else signal = (m.value - signal) * 0.2 + signal; if (i >= 8) signalLine.push({ time: m.time, value: signal }); });
       const signalMap = new Map(signalLine.map(s => [s.time, s.value]));
-      const histogram = macdValues
-        .filter(m => signalMap.has(m.time))
-        .map(m => ({ time: m.time, value: m.value - signalMap.get(m.time) }));
-      
+      const histogram = macdValues.filter(m => signalMap.has(m.time)).map(m => ({ time: m.time, value: m.value - signalMap.get(m.time) }));
       return { macd: macdValues, signal: signalLine, histogram };
     }
 
     function drawRSI(rsiData, canvas) {
       if (!canvas || rsiData.length === 0) return;
       const rect = canvas.parentElement.getBoundingClientRect();
-      canvas.width = rect.width * 2;
-      canvas.height = rect.height * 2;
-      canvas.style.width = rect.width + 'px';
-      canvas.style.height = rect.height + 'px';
-      const ctx = canvas.getContext('2d');
-      ctx.scale(2, 2);
+      canvas.width = rect.width * 2; canvas.height = rect.height * 2;
+      canvas.style.width = rect.width + 'px'; canvas.style.height = rect.height + 'px';
+      const ctx = canvas.getContext('2d'); ctx.scale(2, 2);
       const w = rect.width, h = rect.height;
-      ctx.fillStyle = 'white';
-      ctx.fillRect(0, 0, w, h);
-      ctx.fillStyle = 'rgba(246, 70, 83, 0.08)';
-      ctx.fillRect(0, 0, w, h * 0.3);
-      ctx.fillStyle = 'rgba(14, 203, 129, 0.08)';
-      ctx.fillRect(0, h * 0.7, w, h * 0.3);
-      ctx.strokeStyle = '#E0E0E0';
-      ctx.setLineDash([3, 3]);
-      ctx.lineWidth = 1;
-      [30, 50, 70].forEach(level => {
-        const y = h - (level / 100) * h;
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
-        ctx.stroke();
-        ctx.fillStyle = '#7F8C8D';
-        ctx.font = 'bold 10px Arial';
-        ctx.textAlign = 'left';
-        ctx.fillText(level.toString(), 6, y - 3);
-      });
-      ctx.setLineDash([]);
-      ctx.strokeStyle = '#FF9800';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      rsiData.forEach((r, i) => {
-        const x = (i / (rsiData.length - 1)) * w;
-        const y = h - (r.value / 100) * h;
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
+      ctx.fillStyle = 'white'; ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = 'rgba(246, 70, 83, 0.08)'; ctx.fillRect(0, 0, w, h * 0.3);
+      ctx.fillStyle = 'rgba(14, 203, 129, 0.08)'; ctx.fillRect(0, h * 0.7, w, h * 0.3);
+      ctx.strokeStyle = '#E0E0E0'; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+      [30, 50, 70].forEach(level => { const y = h - (level / 100) * h; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); ctx.fillStyle = '#7F8C8D'; ctx.font = 'bold 10px Arial'; ctx.textAlign = 'left'; ctx.fillText(level.toString(), 6, y - 3); });
+      ctx.setLineDash([]); ctx.strokeStyle = '#FF9800'; ctx.lineWidth = 1.5; ctx.beginPath();
+      rsiData.forEach((r, i) => { const x = (i / (rsiData.length - 1)) * w; const y = h - (r.value / 100) * h; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
       ctx.stroke();
     }
 
     function drawMACD(macdData, canvas) {
       if (!canvas || macdData.macd.length === 0) return;
       const rect = canvas.parentElement.getBoundingClientRect();
-      canvas.width = rect.width * 2;
-      canvas.height = rect.height * 2;
-      canvas.style.width = rect.width + 'px';
-      canvas.style.height = rect.height + 'px';
-      const ctx = canvas.getContext('2d');
-      ctx.scale(2, 2);
+      canvas.width = rect.width * 2; canvas.height = rect.height * 2;
+      canvas.style.width = rect.width + 'px'; canvas.style.height = rect.height + 'px';
+      const ctx = canvas.getContext('2d'); ctx.scale(2, 2);
       const w = rect.width, h = rect.height;
-      ctx.fillStyle = 'white';
-      ctx.fillRect(0, 0, w, h);
-      
+      ctx.fillStyle = 'white'; ctx.fillRect(0, 0, w, h);
       const midY = h / 2;
-      
-      const maxLine = Math.max(
-        ...macdData.macd.map(v => Math.abs(v.value)),
-        ...macdData.signal.map(v => Math.abs(v.value))
-      );
+      const maxLine = Math.max(...macdData.macd.map(v => Math.abs(v.value)), ...macdData.signal.map(v => Math.abs(v.value)));
       const lineScale = (midY * 0.85) / (maxLine || 1);
-      
       const maxHist = Math.max(...macdData.histogram.map(v => Math.abs(v.value)));
       const histScale = (midY * 0.85 * 2.5) / (maxHist || 1);
-      
-      ctx.strokeStyle = '#E0E0E0';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(0, midY);
-      ctx.lineTo(w, midY);
-      ctx.stroke();
-      
+      ctx.strokeStyle = '#E0E0E0'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, midY); ctx.lineTo(w, midY); ctx.stroke();
       const barWidth = Math.max(3, (w / macdData.histogram.length) * 0.85);
-      macdData.histogram.forEach((h_val, i) => {
-        const x = (i / (macdData.histogram.length - 1)) * w;
-        const h_px = h_val.value * histScale;
-        ctx.globalAlpha = 0.75;
-        ctx.fillStyle = h_val.value >= 0 ? '#0ECB81' : '#F64653';
-        const barHeight = Math.abs(h_px);
-        const y = h_val.value >= 0 ? midY - barHeight : midY;
-        ctx.fillRect(x - barWidth/2, y, barWidth, barHeight);
-      });
+      macdData.histogram.forEach((h_val, i) => { const x = (i / (macdData.histogram.length - 1)) * w; const h_px = h_val.value * histScale; ctx.globalAlpha = 0.75; ctx.fillStyle = h_val.value >= 0 ? '#0ECB81' : '#F64653'; const barHeight = Math.abs(h_px); const y = h_val.value >= 0 ? midY - barHeight : midY; ctx.fillRect(x - barWidth/2, y, barWidth, barHeight); });
       ctx.globalAlpha = 1.0;
-      
-      ctx.strokeStyle = '#2196F3';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      macdData.macd.forEach((m, i) => {
-        const x = (i / (macdData.macd.length - 1)) * w;
-        const y = midY - m.value * lineScale;
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
+      ctx.strokeStyle = '#2196F3'; ctx.lineWidth = 2; ctx.beginPath();
+      macdData.macd.forEach((m, i) => { const x = (i / (macdData.macd.length - 1)) * w; const y = midY - m.value * lineScale; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
       ctx.stroke();
-      
-      ctx.strokeStyle = '#FF9800';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      macdData.signal.forEach((s, i) => {
-        const x = (i / (macdData.signal.length - 1)) * w;
-        const y = midY - s.value * lineScale;
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
+      ctx.strokeStyle = '#FF9800'; ctx.lineWidth = 2; ctx.beginPath();
+      macdData.signal.forEach((s, i) => { const x = (i / (macdData.signal.length - 1)) * w; const y = midY - s.value * lineScale; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
       ctx.stroke();
-      
-      ctx.fillStyle = '#2196F3';
-      ctx.font = 'bold 9px Arial';
-      ctx.textAlign = 'left';
-      ctx.fillText('MACD', 8, 14);
-      ctx.fillStyle = '#FF9800';
-      ctx.fillText('Signal', 50, 14);
     }
 
     function drawPositionLines() {
       if (!chart || !candleSeries) return;
-      Object.keys(positionLines).forEach(key => { 
-        try { 
-          const l = positionLines[key];
-          if (l && typeof l.remove === 'function') l.remove(); 
-        } catch(e) {} 
-      });
+      Object.keys(positionLines).forEach(key => { try { const l = positionLines[key]; if (l && typeof l.remove === 'function') l.remove(); } catch(e) {} });
       positionLines = {};
       demoAccount.positions.filter(p => p.pair === currentPair).forEach((pos, idx) => {
         try {
-          positionLines[`entry_${idx}`] = candleSeries.createPriceLine({
-            price: pos.entryPrice, color: '#2196F3', lineWidth: 2, lineStyle: 0,
-            axisLabelVisible: true, title: `Entry`,
-          });
-          if (pos.sl) {
-            positionLines[`sl_${idx}`] = candleSeries.createPriceLine({
-              price: pos.sl, color: '#F64653', lineWidth: 2, lineStyle: 2,
-              axisLabelVisible: true, title: `SL`,
-            });
-          }
-          if (pos.tp) {
-            positionLines[`tp_${idx}`] = candleSeries.createPriceLine({
-              price: pos.tp, color: '#0ECB81', lineWidth: 2, lineStyle: 2,
-              axisLabelVisible: true, title: `TP`,
-            });
-          }
+          positionLines[`entry_${idx}`] = candleSeries.createPriceLine({ price: pos.entryPrice, color: '#2196F3', lineWidth: 2, lineStyle: 0, axisLabelVisible: true, title: 'Entry' });
+          if (pos.sl) positionLines[`sl_${idx}`] = candleSeries.createPriceLine({ price: pos.sl, color: '#F64653', lineWidth: 2, lineStyle: 2, axisLabelVisible: true, title: 'SL' });
+          if (pos.tp) positionLines[`tp_${idx}`] = candleSeries.createPriceLine({ price: pos.tp, color: '#0ECB81', lineWidth: 2, lineStyle: 2, axisLabelVisible: true, title: 'TP' });
         } catch(e) {}
       });
     }
@@ -1366,127 +1037,72 @@
       const decimals = info.decimals;
       const step = currentPair === 'BTCUSDT' ? 10 : currentPair === 'ETHUSDT' ? 1 : currentPair === 'XAUUSD' ? 0.5 : 0.0005;
       for (let i = 1; i <= 8; i++) {
-        asks.push({
-          price: (currentPrice + i * step).toFixed(decimals),
-          amount: (Math.random() * 10).toFixed(4)
-        });
-        bids.push({
-          price: (currentPrice - i * step).toFixed(decimals),
-          amount: (Math.random() * 10).toFixed(4)
-        });
+        asks.push({ price: (currentPrice + i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) });
+        bids.push({ price: (currentPrice - i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) });
       }
       return { asks: asks.reverse(), bids };
     }
 
     function renderOrderBook() {
       const { asks, bids } = generateOrderBook();
-      const asksHtml = asks.map(o => `<div class="order-row ask"><span class="col-amount">${o.amount}</span><span class="col-price ask">${o.price}</span></div>`).join('');
-      const bidsHtml = bids.map(o => `<div class="order-row bid"><span class="col-amount">${o.amount}</span><span class="col-price bid">${o.price}</span></div>`).join('');
       const asksEl = document.getElementById('orderBookAsks');
       const bidsEl = document.getElementById('orderBookBids');
-      if (asksEl) asksEl.innerHTML = asksHtml;
-      if (bidsEl) bidsEl.innerHTML = bidsHtml;
+      if (asksEl) asksEl.innerHTML = asks.map(o => `<div class="order-row ask"><span class="col-amount">${o.amount}</span><span class="col-price ask">${o.price}</span></div>`).join('');
+      if (bidsEl) bidsEl.innerHTML = bids.map(o => `<div class="order-row bid"><span class="col-amount">${o.amount}</span><span class="col-price bid">${o.price}</span></div>`).join('');
     }
 
     function updatePriceDisplay() {
       const info = pairInfo[currentPair];
       const priceEl = document.getElementById('currentPrice');
-      const textEl = document.getElementById('priceChangeText');
+      const changeEl = document.getElementById('pairChange');
       if (priceEl) priceEl.textContent = currentPrice.toFixed(info.decimals);
-      if (textEl) textEl.textContent = info.name;
-    }
-
-    function setTradeType(type) {
-      tradeType = type;
-      const buyTab = document.getElementById('buyTab');
-      const sellTab = document.getElementById('sellTab');
-      const submitBtn = document.getElementById('submitBtn');
-      if (buyTab) buyTab.className = 'trade-tab ' + (type === 'buy' ? 'buy' : '');
-      if (sellTab) sellTab.className = 'trade-tab ' + (type === 'sell' ? 'sell' : '');
-      if (submitBtn) {
-        submitBtn.className = 'submit-btn ' + type;
-        submitBtn.textContent = type === 'buy' ? `Buy/Long ${currentPair.replace('USDT','').replace('USD','')}` : `Sell/Short ${currentPair.replace('USDT','').replace('USD','')}`;
+      if (changeEl) {
+        const changeClass = info.change >= 0 ? 'up' : 'down';
+        const changeSign = info.change >= 0 ? '+' : '';
+        changeEl.textContent = `${changeSign}${info.change.toFixed(2)}%`;
+        changeEl.className = `pair-change ${changeClass}`;
       }
-      updateTradeInfo();
     }
 
-    function setLeverage(lev, btn) {
-      document.querySelectorAll('.leverage-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      updateTradeInfo();
-    }
+    function setTradeType(type) { tradeType = type; const buyTab = document.getElementById('buyTab'); const sellTab = document.getElementById('sellTab'); const submitBtn = document.getElementById('submitBtn'); if (buyTab) buyTab.className = 'trade-tab ' + (type === 'buy' ? 'buy' : ''); if (sellTab) sellTab.className = 'trade-tab ' + (type === 'sell' ? 'sell' : ''); if (submitBtn) { submitBtn.className = 'submit-btn ' + type; submitBtn.textContent = type === 'buy' ? 'Buy/Long' : 'Sell/Short'; } updateTradeInfo(); }
+    function setLeverage(lev, btn) { document.querySelectorAll('.leverage-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); updateTradeInfo(); }
 
     function setupSlider() {
-      const sliderDot = document.getElementById('sliderDot');
-      const sliderFill = document.getElementById('sliderFill');
-      const sliderContainer = document.getElementById('sliderContainer');
+      const sliderDot = document.getElementById('sliderDot'); const sliderFill = document.getElementById('sliderFill'); const sliderContainer = document.getElementById('sliderContainer');
       if (!sliderDot || !sliderFill || !sliderContainer) return;
       let isDragging = false;
       const startDrag = (e) => { isDragging = true; e.preventDefault(); e.stopPropagation(); };
-      const drag = (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        e.stopPropagation();
-        const rect = sliderContainer.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        let x = ((clientX - rect.left) / rect.width) * 100;
-        x = Math.max(0, Math.min(100, x));
-        sliderValue = x;
-        sliderDot.style.left = x + '%';
-        sliderFill.style.width = x + '%';
-        const percentEl = document.getElementById('sliderPercent');
-        if (percentEl) percentEl.textContent = Math.round(x) + '%';
-        updateTradeInfo();
-      };
+      const drag = (e) => { if (!isDragging) return; e.preventDefault(); e.stopPropagation(); const rect = sliderContainer.getBoundingClientRect(); const clientX = e.touches ? e.touches[0].clientX : e.clientX; let x = ((clientX - rect.left) / rect.width) * 100; x = Math.max(0, Math.min(100, x)); sliderValue = x; sliderDot.style.left = x + '%'; sliderFill.style.width = x + '%'; const percentEl = document.getElementById('sliderPercent'); if (percentEl) percentEl.textContent = Math.round(x) + '%'; updateTradeInfo(); };
       const endDrag = () => { isDragging = false; };
-      sliderDot.addEventListener('mousedown', startDrag);
-      sliderDot.addEventListener('touchstart', startDrag, {passive: false});
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('touchmove', drag, {passive: false});
-      document.addEventListener('mouseup', endDrag);
-      document.addEventListener('touchend', endDrag);
-      sliderContainer.addEventListener('click', (e) => {
-        const rect = sliderContainer.getBoundingClientRect();
-        let x = ((e.clientX - rect.left) / rect.width) * 100;
-        x = Math.max(0, Math.min(100, x));
-        sliderValue = x;
-        sliderDot.style.left = x + '%';
-        sliderFill.style.width = x + '%';
-        const percentEl = document.getElementById('sliderPercent');
-        if (percentEl) percentEl.textContent = Math.round(x) + '%';
-        updateTradeInfo();
-      });
+      sliderDot.addEventListener('mousedown', startDrag); sliderDot.addEventListener('touchstart', startDrag, {passive: false});
+      document.addEventListener('mousemove', drag); document.addEventListener('touchmove', drag, {passive: false});
+      document.addEventListener('mouseup', endDrag); document.addEventListener('touchend', endDrag);
+      sliderContainer.addEventListener('click', (e) => { const rect = sliderContainer.getBoundingClientRect(); let x = ((e.clientX - rect.left) / rect.width) * 100; x = Math.max(0, Math.min(100, x)); sliderValue = x; sliderDot.style.left = x + '%'; sliderFill.style.width = x + '%'; const percentEl = document.getElementById('sliderPercent'); if (percentEl) percentEl.textContent = Math.round(x) + '%'; updateTradeInfo(); });
     }
 
     function updateTradeInfo() {
       const amountInput = parseFloat(document.getElementById('tradeAmount')?.value) || 0;
       const leverage = parseInt(document.querySelector('.leverage-btn.active')?.textContent) || 3;
-      if (sliderValue > 0 && amountInput === 0) {
-        const calculatedAmount = (demoAccount.balance * sliderValue / 100);
-        const amountEl = document.getElementById('tradeAmount');
-        if (amountEl) amountEl.value = calculatedAmount.toFixed(2);
-      }
+      if (sliderValue > 0 && amountInput === 0) { const calculatedAmount = (demoAccount.balance * sliderValue / 100); const amountEl = document.getElementById('tradeAmount'); if (amountEl) amountEl.value = calculatedAmount.toFixed(2); }
       const finalAmount = parseFloat(document.getElementById('tradeAmount')?.value) || 0;
       const margin = (finalAmount * sliderValue / 100) / leverage;
       const available = demoAccount.balance - margin;
-      const marginEl = document.getElementById('marginValue');
-      const availableEl = document.getElementById('availableValue');
-      const maxEl = document.getElementById('maxValue');
-      const liqEl = document.getElementById('liqPrice');
+      const marginEl = document.getElementById('marginValue'); const availableEl = document.getElementById('availableValue'); const maxEl = document.getElementById('maxValue'); const liqEl = document.getElementById('liqPrice');
       if (marginEl) marginEl.textContent = margin.toFixed(2) + ' USDT';
       if (availableEl) availableEl.textContent = available.toFixed(2) + ' USDT';
-      if (maxEl) maxEl.textContent = (finalAmount * sliderValue / 100 / currentPrice).toFixed(6) + ' ' + currentPair.replace('USDT','').replace('USD','');
-      if (liqEl) liqEl.textContent = tradeType === 'buy' ? (currentPrice * (1 - 1/leverage)).toFixed(pairInfo[currentPair].decimals) : (currentPrice * (1 + 1/leverage)).toFixed(pairInfo[currentPair].decimals);
+      if (maxEl) maxEl.textContent = (finalAmount * sliderValue / 100 / currentPrice).toFixed(6);
+      // لیکوییدیتی فقط اگر پوزیشن باز باشد
+      if (liqEl) {
+        if (demoAccount.positions.length === 0) liqEl.textContent = '--';
+        else {
+          const pos = demoAccount.positions[demoAccount.positions.length - 1];
+          const liqPrice = pos.side === 'buy' ? (pos.entryPrice * (1 - 1/pos.leverage)).toFixed(pairInfo[currentPair].decimals) : (pos.entryPrice * (1 + 1/pos.leverage)).toFixed(pairInfo[currentPair].decimals);
+          liqEl.textContent = liqPrice;
+        }
+      }
     }
 
-    function toggleTPSL() {
-      const checkbox = document.getElementById('tpSlCheckbox');
-      const container = document.getElementById('tpSlInputs');
-      if (!container) return;
-      if (checkbox?.checked) {
-        container.innerHTML = `<div class="form-group" style="margin-top: 10px;"><label class="form-label">Take Profit</label><input type="number" class="form-input" id="tpInput" placeholder="0.00"></div><div class="form-group"><label class="form-label">Stop Loss</label><input type="number" class="form-input" id="slInput" placeholder="0.00"></div>`;
-      } else { container.innerHTML = ''; }
-    }
+    function toggleTPSL() { const checkbox = document.getElementById('tpSlCheckbox'); const container = document.getElementById('tpSlInputs'); if (!container) return; if (checkbox?.checked) { container.innerHTML = `<div class="form-group" style="margin-top: 10px;"><label class="form-label">Take Profit</label><input type="number" class="form-input" id="tpInput" placeholder="0.00"></div><div class="form-group"><label class="form-label">Stop Loss</label><input type="number" class="form-input" id="slInput" placeholder="0.00"></div>`; } else { container.innerHTML = ''; } }
 
     function submitOrder() {
       const amount = parseFloat(document.getElementById('tradeAmount')?.value) || 0;
@@ -1494,28 +1110,15 @@
       const leverage = parseInt(document.querySelector('.leverage-btn.active')?.textContent) || 3;
       const tp = parseFloat(document.getElementById('tpInput')?.value) || null;
       const sl = parseFloat(document.getElementById('slInput')?.value) || null;
-      const position = {
-        id: Date.now(), pair: currentPair, side: tradeType,
-        amount: (amount * sliderValue / 100) / currentPrice,
-        entryPrice: currentPrice, leverage: leverage, tp: tp, sl: sl,
-        pnl: 0, pnlPercent: 0
-      };
+      const position = { id: Date.now(), pair: currentPair, side: tradeType, amount: (amount * sliderValue / 100) / currentPrice, entryPrice: currentPrice, leverage: leverage, tp: tp, sl: sl, pnl: 0, pnlPercent: 0 };
       demoAccount.positions.push(position);
       userProfile.totalTrades++;
-      saveDemoAccount();
-      saveUserProfile();
-      drawPositionLines();
-      renderPositions();
+      saveDemoAccount(); saveUserProfile();
+      drawPositionLines(); renderPositions(); updateTradeInfo();
       alert('Order submitted!');
     }
 
-    function switchTab(tab, event) {
-      if (event) event.stopPropagation();
-      activeTab = tab;
-      document.querySelectorAll('.position-tab').forEach(t => t.classList.remove('active'));
-      if (event && event.target) event.target.classList.add('active');
-      renderPositions();
-    }
+    function switchTab(tab, event) { if (event) event.stopPropagation(); activeTab = tab; document.querySelectorAll('.position-tab').forEach(t => t.classList.remove('active')); if (event && event.target) event.target.classList.add('active'); renderPositions(); }
 
     function updatePositionsPnL() {
       demoAccount.positions.forEach(pos => {
@@ -1534,121 +1137,27 @@
       if (activeTab === 'positions') {
         const positions = demoAccount.positions.filter(p => p.pair === currentPair);
         if (positions.length === 0) { container.innerHTML = '<div class="empty-state">No open positions</div>'; return; }
-        container.innerHTML = positions.map(pos => {
-          const pnlClass = pos.pnl >= 0 ? 'profit' : 'loss';
-          const pnlSign = pos.pnl >= 0 ? '+' : '';
-          return `<div class="position-item"><div class="position-header"><span class="position-pair">${pos.pair}</span><span class="position-side ${pos.side}">${pos.side === 'buy' ? 'Long' : 'Short'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${pos.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Leverage</span><span class="position-detail-value">${pos.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${pos.entryPrice.toFixed(pairInfo[pos.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Margin</span><span class="position-detail-value">${(pos.amount * pos.entryPrice / pos.leverage).toFixed(2)} USDT</span></div></div><div class="position-pnl ${pnlClass}">${pnlSign}$${pos.pnl.toFixed(2)} (${pnlSign}${pos.pnlPercent.toFixed(2)}%)</div><button class="close-btn" onclick="closePosition(${pos.id})">Close Position</button></div>`;
-        }).join('');
-      } else if (activeTab === 'pending') {
-        const pendings = demoAccount.pendingOrders.filter(p => p.pair === currentPair);
-        if (pendings.length === 0) { container.innerHTML = '<div class="empty-state">No pending orders<br><small>Use Limit Order to create one</small></div>'; }
-        else { container.innerHTML = pendings.map(p => `<div class="pending-item"><div class="pending-item-header"><strong>${p.type} ${p.pair}</strong><button class="cancel-btn" onclick="cancelPending(${p.id})">Cancel</button></div><div>Price: ${p.price.toFixed(pairInfo[p.pair]?.decimals || 2)} | Amount: ${p.amount.toFixed(4)}</div></div>`).join(''); }
-      } else if (activeTab === 'history') {
-        const history = demoAccount.history.filter(h => h.pair === currentPair);
-        if (history.length === 0) { container.innerHTML = '<div class="empty-state">No order history</div>'; return; }
-        container.innerHTML = history.slice().reverse().map(h => {
-          const pnlClass = h.pnl >= 0 ? 'profit' : 'loss';
-          const pnlSign = h.pnl >= 0 ? '+' : '';
-          return `<div class="position-item"><div class="position-header"><span class="position-pair">${h.pair}</span><span class="position-side ${h.side}">${h.side === 'buy' ? 'Long' : 'Short'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${h.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${h.entryPrice.toFixed(pairInfo[h.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Exit</span><span class="position-detail-value">${h.closePrice?.toFixed(pairInfo[h.pair]?.decimals || 2) || '--'}</span></div><div class="position-detail"><span class="position-detail-label">PnL</span><span class="position-detail-value ${pnlClass}">${pnlSign}$${h.pnl.toFixed(2)}</span></div></div></div>`;
-        }).join('');
-      }
+        container.innerHTML = positions.map(pos => { const pnlClass = pos.pnl >= 0 ? 'profit' : 'loss'; const pnlSign = pos.pnl >= 0 ? '+' : ''; return `<div class="position-item"><div class="position-header"><span class="position-pair">${pos.pair}</span><span class="position-side ${pos.side}">${pos.side === 'buy' ? 'Long' : 'Short'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${pos.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Leverage</span><span class="position-detail-value">${pos.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${pos.entryPrice.toFixed(pairInfo[pos.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Margin</span><span class="position-detail-value">${(pos.amount * pos.entryPrice / pos.leverage).toFixed(2)} USDT</span></div></div><div class="position-pnl ${pnlClass}">${pnlSign}$${pos.pnl.toFixed(2)} (${pnlSign}${pos.pnlPercent.toFixed(2)}%)</div><button class="close-btn" onclick="closePosition(${pos.id})">Close Position</button></div>`; }).join('');
+      } else if (activeTab === 'pending') { container.innerHTML = '<div class="empty-state">No pending orders<br><small>Use Limit Order to create one</small></div>'; }
+      else if (activeTab === 'history') { const history = demoAccount.history.filter(h => h.pair === currentPair); if (history.length === 0) { container.innerHTML = '<div class="empty-state">No order history</div>'; return; } container.innerHTML = history.slice().reverse().map(h => { const pnlClass = h.pnl >= 0 ? 'profit' : 'loss'; const pnlSign = h.pnl >= 0 ? '+' : ''; return `<div class="position-item"><div class="position-header"><span class="position-pair">${h.pair}</span><span class="position-side ${h.side}">${h.side === 'buy' ? 'Long' : 'Short'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${h.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${h.entryPrice.toFixed(pairInfo[h.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Exit</span><span class="position-detail-value">${h.closePrice?.toFixed(pairInfo[h.pair]?.decimals || 2) || '--'}</span></div><div class="position-detail"><span class="position-detail-label">PnL</span><span class="position-detail-value ${pnlClass}">${pnlSign}$${h.pnl.toFixed(2)}</span></div></div></div>`; }).join(''); }
     }
 
-    function closePosition(id) {
-      const posIndex = demoAccount.positions.findIndex(p => p.id === id);
-      if (posIndex === -1) return;
-      const pos = demoAccount.positions[posIndex];
-      pos.closePrice = currentPrice;
-      pos.pnl = (pos.side === 'buy' ? 1 : -1) * (currentPrice - pos.entryPrice) * pos.amount;
-      demoAccount.balance += pos.pnl;
-      demoAccount.history.push(pos);
-      demoAccount.positions.splice(posIndex, 1);
-      if (pos.pnl > 0) userProfile.winRate = Math.round((userProfile.quizzesPassed / Math.max(1, userProfile.totalTrades)) * 100);
-      saveDemoAccount();
-      saveUserProfile();
-      drawPositionLines();
-      renderPositions();
-    }
+    function closePosition(id) { const posIndex = demoAccount.positions.findIndex(p => p.id === id); if (posIndex === -1) return; const pos = demoAccount.positions[posIndex]; pos.closePrice = currentPrice; pos.pnl = (pos.side === 'buy' ? 1 : -1) * (currentPrice - pos.entryPrice) * pos.amount; demoAccount.balance += pos.pnl; demoAccount.history.push(pos); demoAccount.positions.splice(posIndex, 1); if (pos.pnl > 0) userProfile.winRate = Math.round((userProfile.quizzesPassed / Math.max(1, userProfile.totalTrades)) * 100); saveDemoAccount(); saveUserProfile(); drawPositionLines(); renderPositions(); updateTradeInfo(); }
 
-    function cancelPending(id) {
-      demoAccount.pendingOrders = demoAccount.pendingOrders.filter(p => p.id !== id);
-      saveDemoAccount();
-      renderPositions();
-    }
+    function loadDemoAccount() { const saved = localStorage.getItem('demoAccount'); if (saved) { try { demoAccount = JSON.parse(saved); } catch (e) {} } }
+    function saveDemoAccount() { localStorage.setItem('demoAccount', JSON.stringify(demoAccount)); }
 
-    function loadDemoAccount() {
-      const saved = localStorage.getItem('demoAccount');
-      if (saved) { try { demoAccount = JSON.parse(saved); } catch (e) {} }
-    }
+    function renderQuizQuestion() { if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) return navigateTo('#home'); const q = currentLesson.quiz[quizState.currentQuestion]; const total = currentLesson.quiz.length; const num = quizState.currentQuestion + 1; let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`; document.getElementById('app').innerHTML = html; quizState.answered = false; }
+    function selectAnswer(index) { if (quizState.answered) return; quizState.answered = true; const q = currentLesson.quiz[quizState.currentQuestion]; if (index === q.correct) quizState.score++; document.querySelectorAll('.quiz-option').forEach((el, i) => { el.style.pointerEvents = 'none'; if (i === q.correct) el.classList.add('correct'); if (i === index && i !== q.correct) el.classList.add('incorrect'); }); document.getElementById('explanation').classList.add('show'); document.getElementById('btn-next').disabled = false; }
+    function nextQuestion() { quizState.currentQuestion++; if (quizState.currentQuestion >= currentLesson.quiz.length) showQuizResult(); else renderQuizQuestion(); }
+    function showQuizResult() { const total = currentLesson.quiz.length; const score = quizState.score; const pct = Math.round((score / total) * 100); let msg = pct === 100 ? ' عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید'; if (pct >= 70) { userProfile.quizzesPassed++; userProfile.lessonsCompleted++; saveUserProfile(); } document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`; }
 
-    function saveDemoAccount() {
-      localStorage.setItem('demoAccount', JSON.stringify(demoAccount));
-    }
-
-    function renderQuizQuestion() {
-      if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) return navigateTo('#home');
-      const q = currentLesson.quiz[quizState.currentQuestion];
-      const total = currentLesson.quiz.length;
-      const num = quizState.currentQuestion + 1;
-      let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`;
-      document.getElementById('app').innerHTML = html;
-      quizState.answered = false;
-    }
-
-    function selectAnswer(index) {
-      if (quizState.answered) return;
-      quizState.answered = true;
-      const q = currentLesson.quiz[quizState.currentQuestion];
-      if (index === q.correct) quizState.score++;
-      document.querySelectorAll('.quiz-option').forEach((el, i) => {
-        el.style.pointerEvents = 'none';
-        if (i === q.correct) el.classList.add('correct');
-        if (i === index && i !== q.correct) el.classList.add('incorrect');
-      });
-      document.getElementById('explanation').classList.add('show');
-      document.getElementById('btn-next').disabled = false;
-    }
-
-    function nextQuestion() {
-      quizState.currentQuestion++;
-      if (quizState.currentQuestion >= currentLesson.quiz.length) showQuizResult();
-      else renderQuizQuestion();
-    }
-
-    function showQuizResult() {
-      const total = currentLesson.quiz.length;
-      const score = quizState.score;
-      const pct = Math.round((score / total) * 100);
-      let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید';
-      if (pct >= 70) {
-        userProfile.quizzesPassed++;
-        userProfile.lessonsCompleted++;
-        saveUserProfile();
-      }
-      document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`;
-    }
-
-    function navigateTo(hash) {
-      if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); else clearInterval(ws); ws = null; }
-      if (chart) { chart.remove(); chart = null; }
-      history.pushState({ hash }, '', hash);
-      handleRoute();
-    }
-    
+    function navigateTo(hash) { if (ws) { if (typeof ws === 'object' && ws.close) ws.close(); ws = null; } if (chart) { chart.remove(); chart = null; } history.pushState({ hash }, '', hash); handleRoute(); }
     window.addEventListener('popstate', () => handleRoute());
-    window.addEventListener('resize', () => {
-      if (chart && document.getElementById('chartModal')?.classList.contains('active')) {
-        const container = document.getElementById('chartContainer');
-        const chartMain = document.getElementById('chartMain');
-        if (container && chartMain) { try { chart.applyOptions({ width: container.clientWidth, height: chartMain.clientHeight - 10 }); } catch(e) {} }
-      }
-    });
+    window.addEventListener('resize', () => { if (chart && document.getElementById('chartModal')?.classList.contains('active')) { const container = document.getElementById('chartContainer'); const chartMain = document.getElementById('chartMain'); if (container && chartMain) { try { chart.applyOptions({ width: container.clientWidth, height: chartMain.clientHeight - 10 }); } catch(e) {} } } });
     
     initApp();
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js?v=99').catch(console.error);
-    }
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('service-worker.js?v=99').catch(console.error); }
   </script>
 </body>
 </html>
-```
