@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -82,7 +83,6 @@
     .trade-tab.buy { background: #0ECB81; color: white; }
     .trade-tab.sell { background: #F64653; color: white; }
     
-    /* اصلاح مشکل 2: لوریج ریزتر */
     .leverage-selector { display: flex; gap: 3px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
     .leverage-btn { padding: 4px 7px; background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 4px; color: #1A1A1A; font-size: 10px; cursor: pointer; white-space: nowrap; }
     .leverage-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
@@ -118,7 +118,6 @@
     .current-price { font-size: 22px; font-weight: 700; color: #0ECB81; margin-bottom: 2px; }
     .price-change-text { font-size: 11px; color: #7F8C8D; }
     
-    /* اصلاح مشکل 1: Order Book alignment دقیق */
     .order-book { background: white; border: 1px solid #E8E8E8; border-radius: 6px; overflow: hidden; }
     .order-header { 
       display: grid; 
@@ -163,7 +162,6 @@
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
     .position-tab.active { color: #F0B90B; border-bottom-color: #F0B90B; font-weight: 600; }
     
-    /* اصلاح مشکل 3: padding-bottom برای جلوگیری از افتادن دکمه بازگشت */
     .positions-content { padding: 10px; padding-bottom: 100px; }
     
     .position-item { background: #F5F5F5; border-radius: 6px; padding: 10px; margin-bottom: 6px; }
@@ -186,7 +184,7 @@
     .chart-modal.active { display: flex; }
     .chart-header { display: flex; align-items: center; justify-content: flex-start; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #E8E8E8; background: white; flex-shrink: 0; flex-wrap: wrap; }
     .chart-pair-name { font-size: 14px; font-weight: 700; color: #2196F3; }
-    .data-mode-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; border-radius: 8px; font-size: 9px; font-weight: 600; }
+    .data-mode-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; border-radius: 8px; font-size: 9px; font-weight: 600; cursor: pointer; }
     .data-mode-badge.free { background: #FFF3E0; color: #F57C00; }
     .data-mode-badge.premium { background: #E8F5E9; color: #2E7D32; }
     .data-mode-badge .dot { width: 4px; height: 4px; border-radius: 50%; animation: pulse 2s infinite; }
@@ -207,12 +205,14 @@
     .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 6px 10px; display: flex; gap: 4px; overflow-x: auto; flex-shrink: 0; }
     .indicator-btn { padding: 5px 8px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 10px; cursor: pointer; white-space: nowrap; }
     .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
+    .indicator-btn.disabled { opacity: 0.4; cursor: not-allowed; }
     
     .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 40vh; }
     .indicator-subchart { height: 180px; position: relative; border-bottom: 1px solid #F0F0F0; }
     .indicator-subchart:last-child { border-bottom: none; }
     .indicator-subchart canvas { width: 100%; height: 100%; display: block; }
     .indicator-label { position: absolute; top: 4px; left: 8px; font-size: 10px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 5px; border-radius: 3px; }
+    .indicator-warning { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255, 243, 224, 0.95); padding: 12px 16px; border-radius: 8px; font-size: 11px; color: #F57C00; text-align: center; z-index: 10; border: 1px solid #FFB74D; }
     
     .profile-page { padding: 12px; }
     .profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 14px; border-radius: 12px; text-align: center; margin-bottom: 12px; }
@@ -267,6 +267,7 @@
     let isPremiumUser = false;
     let apiCallCount = 0;
     let lastApiCall = 0;
+    let isDataReal = false;
     
     let pairInfo = {
       BTCUSDT: { name: 'BTC/USDT', price: 80027, change: 0.53, decimals: 2, volatility: 500, basePrice: 80000 },
@@ -295,15 +296,15 @@
       if (t.includes('بازار')) return '📊';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
-      if (t.includes('روند')) return '';
+      if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک')) return '🛡️';
       if (t.includes('آزمون')) return '📝';
       if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
-      if (t.includes('ict')) return '';
+      if (t.includes('ict')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
-      if (t.includes('روانشناسی')) return '';
+      if (t.includes('روانشناسی')) return '🧘';
       return '📚';
     }
 
@@ -664,7 +665,7 @@
       <div class="chart-modal" id="chartModal">
         <div class="chart-header">
           <span class="chart-pair-name" id="chartPairName">${info.name}</span>
-          <span class="data-mode-badge ${isPremiumUser ? 'premium' : 'free'}" id="dataModeBadge">
+          <span class="data-mode-badge ${isPremiumUser ? 'premium' : 'free'}" id="dataModeBadge" onclick="toggleDataMode()">
             <span class="dot"></span>
             <span id="dataModeText">${isPremiumUser ? 'LIVE' : 'DELAYED'}</span>
           </span>
@@ -732,6 +733,8 @@
     function openChartModal() {
       document.getElementById('chartModal').classList.add('active');
       document.getElementById('chartPairName').textContent = pairInfo[currentPair].name;
+      const backButton = document.querySelector('.back-button');
+      if (backButton) backButton.classList.add('hidden');
       setTimeout(() => initChart(), 150);
     }
 
@@ -739,6 +742,25 @@
       document.getElementById('chartModal').classList.remove('active');
       if (chart) { chart.remove(); chart = null; }
       indicatorSeries = {};
+      const backButton = document.querySelector('.back-button');
+      if (backButton) backButton.classList.remove('hidden');
+    }
+
+    function toggleDataMode() {
+      isPremiumUser = !isPremiumUser;
+      saveUserProfile();
+      const badge = document.getElementById('dataModeBadge');
+      const text = document.getElementById('dataModeText');
+      if (isPremiumUser) {
+        badge.className = 'data-mode-badge premium';
+        text.textContent = 'LIVE';
+      } else {
+        badge.className = 'data-mode-badge free';
+        text.textContent = 'DELAYED';
+      }
+      if (chart) { chart.remove(); chart = null; }
+      indicatorSeries = {};
+      setTimeout(() => initChart(), 100);
     }
 
     function setupResize() {
@@ -895,7 +917,7 @@
           const loadingDiv = document.createElement('div');
           loadingDiv.className = 'chart-loading';
           loadingDiv.id = 'chartLoading';
-          loadingDiv.textContent = ' در حال دریافت داده...';
+          loadingDiv.textContent = '⏳ در حال دریافت داده...';
           container.appendChild(loadingDiv);
           
           fetchChartData().then(data => {
@@ -904,6 +926,7 @@
             
             if (data && data.length > 0) {
               chartData = data;
+              isDataReal = true;
               candleSeries.setData(chartData);
               currentPrice = chartData[chartData.length - 1].close;
               pairInfo[currentPair].price = currentPrice;
@@ -927,15 +950,18 @@
               };
               ws.onerror = () => {};
             } else {
+              isDataReal = false;
               generateSimulatedData();
             }
           }).catch(err => {
             const ld = document.getElementById('chartLoading');
             if (ld) ld.remove();
             console.error('API error:', err);
+            isDataReal = false;
             generateSimulatedData();
           });
         } else {
+          isDataReal = false;
           generateSimulatedData();
           if (ws) { clearInterval(ws); }
           ws = setInterval(() => {
@@ -973,6 +999,12 @@
 
     function toggleIndicator(indicator, event) {
       if (event) event.stopPropagation();
+      
+      if ((indicator === 'RSI' || indicator === 'MACD') && !isDataReal) {
+        alert('⚠️ RSI و MACD فقط با داده‌های واقعی کار می‌کنند.\nلطفاً حالت Live را فعال کنید.');
+        return;
+      }
+      
       const idx = activeIndicators.indexOf(indicator);
       if (idx > -1) activeIndicators.splice(idx, 1);
       else activeIndicators.push(indicator);
@@ -982,12 +1014,18 @@
 
     function updateIndicatorButtons() {
       document.querySelectorAll('.indicator-btn').forEach(btn => {
-        btn.classList.toggle('active', activeIndicators.includes(btn.textContent));
+        const isActive = activeIndicators.includes(btn.textContent);
+        btn.classList.toggle('active', isActive);
+        
+        if ((btn.textContent === 'RSI' || btn.textContent === 'MACD') && !isDataReal) {
+          btn.classList.add('disabled');
+        } else {
+          btn.classList.remove('disabled');
+        }
       });
     }
 
     function drawIndicators() {
-      // اصلاح مشکل 4: فقط اگر chartData واقعی داریم رسم کن
       if (!chart || !candleSeries || chartData.length < 30) {
         console.log('chartData not ready yet, length:', chartData.length);
         return;
@@ -1032,6 +1070,13 @@
       }
       
       if (activeIndicators.includes('RSI')) {
+        if (!isDataReal) {
+          const rsiContainer = document.createElement('div');
+          rsiContainer.className = 'indicator-subchart';
+          rsiContainer.innerHTML = '<div class="indicator-label">RSI(14)</div><div class="indicator-warning">⚠️ RSI فقط با داده‌های واقعی کار می‌کند<br>لطفاً حالت Live را فعال کنید</div>';
+          container.appendChild(rsiContainer);
+          return;
+        }
         const rsiData = calculateRSI(chartData, 14);
         const rsiContainer = document.createElement('div');
         rsiContainer.className = 'indicator-subchart';
@@ -1041,6 +1086,13 @@
       }
       
       if (activeIndicators.includes('MACD')) {
+        if (!isDataReal) {
+          const macdContainer = document.createElement('div');
+          macdContainer.className = 'indicator-subchart';
+          macdContainer.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><div class="indicator-warning">⚠️ MACD فقط با داده‌های واقعی کار می‌کند<br>لطفاً حالت Live را فعال کنید</div>';
+          container.appendChild(macdContainer);
+          return;
+        }
         const macdData = calculateMACD(chartData);
         const macdContainer = document.createElement('div');
         macdContainer.className = 'indicator-subchart';
@@ -1088,7 +1140,6 @@
       return { upper, middle, lower };
     }
 
-    // اصلاح مشکل 4: RSI واقعی با الگوریتم Wilder
     function calculateRSI(data, period) {
       const result = [];
       if (data.length < period + 1) return result;
@@ -1096,7 +1147,6 @@
       let avgGain = 0;
       let avgLoss = 0;
       
-      // محاسبه اولیه
       for (let i = 1; i <= period; i++) {
         const change = data[i].close - data[i - 1].close;
         if (change > 0) avgGain += change;
@@ -1105,11 +1155,9 @@
       avgGain /= period;
       avgLoss /= period;
       
-      // اولین مقدار RSI
       const firstRSI = avgLoss === 0 ? 100 : 100 - (100 / (1 + avgGain / avgLoss));
       result.push({ time: data[period].time, value: firstRSI });
       
-      // مقادیر بعدی با smoothing Wilder
       for (let i = period + 1; i < data.length; i++) {
         const change = data[i].close - data[i - 1].close;
         const gain = change > 0 ? change : 0;
@@ -1125,14 +1173,12 @@
       return result;
     }
 
-    // اصلاح مشکل 4: MACD واقعی
     function calculateMACD(data) {
       if (data.length < 35) return { macd: [], signal: [], histogram: [] };
       
       const ema12 = calculateEMA(data, 12);
       const ema26 = calculateEMA(data, 26);
       
-      // هم‌تراز کردن EMA12 و EMA26 بر اساس time
       const ema26Map = new Map(ema26.map(e => [e.time, e.value]));
       const macdValues = [];
       
@@ -1144,7 +1190,6 @@
       
       if (macdValues.length < 9) return { macd: [], signal: [], histogram: [] };
       
-      // محاسبه Signal Line (EMA9 از MACD)
       const signalMultiplier = 2 / 10;
       const signalLine = [];
       let signal = macdValues[0].value;
@@ -1160,7 +1205,6 @@
         }
       });
       
-      // محاسبه Histogram
       const signalMap = new Map(signalLine.map(s => [s.time, s.value]));
       const histogram = macdValues
         .filter(m => signalMap.has(m.time))
@@ -1227,18 +1271,15 @@
       
       const midY = h / 2;
       
-      // مقیاس بر اساس MACD line (نه histogram)
       const maxLine = Math.max(
         ...macdData.macd.map(v => Math.abs(v.value)),
         ...macdData.signal.map(v => Math.abs(v.value))
       );
       const lineScale = (midY * 0.85) / (maxLine || 1);
       
-      // مقیاس جداگانه برای هیستوگرام (بزرگ‌نمایی 2.5 برابری)
       const maxHist = Math.max(...macdData.histogram.map(v => Math.abs(v.value)));
       const histScale = (midY * 0.85 * 2.5) / (maxHist || 1);
       
-      // خط صفر
       ctx.strokeStyle = '#E0E0E0';
       ctx.lineWidth = 1;
       ctx.beginPath();
@@ -1246,7 +1287,6 @@
       ctx.lineTo(w, midY);
       ctx.stroke();
       
-      // رسم هیستوگرام با مقیاس مستقل (بزرگ‌تر)
       const barWidth = Math.max(3, (w / macdData.histogram.length) * 0.85);
       macdData.histogram.forEach((h_val, i) => {
         const x = (i / (macdData.histogram.length - 1)) * w;
@@ -1259,7 +1299,6 @@
       });
       ctx.globalAlpha = 1.0;
       
-      // رسم خط MACD با مقیاس خطوط
       ctx.strokeStyle = '#2196F3';
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -1271,7 +1310,6 @@
       });
       ctx.stroke();
       
-      // رسم خط Signal با مقیاس خطوط
       ctx.strokeStyle = '#FF9800';
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -1283,7 +1321,6 @@
       });
       ctx.stroke();
       
-      // لیبل مقادیر
       ctx.fillStyle = '#2196F3';
       ctx.font = 'bold 9px Arial';
       ctx.textAlign = 'left';
@@ -1553,7 +1590,7 @@
       const q = currentLesson.quiz[quizState.currentQuestion];
       const total = currentLesson.quiz.length;
       const num = quizState.currentQuestion + 1;
-      let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation"> ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`;
+      let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`;
       document.getElementById('app').innerHTML = html;
       quizState.answered = false;
     }
@@ -1614,3 +1651,4 @@
   </script>
 </body>
 </html>
+```
