@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#00D68F">
   <title>آکادمی ترید</title>
   <link rel="manifest" href="manifest.json">
-  <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Arial, sans-serif; background: #F5F5F5; color: #1A1A1A; line-height: 1.5; width: 100%; overflow-x: hidden; }
@@ -122,23 +121,9 @@
     .live-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; border-radius: 8px; font-size: 9px; font-weight: 600; background: #E8F5E9; color: #2E7D32; }
     .live-badge .dot { width: 4px; height: 4px; border-radius: 50%; background: #2E7D32; animation: pulse 1.5s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .chart-timeframes { display: flex; gap: 3px; flex: 1; }
-    .chart-action-btn { padding: 4px 7px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 10px; cursor: pointer; }
-    .chart-action-btn.active { background: #F0B90B; font-weight: 600; }
-    .chart-close-btn { font-size: 18px; cursor: pointer; color: #F64653; padding: 2px 8px; font-weight: 900; background: none; border: none; }
-    .chart-main-inline { position: relative; min-height: 280px; height: 45vh; flex-shrink: 0; }
+    .chart-close-btn { font-size: 18px; cursor: pointer; color: #F64653; padding: 2px 8px; font-weight: 900; background: none; border: none; margin-left: auto; }
+    .chart-main-inline { position: relative; width: 100%; height: 500px; flex-shrink: 0; }
     .chart-container { width: 100%; height: 100%; background: white; }
-    .resize-handle { position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: #F0B90B; cursor: ns-resize; opacity: 0.6; z-index: 100; touch-action: none; }
-    .resize-handle:hover { opacity: 1; }
-    .indicators-panel { background: #F5F5F5; border-top: 1px solid #E8E8E8; padding: 6px 10px; display: flex; gap: 4px; overflow-x: auto; flex-shrink: 0; }
-    .indicator-btn { padding: 5px 8px; background: white; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 10px; cursor: pointer; white-space: nowrap; }
-    .indicator-btn.active { background: #F0B90B; border-color: #F0B90B; font-weight: 600; }
-    .indicator-charts { background: white; border-top: 1px solid #E8E8E8; flex-shrink: 0; overflow-y: auto; max-height: 40vh; }
-    .indicator-subchart { height: 150px; position: relative; border-bottom: 1px solid #F0F0F0; overflow: hidden; }
-    .indicator-subchart:last-child { border-bottom: none; }
-    .indicator-subchart canvas { display: block; width: 100%; height: 100%; }
-    .indicator-label { position: absolute; top: 4px; left: 8px; font-size: 10px; color: #7F8C8D; font-weight: 700; z-index: 5; background: rgba(255,255,255,0.9); padding: 2px 5px; border-radius: 3px; }
-    .chart-error { padding: 20px; text-align: center; color: #F64653; font-size: 13px; }
     
     .positions-tabs { display: flex; border-bottom: 1px solid #E8E8E8; }
     .position-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; color: #7F8C8D; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
@@ -193,19 +178,18 @@
     let quizState = { currentQuestion: 0, score: 0, answered: false };
     let demoAccount = { balance: 10000, equity: 10000, positions: [], pendingOrders: [], history: [] };
     let userProfile = { name: 'کاربر آکادمی', email: 'user@academy.com', joinDate: '2026-09-06', lessonsCompleted: 0, quizzesPassed: 0, totalTrades: 0, winRate: 0 };
-    let chart, candleSeries, currentPrice = 0, priceUpdateInterval, pnlInterval, ws;
-    let currentTimeframe = '15m', tradeType = 'buy', sliderValue = 0;
-    let activeTab = 'positions', activeIndicators = [];
-    let chartData = [], indicatorSeries = {}, positionLines = {};
+    let currentPrice = 0, priceUpdateInterval, pnlInterval;
+    let tradeType = 'buy', sliderValue = 0;
+    let activeTab = 'positions';
     let currentPair = 'BTCUSDT';
     let isChartVisible = false;
     let lastPriceFetch = 0;
     
     let pairInfo = {
-      BTCUSDT: { name: 'BTC/USDT', price: 0, change: 0, decimals: 2, basePrice: 80000, cgId: 'bitcoin', ccSym: 'BTC' },
-      ETHUSDT: { name: 'ETH/USDT', price: 0, change: 0, decimals: 2, basePrice: 3800, cgId: 'ethereum', ccSym: 'ETH' },
-      XAUUSD:  { name: 'XAU/USD',  price: 0, change: 0, decimals: 2, basePrice: 2650, cgId: null, ccSym: null },
-      EURUSD:  { name: 'EUR/USD',  price: 0, change: 0, decimals: 4, basePrice: 1.0850, cgId: null, ccSym: null }
+      BTCUSDT: { name: 'BTC/USDT', price: 0, change: 0, decimals: 2, basePrice: 80000, cgId: 'bitcoin', tvSymbol: 'BINANCE:BTCUSDT' },
+      ETHUSDT: { name: 'ETH/USDT', price: 0, change: 0, decimals: 2, basePrice: 3800, cgId: 'ethereum', tvSymbol: 'BINANCE:ETHUSDT' },
+      XAUUSD:  { name: 'XAU/USD',  price: 0, change: 0, decimals: 2, basePrice: 2650, cgId: null, tvSymbol: 'OANDA:XAUUSD' },
+      EURUSD:  { name: 'EUR/USD',  price: 0, change: 0, decimals: 4, basePrice: 1.0850, cgId: null, tvSymbol: 'OANDA:EURUSD' }
     };
 
     function cleanJsonKeys(obj) {
@@ -227,7 +211,7 @@
       if (t.includes('کیف پول')) return '👛';
       if (t.includes('بازار')) return '';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
-      if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
+      if (t.includes('حمایت') || t.includes('مقاومت')) return '';
       if (t.includes('روند')) return '';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
@@ -321,26 +305,6 @@
       lastPriceFetch = now;
     }
 
-    async function fetchRealCandles() {
-      const info = pairInfo[currentPair];
-      if (!info.ccSym) return null;
-      
-      const aggregate = currentTimeframe === '1m' ? 1 : currentTimeframe === '5m' ? 5 : currentTimeframe === '15m' ? 15 : currentTimeframe === '1h' ? 60 : 240;
-      const limit = 200;
-      
-      try {
-        const res = await fetch(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${info.ccSym}&tsym=USD&limit=${limit}&aggregate=${aggregate}`, { signal: AbortSignal.timeout(6000) });
-        if (res.ok) {
-          const data = await res.json();
-          if (data.Data && data.Data.Data && data.Data.Data.length > 0) {
-            return data.Data.Data.map(d => ({ time: d.time, open: d.open, high: d.high, low: d.low, close: d.close }));
-          }
-        }
-      } catch(e) { console.log('CryptoCompare candles failed:', e.message); }
-      
-      return null;
-    }
-
     function handleRoute() {
       const hash = location.hash;
       if (hash === '#home' || hash === '' || !hash) renderHome();
@@ -359,7 +323,7 @@
     function renderHome() {
       const levels = [
         { id: 'beginner', icon: '🌱', title: 'دوره مقدماتی', levelName: 'مقدماتی', count: appData.courses.filter(c => c.level.includes('مقدماتی')).length },
-        { id: 'intermediate', icon: '', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
+        { id: 'intermediate', icon: '🌿', title: 'دوره میانی', levelName: 'میانی', count: appData.courses.filter(c => c.level.includes('میانی')).length },
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
@@ -391,12 +355,12 @@
       const cleanCourseId = String(courseId).replace(/\s+/g, '');
       const currentCourse = appData.courses.find(c => c.id === cleanCourseId);
       if (!currentCourse) {
-        document.getElementById('app').innerHTML = `<div class="loading"> دوره پیدا نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+        document.getElementById('app').innerHTML = `<div class="loading">❌ دوره پیدا نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
         return;
       }
       const lessons = currentCourse.lessons || [];
       let html = `<div class="header"><h1>${currentCourse.title}</h1><p>${lessons.length} درس</p></div>`;
-      if (lessons.length === 0) html += `<div class="loading">⚠️ این دوره هنوز درسی ندارد</div>`;
+      if (lessons.length === 0) html += `<div class="loading">️ این دوره هنوز درسی ندارد</div>`;
       else lessons.forEach((l, i) => {
         html += `<div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')"><div class="lesson-number">${i + 1}</div><div class="lesson-title">${l.title}</div></div>`;
       });
@@ -445,7 +409,7 @@
       const progress = Math.round((userProfile.lessonsCompleted / totalLessons) * 100);
       let html = `<div class="profile-page">
         <div class="profile-header">
-          <div class="profile-avatar"></div>
+          <div class="profile-avatar">👤</div>
           <div class="profile-name">${userProfile.name}</div>
           <div class="profile-email">${userProfile.email}</div>
         </div>
@@ -460,7 +424,7 @@
           <div class="profile-item"><span class="profile-item-label">تعداد معاملات</span><span class="profile-item-value">${userProfile.totalTrades}</span></div>
         </div>
         <button class="profile-btn primary" onclick="resetDemoAccount()">🔄 ریست حساب دمو</button>
-        <button class="profile-btn danger" onclick="clearAllData()">🗑️ پاک کردن همه داده‌ها</button>
+        <button class="profile-btn danger" onclick="clearAllData()">️ پاک کردن همه داده‌ها</button>
       </div>
       <button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
@@ -472,12 +436,8 @@
     function saveUserProfile() { localStorage.setItem('userProfile', JSON.stringify(userProfile)); }
 
     function renderTradePage() {
-      if (ws) { ws.close(); ws = null; }
       if (priceUpdateInterval) { clearInterval(priceUpdateInterval); priceUpdateInterval = null; }
       if (pnlInterval) { clearInterval(pnlInterval); pnlInterval = null; }
-      if (chart) { chart.remove(); chart = null; }
-      indicatorSeries = {};
-      positionLines = {};
       isChartVisible = false;
       
       const info = pairInfo[currentPair];
@@ -555,27 +515,11 @@
           <div class="chart-section-header">
             <span class="chart-pair-name" id="chartPairName">${info.name}</span>
             <span class="live-badge"><span class="dot"></span><span>LIVE</span></span>
-            <div class="chart-timeframes">
-              <button class="chart-action-btn" onclick="changeTimeframe('1m', event)">1m</button>
-              <button class="chart-action-btn" onclick="changeTimeframe('5m', event)">5m</button>
-              <button class="chart-action-btn ${currentTimeframe === '15m' ? 'active' : ''}" onclick="changeTimeframe('15m', event)">15m</button>
-              <button class="chart-action-btn" onclick="changeTimeframe('1h', event)">1h</button>
-              <button class="chart-action-btn" onclick="changeTimeframe('4h', event)">4h</button>
-            </div>
             <button class="chart-close-btn" onclick="toggleChart()">✕</button>
           </div>
-          <div class="chart-main-inline" id="chartMainInline">
-            <div class="chart-container" id="chartContainer"></div>
-            <div class="resize-handle" id="resizeHandle"></div>
+          <div class="chart-main-inline">
+            <div class="chart-container" id="tradingview-widget"></div>
           </div>
-          <div class="indicators-panel">
-            <button class="indicator-btn" onclick="toggleIndicator('SMA', event)">SMA</button>
-            <button class="indicator-btn" onclick="toggleIndicator('EMA', event)">EMA</button>
-            <button class="indicator-btn" onclick="toggleIndicator('BOLL', event)">BOLL</button>
-            <button class="indicator-btn" onclick="toggleIndicator('RSI', event)">RSI</button>
-            <button class="indicator-btn" onclick="toggleIndicator('MACD', event)">MACD</button>
-          </div>
-          <div class="indicator-charts" id="indicatorCharts"></div>
         </div>
         <div class="positions-tabs">
           <div class="position-tab ${activeTab === 'positions' ? 'active' : ''}" onclick="switchTab('positions', event)">Current Position</div>
@@ -599,7 +543,6 @@
       renderOrderBook();
       renderPositions();
       setupSlider();
-      setupResize();
       updateTradeInfo();
       startPriceUpdates();
       startPnLUpdates();
@@ -613,14 +556,51 @@
       if (isChartVisible) {
         section.style.display = 'block';
         document.getElementById('chartPairName').textContent = pairInfo[currentPair].name;
-        setTimeout(() => initChart(), 100);
+        setTimeout(() => loadTradingViewWidget(), 100);
       } else {
         section.style.display = 'none';
-        if (chart) { chart.remove(); chart = null; }
-        if (ws) { ws.close(); ws = null; }
-        indicatorSeries = {};
-        positionLines = {};
+        document.getElementById('tradingview-widget').innerHTML = '';
       }
+    }
+
+    function loadTradingViewWidget() {
+      const container = document.getElementById('tradingview-widget');
+      if (!container) return;
+      container.innerHTML = '';
+      
+      const info = pairInfo[currentPair];
+      const symbol = info.tvSymbol;
+      
+      const widget = document.createElement('div');
+      widget.className = 'tradingview-widget-container';
+      widget.style.height = '100%';
+      widget.style.width = '100%';
+      container.appendChild(widget);
+      
+      const script = document.createElement('script');
+      script.src = 'https://s3.tradingview.com/tv.js';
+      script.onload = () => {
+        if (typeof TradingView !== 'undefined') {
+          new TradingView.widget({
+            autosize: true,
+            symbol: symbol,
+            interval: '15',
+            timezone: 'Asia/Tehran',
+            theme: 'light',
+            style: '1',
+            locale: 'fa',
+            toolbar_bg: '#f1f3f6',
+            enable_publishing: false,
+            allow_symbol_change: true,
+            container_id: 'tradingview-widget',
+            studies: ['RSI@tv-basicstudies', 'MACD@tv-basicstudies', 'MAExp@tv-basicstudies'],
+            show_popup_button: true,
+            popup_width: '1000',
+            popup_height: '650'
+          });
+        }
+      };
+      document.head.appendChild(script);
     }
 
     function startPriceUpdates() {
@@ -650,286 +630,6 @@
       closePairDropdown();
       renderTradePage();
     }
-
-    function setupResize() {
-      const handle = document.getElementById('resizeHandle');
-      const chartMain = document.getElementById('chartMainInline');
-      if (!handle || !chartMain) return;
-      let isResizing = false, startY, startHeight;
-      const startResize = (e) => { isResizing = true; startY = e.touches ? e.touches[0].clientY : e.clientY; startHeight = chartMain.clientHeight; e.preventDefault(); e.stopPropagation(); };
-      const doResize = (e) => { if (!isResizing) return; e.preventDefault(); e.stopPropagation(); const y = e.touches ? e.touches[0].clientY : e.clientY; const delta = startY - y; const newHeight = Math.max(200, Math.min(window.innerHeight * 0.8, startHeight + delta)); chartMain.style.height = newHeight + 'px'; if (chart) { try { chart.applyOptions({ width: chartMain.clientWidth, height: newHeight - 10 }); } catch(err) {} } };
-      const stopResize = () => { isResizing = false; };
-      handle.addEventListener('mousedown', startResize);
-      handle.addEventListener('touchstart', startResize, {passive: false});
-      document.addEventListener('mousemove', doResize);
-      document.addEventListener('touchmove', doResize, {passive: false});
-      document.addEventListener('mouseup', stopResize);
-      document.addEventListener('touchend', stopResize);
-    }
-
-    async function initChart() {
-      const container = document.getElementById('chartContainer');
-      if (!container) return;
-      if (typeof LightweightCharts === 'undefined') { container.innerHTML = '<div class="chart-error">خطا در بارگذاری چارت</div>'; return; }
-      try {
-        chart = LightweightCharts.createChart(container, {
-          width: container.clientWidth, height: container.clientHeight - 10,
-          layout: { background: { color: '#FFFFFF' }, textColor: '#1A1A1A', fontSize: 10 },
-          grid: { vertLines: { color: '#F0F0F0' }, horzLines: { color: '#F0F0F0' } },
-          crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
-          rightPriceScale: { borderColor: '#E8E8E8', scaleMargins: { top: 0.05, bottom: 0.05 }, autoScale: true },
-          timeScale: { borderColor: '#E8E8E8', timeVisible: true, rightOffset: 5, fixLeftEdge: false, fixRightEdge: false, tickMarkFormatter: (time) => { const date = new Date(time * 1000); return date.getHours().toString().padStart(2, '0') + ':' + date.getMinutes().toString().padStart(2, '0'); } },
-          handleScroll: { vertTouchDrag: false, horzTouchDrag: true, mouseWheel: true },
-          handleScale: { axisPressedMouseMove: { price: true, time: true }, mouseWheel: true, pinch: true }
-        });
-        candleSeries = chart.addCandlestickSeries({ upColor: '#0ECB81', downColor: '#F64653', borderVisible: false, wickUpColor: '#0ECB81', wickDownColor: '#F64653' });
-        
-        let candles = await fetchRealCandles();
-        if (!candles || candles.length === 0) {
-          container.innerHTML = '<div class="chart-error">⚠️ Unable to load live data. Please check your connection.</div>';
-          return;
-        }
-        
-        chartData = candles;
-        candleSeries.setData(chartData);
-        currentPrice = chartData[chartData.length - 1].close;
-        pairInfo[currentPair].price = currentPrice;
-        
-        updatePriceDisplay();
-        drawPositionLines();
-        
-        // اتصال WebSocket برای داده‌های زنده
-        connectWebSocket();
-        
-        setTimeout(() => drawIndicators(), 200);
-      } catch (err) { console.error('Chart error:', err); container.innerHTML = '<div class="chart-error">📊 خطا در بارگذاری چارت</div>'; }
-    }
-
-    function connectWebSocket() {
-      if (ws) { ws.close(); ws = null; }
-      const info = pairInfo[currentPair];
-      if (!info.ccSym) return;
-      
-      const binanceSymbol = info.ccSym + 'USDT';
-      ws = new WebSocket(`wss://stream.binance.com:9443/ws/${binanceSymbol.toLowerCase()}@kline_${currentTimeframe}`);
-      
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          const k = data.k;
-          const candle = { time: k.t / 1000, open: parseFloat(k.o), high: parseFloat(k.h), low: parseFloat(k.l), close: parseFloat(k.c) };
-          if (candleSeries) candleSeries.update(candle);
-          currentPrice = candle.close;
-          pairInfo[currentPair].price = currentPrice;
-          updatePriceDisplay();
-          updatePositionsPnL();
-        } catch(e) {}
-      };
-      
-      ws.onerror = (err) => { console.log('WebSocket error:', err); };
-      ws.onclose = () => { console.log('WebSocket closed'); };
-    }
-
-    function changeTimeframe(tf, event) {
-      if (event) event.stopPropagation();
-      currentTimeframe = tf;
-      document.querySelectorAll('.chart-action-btn').forEach(b => b.classList.remove('active'));
-      if (event && event.target) event.target.classList.add('active');
-      if (chart) { chart.remove(); chart = null; }
-      if (ws) { ws.close(); ws = null; }
-      indicatorSeries = {};
-      positionLines = {};
-      setTimeout(() => initChart(), 100);
-    }
-
-    function toggleIndicator(indicator, event) {
-      if (event) event.stopPropagation();
-      const idx = activeIndicators.indexOf(indicator);
-      if (idx > -1) activeIndicators.splice(idx, 1);
-      else activeIndicators.push(indicator);
-      updateIndicatorButtons();
-      setTimeout(() => drawIndicators(), 100);
-    }
-
-    function updateIndicatorButtons() {
-      document.querySelectorAll('.indicator-btn').forEach(btn => {
-        btn.classList.toggle('active', activeIndicators.includes(btn.textContent));
-      });
-    }
-
-    function drawIndicators() {
-      if (!chart || !candleSeries || chartData.length < 30) return;
-      Object.keys(indicatorSeries).forEach(key => { try { const s = indicatorSeries[key]; if (s && typeof s.remove === 'function') s.remove(); } catch(e) {} });
-      indicatorSeries = {};
-      const container = document.getElementById('indicatorCharts');
-      if (container) container.innerHTML = '';
-      
-      if (activeIndicators.includes('SMA')) {
-        indicatorSeries.sma20 = chart.addLineSeries({ color: '#2196F3', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
-        indicatorSeries.sma50 = chart.addLineSeries({ color: '#FF9800', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
-        indicatorSeries.sma20.setData(calculateMA(chartData, 20));
-        indicatorSeries.sma50.setData(calculateMA(chartData, 50));
-      }
-      if (activeIndicators.includes('EMA')) {
-        indicatorSeries.ema9 = chart.addLineSeries({ color: '#4CAF50', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
-        indicatorSeries.ema21 = chart.addLineSeries({ color: '#F44336', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
-        indicatorSeries.ema9.setData(calculateEMA(chartData, 9));
-        indicatorSeries.ema21.setData(calculateEMA(chartData, 21));
-      }
-      if (activeIndicators.includes('BOLL')) {
-        const boll = calculateBollinger(chartData, 20, 2);
-        indicatorSeries.bollUpper = chart.addLineSeries({ color: '#9E9E9E', lineWidth: 1, lineStyle: 2, priceLineVisible: false, lastValueVisible: false });
-        indicatorSeries.bollMiddle = chart.addLineSeries({ color: '#2196F3', lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false });
-        indicatorSeries.bollLower = chart.addLineSeries({ color: '#9E9E9E', lineWidth: 1, lineStyle: 2, priceLineVisible: false, lastValueVisible: false });
-        indicatorSeries.bollUpper.setData(boll.upper);
-        indicatorSeries.bollMiddle.setData(boll.middle);
-        indicatorSeries.bollLower.setData(boll.lower);
-      }
-      if (activeIndicators.includes('RSI')) {
-        const rsiData = calculateRSI(chartData, 14);
-        const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">RSI(14)</div><canvas></canvas>'; container.appendChild(c);
-        setTimeout(() => drawRSI(rsiData, c.querySelector('canvas'), chartData), 100);
-      }
-      if (activeIndicators.includes('MACD')) {
-        const macdData = calculateMACD(chartData);
-        const c = document.createElement('div'); c.className = 'indicator-subchart'; c.innerHTML = '<div class="indicator-label">MACD(12,26,9)</div><canvas></canvas>'; container.appendChild(c);
-        setTimeout(() => drawMACD(macdData, c.querySelector('canvas'), chartData), 100);
-      }
-    }
-
-    function calculateMA(data, period) { const result = []; for (let i = period - 1; i < data.length; i++) { let sum = 0; for (let j = 0; j < period; j++) sum += data[i - j].close; result.push({ time: data[i].time, value: sum / period }); } return result; }
-    function calculateEMA(data, period) { const result = []; const multiplier = 2 / (period + 1); let ema = data[0].close; for (let i = 0; i < data.length; i++) { if (i < period - 1) ema = (data[i].close + (period - 1) * ema) / period; else ema = (data[i].close - ema) * multiplier + ema; if (i >= period - 1) result.push({ time: data[i].time, value: ema }); } return result; }
-    function calculateBollinger(data, period, stdDev) { const upper = [], middle = [], lower = []; for (let i = period - 1; i < data.length; i++) { let sum = 0; for (let j = 0; j < period; j++) sum += data[i - j].close; const avg = sum / period; let variance = 0; for (let j = 0; j < period; j++) variance += Math.pow(data[i - j].close - avg, 2); const std = Math.sqrt(variance / period); upper.push({ time: data[i].time, value: avg + stdDev * std }); middle.push({ time: data[i].time, value: avg }); lower.push({ time: data[i].time, value: avg - stdDev * std }); } return { upper, middle, lower }; }
-    
-    function calculateRSI(data, period) {
-      const result = [];
-      if (data.length < period + 1) return result;
-      let avgGain = 0, avgLoss = 0;
-      for (let i = 1; i <= period; i++) { const change = data[i].close - data[i - 1].close; if (change > 0) avgGain += change; else avgLoss += Math.abs(change); }
-      avgGain /= period; avgLoss /= period;
-      result.push({ time: data[period].time, value: avgLoss === 0 ? 100 : 100 - (100 / (1 + avgGain / avgLoss)) });
-      for (let i = period + 1; i < data.length; i++) {
-        const change = data[i].close - data[i - 1].close;
-        const gain = change > 0 ? change : 0, loss = change < 0 ? Math.abs(change) : 0;
-        avgGain = (avgGain * (period - 1) + gain) / period;
-        avgLoss = (avgLoss * (period - 1) + loss) / period;
-        result.push({ time: data[i].time, value: avgLoss === 0 ? 100 : 100 - (100 / (1 + avgGain / avgLoss)) });
-      }
-      return result;
-    }
-
-    function calculateMACD(data) {
-      if (data.length < 35) return { macd: [], signal: [], histogram: [] };
-      const ema12 = calculateEMA(data, 12), ema26 = calculateEMA(data, 26);
-      const ema26Map = new Map(ema26.map(e => [e.time, e.value]));
-      const macdValues = [];
-      ema12.forEach(e12 => { if (ema26Map.has(e12.time)) macdValues.push({ time: e12.time, value: e12.value - ema26Map.get(e12.time) }); });
-      if (macdValues.length < 9) return { macd: [], signal: [], histogram: [] };
-      const signalLine = []; let signal = macdValues[0].value;
-      macdValues.forEach((m, i) => { if (i < 8) signal = (m.value + i * signal) / (i + 1); else signal = (m.value - signal) * 0.2 + signal; if (i >= 8) signalLine.push({ time: m.time, value: signal }); });
-      const signalMap = new Map(signalLine.map(s => [s.time, s.value]));
-      const histogram = macdValues.filter(m => signalMap.has(m.time)).map(m => ({ time: m.time, value: m.value - signalMap.get(m.time) }));
-      return { macd: macdValues, signal: signalLine, histogram };
-    }
-
-    function drawRSI(rsiData, canvas, chartData) {
-      if (!canvas || rsiData.length === 0) return;
-      const chartContainer = document.getElementById('chartContainer');
-      const chartWidth = chartContainer ? chartContainer.clientWidth : canvas.parentElement.clientWidth;
-      const chartHeight = canvas.parentElement.clientHeight;
-      canvas.width = chartWidth * 2;
-      canvas.height = chartHeight * 2;
-      canvas.style.width = chartWidth + 'px';
-      canvas.style.height = chartHeight + 'px';
-      const ctx = canvas.getContext('2d'); ctx.scale(2, 2);
-      const w = chartWidth, h = chartHeight;
-      ctx.fillStyle = 'white'; ctx.fillRect(0, 0, w, h);
-      ctx.fillStyle = 'rgba(246, 70, 83, 0.08)'; ctx.fillRect(0, 0, w, h * 0.3);
-      ctx.fillStyle = 'rgba(14, 203, 129, 0.08)'; ctx.fillRect(0, h * 0.7, w, h * 0.3);
-      ctx.strokeStyle = '#E0E0E0'; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
-      [30, 50, 70].forEach(level => { const y = h - (level / 100) * h; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); ctx.fillStyle = '#7F8C8D'; ctx.font = 'bold 10px Arial'; ctx.textAlign = 'left'; ctx.fillText(level.toString(), 6, y - 3); });
-      ctx.setLineDash([]); ctx.strokeStyle = '#FF9800'; ctx.lineWidth = 1.5; ctx.beginPath();
-      rsiData.forEach((r, i) => { const x = (i / (rsiData.length - 1)) * w; const y = h - (r.value / 100) * h; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
-      ctx.stroke();
-    }
-
-    function drawMACD(macdData, canvas, chartData) {
-      if (!canvas || macdData.macd.length === 0) return;
-      const chartContainer = document.getElementById('chartContainer');
-      const chartWidth = chartContainer ? chartContainer.clientWidth : canvas.parentElement.clientWidth;
-      const chartHeight = canvas.parentElement.clientHeight;
-      canvas.width = chartWidth * 2;
-      canvas.height = chartHeight * 2;
-      canvas.style.width = chartWidth + 'px';
-      canvas.style.height = chartHeight + 'px';
-      const ctx = canvas.getContext('2d'); ctx.scale(2, 2);
-      const w = chartWidth, h = chartHeight;
-      ctx.fillStyle = 'white'; ctx.fillRect(0, 0, w, h);
-      const midY = h / 2;
-      const maxLine = Math.max(...macdData.macd.map(v => Math.abs(v.value)), ...macdData.signal.map(v => Math.abs(v.value)));
-      const lineScale = (midY * 0.85) / (maxLine || 1);
-      const maxHist = Math.max(...macdData.histogram.map(v => Math.abs(v.value)));
-      const histScale = (midY * 0.85 * 2.5) / (maxHist || 1);
-      ctx.strokeStyle = '#E0E0E0'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, midY); ctx.lineTo(w, midY); ctx.stroke();
-      const barWidth = Math.max(3, (w / macdData.histogram.length) * 0.85);
-      macdData.histogram.forEach((h_val, i) => { const x = (i / (macdData.histogram.length - 1)) * w; const h_px = h_val.value * histScale; ctx.globalAlpha = 0.75; ctx.fillStyle = h_val.value >= 0 ? '#0ECB81' : '#F64653'; const barHeight = Math.abs(h_px); const y = h_val.value >= 0 ? midY - barHeight : midY; ctx.fillRect(x - barWidth/2, y, barWidth, barHeight); });
-      ctx.globalAlpha = 1.0;
-      ctx.strokeStyle = '#2196F3'; ctx.lineWidth = 2; ctx.beginPath();
-      macdData.macd.forEach((m, i) => { const x = (i / (macdData.macd.length - 1)) * w; const y = midY - m.value * lineScale; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
-      ctx.stroke();
-      ctx.strokeStyle = '#FF9800'; ctx.lineWidth = 2; ctx.beginPath();
-      macdData.signal.forEach((s, i) => { const x = (i / (macdData.signal.length - 1)) * w; const y = midY - s.value * lineScale; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
-      ctx.stroke();
-    }
-
-    function drawPositionLines() {
-      if (!chart || !candleSeries) return;
-      Object.keys(positionLines).forEach(key => { try { const l = positionLines[key]; if (l && typeof l.remove === 'function') l.remove(); } catch(e) {} });
-      positionLines = {};
-      demoAccount.positions.filter(p => p.pair === currentPair).forEach((pos, idx) => {
-        try {
-          positionLines[`entry_${idx}`] = candleSeries.createPriceLine({ price: pos.entryPrice, color: '#2196F3', lineWidth: 2, lineStyle: 0, axisLabelVisible: true, title: `Entry ${pos.side === 'buy' ? 'L' : 'S'}` });
-          if (pos.sl) positionLines[`sl_${idx}`] = candleSeries.createPriceLine({ price: pos.sl, color: '#F64653', lineWidth: 2, lineStyle: 2, axisLabelVisible: true, title: 'SL' });
-          if (pos.tp) positionLines[`tp_${idx}`] = candleSeries.createPriceLine({ price: pos.tp, color: '#0ECB81', lineWidth: 2, lineStyle: 2, axisLabelVisible: true, title: 'TP' });
-        } catch(e) {}
-      });
-    }
-
-    function generateOrderBook() {
-      const asks = [], bids = [];
-      const info = pairInfo[currentPair];
-      const decimals = info.decimals;
-      const step = currentPair === 'BTCUSDT' ? 10 : currentPair === 'ETHUSDT' ? 1 : currentPair === 'XAUUSD' ? 0.5 : 0.0005;
-      for (let i = 1; i <= 8; i++) {
-        asks.push({ price: (currentPrice + i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) });
-        bids.push({ price: (currentPrice - i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) });
-      }
-      return { asks: asks.reverse(), bids };
-    }
-
-    function renderOrderBook() {
-      const { asks, bids } = generateOrderBook();
-      const asksEl = document.getElementById('orderBookAsks');
-      const bidsEl = document.getElementById('orderBookBids');
-      if (asksEl) asksEl.innerHTML = asks.map(o => `<div class="order-row ask"><span class="col-amount">${o.amount}</span><span class="col-price ask">${o.price}</span></div>`).join('');
-      if (bidsEl) bidsEl.innerHTML = bids.map(o => `<div class="order-row bid"><span class="col-amount">${o.amount}</span><span class="col-price bid">${o.price}</span></div>`).join('');
-    }
-
-    function updatePriceDisplay() {
-      const info = pairInfo[currentPair];
-      const priceEl = document.getElementById('currentPrice');
-      const changeEl = document.getElementById('pairChange');
-      if (priceEl) priceEl.textContent = currentPrice.toFixed(info.decimals);
-      if (changeEl) {
-        const changeClass = info.change >= 0 ? 'up' : 'down';
-        const changeSign = info.change >= 0 ? '+' : '';
-        changeEl.textContent = `${changeSign}${info.change.toFixed(2)}%`;
-        changeEl.className = `pair-change ${changeClass}`;
-      }
-    }
-
-    function setTradeType(type) { tradeType = type; const buyTab = document.getElementById('buyTab'); const sellTab = document.getElementById('sellTab'); const submitBtn = document.getElementById('submitBtn'); if (buyTab) buyTab.className = 'trade-tab ' + (type === 'buy' ? 'buy' : ''); if (sellTab) sellTab.className = 'trade-tab ' + (type === 'sell' ? 'sell' : ''); if (submitBtn) { submitBtn.className = 'submit-btn ' + type; submitBtn.textContent = type === 'buy' ? 'Buy/Long' : 'Sell/Short'; } updateTradeInfo(); }
-    function setLeverage(lev, btn) { document.querySelectorAll('.leverage-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); updateTradeInfo(); }
 
     function setupSlider() {
       const sliderDot = document.getElementById('sliderDot'); const sliderFill = document.getElementById('sliderFill'); const sliderContainer = document.getElementById('sliderContainer');
@@ -977,7 +677,7 @@
       demoAccount.positions.push(position);
       userProfile.totalTrades++;
       saveDemoAccount(); saveUserProfile();
-      drawPositionLines(); renderPositions(); updateTradeInfo();
+      renderPositions(); updateTradeInfo();
       alert('Order submitted!');
     }
 
@@ -1041,10 +741,45 @@
       if (pos.pnl > 0) userProfile.winRate = Math.round((userProfile.quizzesPassed / Math.max(1, userProfile.totalTrades)) * 100); 
       saveDemoAccount(); 
       saveUserProfile(); 
-      drawPositionLines(); 
       renderPositions(); 
       updateTradeInfo(); 
     }
+
+    function generateOrderBook() {
+      const asks = [], bids = [];
+      const info = pairInfo[currentPair];
+      const decimals = info.decimals;
+      const step = currentPair === 'BTCUSDT' ? 10 : currentPair === 'ETHUSDT' ? 1 : currentPair === 'XAUUSD' ? 0.5 : 0.0005;
+      for (let i = 1; i <= 8; i++) {
+        asks.push({ price: (currentPrice + i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) });
+        bids.push({ price: (currentPrice - i * step).toFixed(decimals), amount: (Math.random() * 10).toFixed(4) });
+      }
+      return { asks: asks.reverse(), bids };
+    }
+
+    function renderOrderBook() {
+      const { asks, bids } = generateOrderBook();
+      const asksEl = document.getElementById('orderBookAsks');
+      const bidsEl = document.getElementById('orderBookBids');
+      if (asksEl) asksEl.innerHTML = asks.map(o => `<div class="order-row ask"><span class="col-amount">${o.amount}</span><span class="col-price ask">${o.price}</span></div>`).join('');
+      if (bidsEl) bidsEl.innerHTML = bids.map(o => `<div class="order-row bid"><span class="col-amount">${o.amount}</span><span class="col-price bid">${o.price}</span></div>`).join('');
+    }
+
+    function updatePriceDisplay() {
+      const info = pairInfo[currentPair];
+      const priceEl = document.getElementById('currentPrice');
+      const changeEl = document.getElementById('pairChange');
+      if (priceEl) priceEl.textContent = currentPrice.toFixed(info.decimals);
+      if (changeEl) {
+        const changeClass = info.change >= 0 ? 'up' : 'down';
+        const changeSign = info.change >= 0 ? '+' : '';
+        changeEl.textContent = `${changeSign}${info.change.toFixed(2)}%`;
+        changeEl.className = `pair-change ${changeClass}`;
+      }
+    }
+
+    function setTradeType(type) { tradeType = type; const buyTab = document.getElementById('buyTab'); const sellTab = document.getElementById('sellTab'); const submitBtn = document.getElementById('submitBtn'); if (buyTab) buyTab.className = 'trade-tab ' + (type === 'buy' ? 'buy' : ''); if (sellTab) sellTab.className = 'trade-tab ' + (type === 'sell' ? 'sell' : ''); if (submitBtn) { submitBtn.className = 'submit-btn ' + type; submitBtn.textContent = type === 'buy' ? 'Buy/Long' : 'Sell/Short'; } updateTradeInfo(); }
+    function setLeverage(lev, btn) { document.querySelectorAll('.leverage-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); updateTradeInfo(); }
 
     function loadDemoAccount() { const saved = localStorage.getItem('demoAccount'); if (saved) { try { demoAccount = JSON.parse(saved); } catch (e) {} } }
     function saveDemoAccount() { localStorage.setItem('demoAccount', JSON.stringify(demoAccount)); }
@@ -1054,9 +789,8 @@
     function nextQuestion() { quizState.currentQuestion++; if (quizState.currentQuestion >= currentLesson.quiz.length) showQuizResult(); else renderQuizQuestion(); }
     function showQuizResult() { const total = currentLesson.quiz.length; const score = quizState.score; const pct = Math.round((score / total) * 100); let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید'; if (pct >= 70) { userProfile.quizzesPassed++; userProfile.lessonsCompleted++; saveUserProfile(); } document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`; }
 
-    function navigateTo(hash) { if (chart) { chart.remove(); chart = null; } if (ws) { ws.close(); ws = null; } history.pushState({ hash }, '', hash); handleRoute(); }
+    function navigateTo(hash) { history.pushState({ hash }, '', hash); handleRoute(); }
     window.addEventListener('popstate', () => handleRoute());
-    window.addEventListener('resize', () => { if (chart && isChartVisible) { const container = document.getElementById('chartContainer'); const chartMain = document.getElementById('chartMainInline'); if (container && chartMain) { try { chart.applyOptions({ width: container.clientWidth, height: chartMain.clientHeight - 10 }); } catch(e) {} } } });
     
     initApp();
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('service-worker.js?v=99').catch(console.error); }
