@@ -116,12 +116,13 @@
     .order-row .col-price.ask { color: #F64653; }
     .order-row .col-price.bid { color: #0ECB81; }
     
-    /* Inline chart section */
     .chart-section { border-bottom: 1px solid #E8E8E8; background: white; }
     .chart-section-header { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #E8E8E8; flex-wrap: wrap; }
     .chart-pair-name { font-size: 14px; font-weight: 700; color: #2196F3; }
     .live-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; border-radius: 8px; font-size: 9px; font-weight: 600; background: #E8F5E9; color: #2E7D32; }
     .live-badge .dot { width: 4px; height: 4px; border-radius: 50%; background: #2E7D32; animation: pulse 1.5s infinite; }
+    .live-badge.simulated { background: #FFF3E0; color: #F57C00; }
+    .live-badge.simulated .dot { background: #F57C00; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     .chart-timeframes { display: flex; gap: 3px; flex: 1; }
     .chart-action-btn { padding: 4px 7px; background: #F5F5F5; border: none; border-radius: 4px; font-size: 10px; cursor: pointer; }
@@ -149,15 +150,15 @@
     .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .position-pair { font-size: 13px; font-weight: 700; color: #2196F3; }
     .position-side { font-size: 11px; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
-    .position-side.long { background: rgba(14, 203, 129, 0.15); color: #0ECB81; }
-    .position-side.short { background: rgba(246, 70, 83, 0.15); color: #F64653; }
+    .position-side.buy { background: rgba(14, 203, 129, 0.15); color: #0ECB81; }
+    .position-side.sell { background: rgba(246, 70, 83, 0.15); color: #F64653; }
     .position-details { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; margin-bottom: 6px; }
     .position-detail { display: flex; justify-content: space-between; padding: 2px 0; }
     .position-detail-label { color: #64B5F6; }
     .position-detail-value { color: #81C784; font-weight: 500; }
     .position-pnl { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
     .position-pnl.profit { color: #0ECB81; }
-    .position-pnl.loss { color: #F64653 !important; }
+    .position-pnl.loss { color: #F64653; }
     .close-btn { width: 100%; padding: 8px; background: #F64653; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; }
     .empty-state { text-align: center; padding: 24px 12px; color: #7F8C8D; font-size: 12px; }
     
@@ -207,6 +208,7 @@
     let chartData = [], indicatorSeries = {}, positionLines = {};
     let currentPair = 'BTCUSDT';
     let isChartVisible = false;
+    let isDataReal = false;
     let lastPriceFetch = 0;
     
     let pairInfo = {
@@ -231,17 +233,17 @@
     function getLessonIcon(title) {
       const t = String(title).toLowerCase();
       if (t.includes('کندل') || t.includes('الگو')) return '🕯️';
-      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '🔗';
+      if (t.includes('بلاکچین') || t.includes('کریپتو')) return '';
       if (t.includes('کیف پول')) return '👛';
-      if (t.includes('بازار')) return '📊';
+      if (t.includes('بازار')) return '';
       if (t.includes('فارکس') || t.includes('ارز')) return '💱';
       if (t.includes('حمایت') || t.includes('مقاومت')) return '📈';
       if (t.includes('روند')) return '📉';
       if (t.includes('پرایس اکشن')) return '💹';
       if (t.includes('لوریج') || t.includes('مارجین')) return '⚖️';
       if (t.includes('ریسک')) return '🛡️';
-      if (t.includes('آزمون')) return '📝';
-      if (t.includes('اسمارت') || t.includes('smart')) return '';
+      if (t.includes('آزمون')) return '';
+      if (t.includes('اسمارت') || t.includes('smart')) return '🧠';
       if (t.includes('ict')) return '🎯';
       if (t.includes('استراتژی')) return '⚙️';
       if (t.includes('روانشناسی')) return '🧘';
@@ -352,6 +354,29 @@
       return null;
     }
 
+    function generateSimulatedCandles() {
+      const info = pairInfo[currentPair];
+      const candles = [];
+      let price = info.basePrice;
+      const now = Math.floor(Date.now() / 1000);
+      const intervalSeconds = currentTimeframe === '1m' ? 60 : currentTimeframe === '5m' ? 300 : currentTimeframe === '15m' ? 900 : currentTimeframe === '1h' ? 3600 : 14400;
+      const volatility = info.basePrice * 0.002;
+      
+      for (let i = 199; i >= 0; i--) {
+        const time = now - i * intervalSeconds;
+        const change = (Math.random() - 0.5) * volatility;
+        const open = price;
+        const close = price + change;
+        const bodySize = Math.abs(close - open);
+        const shadowMultiplier = 0.1 + Math.random() * 0.5;
+        const high = Math.max(open, close) + bodySize * shadowMultiplier;
+        const low = Math.min(open, close) - bodySize * shadowMultiplier;
+        candles.push({ time, open, high, low, close });
+        price = close;
+      }
+      return candles;
+    }
+
     function handleRoute() {
       const hash = location.hash;
       if (hash === '#home' || hash === '' || !hash) renderHome();
@@ -374,7 +399,7 @@
         { id: 'advanced', icon: '🌳', title: 'دوره پیشرفته', levelName: 'پیشرفته', count: appData.courses.filter(c => c.level.includes('پیشرفته')).length }
       ];
       let html = `<div class="header"><h1>📚 آکادمی ترید</h1><p>مسیر شما تا حرفه‌ای شدن در تحلیل بازار</p></div>
-        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')"> دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
+        <div class="nav-tabs"><div class="nav-tab active">📚 دوره‌ها</div><div class="nav-tab" onclick="navigateTo('#demo')">📈 دمو ترید</div><div class="nav-tab" onclick="navigateTo('#profile')">👤 پروفایل</div></div>`;
       levels.forEach(level => {
         if (level.count > 0) {
           html += `<div class="level-card" onclick="navigateTo('#level-${level.id}')"><div class="level-icon">${level.icon}</div><div class="level-title">${level.title}</div><div class="level-count">${level.count} دوره آموزشی</div></div>`;
@@ -387,7 +412,7 @@
       let levelName = levelId === 'beginner' ? 'مقدماتی' : levelId === 'intermediate' ? 'میانی' : levelId === 'advanced' ? 'پیشرفته' : decodeURIComponent(levelId);
       const courses = appData.courses.filter(c => c.level.includes(levelName));
       if (courses.length === 0) {
-        document.getElementById('app').innerHTML = `<div class="loading">️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')">↶ بازگشت</button>`;
+        document.getElementById('app').innerHTML = `<div class="loading">⚠️ هیچ دوره‌ای در سطح "${levelName}" یافت نشد</div><button class="back-button" onclick="navigateTo('#home')"> بازگشت</button>`;
         return;
       }
       let html = `<div class="header"><h1>${levelName}</h1><p>${courses.length} دوره در این سطح</p></div>`;
@@ -407,7 +432,7 @@
       }
       const lessons = currentCourse.lessons || [];
       let html = `<div class="header"><h1>${currentCourse.title}</h1><p>${lessons.length} درس</p></div>`;
-      if (lessons.length === 0) html += `<div class="loading">⚠️ این دوره هنوز درسی ندارد</div>`;
+      if (lessons.length === 0) html += `<div class="loading">️ این دوره هنوز درسی ندارد</div>`;
       else lessons.forEach((l, i) => {
         html += `<div class="lesson-item" onclick="navigateTo('#lesson-${currentCourse.id}-${i}')"><div class="lesson-number">${i + 1}</div><div class="lesson-title">${l.title}</div></div>`;
       });
@@ -433,7 +458,7 @@
         imageHtml = `<div style="width:100%;height:180px;background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-radius:10px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:64px;color:#1D9E75">${lessonIcon}</div>`;
       }
       const hasQuiz = currentLesson.quiz && currentLesson.quiz.length > 0;
-      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${hasQuiz ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})"> شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div>`;
+      let html = `<div class="lesson-content">${imageHtml}<h2 style="color: #1D9E75; margin-bottom: 16px; font-size: 18px;">${currentLesson.title}</h2><div>${currentLesson.content}</div>${hasQuiz ? `<button class="quiz-button" onclick="startQuiz(${course.lessons.indexOf(currentLesson)})">🎯 شروع آزمون این درس (${currentLesson.quiz.length} سوال)</button>` : ''}</div>`;
       html += `<button class="back-button ${hasQuiz ? 'hidden' : ''}" onclick="navigateTo('#course-${cleanCourseId}')">↶ بازگشت</button>`;
       document.getElementById('app').innerHTML = html;
       window.scrollTo(0, 0);
@@ -508,11 +533,11 @@
             <span class="pair-change ${changeClass}" id="pairChange">${changeSign}${info.change.toFixed(2)}%</span>
           </div>
           <button class="chart-icon-btn" onclick="toggleChart()" title="نمودار">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
-              <line x1="7" y1="3" x2="7" y2="21"/>
-              <rect x="5" y="9" width="4" height="8" fill="#0ECB81" opacity="0.6" stroke="none"/>
-              <line x1="17" y1="3" x2="17" y2="21"/>
-              <rect x="15" y="11" width="4" height="6" fill="#F64653" opacity="0.6" stroke="none"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="10" width="4" height="10" stroke="#0ECB81" stroke-width="1.5" fill="none"/>
+              <line x1="6" y1="6" x2="6" y2="10" stroke="#0ECB81" stroke-width="1.5"/>
+              <rect x="16" y="8" width="4" height="12" stroke="#F64653" stroke-width="1.5" fill="none"/>
+              <line x1="18" y1="4" x2="18" y2="8" stroke="#F64653" stroke-width="1.5"/>
             </svg>
           </button>
         </div>
@@ -565,7 +590,7 @@
         <div class="chart-section" id="chartSection" style="display:none;">
           <div class="chart-section-header">
             <span class="chart-pair-name" id="chartPairName">${info.name}</span>
-            <span class="live-badge"><span class="dot"></span><span>LIVE</span></span>
+            <span class="live-badge" id="liveBadge"><span class="dot"></span><span id="liveBadgeText">LIVE</span></span>
             <div class="chart-timeframes">
               <button class="chart-action-btn" onclick="changeTimeframe('1m', event)">1m</button>
               <button class="chart-action-btn" onclick="changeTimeframe('5m', event)">5m</button>
@@ -694,10 +719,27 @@
         });
         candleSeries = chart.addCandlestickSeries({ upColor: '#0ECB81', downColor: '#F64653', borderVisible: false, wickUpColor: '#0ECB81', wickDownColor: '#F64653' });
         
-        const candles = await fetchRealCandles();
+        let candles = null;
+        try {
+          candles = await fetchRealCandles();
+        } catch(e) {
+          console.log('Candle fetch failed:', e.message);
+        }
+        
         if (!candles || candles.length === 0) {
-          container.innerHTML = '<div class="chart-error">️ Unable to load live data. Please check your connection.</div>';
-          return;
+          console.log('Using simulated candles');
+          candles = generateSimulatedCandles();
+          isDataReal = false;
+          const badge = document.getElementById('liveBadge');
+          const badgeText = document.getElementById('liveBadgeText');
+          if (badge) { badge.className = 'live-badge simulated'; }
+          if (badgeText) { badgeText.textContent = 'SIMULATED'; }
+        } else {
+          isDataReal = true;
+          const badge = document.getElementById('liveBadge');
+          const badgeText = document.getElementById('liveBadgeText');
+          if (badge) { badge.className = 'live-badge'; }
+          if (badgeText) { badgeText.textContent = 'LIVE'; }
         }
         
         chartData = candles;
@@ -986,9 +1028,25 @@
       if (activeTab === 'positions') {
         const positions = demoAccount.positions.filter(p => p.pair === currentPair);
         if (positions.length === 0) { container.innerHTML = '<div class="empty-state">No open positions</div>'; return; }
-        container.innerHTML = positions.map(pos => { const pnlClass = pos.pnl >= 0 ? 'profit' : 'loss'; const pnlSign = pos.pnl >= 0 ? '+' : ''; return `<div class="position-item"><div class="position-header"><span class="position-pair">${pos.pair}</span><span class="position-side ${pos.side}">${pos.side === 'buy' ? 'Long' : 'Short'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${pos.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Leverage</span><span class="position-detail-value">${pos.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${pos.entryPrice.toFixed(pairInfo[pos.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Margin</span><span class="position-detail-value">${(pos.amount * pos.entryPrice / pos.leverage).toFixed(2)} USDT</span></div></div><div class="position-pnl ${pnlClass}">${pnlSign}$${pos.pnl.toFixed(2)} (${pnlSign}${pos.pnlPercent.toFixed(2)}%)</div><button class="close-btn" onclick="closePosition(${pos.id})">Close Position</button></div>`; }).join('');
+        container.innerHTML = positions.map(pos => { 
+          const pnlClass = pos.pnl >= 0 ? 'profit' : 'loss'; 
+          const pnlSign = pos.pnl >= 0 ? '+' : ''; 
+          const sideClass = pos.side === 'buy' ? 'buy' : 'sell';
+          const sideText = pos.side === 'buy' ? 'Long' : 'Short';
+          return `<div class="position-item"><div class="position-header"><span class="position-pair">${pos.pair}</span><span class="position-side ${sideClass}">${sideText}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${pos.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Leverage</span><span class="position-detail-value">${pos.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${pos.entryPrice.toFixed(pairInfo[pos.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Margin</span><span class="position-detail-value">${(pos.amount * pos.entryPrice / pos.leverage).toFixed(2)} USDT</span></div></div><div class="position-pnl ${pnlClass}">${pnlSign}$${pos.pnl.toFixed(2)} (${pnlSign}${pos.pnlPercent.toFixed(2)}%)</div><button class="close-btn" onclick="closePosition(${pos.id})">Close Position</button></div>`; 
+        }).join('');
       } else if (activeTab === 'pending') { container.innerHTML = '<div class="empty-state">No pending orders<br><small>Use Limit Order to create one</small></div>'; }
-      else if (activeTab === 'history') { const history = demoAccount.history.filter(h => h.pair === currentPair); if (history.length === 0) { container.innerHTML = '<div class="empty-state">No order history</div>'; return; } container.innerHTML = history.slice().reverse().map(h => { const pnlClass = h.pnl >= 0 ? 'profit' : 'loss'; const pnlSign = h.pnl >= 0 ? '+' : ''; return `<div class="position-item"><div class="position-header"><span class="position-pair">${h.pair}</span><span class="position-side ${h.side}">${h.side === 'buy' ? 'Long' : 'Short'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${h.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${h.entryPrice.toFixed(pairInfo[h.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Exit</span><span class="position-detail-value">${h.closePrice?.toFixed(pairInfo[h.pair]?.decimals || 2) || '--'}</span></div><div class="position-detail"><span class="position-detail-label">PnL</span><span class="position-detail-value ${pnlClass}">${pnlSign}$${h.pnl.toFixed(2)}</span></div></div></div>`; }).join(''); }
+      else if (activeTab === 'history') { 
+        const history = demoAccount.history.filter(h => h.pair === currentPair); 
+        if (history.length === 0) { container.innerHTML = '<div class="empty-state">No order history</div>'; return; } 
+        container.innerHTML = history.slice().reverse().map(h => { 
+          const pnlClass = h.pnl >= 0 ? 'profit' : 'loss'; 
+          const pnlSign = h.pnl >= 0 ? '+' : '';
+          const sideClass = h.side === 'buy' ? 'buy' : 'sell';
+          const sideText = h.side === 'buy' ? 'Long' : 'Short';
+          return `<div class="position-item"><div class="position-header"><span class="position-pair">${h.pair}</span><span class="position-side ${sideClass}">${sideText}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">Amount</span><span class="position-detail-value">${h.amount.toFixed(6)}</span></div><div class="position-detail"><span class="position-detail-label">Entry</span><span class="position-detail-value">${h.entryPrice.toFixed(pairInfo[h.pair]?.decimals || 2)}</span></div><div class="position-detail"><span class="position-detail-label">Exit</span><span class="position-detail-value">${h.closePrice?.toFixed(pairInfo[h.pair]?.decimals || 2) || '--'}</span></div><div class="position-detail"><span class="position-detail-label">PnL</span><span class="position-detail-value ${pnlClass}">${pnlSign}$${h.pnl.toFixed(2)}</span></div></div></div>`; 
+        }).join(''); 
+      }
     }
 
     function closePosition(id) { const posIndex = demoAccount.positions.findIndex(p => p.id === id); if (posIndex === -1) return; const pos = demoAccount.positions[posIndex]; pos.closePrice = currentPrice; pos.pnl = (pos.side === 'buy' ? 1 : -1) * (currentPrice - pos.entryPrice) * pos.amount; demoAccount.balance += pos.pnl; demoAccount.history.push(pos); demoAccount.positions.splice(posIndex, 1); if (pos.pnl > 0) userProfile.winRate = Math.round((userProfile.quizzesPassed / Math.max(1, userProfile.totalTrades)) * 100); saveDemoAccount(); saveUserProfile(); drawPositionLines(); renderPositions(); updateTradeInfo(); }
@@ -996,10 +1054,10 @@
     function loadDemoAccount() { const saved = localStorage.getItem('demoAccount'); if (saved) { try { demoAccount = JSON.parse(saved); } catch (e) {} } }
     function saveDemoAccount() { localStorage.setItem('demoAccount', JSON.stringify(demoAccount)); }
 
-    function renderQuizQuestion() { if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) return navigateTo('#home'); const q = currentLesson.quiz[quizState.currentQuestion]; const total = currentLesson.quiz.length; const num = quizState.currentQuestion + 1; let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation"> ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`; document.getElementById('app').innerHTML = html; quizState.answered = false; }
+    function renderQuizQuestion() { if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) return navigateTo('#home'); const q = currentLesson.quiz[quizState.currentQuestion]; const total = currentLesson.quiz.length; const num = quizState.currentQuestion + 1; let html = `<div class="quiz-container"><div style="text-align: center; margin-bottom: 16px; color: #7F8C8D; font-size: 13px;">سوال ${num} از ${total}</div><div class="quiz-question">${q.question}</div><div id="options-container">${q.options.map((opt, i) => `<div class="quiz-option" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</div>`).join('')}</div><div class="quiz-explanation" id="explanation">💡 ${q.explanation}</div><div class="quiz-nav"><button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>${num === total ? 'مشاهده نتیجه' : 'سوال بعدی ←'}</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ خروج از آزمون</button>`; document.getElementById('app').innerHTML = html; quizState.answered = false; }
     function selectAnswer(index) { if (quizState.answered) return; quizState.answered = true; const q = currentLesson.quiz[quizState.currentQuestion]; if (index === q.correct) quizState.score++; document.querySelectorAll('.quiz-option').forEach((el, i) => { el.style.pointerEvents = 'none'; if (i === q.correct) el.classList.add('correct'); if (i === index && i !== q.correct) el.classList.add('incorrect'); }); document.getElementById('explanation').classList.add('show'); document.getElementById('btn-next').disabled = false; }
     function nextQuestion() { quizState.currentQuestion++; if (quizState.currentQuestion >= currentLesson.quiz.length) showQuizResult(); else renderQuizQuestion(); }
-    function showQuizResult() { const total = currentLesson.quiz.length; const score = quizState.score; const pct = Math.round((score / total) * 100); let msg = pct === 100 ? '🎉 عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید'; if (pct >= 70) { userProfile.quizzesPassed++; userProfile.lessonsCompleted++; saveUserProfile(); } document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`; }
+    function showQuizResult() { const total = currentLesson.quiz.length; const score = quizState.score; const pct = Math.round((score / total) * 100); let msg = pct === 100 ? ' عالی!' : pct >= 70 ? '✅ آفرین!' : pct >= 50 ? '👍 خوب بود' : '📚 دوباره مرور کنید'; if (pct >= 70) { userProfile.quizzesPassed++; userProfile.lessonsCompleted++; saveUserProfile(); } document.getElementById('app').innerHTML = `<div class="quiz-container"><div class="quiz-result"><div class="quiz-score">${score} از ${total}</div><div class="quiz-message">${msg}</div><button class="quiz-button" onclick="navigateTo('#course-${currentCourse.id}')" style="max-width: 280px;">بازگشت به دوره</button></div></div><button class="back-button" onclick="navigateTo('#course-${currentCourse.id}')">↶ بازگشت</button>`; }
 
     function navigateTo(hash) { if (chart) { chart.remove(); chart = null; } history.pushState({ hash }, '', hash); handleRoute(); }
     window.addEventListener('popstate', () => handleRoute());
